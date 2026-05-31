@@ -39,3 +39,13 @@
 - Reason: It directly advances the north star: organizer enters participants, sets court count, generates the first round, and sees waiters.
 - Human repair needed: none.
 - Pending updates: PR evidence for Issue #21 after PR creation.
+
+## 2026-06-01 04:32 JST
+
+- Searched candidates: Project In Progress/Ready items, Sprint Backlog after PR #22 merge, MVP persistence needs, manual swap/undo needs.
+- Referenced GitHub Project / Issues / docs: Issues #16, #17, #21, #23, `docs/scrum/sprint-backlog.md`, `docs/product/vision.md`.
+- Findings: Issue #21 is merged and Done. The next highest-risk MVP foundation is local-first persistence, because the product requires reopening the app without losing the session.
+- Next selected work: Issue #23 `セッションをJSONで保存・復元する`.
+- Reason: It directly supports the MVP principle "閉じても消えない" while keeping CloudKit/SwiftData out of the first release scope.
+- Human repair needed: none.
+- Pending updates: PR evidence for Issue #23 after PR creation.

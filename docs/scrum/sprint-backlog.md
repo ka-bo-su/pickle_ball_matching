@@ -17,7 +17,8 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 | CHORE-005 | GitHub Actions CI追加 | Done | swift-developer | GitHub Actions `validate` passed | PR #14, Issue #12 |
 | CHORE-006 | bootstrap-ios script整備 | Done | swift-developer | `scripts/codex/bootstrap-ios.sh` | PR #14, Issue #13 |
 | SBI-005 | Matching ViewModel状態遷移テストとアクセシビリティ補強 | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #15, Issue #9 |
-| SBI-006 | 参加者とコート数から最初のラウンドを生成する | In Progress | swift-developer | `scripts/codex/validate-ios.sh` passed locally | Issue #21 |
+| SBI-006 | 参加者とコート数から最初のラウンドを生成する | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #22, Issue #21 |
+| SBI-007 | ローカルJSON保存・復元 | In Progress | swift-developer | `scripts/codex/validate-ios.sh` passed locally | Issue #23 |
 
 ## Plan
 
@@ -31,12 +32,12 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 8. Environment completion merged in PR #14; Issues #10-#13 Done.
 9. Issue #9 merged in PR #15 and Project item set Done.
 10. MVP PBI Issues #16-#20 created in Japanese and added to Project.
-11. Issue #21 selected and implemented locally; PR is next.
+11. Issue #21 merged in PR #22 and Project item set Done.
+12. Issue #23 selected and implemented locally; PR is next.
 
 ## Next Ready Work
 
 | ID | Type | Status | Owner Role | Validation | Evidence |
 |---|---|---|---|---|---|
-| SBI-007 | ローカルJSON保存・復元 | Backlog | swift-developer | persistence tests, `xcodebuild test` | pending Issue |
 | SBI-008 | 手動入れ替えとUndoの土台 | Backlog | swift-developer | ViewModel tests, `xcodebuild test` | pending Issue |
 | SBI-009 | 共有CSV出力 | Backlog | swift-developer | exporter tests, `xcodebuild test` | pending Issue |

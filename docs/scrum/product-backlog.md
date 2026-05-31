@@ -23,4 +23,5 @@ GitHub Project `kanban@pickle_ball_matching` is the source of truth. This file m
 | PBI-004 | PBI | 進行ボードと大画面表示 | P0 | Ready | Issue #18 |
 | PBI-005 | PBI | 共有・エクスポート | P2 | Ready | Issue #19 |
 | PBI-006 | PBI | Pro制限とStoreKit準備 | P2 | Ready | Issue #20 |
-| SBI-006 | SBI | 参加者とコート数から最初のラウンドを生成する | P0 | In Progress | Issue #21 |
+| SBI-006 | SBI | 参加者とコート数から最初のラウンドを生成する | P0 | Done | PR #22, Issue #21 |
+| SBI-007 | SBI | セッションをJSONで保存・復元する | P1 | In Progress | Issue #23 |

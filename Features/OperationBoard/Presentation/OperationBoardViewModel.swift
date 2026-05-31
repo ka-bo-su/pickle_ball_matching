@@ -8,13 +8,26 @@ final class OperationBoardViewModel: ObservableObject {
     @Published private(set) var errorMessage: String?
 
     private let generateNextRoundUseCase: GenerateNextRoundUseCase
+    private let sessionRepository: (any SessionRepository)?
 
     init(
-        session: Session = .defaultSession(),
-        generateNextRoundUseCase: GenerateNextRoundUseCase = GenerateNextRoundUseCase()
+        session: Session? = nil,
+        generateNextRoundUseCase: GenerateNextRoundUseCase = GenerateNextRoundUseCase(),
+        sessionRepository: (any SessionRepository)? = nil
     ) {
-        self.session = session
         self.generateNextRoundUseCase = generateNextRoundUseCase
+        self.sessionRepository = sessionRepository
+
+        if let session {
+            self.session = session
+        } else {
+            do {
+                self.session = try sessionRepository?.loadLatestSession() ?? .defaultSession()
+            } catch {
+                self.session = .defaultSession()
+                errorMessage = "保存済みセッションを読み込めませんでした。新規セッションで開始します。"
+            }
+        }
     }
 
     var currentRound: Round? {
@@ -38,21 +51,28 @@ final class OperationBoardViewModel: ObservableObject {
             )
         )
         newParticipantName = ""
+        session.updatedAt = Date()
         errorMessage = nil
+        saveSession()
     }
 
     func removeParticipants(at offsets: IndexSet) {
         session.participants.remove(atOffsets: offsets)
+        session.updatedAt = Date()
+        saveSession()
     }
 
     func updateCourtCount(_ courtCount: Int) {
         session.courtCount = max(1, courtCount)
+        session.updatedAt = Date()
+        saveSession()
     }
 
     func generateNextRound() {
         do {
             session = try generateNextRoundUseCase.execute(session: session)
             errorMessage = nil
+            saveSession()
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -60,6 +80,14 @@ final class OperationBoardViewModel: ObservableObject {
 
     private func defaultSkillLevel(for index: Int) -> SkillLevel {
         SkillLevel(rawValue: (index % SkillLevel.allCases.count) + 1) ?? .beginner
+    }
+
+    private func saveSession() {
+        do {
+            try sessionRepository?.save(session)
+        } catch {
+            errorMessage = "セッションを保存できませんでした。端末の空き容量を確認してください。"
+        }
     }
 }
 

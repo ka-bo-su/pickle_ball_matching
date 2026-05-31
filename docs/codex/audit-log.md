@@ -700,3 +700,98 @@ Medium. This is the first real product slice and removes the temporary matching 
 ### Follow-up
 
 Open PR for Issue #21, merge to `dev`, then continue with JSON persistence or manual swap/undo.
+
+## 2026-06-01 04:31 JST
+
+### Action
+
+Merged PR #22 to `dev`, closed Issue #21, and created/selected Issue #23 for local JSON save/restore.
+
+### Reason
+
+SBI #21 completed the first operation-board increment. The next useful MVP work is local-first persistence so the organizer does not lose the session after closing the app.
+
+### Files Changed
+
+No local files changed in this checkpoint beyond merged PR contents.
+
+### Commands Run
+
+- GitHub connector merge for PR #22
+- `gh project item-edit ...` for Issue #21 Done sync
+- GitHub connector issue update for Issue #21 close
+- GitHub connector issue creation for Issue #23
+- `gh project item-add ...`
+- `gh project item-edit ...` for Issue #23 Ready/In Progress fields
+- `git fetch origin`
+- `git switch dev`
+- `git merge --ff-only origin/dev`
+- `git switch -c codex/sbi-23-json-persistence`
+
+### GitHub Project Updates
+
+- Issue #21 moved to In Review with PR #22 evidence, then Done after merge.
+- Issue #23 added to Project as SBI, Priority P1, Role Owner swift-developer, Parent PBI #17, Validation Status Not Run, then moved to In Progress.
+
+### Architecture Decision
+
+Selected local JSON persistence as the next vertical slice. SwiftData and CloudKit remain future options and are not required for the MVP.
+
+### Validation
+
+PR #22 GitHub Actions `validate` passed before merge.
+
+### Risk
+
+Low for merge sync; medium for the next persistence slice because storage failures must not crash the operation board.
+
+### Follow-up
+
+Implement Issue #23 and validate with persistence tests plus full iOS validation.
+
+## 2026-06-01 04:38 JST
+
+### Action
+
+Implemented SBI #23: JSON session save/restore, ViewModel autosave/restore wiring, and persistence tests.
+
+### Reason
+
+The MVP requires the session to survive app close/reopen. JSON file persistence keeps the first release local-first, testable, and independent from CloudKit or SwiftData.
+
+### Files Changed
+
+- `Sources/PickleBallMatchingCore/Application/SessionRepository.swift`
+- `Sources/PickleBallMatchingCore/Infrastructure/JSONSessionRepository.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `App/CompositionRoot/DependencyContainer.swift`
+- `Tests/PickleBallMatchingCoreTests/JSONSessionRepositoryTests.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+- Scrum/Codex ledger docs
+
+### Commands Run
+
+- `swift test`
+- `scripts/codex/validate-ios.sh`
+- `swiftformat --cache ignore .`
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+Issue #23 remains In Progress until PR evidence is available.
+
+### Architecture Decision
+
+Added `SessionRepository` in the Application layer and `JSONSessionRepository` in Infrastructure. The app Composition Root wires the concrete repository; the ViewModel depends on the protocol and does not know file-system details.
+
+### Validation
+
+First full validation caught SwiftFormat lint only while build/test passed. After formatting and splitting a test helper to remove a SwiftLint warning, full validation passed: `swift test`, SwiftLint, SwiftFormat lint, XcodeGen, `xcodebuild build`, and `xcodebuild test`.
+
+### Risk
+
+Medium. This introduces local file I/O. Risk is controlled with JSON round-trip, missing-file, broken-file, ViewModel restore, and autosave tests.
+
+### Follow-up
+
+Open PR for Issue #23, update Project evidence, merge to `dev`, then continue with manual swap/undo or participant status editing.

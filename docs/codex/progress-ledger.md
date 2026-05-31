@@ -3,12 +3,12 @@
 ## Current
 
 - Active PBI: Issue #16
-- Active SBI: Issue #21
-- Active Branch: codex/sbi-21-operation-round
+- Active SBI: Issue #23
+- Active Branch: codex/sbi-23-json-persistence
 - Active PR: pending
-- GitHub Project Item: Issue #21
+- GitHub Project Item: Issue #23
 - Status: In Progress
-- Next Action: commit SBI #21, open PR, update Project evidence, and merge to `dev`
+- Next Action: commit SBI #23, open PR, update Project evidence, and merge to `dev`
 
 ## Completed
 
@@ -31,12 +31,15 @@
 | 2026-06-01 04:10 JST | Issue #9 merged | Squash merged PR #15 to `dev`; Issue #9 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/15 |
 | 2026-06-01 04:12 JST | MVP backlog created | Created Japanese PBI Issues #16-#20 and SBI Issue #21, added them to Project | Issues #16-#21 |
 | 2026-06-01 04:20 JST | SBI #21 local implementation | Replaced bootstrap matching shell with day-of operation domain/use case/board UI | `GenerateNextRoundUseCase`, `OperationBoardView` |
+| 2026-06-01 04:31 JST | SBI #21 merged | Squash merged PR #22 to `dev`; Issue #21 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/22 |
+| 2026-06-01 04:32 JST | Next SBI created | Created Issue #23 for local JSON save/restore and added it to Project as In Progress | https://github.com/ka-bo-su/pickle_ball_matching/issues/23 |
+| 2026-06-01 04:38 JST | SBI #23 local implementation | Added JSON session repository, restore/autosave ViewModel wiring, and persistence tests | `JSONSessionRepository`, `OperationBoardViewModel` |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #21 | codex/sbi-21-operation-round | pending | In Progress | PR and Project evidence update |
+| Issue #23 | codex/sbi-23-json-persistence | pending | In Progress | PR and Project evidence update |
 
 ## Blocked
 
@@ -69,3 +72,6 @@
 | 2026-06-01 04:18 JST | `swift test` | pass | SBI #21 core round generation tests, 5 tests |
 | 2026-06-01 04:18 JST | `scripts/codex/validate-ios.sh` | fail | SBI #21 first pass caught lint tuple and DI MainActor boundary |
 | 2026-06-01 04:20 JST | `scripts/codex/validate-ios.sh` | pass | SBI #21 full validation with core/app tests |
+| 2026-06-01 04:34 JST | `swift test` | pass | SBI #23 core JSON persistence tests, 8 tests |
+| 2026-06-01 04:35 JST | `scripts/codex/validate-ios.sh` | fail | SBI #23 first pass caught SwiftFormat lint only; xcodebuild test passed |
+| 2026-06-01 04:38 JST | `scripts/codex/validate-ios.sh` | pass | SBI #23 full validation with 8 core tests and 7 app tests |
