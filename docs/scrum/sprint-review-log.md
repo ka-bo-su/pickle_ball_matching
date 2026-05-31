@@ -8,3 +8,12 @@
 - Product Backlog adaptation: initial PBI/SBI backlog created.
 - Merge result: PR #8 squash merged to `dev`; Issues #1-#7 closed; Project items #1-#7 Done.
 - Risks: keep generated `.xcodeproj` ignored and regenerate from `project.yml`.
+
+## 2026-06-01 MVP Slice Review
+
+- Increment: First Japanese operation board slice with participant entry, court count, first round generation, waiters, JSON save/restore, and participant status changes.
+- Evidence: PR #22, PR #24, Issues #16-#17, #21, #23, #25.
+- Validation: `scripts/codex/validate-ios.sh` passed on `codex/sbi-25-participant-status`, including `swift test`, SwiftLint, SwiftFormat lint, XcodeGen generation, `xcodebuild build`, and `xcodebuild test`.
+- Product Backlog adaptation: Issue #25 was created and selected after JSON persistence because day-of status changes are needed before manual swap/undo.
+- Merge result: PR #22 and PR #24 squash merged to `dev`; Issues #21 and #23 closed; Issue #25 is implemented locally and pending PR.
+- Risks: participant status UX needs human-visible review for one-hand operation; manual swap/undo remains the next gap for on-court correction.

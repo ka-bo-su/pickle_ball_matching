@@ -3,12 +3,12 @@
 ## Current
 
 - Active PBI: Issue #16
-- Active SBI: Issue #23
-- Active Branch: codex/sbi-23-json-persistence
-- Active PR: PR #24
-- GitHub Project Item: Issue #23
-- Status: In Review
-- Next Action: wait for PR #24 CI, merge to `dev`, and set Issue #23 Done
+- Active SBI: Issue #25
+- Active Branch: codex/sbi-25-participant-status
+- Active PR: pending
+- GitHub Project Item: Issue #25
+- Status: In Progress
+- Next Action: commit SBI #25, open PR, update Project evidence, and merge to `dev`
 
 ## Completed
 
@@ -35,12 +35,15 @@
 | 2026-06-01 04:32 JST | Next SBI created | Created Issue #23 for local JSON save/restore and added it to Project as In Progress | https://github.com/ka-bo-su/pickle_ball_matching/issues/23 |
 | 2026-06-01 04:38 JST | SBI #23 local implementation | Added JSON session repository, restore/autosave ViewModel wiring, and persistence tests | `JSONSessionRepository`, `OperationBoardViewModel` |
 | 2026-06-01 04:40 JST | PR opened | Created PR #24 for SBI #23 and updated Project evidence | https://github.com/ka-bo-su/pickle_ball_matching/pull/24 |
+| 2026-06-01 04:57 JST | SBI #23 merged | Squash merged PR #24 to `dev`; Issue #23 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/24 |
+| 2026-06-01 04:58 JST | Next SBI selected | Created and selected Issue #25 for participant status changes | https://github.com/ka-bo-su/pickle_ball_matching/issues/25 |
+| 2026-06-01 05:00 JST | SBI #25 local implementation | Added participant status menu, ViewModel status update, autosave, and exclusion tests | `OperationBoardView`, `OperationBoardViewModel` |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #23 | codex/sbi-23-json-persistence | PR #24 | In Review | CI, merge, Issue/Project Done sync |
+| Issue #25 | codex/sbi-25-participant-status | pending | In Progress | PR and Project evidence update |
 
 ## Blocked
 
@@ -76,3 +79,7 @@
 | 2026-06-01 04:34 JST | `swift test` | pass | SBI #23 core JSON persistence tests, 8 tests |
 | 2026-06-01 04:35 JST | `scripts/codex/validate-ios.sh` | fail | SBI #23 first pass caught SwiftFormat lint only; xcodebuild test passed |
 | 2026-06-01 04:38 JST | `scripts/codex/validate-ios.sh` | pass | SBI #23 full validation with 8 core tests and 7 app tests |
+| 2026-06-01 04:58 JST | `swift test` | pass | SBI #25 core tests, 8 tests |
+| 2026-06-01 04:59 JST | `scripts/codex/validate-ios.sh` | pass | SBI #25 full validation; first pass had 1 SwiftLint warning but no failures |
+| 2026-06-01 05:00 JST | `scripts/codex/validate-ios.sh` | pass | SBI #25 validation with 8 core tests and 9 app tests, 0 lint failures |
+| 2026-06-01 05:03 JST | `scripts/codex/validate-ios.sh` | pass | SBI #25 final validation after accessibility adjustment, 0 lint violations |

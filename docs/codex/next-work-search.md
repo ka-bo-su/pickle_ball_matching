@@ -49,3 +49,13 @@
 - Reason: It directly supports the MVP principle "閉じても消えない" while keeping CloudKit/SwiftData out of the first release scope.
 - Human repair needed: none.
 - Pending updates: PR evidence for Issue #23 after PR creation.
+
+## 2026-06-01 04:57 JST
+
+- Searched candidates: Project Ready items, Sprint Backlog, MVP day-of change requirements, status handling already present in Domain.
+- Referenced GitHub Project / Issues / docs: Issues #16, #23, #25, `docs/product/vision.md`, `docs/scrum/sprint-backlog.md`.
+- Findings: Issue #23 is merged and Done. The next safe vertical slice is participant status editing because Domain already defines statuses and round generation already excludes unavailable statuses.
+- Next selected work: Issue #25 `参加者状態を変更して次ラウンドに反映する`.
+- Reason: It supports late arrival, break requests, absence, and observing states without adding new persistence or algorithm complexity.
+- Human repair needed: none.
+- Pending updates: PR evidence for Issue #25 after PR creation.

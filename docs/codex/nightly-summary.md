@@ -2,8 +2,8 @@
 
 ## Result
 
-- Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22 squash merges to `dev`, Issues #1-#7/#9-#13/#21 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, and SBI #23 local JSON persistence implementation with PR #24 opened
-- Partially completed: SBI #23 CI/merge sync
+- Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, and SBI #25 local participant-status implementation
+- Partially completed: SBI #25 PR/merge sync
 - Blocked: none
 
 ## Time
@@ -15,8 +15,8 @@
 ## PRs
 
 - Opened: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24
-- Merged: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22
-- Closed: Issues #1-#7, #9-#13, #21
+- Merged: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24
+- Closed: Issues #1-#7, #9-#13, #21, #23
 
 ## Commits
 
@@ -24,6 +24,7 @@
 - `24f7851` chore(ios): complete validation environment
 - `0bfc567` test(ios): cover matching view model states
 - `c180e6b` feat(operation): generate first doubles round
+- `a61d632` feat(persistence): save and restore operation sessions
 
 ## GitHub Project Updates
 
@@ -39,7 +40,8 @@
 - Issue #9 set Done after PR #15 merge
 - Issues #16-#20 created in Japanese and added to Project as MVP PBIs
 - Issue #21 created, selected, moved to In Review with PR #22 evidence, then Done after merge
-- Issue #23 created in Japanese, added to Project, moved to In Progress, then In Review with PR #24 evidence
+- Issue #23 created in Japanese, added to Project, moved to In Progress/In Review, then Done after PR #24 merge
+- Issue #25 created in Japanese, added to Project, and moved to In Progress
 
 ## Pending GitHub Project Updates
 
@@ -47,9 +49,9 @@
 
 ## iOS Validation
 
-- Build: passed on `codex/sbi-23-json-persistence` with `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'`
-- Test: passed on `codex/sbi-23-json-persistence` with `swift test` and `xcodebuild test`
-- Lint: passed on `codex/sbi-23-json-persistence` with `swiftlint --no-cache` and `swiftformat --cache ignore --lint .`
+- Build: passed on `codex/sbi-25-participant-status` with `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'`
+- Test: passed on `codex/sbi-25-participant-status` with `swift test` and `xcodebuild test`
+- Lint: passed on `codex/sbi-25-participant-status` with `swiftlint --no-cache` and `swiftformat --cache ignore --lint .`
 - Simulator: iPhone 16 on iOS 18.2 available
 
 ## Files Changed
@@ -142,15 +144,15 @@ A  scripts/codex/validate-ios.sh
 
 ## PBI/SBI Progress
 
-- Done: environment completion, Issue #9 ViewModel/accessibility hardening, and Issue #21 first operation board slice
-- In review: Issue #23 JSON save/restore PR #24
+- Done: environment completion, Issue #9 ViewModel/accessibility hardening, Issue #21 first operation board slice, and Issue #23 JSON save/restore
+- In progress: Issue #25 participant status changes
 - Blocked: none
-- Next: merge Issue #23 after CI, then continue with manual swap/undo or participant status editing
+- Next: open and merge Issue #25 PR, then continue with manual swap/undo
 
 ## Architecture
 
 - Decisions: SwiftPM testable core plus XcodeGen-generated SwiftUI app; MVP domain starts with local-first day-of operation entities and `GenerateNextRoundUseCase`; JSON file persistence is used for MVP save/restore instead of SwiftData/CloudKit
-- Boundary changes: bootstrap matching model replaced by Participant/Session/Round/Match and OperationBoard Presentation; `SessionRepository` protocol added in Application and JSON implementation added in Infrastructure
+- Boundary changes: bootstrap matching model replaced by Participant/Session/Round/Match and OperationBoard Presentation; `SessionRepository` protocol added in Application and JSON implementation added in Infrastructure; participant status mutation stays in Presentation/ViewModel and reuses Domain availability rules
 - Refactor tasks: add JSON persistence, manual swap/undo, and larger board mode in follow-up SBIs
 - Risks: keep generated `.xcodeproj` ignored and regenerate from `project.yml`
 
@@ -163,9 +165,9 @@ A  scripts/codex/validate-ios.sh
 ## Human Review Notes
 
 - Review merged PR #8, #14, and #15
-- Pay attention to PR #24: JSON persistence failure handling, Application/Infrastructure dependency boundary, and local-first assumptions
+- Pay attention to next PR for Issue #25: participant status labels, accessibility, and unavailable-player exclusion
 - Possible rollback: revert the relevant PR
 
 ## Next Recommended Codex Goal
 
-- Merge Issue #23, then implement manual player swap/undo or participant status editing.
+- Merge Issue #25, then implement manual player swap/undo.
