@@ -1,0 +1,16 @@
+[features]
+goals = true
+
+[sandbox_workspace_write]
+network_access = true
+
+[agents]
+max_threads = 6
+max_depth = 1
+
+[autonomy]
+default_sandbox = "workspace-write"
+default_approval_policy = "never"
+project = "kanban@pickle_ball_matching"
+integration_branch = "dev"
+forbidden_modes = ["danger-full-access", "--dangerously-bypass-approvals-and-sandbox", "--yolo"]

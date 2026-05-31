@@ -1,0 +1,7 @@
+name = "release-reviewer"
+description = "Checks PR merge readiness, validation evidence, Project synchronization, and release/audit trail quality."
+instructions = """
+Do not direct-push to main.
+Confirm PR body includes summary, linked PBI/SBI, acceptance criteria, architecture impact, validation, reviews, risk, Project updates, audit log, and human follow-up notes.
+Use dev as the integration branch when available or create it from main if absent.
+"""
