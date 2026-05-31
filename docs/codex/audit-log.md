@@ -518,3 +518,91 @@ Low. The fix adds an empty placeholder only.
 ### Follow-up
 
 Amend the PR commit, push, and wait for CI again.
+
+## 2026-06-01 03:56 JST
+
+### Action
+
+Merged PR #14 to `dev` and closed environment completion Issues #10-#13.
+
+### Reason
+
+Environment completion reached Definition of Done: local validation passed, GitHub Actions passed, Project evidence was linked, and the PR was squash merged to the integration branch.
+
+### Files Changed
+
+No local files changed in this checkpoint beyond the merged PR contents.
+
+### Commands Run
+
+- `gh pr view 14 --json mergeable,mergeStateStatus,statusCheckRollup,headRefOid,url`
+- GitHub connector merge for PR #14
+- `gh project item-edit ...`
+- GitHub connector issue close for Issues #10-#13
+
+### GitHub Project Updates
+
+Issues #10-#13 moved to Done in Project `kanban@pickle_ball_matching`.
+
+### Architecture Decision
+
+Environment completion remains tooling-only. No production/App Store/TestFlight actions were taken.
+
+### Validation
+
+PR #14 GitHub Actions `validate` passed before merge.
+
+### Risk
+
+Low. The only ongoing human follow-up is awareness of GitHub Actions macOS runner usage.
+
+### Follow-up
+
+Continue with Issue #9, then create MVP Product Backlog items for the day-of operation app.
+
+## 2026-06-01 04:03 JST
+
+### Action
+
+Implemented Issue #9 ViewModel state transition tests and accessibility polish.
+
+### Reason
+
+Before replacing the bootstrap matching shell with the day-of operation MVP, the app test target should prove it can test Presentation state transitions and keep SwiftUI accessibility labels explicit.
+
+### Files Changed
+
+- `Features/Matching/Presentation/MatchingViewModel.swift`
+- `Features/Matching/Presentation/MatchingView.swift`
+- `Tests/PickleBallMatchingTests/MatchingViewModelTests.swift`
+- `project.yml`
+- `docs/codex/ios-swift-validation.md`
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/scrum/sprint-backlog.md`
+- `docs/codex/audit-log.md`
+
+### Commands Run
+
+- `swiftformat --cache ignore .`
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+Issue #9 moved to In Progress in Project `kanban@pickle_ball_matching`.
+
+### Architecture Decision
+
+Introduced `MatchCandidatesLoading: Sendable` as the Presentation-side seam for ViewModel tests while keeping the concrete `LoadMatchCandidatesUseCase` as the live implementation.
+
+### Validation
+
+First validation caught a Swift 6 Sendable issue and an unstable async test. After fixing both, full validation passed: `swift test`, SwiftLint, SwiftFormat lint, XcodeGen, `xcodebuild build`, and `xcodebuild test`.
+
+### Risk
+
+Low. This is test/accessibility hardening and does not change the core matching algorithm.
+
+### Follow-up
+
+Open PR for Issue #9, merge to `dev`, then start the MVP domain replacement.

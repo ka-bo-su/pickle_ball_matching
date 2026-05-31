@@ -37,18 +37,18 @@ xcodebuild test -scheme PickleBallMatching -destination 'platform=iOS Simulator,
 
 ## Latest Validation
 
-Last checked: 2026-06-01 03:48 JST
+Last checked: 2026-06-01 04:03 JST
 
 | Command | Result | Notes |
 |---|---|---|
 | `scripts/codex/preflight.sh` | passed | Tuist missing only; optional |
 | `swift test` | passed | 2 tests, 0 failures; local linker warning for missing Homebrew GMP search path is non-blocking |
-| `swiftlint --no-cache` | passed | 0 violations in 12 files |
+| `swiftlint --no-cache` | passed | 0 violations in 13 files |
 | `swiftformat --cache ignore --lint .` | passed | 0 files require formatting; rules loaded from `.swiftformat` |
 | `xcodegen generate` | passed | generated `PickleBallMatching.xcodeproj` locally; ignored by git |
 | `xcodebuild -list -project PickleBallMatching.xcodeproj` | passed | schemes: `PickleBallMatching`, `PickleBallMatchingCore` |
 | `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'` | passed | initial generated Info.plist issue fixed in `project.yml` |
-| `xcodebuild test -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'` | passed | app and core test targets are in the `PickleBallMatching` scheme |
+| `xcodebuild test -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'` | passed | core tests plus app smoke/ViewModel tests passed |
 
 Full validation script result: `scripts/codex/validate-ios.sh` passed on `codex/env-completion`.
 

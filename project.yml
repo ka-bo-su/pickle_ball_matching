@@ -47,6 +47,7 @@ targets:
   PickleBallMatchingTests:
     type: bundle.unit-test
     platform: iOS
+    hostApplication: PickleBallMatching
     sources:
       - Tests/PickleBallMatchingTests
     dependencies:

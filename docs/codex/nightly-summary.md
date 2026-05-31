@@ -2,8 +2,8 @@
 
 ## Result
 
-- Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8 squash merge to `dev`, Issues #1-#7 close, Project Done sync, next Ready SBI #9 creation
-- Partially completed: environment completion PR for Issues #10-#13 is locally complete and validated; PR/merge sync is next
+- Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8 and PR #14 squash merges to `dev`, Issues #1-#7 and #10-#13 close, Project Done sync, Issue #9 local implementation and validation
+- Partially completed: Issue #9 PR/merge sync
 - Blocked: none
 
 ## Time
@@ -14,13 +14,14 @@
 
 ## PRs
 
-- Opened: https://github.com/ka-bo-su/pickle_ball_matching/pull/8
-- Merged: https://github.com/ka-bo-su/pickle_ball_matching/pull/8
-- Closed: Issues #1-#7
+- Opened: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14
+- Merged: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14
+- Closed: Issues #1-#7, #10-#13
 
 ## Commits
 
 - `fadbd5f` feat(codex): bootstrap autonomous iOS scrum system
+- `24f7851` chore(ios): complete validation environment
 
 ## GitHub Project Updates
 
@@ -32,6 +33,8 @@
 - Project Status and Scrum Status set to `Done` for initial Project items
 - Issue #9 added to Project as the next Ready SBI
 - Issues #10-#13 added to Project as environment completion chores
+- Issues #10-#13 set Done after PR #14 merge
+- Issue #9 moved to In Progress
 
 ## Pending GitHub Project Updates
 
@@ -135,9 +138,9 @@ A  scripts/codex/validate-ios.sh
 ## PBI/SBI Progress
 
 - Done: local implementation and validation for PBI-001 bootstrap increment
-- In progress: CHORE-003 through CHORE-006, validated locally on `codex/env-completion`
+- In progress: Issue #9 PR/merge sync
 - Blocked: none
-- Next: open and merge environment completion PR, then select Issue #9 and implement ViewModel state transition tests/accessibility polish
+- Next: open and merge Issue #9 PR, create MVP Product Backlog Issues, then start day-of operation domain replacement
 
 ## Architecture
 

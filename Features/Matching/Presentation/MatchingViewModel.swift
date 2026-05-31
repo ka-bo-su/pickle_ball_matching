@@ -6,10 +6,10 @@ import PickleBallMatchingCore
 final class MatchingViewModel: ObservableObject {
     @Published private(set) var state: MatchingViewState = .idle
 
-    private let loadCandidatesUseCase: LoadMatchCandidatesUseCase
+    private let loadCandidatesUseCase: MatchCandidatesLoading
     private let currentPlayer: PlayerProfile
 
-    init(loadCandidatesUseCase: LoadMatchCandidatesUseCase, currentPlayer: PlayerProfile) {
+    init(loadCandidatesUseCase: MatchCandidatesLoading, currentPlayer: PlayerProfile) {
         self.loadCandidatesUseCase = loadCandidatesUseCase
         self.currentPlayer = currentPlayer
     }
@@ -24,10 +24,16 @@ final class MatchingViewModel: ObservableObject {
             let candidates = try await loadCandidatesUseCase.execute(for: currentPlayer)
             state = candidates.isEmpty ? .empty : .loaded(candidates)
         } catch {
-            state = .failed("Could not load matches. Try again later.")
+            state = .failed("候補を読み込めませんでした。あとでもう一度お試しください。")
         }
     }
 }
+
+protocol MatchCandidatesLoading: Sendable {
+    func execute(for profile: PlayerProfile) async throws -> [MatchCandidate]
+}
+
+extension LoadMatchCandidatesUseCase: MatchCandidatesLoading {}
 
 enum MatchingViewState: Equatable {
     case idle
