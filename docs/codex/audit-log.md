@@ -191,3 +191,112 @@ Low. Merge target is `dev`, not `main`.
 ### Follow-up
 
 Squash merge PR #8 to `dev`, close/update Issues #1-#7, set Project items Done, and continue the next SBI.
+
+## 2026-06-01 03:08 JST
+
+### Action
+
+Squash merged PR #8 to `dev`, closed initial Issues, and synchronized Project items to Done.
+
+### Reason
+
+The bootstrap increment met Definition of Done and did not require human approval. `main` was not modified.
+
+### Files Changed
+
+- `docs/codex/audit-log.md`
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/codex/next-work-search.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+- `docs/scrum/sprint-review-log.md`
+
+### Commands Run
+
+- `gh pr view 8 --json number,state,closed,mergedAt,mergeCommit,url,baseRefName,headRefName`
+- `gh project item-edit ...`
+- `gh issue edit ...`
+- `gh issue comment ...`
+- `git fetch origin dev`
+- `git switch dev`
+- `git merge --ff-only origin/dev`
+- `git branch --set-upstream-to=origin/dev dev`
+
+### GitHub Project Updates
+
+- Project items #1-#7 set to `Done`.
+- Scrum Status for Project items #1-#7 set to `Done`.
+- Validation Status remains `Passed`.
+- Evidence Link remains PR #8.
+
+### Architecture Decision
+
+Post-merge ledger updates are recorded on `dev`; `main` remains untouched. The local `dev` upstream was corrected to `origin/dev` to avoid accidentally treating `origin/main` as the integration branch.
+
+### Validation
+
+PR #8 merged to `dev` with merge commit `7d4264c31ef72506dec733b95867a602c7e04754`. Previous validation remains current for the merged code.
+
+### Risk
+
+Low. The update is bookkeeping-only after a validated merge.
+
+### Follow-up
+
+Select or create the next narrow SBI for ViewModel tests, accessibility polish, or the first product vertical slice.
+
+## 2026-06-01 03:09 JST
+
+### Action
+
+Created the next Ready SBI as Issue #9 and added it to Project `kanban@pickle_ball_matching`.
+
+### Reason
+
+The autonomous loop should not end with an empty next-action queue after the bootstrap increment is Done.
+
+### Files Changed
+
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/next-work-search.md`
+- `docs/codex/audit-log.md`
+
+### Commands Run
+
+- GitHub issue creation through GitHub connector
+- `gh project item-add 3 --owner ka-bo-su --url https://github.com/ka-bo-su/pickle_ball_matching/issues/9`
+- `gh project item-edit ...`
+
+### GitHub Project Updates
+
+- Issue #9 added as Backlog Level `SBI`.
+- Status set to `Ready`.
+- Scrum Status set to `Ready`.
+- Role Owner set to `swift-developer`.
+- Risk set to `low`.
+- Area set to `UI`.
+- Validation Status set to `Not Run`.
+
+### Architecture Decision
+
+Next work should improve Presentation testability before larger product feature expansion.
+
+### Validation
+
+No code changed for Issue #9 creation.
+
+### Risk
+
+Low. This is backlog preparation only.
+
+### Follow-up
+
+Implement Issue #9 in the next autonomous cycle.

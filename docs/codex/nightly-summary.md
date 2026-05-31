@@ -2,21 +2,21 @@
 
 ## Result
 
-- Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts
-- Partially completed: PR merge and post-merge Project Done update
+- Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8 squash merge to `dev`, Issues #1-#7 close, Project Done sync, next Ready SBI #9 creation
+- Partially completed: none
 - Blocked: none
 
 ## Time
 
 - Started: 2026-06-01 02:34 JST
-- Finished: 2026-06-01 02:56 JST
+- Finished: 2026-06-01 03:08 JST
 - Approximate duration: session-dependent
 
 ## PRs
 
 - Opened: https://github.com/ka-bo-su/pickle_ball_matching/pull/8
-- Merged: pending release-reviewer merge
-- Closed: pending release-reviewer merge
+- Merged: https://github.com/ka-bo-su/pickle_ball_matching/pull/8
+- Closed: Issues #1-#7
 
 ## Commits
 
@@ -29,6 +29,8 @@
 - Issues #1-#7 created in Japanese and added to Project
 - Validation Status set to `Passed` for initial Project items
 - Evidence Link set to PR #8 for initial Project items
+- Project Status and Scrum Status set to `Done` for initial Project items
+- Issue #9 added to Project as the next Ready SBI
 
 ## Pending GitHub Project Updates
 
@@ -132,9 +134,9 @@ A  scripts/codex/validate-ios.sh
 ## PBI/SBI Progress
 
 - Done: local implementation and validation for PBI-001 bootstrap increment
-- In progress: PR merge and Project Done update
+- In progress: none
 - Blocked: none
-- Next: continue with the next narrow SBI after PR #8 is merged to `dev`
+- Next: select Issue #9 and implement ViewModel state transition tests/accessibility polish
 
 ## Architecture
 
@@ -151,10 +153,10 @@ A  scripts/codex/validate-ios.sh
 
 ## Human Review Notes
 
-- Review PR #8 after merge
+- Review merged PR #8
 - Pay attention to Project field shape, Japanese Issue body conventions, and Clean Architecture boundaries
 - Possible rollback: revert the relevant PR
 
 ## Next Recommended Codex Goal
 
-- Continue with the next Ready SBI in GitHub Project kanban@pickle_ball_matching
+- Implement Issue #9: Matching ViewModel状態遷移テストとアクセシビリティ補強

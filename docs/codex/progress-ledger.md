@@ -2,13 +2,13 @@
 
 ## Current
 
-- Active PBI: PBI-001 Codex autonomous Scrum/iOS development system migration
-- Active SBI: SBI-001 Codex docs/config/subagents/runbooks and Swift bootstrap
-- Active Branch: codex-autonomous-ios-foundation
-- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/8
-- GitHub Project Item: #1-#7 in `kanban@pickle_ball_matching`
-- Status: In Progress
-- Next Action: release-reviewer merge readiness check, squash merge to `dev`, mark Project items Done
+- Active PBI: none
+- Active SBI: none
+- Active Branch: dev
+- Active PR: PR #8 merged
+- GitHub Project Item: #1-#7 Done in `kanban@pickle_ball_matching`
+- Status: Bootstrap increment Done
+- Next Action: select Issue #9 for ViewModel tests and accessibility polish
 
 ## Completed
 
@@ -22,12 +22,15 @@
 | 2026-06-01 02:55 JST | Validation | SwiftPM, lint, format, XcodeGen, and xcodebuild validation passed | `scripts/codex/validate-ios.sh` |
 | 2026-06-01 02:59 JST | PR opened | Created PR #8 to `dev` | https://github.com/ka-bo-su/pickle_ball_matching/pull/8 |
 | 2026-06-01 03:00 JST | Project evidence update | Set Project items #1-#7 to In Review and Evidence Link to PR #8 | `gh project item-edit` |
+| 2026-06-01 03:04 JST | PR merged | Squash merged PR #8 to `dev` | merge commit `7d4264c31ef72506dec733b95867a602c7e04754` |
+| 2026-06-01 03:07 JST | Issues and Project closed | Issues #1-#7 closed, labels set `status:done`, Project items set Done | `gh issue`, `gh project item-edit` |
+| 2026-06-01 03:09 JST | Next SBI created | Created Issue #9 and added it to Project as Ready | https://github.com/ka-bo-su/pickle_ball_matching/issues/9 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| PBI-001 / SBI-001-004 / CHORE-001-002 | codex-autonomous-ios-foundation | #8 | In Review | release review and squash merge |
+| none | n/a | n/a | none | select next SBI |
 
 ## Blocked
 
