@@ -5,10 +5,10 @@
 - Active PBI: PBI-001 Codex autonomous Scrum/iOS development system migration
 - Active SBI: SBI-001 Codex docs/config/subagents/runbooks and Swift bootstrap
 - Active Branch: codex-autonomous-ios-foundation
-- Active PR: pending
+- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/8
 - GitHub Project Item: #1-#7 in `kanban@pickle_ball_matching`
 - Status: In Progress
-- Next Action: commit, push, open PR to `dev`, update Project evidence links, continue to next SBI
+- Next Action: release-reviewer merge readiness check, squash merge to `dev`, mark Project items Done
 
 ## Completed
 
@@ -20,12 +20,14 @@
 | 2026-06-01 02:48 JST | SwiftPM core bootstrap | Added Domain/Application/Infrastructure core and XCTest | `Sources/PickleBallMatchingCore`, `Tests/PickleBallMatchingCoreTests` |
 | 2026-06-01 02:49 JST | SwiftUI app shell | Added XcodeGen project and minimal SwiftUI matching screen | `project.yml`, `App/`, `Features/` |
 | 2026-06-01 02:55 JST | Validation | SwiftPM, lint, format, XcodeGen, and xcodebuild validation passed | `scripts/codex/validate-ios.sh` |
+| 2026-06-01 02:59 JST | PR opened | Created PR #8 to `dev` | https://github.com/ka-bo-su/pickle_ball_matching/pull/8 |
+| 2026-06-01 03:00 JST | Project evidence update | Set Project items #1-#7 to In Review and Evidence Link to PR #8 | `gh project item-edit` |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| PBI-001 / SBI-001-004 / CHORE-001-002 | codex-autonomous-ios-foundation | pending | In Progress | PR and Project evidence update |
+| PBI-001 / SBI-001-004 / CHORE-001-002 | codex-autonomous-ios-foundation | #8 | In Review | release review and squash merge |
 
 ## Blocked
 

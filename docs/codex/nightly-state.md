@@ -6,9 +6,10 @@
 - Current SBI: SBI-001 Codex docs/config/subagents/runbooks and Swift bootstrap
 - Active branch: codex-autonomous-ios-foundation
 - Active worktree: `/Users/kazuma/Documents/pickle_ball_matching`
+- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/8
 - Active GitHub Project: `kanban@pickle_ball_matching`
 - Project owner: `ka-bo-su`
 - Project number: `3`
 - Last successful validation: 2026-06-01 02:55 JST, `scripts/codex/validate-ios.sh`
 - Current blocker: none
-- Next action: commit, push, open PR to `dev`, update Project evidence links, and continue to next SBI.
+- Next action: squash merge PR #8 to `dev`, update Issues/Project to Done, and continue to next SBI.

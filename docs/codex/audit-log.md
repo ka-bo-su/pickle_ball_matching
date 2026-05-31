@@ -144,3 +144,50 @@ Low. The legacy document remains archived and no longer trips repository hygiene
 ### Follow-up
 
 Continue commit and PR creation.
+
+## 2026-06-01 03:00 JST
+
+### Action
+
+Created PR #8 and synchronized Project evidence for the initial backlog items.
+
+### Reason
+
+The autonomous loop requires PR evidence and Project state updates instead of human approval gates.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/audit-log.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/scrum/sprint-backlog.md`
+- `docs/scrum/sprint-review-log.md`
+
+### Commands Run
+
+- `git push -u origin codex-autonomous-ios-foundation`
+- `gh pr view 8 --json number,state,isDraft,mergeable,mergeStateStatus,headRefName,baseRefName,commits,statusCheckRollup,url`
+- `gh project item-edit ...`
+
+### GitHub Project Updates
+
+- Set Project items #1-#7 to `In Review`.
+- Set Scrum Status for Project items #1-#7 to `In Review`.
+- Set Evidence Link for Project items #1-#7 to `https://github.com/ka-bo-su/pickle_ball_matching/pull/8`.
+
+### Architecture Decision
+
+release-reviewer can merge PR #8 to `dev` because validation passed, PR is mergeable, and no protected operation is required.
+
+### Validation
+
+PR #8 mergeability: `MERGEABLE`, merge state: `CLEAN`, status checks: none configured.
+
+### Risk
+
+Low. Merge target is `dev`, not `main`.
+
+### Follow-up
+
+Squash merge PR #8 to `dev`, close/update Issues #1-#7, set Project items Done, and continue the next SBI.

@@ -3,7 +3,7 @@
 ## Result
 
 - Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts
-- Partially completed: PR creation and post-PR Project evidence update
+- Partially completed: PR merge and post-merge Project Done update
 - Blocked: none
 
 ## Time
@@ -14,13 +14,13 @@
 
 ## PRs
 
-- Opened: pending
-- Merged: check GitHub
-- Closed: check GitHub
+- Opened: https://github.com/ka-bo-su/pickle_ball_matching/pull/8
+- Merged: pending release-reviewer merge
+- Closed: pending release-reviewer merge
 
 ## Commits
 
-- pending commit on `codex-autonomous-ios-foundation`
+- `fadbd5f` feat(codex): bootstrap autonomous iOS scrum system
 
 ## GitHub Project Updates
 
@@ -28,6 +28,7 @@
 - Required labels and fields created or confirmed
 - Issues #1-#7 created in Japanese and added to Project
 - Validation Status set to `Passed` for initial Project items
+- Evidence Link set to PR #8 for initial Project items
 
 ## Pending GitHub Project Updates
 
@@ -131,9 +132,9 @@ A  scripts/codex/validate-ios.sh
 ## PBI/SBI Progress
 
 - Done: local implementation and validation for PBI-001 bootstrap increment
-- In progress: PR and Project evidence update
+- In progress: PR merge and Project Done update
 - Blocked: none
-- Next: continue with the next narrow SBI after PR creation
+- Next: continue with the next narrow SBI after PR #8 is merged to `dev`
 
 ## Architecture
 
@@ -150,7 +151,7 @@ A  scripts/codex/validate-ios.sh
 
 ## Human Review Notes
 
-- Review the bootstrap PR after creation
+- Review PR #8 after merge
 - Pay attention to Project field shape, Japanese Issue body conventions, and Clean Architecture boundaries
 - Possible rollback: revert the relevant PR
 
