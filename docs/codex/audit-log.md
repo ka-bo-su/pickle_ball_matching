@@ -606,3 +606,97 @@ Low. This is test/accessibility hardening and does not change the core matching 
 ### Follow-up
 
 Open PR for Issue #9, merge to `dev`, then start the MVP domain replacement.
+
+## 2026-06-01 04:10 JST
+
+### Action
+
+Merged PR #15 to `dev`, closed Issue #9, and created MVP Product Backlog Issues #16-#20 plus SBI Issue #21 in Japanese.
+
+### Reason
+
+The environment is now complete enough to support app development, and the MVP backlog needs to reflect the product vision before replacing the bootstrap shell.
+
+### Files Changed
+
+No local files changed in this checkpoint beyond the merged PR contents.
+
+### Commands Run
+
+- GitHub connector merge for PR #15
+- GitHub connector issue creation for Issues #16-#21
+- `gh project item-add ...`
+- `gh project item-edit ...`
+
+### GitHub Project Updates
+
+- Issue #9 set Done.
+- Issues #16-#20 added as PBI items.
+- Issue #21 added as the selected In Progress SBI under PBI #16.
+
+### Architecture Decision
+
+Start the MVP with a vertical slice that includes Domain, Application, Presentation, DI, and tests instead of building a large abstract foundation.
+
+### Validation
+
+PR #15 GitHub Actions `validate` passed before merge.
+
+### Risk
+
+Medium for the next SBI because it replaces the bootstrap domain model; risk is controlled by tests and small PR scope.
+
+### Follow-up
+
+Implement Issue #21.
+
+## 2026-06-01 04:20 JST
+
+### Action
+
+Implemented SBI #21: participants, court count, first round generation, waiters, and a Japanese operation board.
+
+### Reason
+
+This is the first user-visible MVP slice toward the north star: the organizer can enter participants, set court count, generate the first doubles round, and see waiters.
+
+### Files Changed
+
+- `Sources/PickleBallMatchingCore/Domain/Participant.swift`
+- `Sources/PickleBallMatchingCore/Domain/Session.swift`
+- `Sources/PickleBallMatchingCore/Domain/Round.swift`
+- `Sources/PickleBallMatchingCore/Application/GenerateNextRoundUseCase.swift`
+- `Tests/PickleBallMatchingCoreTests/GenerateNextRoundUseCaseTests.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `Features/OperationBoard/Presentation/OperationBoardView.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+- `App/CompositionRoot/DependencyContainer.swift`
+- `App/PickleBallMatchingApp.swift`
+- `docs/product/vision.md`
+- Scrum/Codex ledger docs
+
+### Commands Run
+
+- `swiftformat --cache ignore .`
+- `swift test`
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+Issue #21 remains In Progress until PR evidence is available.
+
+### Architecture Decision
+
+Replaced the bootstrap candidate-matching model with day-of operation entities and `GenerateNextRoundUseCase`. Presentation depends on the use case and Domain models; View does not call Infrastructure.
+
+### Validation
+
+First validation caught lint shape and MainActor DI boundary issues. After fixing them, full validation passed: `swift test`, SwiftLint, SwiftFormat lint, XcodeGen, `xcodebuild build`, and `xcodebuild test`.
+
+### Risk
+
+Medium. This is the first real product slice and removes the temporary matching shell. Tests cover round counts, unavailable participants, previous waiters, level balancing, and ViewModel actions.
+
+### Follow-up
+
+Open PR for Issue #21, merge to `dev`, then continue with JSON persistence or manual swap/undo.
