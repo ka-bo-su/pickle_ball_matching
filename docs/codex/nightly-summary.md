@@ -2,8 +2,8 @@
 
 ## Result
 
-- Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22 squash merges to `dev`, Issues #1-#7/#9-#13/#21 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, and SBI #23 local JSON persistence implementation
-- Partially completed: SBI #23 PR/merge sync
+- Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22 squash merges to `dev`, Issues #1-#7/#9-#13/#21 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, and SBI #23 local JSON persistence implementation with PR #24 opened
+- Partially completed: SBI #23 CI/merge sync
 - Blocked: none
 
 ## Time
@@ -14,7 +14,7 @@
 
 ## PRs
 
-- Opened: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22
+- Opened: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24
 - Merged: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22
 - Closed: Issues #1-#7, #9-#13, #21
 
@@ -39,7 +39,7 @@
 - Issue #9 set Done after PR #15 merge
 - Issues #16-#20 created in Japanese and added to Project as MVP PBIs
 - Issue #21 created, selected, moved to In Review with PR #22 evidence, then Done after merge
-- Issue #23 created in Japanese, added to Project, and moved to In Progress
+- Issue #23 created in Japanese, added to Project, moved to In Progress, then In Review with PR #24 evidence
 
 ## Pending GitHub Project Updates
 
@@ -143,9 +143,9 @@ A  scripts/codex/validate-ios.sh
 ## PBI/SBI Progress
 
 - Done: environment completion, Issue #9 ViewModel/accessibility hardening, and Issue #21 first operation board slice
-- In progress: Issue #23 JSON save/restore PR/merge sync
+- In review: Issue #23 JSON save/restore PR #24
 - Blocked: none
-- Next: open and merge Issue #23 PR, then continue with manual swap/undo or participant state editing
+- Next: merge Issue #23 after CI, then continue with manual swap/undo or participant status editing
 
 ## Architecture
 
@@ -163,7 +163,7 @@ A  scripts/codex/validate-ios.sh
 ## Human Review Notes
 
 - Review merged PR #8, #14, and #15
-- Pay attention to PR #23 once opened: JSON persistence failure handling, Application/Infrastructure dependency boundary, and local-first assumptions
+- Pay attention to PR #24: JSON persistence failure handling, Application/Infrastructure dependency boundary, and local-first assumptions
 - Possible rollback: revert the relevant PR
 
 ## Next Recommended Codex Goal

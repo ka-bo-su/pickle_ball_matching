@@ -5,10 +5,10 @@
 - Active PBI: Issue #16
 - Active SBI: Issue #23
 - Active Branch: codex/sbi-23-json-persistence
-- Active PR: pending
+- Active PR: PR #24
 - GitHub Project Item: Issue #23
-- Status: In Progress
-- Next Action: commit SBI #23, open PR, update Project evidence, and merge to `dev`
+- Status: In Review
+- Next Action: wait for PR #24 CI, merge to `dev`, and set Issue #23 Done
 
 ## Completed
 
@@ -34,12 +34,13 @@
 | 2026-06-01 04:31 JST | SBI #21 merged | Squash merged PR #22 to `dev`; Issue #21 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/22 |
 | 2026-06-01 04:32 JST | Next SBI created | Created Issue #23 for local JSON save/restore and added it to Project as In Progress | https://github.com/ka-bo-su/pickle_ball_matching/issues/23 |
 | 2026-06-01 04:38 JST | SBI #23 local implementation | Added JSON session repository, restore/autosave ViewModel wiring, and persistence tests | `JSONSessionRepository`, `OperationBoardViewModel` |
+| 2026-06-01 04:40 JST | PR opened | Created PR #24 for SBI #23 and updated Project evidence | https://github.com/ka-bo-su/pickle_ball_matching/pull/24 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #23 | codex/sbi-23-json-persistence | pending | In Progress | PR and Project evidence update |
+| Issue #23 | codex/sbi-23-json-persistence | PR #24 | In Review | CI, merge, Issue/Project Done sync |
 
 ## Blocked
 

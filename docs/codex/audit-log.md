@@ -795,3 +795,47 @@ Medium. This introduces local file I/O. Risk is controlled with JSON round-trip,
 ### Follow-up
 
 Open PR for Issue #23, update Project evidence, merge to `dev`, then continue with manual swap/undo or participant status editing.
+
+## 2026-06-01 04:40 JST
+
+### Action
+
+Created PR #24 for Issue #23 and moved the GitHub Project item to In Review.
+
+### Reason
+
+SBI #23 passed local validation and is ready for CI-backed review/merge tracking.
+
+### Files Changed
+
+- Local docs updated to record PR #24 and Project state.
+
+### Commands Run
+
+- `git add ...`
+- `git diff --cached --check`
+- `git commit -m "feat(persistence): save and restore operation sessions" ...`
+- `git push -u origin codex/sbi-23-json-persistence`
+- GitHub connector PR creation for PR #24
+- `gh project item-edit ...` for Issue #23 In Review and Evidence Link
+- GitHub connector issue update for Issue #23 `status:in-review`
+
+### GitHub Project Updates
+
+Issue #23 set to Status In review, Scrum Status In Review, and Evidence Link `https://github.com/ka-bo-su/pickle_ball_matching/pull/24`.
+
+### Architecture Decision
+
+No new architecture decision beyond the `SessionRepository` Application boundary and JSON Infrastructure implementation.
+
+### Validation
+
+Local `scripts/codex/validate-ios.sh` passed before PR creation. GitHub Actions validation is pending.
+
+### Risk
+
+Medium until CI confirms the fresh-checkout path.
+
+### Follow-up
+
+Wait for PR #24 CI, merge to `dev` if clean, close Issue #23, then select the next Ready SBI.
