@@ -85,3 +85,14 @@ caffeinate -dimsu codex \
 - Command: `scripts/codex/preflight.sh`
 - Result: passed
 - Notes: Tuist is missing but optional. CocoaPods prints a UTF-8 locale warning in this shell, but this repository does not depend on CocoaPods.
+
+## GitHub Actions Runner Note
+
+The repository now defines local validation so it can run in GitHub Actions. GitHub-hosted macOS runners can consume included or billable Actions minutes depending on repository/account settings. Codex may add or update workflow files, but it must not change billing, plans, paid runner settings, App Store Connect, or TestFlight settings.
+
+## Tool Version Reproduction
+
+- `Brewfile` records required local tools for another Mac or CI runner.
+- `.swiftformat` records SwiftFormat style rules so local and CI lint use the same formatting policy.
+- `Makefile` provides stable entrypoints: `make bootstrap`, `make validate`, `make build`, and `make test`.
+- `scripts/codex/bootstrap-ios.sh` runs XcodeGen, preflight, and validation in the same order used by Codex.

@@ -21,7 +21,7 @@ public struct InMemoryMatchingRepository: MatchingRepository {
                     reason: [
                         candidate.skillLevel.displayName,
                         candidate.preferredPlayStyle.displayName,
-                        candidate.locationName,
+                        candidate.locationName
                     ].joined(separator: ", ")
                 )
             }
@@ -45,6 +45,6 @@ public struct InMemoryMatchingRepository: MatchingRepository {
             skillLevel: .beginner,
             preferredPlayStyle: .drillFocused,
             locationName: "Tokyo"
-        ),
+        )
     ]
 }

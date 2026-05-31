@@ -3,7 +3,7 @@
 ## Result
 
 - Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8 squash merge to `dev`, Issues #1-#7 close, Project Done sync, next Ready SBI #9 creation
-- Partially completed: none
+- Partially completed: environment completion PR for Issues #10-#13 is locally complete and validated; PR/merge sync is next
 - Blocked: none
 
 ## Time
@@ -31,6 +31,7 @@
 - Evidence Link set to PR #8 for initial Project items
 - Project Status and Scrum Status set to `Done` for initial Project items
 - Issue #9 added to Project as the next Ready SBI
+- Issues #10-#13 added to Project as environment completion chores
 
 ## Pending GitHub Project Updates
 
@@ -134,9 +135,9 @@ A  scripts/codex/validate-ios.sh
 ## PBI/SBI Progress
 
 - Done: local implementation and validation for PBI-001 bootstrap increment
-- In progress: none
+- In progress: CHORE-003 through CHORE-006, validated locally on `codex/env-completion`
 - Blocked: none
-- Next: select Issue #9 and implement ViewModel state transition tests/accessibility polish
+- Next: open and merge environment completion PR, then select Issue #9 and implement ViewModel state transition tests/accessibility polish
 
 ## Architecture
 

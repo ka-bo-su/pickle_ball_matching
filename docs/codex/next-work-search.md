@@ -19,3 +19,13 @@
 - Reason: The app shell builds, but ViewModel state transitions and first user-facing matching behavior should get more direct test coverage before larger feature expansion.
 - Human repair needed: none.
 - Pending updates: none.
+
+## 2026-06-01 03:36 JST
+
+- Searched candidates: environment gaps before MVP work, Issue #9, XcodeGen validation, CI readiness, formatter/tool reproducibility.
+- Referenced GitHub Project / Issues / docs: Issues #9-#13, `docs/codex/ios-swift-validation.md`, `project.yml`, `scripts/codex/validate-ios.sh`.
+- Findings: Issue #9 remains the next app-quality SBI, but environment completion should be merged first because it adds `xcodebuild test`, CI, and tool pinning.
+- Next selected work: Issues #10-#13 environment completion.
+- Reason: Larger MVP vertical slices need stable validation and CI feedback.
+- Human repair needed: none. GitHub Actions macOS billing/usage is documented as a review note, not an execution blocker.
+- Pending updates: PR evidence for Issues #10-#13.

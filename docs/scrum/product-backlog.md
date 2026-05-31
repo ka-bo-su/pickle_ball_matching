@@ -14,3 +14,7 @@ GitHub Project `kanban@pickle_ball_matching` is the source of truth. This file m
 | CHORE-001 | Chore | Legacy Claude文書の退避 | P1 | Done | PR #8 |
 | CHORE-002 | Chore | ローカル検証スクリプトとnightly summary自動化 | P1 | Done | PR #8 |
 | SBI-005 | SBI | Matching ViewModel状態遷移テストとアクセシビリティ補強 | P1 | Ready | Issue #9 |
+| CHORE-003 | Chore | SwiftFormatとツールバージョン固定 | P0 | In Progress | Issue #10 |
+| CHORE-004 | Chore | xcodebuild test対応 | P0 | In Progress | Issue #11 |
+| CHORE-005 | Chore | GitHub Actions CI追加 | P0 | In Progress | Issue #12 |
+| CHORE-006 | Chore | bootstrap-ios script整備 | P0 | In Progress | Issue #13 |
