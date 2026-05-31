@@ -6,12 +6,7 @@ struct PickleBallMatchingApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MatchingView(
-                viewModel: MatchingViewModel(
-                    loadCandidatesUseCase: container.loadMatchCandidatesUseCase,
-                    currentPlayer: container.currentPlayer
-                )
-            )
+            OperationBoardView(viewModel: container.operationBoardViewModel)
         }
     }
 }

@@ -2,8 +2,8 @@
 
 ## Result
 
-- Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8 and PR #14 squash merges to `dev`, Issues #1-#7 and #10-#13 close, Project Done sync, Issue #9 local implementation and validation
-- Partially completed: Issue #9 PR/merge sync
+- Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15 squash merges to `dev`, Issues #1-#7/#9-#13 close, Project Done sync, MVP PBI Issues #16-#20 creation, SBI #21 local implementation and validation
+- Partially completed: SBI #21 PR/merge sync
 - Blocked: none
 
 ## Time
@@ -14,14 +14,15 @@
 
 ## PRs
 
-- Opened: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14
-- Merged: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14
-- Closed: Issues #1-#7, #10-#13
+- Opened: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15
+- Merged: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15
+- Closed: Issues #1-#7, #9-#13
 
 ## Commits
 
 - `fadbd5f` feat(codex): bootstrap autonomous iOS scrum system
 - `24f7851` chore(ios): complete validation environment
+- `0bfc567` test(ios): cover matching view model states
 
 ## GitHub Project Updates
 
@@ -34,7 +35,9 @@
 - Issue #9 added to Project as the next Ready SBI
 - Issues #10-#13 added to Project as environment completion chores
 - Issues #10-#13 set Done after PR #14 merge
-- Issue #9 moved to In Progress
+- Issue #9 set Done after PR #15 merge
+- Issues #16-#20 created in Japanese and added to Project as MVP PBIs
+- Issue #21 created and selected as In Progress SBI
 
 ## Pending GitHub Project Updates
 
@@ -42,8 +45,8 @@
 
 ## iOS Validation
 
-- Build: passed on `dev` with `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'`
-- Test: passed on `dev` with `swift test`
+- Build: passed on `codex/sbi-21-operation-round` with `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'`
+- Test: passed on `codex/sbi-21-operation-round` with `swift test` and `xcodebuild test`
 - Lint: passed on `dev` with `swiftlint --no-cache` and `swiftformat --swiftversion 6.0 --cache ignore --lint .`
 - Simulator: iPhone 16 on iOS 18.2 available
 
@@ -137,16 +140,16 @@ A  scripts/codex/validate-ios.sh
 
 ## PBI/SBI Progress
 
-- Done: local implementation and validation for PBI-001 bootstrap increment
-- In progress: Issue #9 PR/merge sync
+- Done: environment completion and Issue #9 ViewModel/accessibility hardening
+- In progress: Issue #21 PR/merge sync
 - Blocked: none
-- Next: open and merge Issue #9 PR, create MVP Product Backlog Issues, then start day-of operation domain replacement
+- Next: open and merge Issue #21 PR, then continue with local JSON persistence or manual swap/undo
 
 ## Architecture
 
-- Decisions: SwiftPM testable core plus XcodeGen-generated iOS app shell
-- Boundary changes: initial Domain/Application/Infrastructure/Presentation/DI folder and protocol boundaries
-- Refactor tasks: add ViewModel tests and additional vertical slices after bootstrap PR
+- Decisions: SwiftPM testable core plus XcodeGen-generated SwiftUI app; MVP domain starts with local-first day-of operation entities and `GenerateNextRoundUseCase`
+- Boundary changes: bootstrap matching model replaced by Participant/Session/Round/Match and OperationBoard Presentation
+- Refactor tasks: add JSON persistence, manual swap/undo, and larger board mode in follow-up SBIs
 - Risks: keep generated `.xcodeproj` ignored and regenerate from `project.yml`
 
 ## Local Environment
@@ -157,10 +160,10 @@ A  scripts/codex/validate-ios.sh
 
 ## Human Review Notes
 
-- Review merged PR #8
-- Pay attention to Project field shape, Japanese Issue body conventions, and Clean Architecture boundaries
+- Review merged PR #8, #14, and #15
+- Pay attention to PR #21 once opened: round generation fairness, Japanese operation-board UX, and Clean Architecture boundaries
 - Possible rollback: revert the relevant PR
 
 ## Next Recommended Codex Goal
 
-- Implement Issue #9: Matching ViewModel状態遷移テストとアクセシビリティ補強
+- Merge Issue #21, then implement local JSON save/restore for sessions and roster reuse.

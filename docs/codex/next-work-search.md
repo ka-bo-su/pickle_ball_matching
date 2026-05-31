@@ -29,3 +29,13 @@
 - Reason: Larger MVP vertical slices need stable validation and CI feedback.
 - Human repair needed: none. GitHub Actions macOS billing/usage is documented as a review note, not an execution blocker.
 - Pending updates: PR evidence for Issues #10-#13.
+
+## 2026-06-01 04:12 JST
+
+- Searched candidates: Project Done state for Issues #9-#13, new MVP PBIs, Sprint Backlog, product vision, local app shell.
+- Referenced GitHub Project / Issues / docs: Issues #16-#21, `docs/product/vision.md`, `docs/scrum/product-backlog.md`, `docs/scrum/sprint-backlog.md`.
+- Findings: environment completion is Done and Issue #9 is Done. The highest-value next work is the first MVP vertical slice under PBI #16.
+- Next selected work: Issue #21 `参加者とコート数から最初のラウンドを生成する`.
+- Reason: It directly advances the north star: organizer enters participants, sets court count, generates the first round, and sees waiters.
+- Human repair needed: none.
+- Pending updates: PR evidence for Issue #21 after PR creation.

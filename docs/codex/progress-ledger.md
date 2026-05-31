@@ -2,13 +2,13 @@
 
 ## Current
 
-- Active PBI: app shell quality hardening
-- Active SBI: Issue #9
-- Active Branch: codex/issue-9-viewmodel-tests
+- Active PBI: Issue #16
+- Active SBI: Issue #21
+- Active Branch: codex/sbi-21-operation-round
 - Active PR: pending
-- GitHub Project Item: Issue #9
+- GitHub Project Item: Issue #21
 - Status: In Progress
-- Next Action: commit Issue #9, open PR, merge to `dev`, then continue MVP domain replacement work
+- Next Action: commit SBI #21, open PR, update Project evidence, and merge to `dev`
 
 ## Completed
 
@@ -28,12 +28,15 @@
 | 2026-06-01 03:36 JST | Environment chores created | Created Issues #10-#13 and added them to Project | Issues #10-#13 |
 | 2026-06-01 03:54 JST | Environment PR merged | Squash merged PR #14 to `dev`; Issues #10-#13 closed and Project items set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/14 |
 | 2026-06-01 04:03 JST | Issue #9 local implementation | Added ViewModel state transition tests and Japanese accessibility polish | `Tests/PickleBallMatchingTests/MatchingViewModelTests.swift` |
+| 2026-06-01 04:10 JST | Issue #9 merged | Squash merged PR #15 to `dev`; Issue #9 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/15 |
+| 2026-06-01 04:12 JST | MVP backlog created | Created Japanese PBI Issues #16-#20 and SBI Issue #21, added them to Project | Issues #16-#21 |
+| 2026-06-01 04:20 JST | SBI #21 local implementation | Replaced bootstrap matching shell with day-of operation domain/use case/board UI | `GenerateNextRoundUseCase`, `OperationBoardView` |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #9 | codex/issue-9-viewmodel-tests | pending | In Progress | PR and Project evidence update |
+| Issue #21 | codex/sbi-21-operation-round | pending | In Progress | PR and Project evidence update |
 
 ## Blocked
 
@@ -63,3 +66,6 @@
 | 2026-06-01 03:48 JST | `scripts/codex/validate-ios.sh` | pass | after adding `Shared/.gitkeep` for CI XcodeGen generation |
 | 2026-06-01 03:57 JST | `scripts/codex/validate-ios.sh` | fail | Issue #9 first pass caught Swift 6 Sendable boundary and unstable async test |
 | 2026-06-01 04:03 JST | `scripts/codex/validate-ios.sh` | pass | Issue #9 after Sendable loader protocol and deterministic async tests |
+| 2026-06-01 04:18 JST | `swift test` | pass | SBI #21 core round generation tests, 5 tests |
+| 2026-06-01 04:18 JST | `scripts/codex/validate-ios.sh` | fail | SBI #21 first pass caught lint tuple and DI MainActor boundary |
+| 2026-06-01 04:20 JST | `scripts/codex/validate-ios.sh` | pass | SBI #21 full validation with core/app tests |
