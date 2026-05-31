@@ -2,13 +2,13 @@
 
 ## Current
 
-- Active PBI: environment completion
-- Active SBI: CHORE-003 through CHORE-006
-- Active Branch: codex/env-completion
+- Active PBI: app shell quality hardening
+- Active SBI: Issue #9
+- Active Branch: codex/issue-9-viewmodel-tests
 - Active PR: pending
-- GitHub Project Item: Issues #10-#13
+- GitHub Project Item: Issue #9
 - Status: In Progress
-- Next Action: commit environment completion, open PR, merge to `dev`, then continue Issue #9 and MVP work
+- Next Action: commit Issue #9, open PR, merge to `dev`, then continue MVP domain replacement work
 
 ## Completed
 
@@ -26,12 +26,14 @@
 | 2026-06-01 03:07 JST | Issues and Project closed | Issues #1-#7 closed, labels set `status:done`, Project items set Done | `gh issue`, `gh project item-edit` |
 | 2026-06-01 03:09 JST | Next SBI created | Created Issue #9 and added it to Project as Ready | https://github.com/ka-bo-su/pickle_ball_matching/issues/9 |
 | 2026-06-01 03:36 JST | Environment chores created | Created Issues #10-#13 and added them to Project | Issues #10-#13 |
+| 2026-06-01 03:54 JST | Environment PR merged | Squash merged PR #14 to `dev`; Issues #10-#13 closed and Project items set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/14 |
+| 2026-06-01 04:03 JST | Issue #9 local implementation | Added ViewModel state transition tests and Japanese accessibility polish | `Tests/PickleBallMatchingTests/MatchingViewModelTests.swift` |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| CHORE-003-006 | codex/env-completion | pending | In Progress | PR and Project evidence update |
+| Issue #9 | codex/issue-9-viewmodel-tests | pending | In Progress | PR and Project evidence update |
 
 ## Blocked
 
@@ -59,3 +61,5 @@
 | 2026-06-01 03:41 JST | `scripts/codex/validate-ios.sh` | pass | environment completion branch after CI Simulator fallback hardening |
 | 2026-06-01 03:43 JST | GitHub Actions `validate` | fail | PR #14 fresh checkout missed empty `Shared/` source directory |
 | 2026-06-01 03:48 JST | `scripts/codex/validate-ios.sh` | pass | after adding `Shared/.gitkeep` for CI XcodeGen generation |
+| 2026-06-01 03:57 JST | `scripts/codex/validate-ios.sh` | fail | Issue #9 first pass caught Swift 6 Sendable boundary and unstable async test |
+| 2026-06-01 04:03 JST | `scripts/codex/validate-ios.sh` | pass | Issue #9 after Sendable loader protocol and deterministic async tests |
