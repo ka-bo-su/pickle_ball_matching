@@ -52,3 +52,4 @@
 | 2026-06-01 02:55 JST | `xcodebuild build` | pass | iPhone 16 simulator destination |
 | 2026-06-01 02:56 JST | `scripts/codex/nightly-summary.sh` | pass | updated `docs/codex/nightly-summary.md` |
 | 2026-06-01 02:57 JST | `git diff --cached --check` | pass | legacy conflict-marker example sanitized |
+| 2026-06-01 03:12 JST | `scripts/codex/validate-ios.sh` | pass | final validation on `dev` after PR #8 merge |

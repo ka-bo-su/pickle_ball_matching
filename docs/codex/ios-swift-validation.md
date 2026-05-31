@@ -36,7 +36,7 @@ xcodebuild build -scheme PickleBallMatching -destination 'platform=iOS Simulator
 
 ## Latest Validation
 
-Last checked: 2026-06-01 02:55 JST
+Last checked: 2026-06-01 03:12 JST
 
 | Command | Result | Notes |
 |---|---|---|
@@ -48,7 +48,7 @@ Last checked: 2026-06-01 02:55 JST
 | `xcodebuild -list -project PickleBallMatching.xcodeproj` | passed | schemes: `PickleBallMatching`, `PickleBallMatchingCore` |
 | `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'` | passed | initial generated Info.plist issue fixed in `project.yml` |
 
-Full validation script result: `scripts/codex/validate-ios.sh` passed.
+Full validation script result: `scripts/codex/validate-ios.sh` passed on `dev` after PR #8 merge.
 
 ## Repair Notes From Validation
 

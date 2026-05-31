@@ -300,3 +300,45 @@ Low. This is backlog preparation only.
 ### Follow-up
 
 Implement Issue #9 in the next autonomous cycle.
+
+## 2026-06-01 03:12 JST
+
+### Action
+
+Ran final validation on `dev` after PR #8 merge and post-merge ledger updates.
+
+### Reason
+
+The final branch state should be verified after merge and documentation bookkeeping.
+
+### Files Changed
+
+- `docs/codex/ios-swift-validation.md`
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/audit-log.md`
+
+### Commands Run
+
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+No additional Project updates required.
+
+### Architecture Decision
+
+None.
+
+### Validation
+
+Passed on `dev`: `swift test`, SwiftLint, SwiftFormat lint, XcodeGen generation, `xcodebuild -list`, and iOS Simulator build.
+
+### Risk
+
+Low.
+
+### Follow-up
+
+Proceed with Issue #9.

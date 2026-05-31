@@ -9,7 +9,7 @@
 ## Time
 
 - Started: 2026-06-01 02:34 JST
-- Finished: 2026-06-01 03:08 JST
+- Finished: 2026-06-01 03:12 JST
 - Approximate duration: session-dependent
 
 ## PRs
@@ -38,9 +38,9 @@
 
 ## iOS Validation
 
-- Build: passed with `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'`
-- Test: passed with `swift test`
-- Lint: passed with `swiftlint --no-cache` and `swiftformat --swiftversion 6.0 --cache ignore --lint .`
+- Build: passed on `dev` with `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'`
+- Test: passed on `dev` with `swift test`
+- Lint: passed on `dev` with `swiftlint --no-cache` and `swiftformat --swiftversion 6.0 --cache ignore --lint .`
 - Simulator: iPhone 16 on iOS 18.2 available
 
 ## Files Changed

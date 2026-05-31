@@ -10,6 +10,6 @@
 - Active GitHub Project: `kanban@pickle_ball_matching`
 - Project owner: `ka-bo-su`
 - Project number: `3`
-- Last successful validation: 2026-06-01 02:55 JST, `scripts/codex/validate-ios.sh`
+- Last successful validation: 2026-06-01 03:12 JST, `scripts/codex/validate-ios.sh` on `dev`
 - Current blocker: none
 - Next action: select Issue #9 and implement ViewModel state transition tests/accessibility polish.
