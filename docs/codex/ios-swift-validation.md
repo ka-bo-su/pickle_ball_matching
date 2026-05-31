@@ -37,20 +37,20 @@ xcodebuild test -scheme PickleBallMatching -destination 'platform=iOS Simulator,
 
 ## Latest Validation
 
-Last checked: 2026-06-01 04:20 JST
+Last checked: 2026-06-01 04:38 JST
 
 | Command | Result | Notes |
 |---|---|---|
 | `scripts/codex/preflight.sh` | passed | Tuist missing only; optional |
-| `swift test` | passed | 5 core tests, 0 failures; local linker warning for missing Homebrew GMP search path is non-blocking |
-| `swiftlint --no-cache` | passed | 0 violations in 12 files |
+| `swift test` | passed | 8 core tests, 0 failures; local linker warning for missing Homebrew GMP search path is non-blocking |
+| `swiftlint --no-cache` | passed | 0 violations in 15 files |
 | `swiftformat --cache ignore --lint .` | passed | 0 files require formatting; rules loaded from `.swiftformat` |
 | `xcodegen generate` | passed | generated `PickleBallMatching.xcodeproj` locally; ignored by git |
 | `xcodebuild -list -project PickleBallMatching.xcodeproj` | passed | schemes: `PickleBallMatching`, `PickleBallMatchingCore` |
 | `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'` | passed | initial generated Info.plist issue fixed in `project.yml` |
-| `xcodebuild test -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'` | passed | core round generation tests plus app smoke/OperationBoard ViewModel tests passed |
+| `xcodebuild test -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'` | passed | 8 core tests plus 7 app tests passed |
 
-Full validation script result: `scripts/codex/validate-ios.sh` passed on `codex/env-completion`.
+Full validation script result: `scripts/codex/validate-ios.sh` passed on `codex/sbi-23-json-persistence`.
 
 `scripts/codex/validate-ios.sh` uses `iPhone 16` when available and falls back to the first available iPhone Simulator on CI runners. If no iPhone Simulator exists, validation fails instead of silently skipping the Xcode build/test path.
 

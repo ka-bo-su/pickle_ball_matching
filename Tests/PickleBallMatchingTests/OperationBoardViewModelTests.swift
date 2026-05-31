@@ -39,6 +39,38 @@ final class OperationBoardViewModelTests: XCTestCase {
         XCTAssertNil(viewModel.currentRound)
     }
 
+    func testInitRestoresLatestSessionFromRepository() {
+        let restoredSession = Session(name: "復元セッション", participants: makeParticipants(count: 4))
+        let repository = SpySessionRepository(restoredSession: restoredSession)
+
+        let viewModel = OperationBoardViewModel(sessionRepository: repository)
+
+        XCTAssertEqual(viewModel.session.name, "復元セッション")
+        XCTAssertNil(viewModel.errorMessage)
+    }
+
+    func testAddParticipantAutosavesSession() {
+        let repository = SpySessionRepository()
+        let viewModel = OperationBoardViewModel(
+            session: Session(name: "テスト", participants: []),
+            sessionRepository: repository
+        )
+        viewModel.newParticipantName = "山田"
+
+        viewModel.addParticipant()
+
+        XCTAssertEqual(repository.savedSessions.last?.participants.map(\.displayName), ["山田"])
+    }
+
+    func testInitUsesDefaultSessionAndShowsMessageWhenRestoreFails() {
+        let repository = SpySessionRepository(loadError: SessionPersistenceError.decodingFailed("broken"))
+
+        let viewModel = OperationBoardViewModel(sessionRepository: repository)
+
+        XCTAssertEqual(viewModel.session.name, "今日のピックルボール")
+        XCTAssertEqual(viewModel.errorMessage, "保存済みセッションを読み込めませんでした。新規セッションで開始します。")
+    }
+
     private func makeParticipants(count: Int) -> [Participant] {
         (1 ... count).map { index in
             Participant(
@@ -47,5 +79,27 @@ final class OperationBoardViewModelTests: XCTestCase {
                 skillLevel: SkillLevel(rawValue: (index % 4) + 1) ?? .beginner
             )
         }
+    }
+}
+
+private final class SpySessionRepository: SessionRepository, @unchecked Sendable {
+    private let restoredSession: Session?
+    private let loadError: Error?
+    var savedSessions: [Session] = []
+
+    init(restoredSession: Session? = nil, loadError: Error? = nil) {
+        self.restoredSession = restoredSession
+        self.loadError = loadError
+    }
+
+    func loadLatestSession() throws -> Session? {
+        if let loadError {
+            throw loadError
+        }
+        return restoredSession
+    }
+
+    func save(_ session: Session) throws {
+        savedSessions.append(session)
     }
 }

@@ -8,8 +8,18 @@ struct DependencyContainer {
     static func live() -> DependencyContainer {
         DependencyContainer(
             operationBoardViewModel: OperationBoardViewModel(
-                generateNextRoundUseCase: GenerateNextRoundUseCase()
+                generateNextRoundUseCase: GenerateNextRoundUseCase(),
+                sessionRepository: makeSessionRepository()
             )
         )
+    }
+
+    private static func makeSessionRepository() -> JSONSessionRepository {
+        let baseDirectory = FileManager.default.urls(
+            for: .applicationSupportDirectory,
+            in: .userDomainMask
+        ).first ?? FileManager.default.temporaryDirectory
+        let directory = baseDirectory.appendingPathComponent("PickleBallMatching", isDirectory: true)
+        return JSONSessionRepository(directoryURL: directory)
     }
 }
