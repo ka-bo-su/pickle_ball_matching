@@ -29,3 +29,7 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 | ID | Type | Status | Owner Role | Validation | Evidence |
 |---|---|---|---|---|---|
 | SBI-005 | Matching ViewModel状態遷移テストとアクセシビリティ補強 | Ready | swift-developer | `scripts/codex/validate-ios.sh` | Issue #9 |
+| CHORE-003 | SwiftFormatとツールバージョン固定 | In Progress | swift-developer | `scripts/codex/validate-ios.sh` | Issue #10 |
+| CHORE-004 | xcodebuild test対応 | In Progress | swift-developer | `xcodebuild test` | Issue #11 |
+| CHORE-005 | GitHub Actions CI追加 | In Progress | swift-developer | workflow review | Issue #12 |
+| CHORE-006 | bootstrap-ios script整備 | In Progress | swift-developer | `make validate` | Issue #13 |

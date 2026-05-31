@@ -2,13 +2,13 @@
 
 ## Current
 
-- Active PBI: none
-- Active SBI: none
-- Active Branch: dev
-- Active PR: PR #8 merged
-- GitHub Project Item: #1-#7 Done in `kanban@pickle_ball_matching`
-- Status: Bootstrap increment Done
-- Next Action: select Issue #9 for ViewModel tests and accessibility polish
+- Active PBI: environment completion
+- Active SBI: CHORE-003 through CHORE-006
+- Active Branch: codex/env-completion
+- Active PR: pending
+- GitHub Project Item: Issues #10-#13
+- Status: In Progress
+- Next Action: commit environment completion, open PR, merge to `dev`, then continue Issue #9 and MVP work
 
 ## Completed
 
@@ -25,12 +25,13 @@
 | 2026-06-01 03:04 JST | PR merged | Squash merged PR #8 to `dev` | merge commit `7d4264c31ef72506dec733b95867a602c7e04754` |
 | 2026-06-01 03:07 JST | Issues and Project closed | Issues #1-#7 closed, labels set `status:done`, Project items set Done | `gh issue`, `gh project item-edit` |
 | 2026-06-01 03:09 JST | Next SBI created | Created Issue #9 and added it to Project as Ready | https://github.com/ka-bo-su/pickle_ball_matching/issues/9 |
+| 2026-06-01 03:36 JST | Environment chores created | Created Issues #10-#13 and added them to Project | Issues #10-#13 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| none | n/a | n/a | none | select next SBI |
+| CHORE-003-006 | codex/env-completion | pending | In Progress | PR and Project evidence update |
 
 ## Blocked
 
@@ -53,3 +54,8 @@
 | 2026-06-01 02:56 JST | `scripts/codex/nightly-summary.sh` | pass | updated `docs/codex/nightly-summary.md` |
 | 2026-06-01 02:57 JST | `git diff --cached --check` | pass | legacy conflict-marker example sanitized |
 | 2026-06-01 03:12 JST | `scripts/codex/validate-ios.sh` | pass | final validation on `dev` after PR #8 merge |
+| 2026-06-01 03:35 JST | `scripts/codex/validate-ios.sh` | pass | environment completion branch; includes `xcodebuild test` |
+| 2026-06-01 03:39 JST | `scripts/codex/bootstrap-ios.sh` | pass | generated Xcode project, ran preflight, and completed full validation |
+| 2026-06-01 03:41 JST | `scripts/codex/validate-ios.sh` | pass | environment completion branch after CI Simulator fallback hardening |
+| 2026-06-01 03:43 JST | GitHub Actions `validate` | fail | PR #14 fresh checkout missed empty `Shared/` source directory |
+| 2026-06-01 03:48 JST | `scripts/codex/validate-ios.sh` | pass | after adding `Shared/.gitkeep` for CI XcodeGen generation |

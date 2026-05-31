@@ -29,7 +29,7 @@ final class LoadMatchCandidatesUseCaseTests: XCTestCase {
                 ),
                 compatibilityScore: 90,
                 reason: "high"
-            ),
+            )
         ])
         let useCase = LoadMatchCandidatesUseCase(repository: repository)
 
@@ -52,7 +52,7 @@ final class LoadMatchCandidatesUseCaseTests: XCTestCase {
                 skillLevel: .beginner,
                 preferredPlayStyle: .casual,
                 locationName: "Tokyo"
-            ),
+            )
         ])
 
         let result = try await repository.fetchCandidates(for: current)

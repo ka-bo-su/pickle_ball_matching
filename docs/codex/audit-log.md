@@ -342,3 +342,179 @@ Low.
 ### Follow-up
 
 Proceed with Issue #9.
+
+## 2026-06-01 03:35 JST
+
+### Action
+
+Completed the iOS development environment hardening pass.
+
+### Reason
+
+The repository needs repeatable local and CI validation before larger MVP development proceeds.
+
+### Files Changed
+
+- `.swiftformat`
+- `Brewfile`
+- `Makefile`
+- `.github/workflows/ios-validation.yml`
+- `scripts/codex/bootstrap-ios.sh`
+- `scripts/codex/validate-ios.sh`
+- `project.yml`
+- `Tests/PickleBallMatchingTests/AppSmokeTests.swift`
+- `docs/codex/local-environment.md`
+- `docs/codex/ios-swift-validation.md`
+
+### Commands Run
+
+- `swiftformat --cache ignore .`
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+Pending environment Chore Issues and PR evidence sync.
+
+### Architecture Decision
+
+Use repo-local `.swiftformat`, `Brewfile`, and XcodeGen scheme/test target configuration rather than relying on per-machine defaults.
+
+### Validation
+
+Passed: `swift test`, SwiftLint, SwiftFormat lint, XcodeGen, `xcodebuild build`, and `xcodebuild test`.
+
+### Risk
+
+Low. Changes are tooling/configuration only, with one smoke test target.
+
+### Follow-up
+
+Create environment Chore Issues, update Project, open PR, and merge to `dev`.
+
+## 2026-06-01 03:36 JST
+
+### Action
+
+Created and synchronized environment completion Chore Issues #10-#13.
+
+### Reason
+
+Environment hardening work must be traceable through GitHub Project before MVP implementation continues.
+
+### Files Changed
+
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/next-work-search.md`
+- `docs/codex/audit-log.md`
+
+### Commands Run
+
+- GitHub issue creation through GitHub connector
+- `gh project item-add ...`
+- `gh project item-edit ...`
+
+### GitHub Project Updates
+
+- Issues #10-#13 added to Project `kanban@pickle_ball_matching`.
+- Project metadata set to Chore / In Progress / Sprint 2026-06 environment / Validation Passed.
+
+### Architecture Decision
+
+Complete validation/tooling before app MVP expansion.
+
+### Validation
+
+No source behavior changed after the previous validation run.
+
+### Risk
+
+Low. GitHub Actions macOS billing is documented for human review; no billing settings were changed.
+
+### Follow-up
+
+Open PR for environment completion and merge to `dev`.
+
+## 2026-06-01 03:41 JST
+
+### Action
+
+Hardened CI/local validation and reran the full environment bootstrap path.
+
+### Reason
+
+GitHub Actions runners may not always expose the exact same iPhone Simulator name as the local machine. Validation should prefer `iPhone 16`, fall back to another available iPhone Simulator, and fail if no iPhone Simulator is available.
+
+### Files Changed
+
+- `scripts/codex/validate-ios.sh`
+- `docs/codex/ios-swift-validation.md`
+- `docs/codex/progress-ledger.md`
+- `docs/codex/audit-log.md`
+
+### Commands Run
+
+- `scripts/codex/bootstrap-ios.sh`
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+No additional Project update yet. Issues #10-#13 remain In Progress until PR evidence is available.
+
+### Architecture Decision
+
+None. This is validation infrastructure only.
+
+### Validation
+
+Passed: `swift test`, SwiftLint, SwiftFormat lint, XcodeGen, `xcodebuild -list`, `xcodebuild build`, and `xcodebuild test`.
+
+### Risk
+
+Low. The change makes CI behavior stricter by failing when no iPhone Simulator exists instead of silently skipping Xcode build/test.
+
+### Follow-up
+
+Commit, open PR, sync Project evidence, and merge to `dev`.
+
+## 2026-06-01 03:47 JST
+
+### Action
+
+Fixed the PR #14 GitHub Actions failure by adding `Shared/.gitkeep`.
+
+### Reason
+
+CI runs from a fresh checkout. The XcodeGen spec includes `Shared/`, but an empty directory is not tracked by git, so `xcodegen generate` failed on GitHub Actions with a missing source directory.
+
+### Files Changed
+
+- `Shared/.gitkeep`
+- `docs/codex/audit-log.md`
+
+### Commands Run
+
+- `gh run view 26721182081 --log-failed`
+
+### GitHub Project Updates
+
+Issues #10-#13 were moved to In Review and linked to PR #14 before the CI fix.
+
+### Architecture Decision
+
+Keep `Shared/` as an explicit future module boundary in the XcodeGen source list and track the empty directory with `.gitkeep`.
+
+### Validation
+
+GitHub Actions failed before this fix at `xcodegen generate`. Local revalidation then passed: `swift test`, SwiftLint, SwiftFormat lint, XcodeGen, `xcodebuild build`, and `xcodebuild test`.
+
+### Risk
+
+Low. The fix adds an empty placeholder only.
+
+### Follow-up
+
+Amend the PR commit, push, and wait for CI again.

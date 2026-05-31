@@ -14,6 +14,7 @@ targets:
       - Sources/PickleBallMatchingCore
     settings:
       base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.kabosu.PickleBallMatchingCore
         GENERATE_INFOPLIST_FILE: YES
   PickleBallMatching:
     type: application
@@ -41,4 +42,27 @@ targets:
       - target: PickleBallMatchingCore
     settings:
       base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.kabosu.PickleBallMatchingCoreTests
         GENERATE_INFOPLIST_FILE: YES
+  PickleBallMatchingTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - Tests/PickleBallMatchingTests
+    dependencies:
+      - target: PickleBallMatching
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.kabosu.PickleBallMatchingTests
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  PickleBallMatching:
+    build:
+      targets:
+        PickleBallMatching: all
+    test:
+      config: Debug
+      gatherCoverageData: true
+      targets:
+        - PickleBallMatchingCoreTests
+        - PickleBallMatchingTests
