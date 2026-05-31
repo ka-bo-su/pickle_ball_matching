@@ -71,6 +71,41 @@ final class OperationBoardViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.errorMessage, "保存済みセッションを読み込めませんでした。新規セッションで開始します。")
     }
 
+    func testUpdateParticipantStatusChangesStatusAndAutosaves() throws {
+        let repository = SpySessionRepository()
+        let participantID = try XCTUnwrap(UUID(uuidString: "00000000-0000-0000-0000-000000000001"))
+        let session = Session(
+            name: "テスト",
+            participants: [
+                Participant(id: participantID, displayName: "山田")
+            ]
+        )
+        let viewModel = OperationBoardViewModel(session: session, sessionRepository: repository)
+
+        viewModel.updateParticipantStatus(participantID: participantID, status: .wantsBreak)
+
+        XCTAssertEqual(viewModel.session.participants.first?.status, .wantsBreak)
+        XCTAssertEqual(repository.savedSessions.last?.participants.first?.status, .wantsBreak)
+    }
+
+    func testGenerateNextRoundExcludesUnavailableStatuses() {
+        var participants = makeParticipants(count: 6)
+        participants[0].status = .wantsBreak
+        participants[1].status = .absent
+        let session = Session(name: "テスト", courtCount: 1, participants: participants)
+        let viewModel = OperationBoardViewModel(session: session)
+
+        viewModel.generateNextRound()
+
+        let roundParticipants = viewModel.currentRound?.matches.flatMap { match in
+            match.teamA.players + match.teamB.players
+        } ?? []
+        let roundIDs = Set(roundParticipants.map(\.id))
+        XCTAssertFalse(roundIDs.contains(participants[0].id))
+        XCTAssertFalse(roundIDs.contains(participants[1].id))
+        XCTAssertEqual(roundParticipants.count, 4)
+    }
+
     private func makeParticipants(count: Int) -> [Participant] {
         (1 ... count).map { index in
             Participant(

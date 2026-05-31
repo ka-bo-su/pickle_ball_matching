@@ -839,3 +839,96 @@ Medium until CI confirms the fresh-checkout path.
 ### Follow-up
 
 Wait for PR #24 CI, merge to `dev` if clean, close Issue #23, then select the next Ready SBI.
+
+## 2026-06-01 04:57 JST
+
+### Action
+
+Merged PR #24 to `dev`, closed Issue #23, created Issue #25, and selected it for implementation.
+
+### Reason
+
+Local JSON persistence was complete and CI passed. The next highest-value MVP slice is participant status changes because day-of operation depends on late, break, absent, and observing states affecting the next generated round.
+
+### Files Changed
+
+No local files changed in this checkpoint beyond merged PR contents.
+
+### Commands Run
+
+- GitHub connector merge for PR #24
+- `gh project item-edit ...` for Issue #23 Done sync
+- GitHub connector issue update for Issue #23 close
+- GitHub connector issue creation for Issue #25
+- `gh project item-add ...`
+- `gh project item-edit ...` for Issue #25 Ready/In Progress fields
+- `git fetch origin`
+- `git switch dev`
+- `git merge --ff-only origin/dev`
+- `git switch -c codex/sbi-25-participant-status`
+
+### GitHub Project Updates
+
+- Issue #23 set Done with Validation Status Passed.
+- Issue #25 added as SBI, Priority P1, Role Owner swift-developer, Parent PBI #16, Validation Status Not Run, then moved to In Progress.
+
+### Architecture Decision
+
+Participant status changes remain in Presentation/ViewModel and reuse the existing Domain status availability rule. No new Infrastructure dependency is introduced.
+
+### Validation
+
+PR #24 GitHub Actions `validate` passed before merge.
+
+### Risk
+
+Medium. The UI must make availability visible without relying on color alone, and status changes must not bypass autosave.
+
+### Follow-up
+
+Implement Issue #25 and validate with ViewModel tests plus full iOS validation.
+
+## 2026-06-01 05:00 JST
+
+### Action
+
+Implemented SBI #25: participant status menu, ViewModel status update, autosave, and unavailable-participant exclusion tests.
+
+### Reason
+
+The MVP must handle normal day-of changes without making the organizer remember who is resting, absent, late, or observing.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/OperationBoardView.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+- Scrum/Codex ledger docs
+
+### Commands Run
+
+- `swiftformat --cache ignore .`
+- `swift test`
+- `scripts/codex/validate-ios.sh`
+- `swiftformat --cache ignore .`
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+Issue #25 remains In Progress until PR evidence is available.
+
+### Architecture Decision
+
+The ViewModel mutates `Participant.status`, updates the session timestamp, and saves through `SessionRepository`. The SwiftUI row exposes a status menu with text labels and symbols; Domain continues to own availability through `ParticipantStatus.isAvailableForRound`.
+
+### Validation
+
+First full validation passed with one SwiftLint line-length warning. After splitting the long label line and keeping the status menu separately accessible, final full validation passed at 05:03 JST: `swift test`, SwiftLint, SwiftFormat lint, XcodeGen, `xcodebuild build`, and `xcodebuild test`.
+
+### Risk
+
+Medium. Status changes directly affect round generation. Tests cover autosave and exclusion of unavailable statuses from generated matches.
+
+### Follow-up
+
+Open PR for Issue #25, update Project evidence, merge to `dev`, then continue with manual swap/undo.

@@ -119,15 +119,37 @@ struct OperationBoardView: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel(
+                "\(participant.displayName)、\(participant.skillLevel.displayName)、\(participant.status.displayName)"
+            )
             Spacer()
+            statusMenu(for: participant)
             Text("待機 \(participant.waitingCount)")
                 .font(.caption.monospacedDigit())
                 .foregroundStyle(.secondary)
+                .accessibilityLabel("待機回数 \(participant.waitingCount)回")
         }
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel(
-            "\(participant.displayName)、\(participant.skillLevel.displayName)、\(participant.status.displayName)"
-        )
+    }
+
+    private func statusMenu(for participant: Participant) -> some View {
+        Menu {
+            ForEach(ParticipantStatus.allCases, id: \.rawValue) { status in
+                Button {
+                    viewModel.updateParticipantStatus(participantID: participant.id, status: status)
+                } label: {
+                    Label(status.displayName, systemImage: status == participant.status ? "checkmark" : "circle")
+                }
+            }
+        } label: {
+            Label(
+                participant.status.displayName,
+                systemImage: participant.status.isAvailableForRound ? "checkmark.circle" : "pause.circle"
+            )
+            .labelStyle(.titleAndIcon)
+            .font(.caption)
+        }
+        .accessibilityLabel("\(participant.displayName)の状態 \(participant.status.displayName)。変更")
     }
 
     private func matchRow(_ match: Match) -> some View {

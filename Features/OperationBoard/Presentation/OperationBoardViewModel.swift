@@ -68,6 +68,17 @@ final class OperationBoardViewModel: ObservableObject {
         saveSession()
     }
 
+    func updateParticipantStatus(participantID: Participant.ID, status: ParticipantStatus) {
+        guard let index = session.participants.firstIndex(where: { $0.id == participantID }) else {
+            return
+        }
+
+        session.participants[index].status = status
+        session.updatedAt = Date()
+        errorMessage = nil
+        saveSession()
+    }
+
     func generateNextRound() {
         do {
             session = try generateNextRoundUseCase.execute(session: session)
