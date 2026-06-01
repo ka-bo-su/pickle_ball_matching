@@ -3,13 +3,13 @@
 ## Result
 
 - Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31/#33/#35/#37/#39/#41/#43/#45/#47/#49/#51/#53/#55 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30/#32/#34/#36/#38/#40/#42/#44/#46/#48/#50/#52/#54 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, current-round CSV sharing, participant-facing large board display, editable session settings, participant skill editing, participant detail editing, roster reuse for new sessions, any-player current-round manual swap, multi-step undo history, current-round PDF sharing, current-round image sharing, session history/reopen, board current-state/next-action readability, GitHub Actions Node 20 deprecation fix, and a guarded GitHub REST push fallback script/runbook
-- Partially completed: none
+- Partially completed: Issue #56 round timer/start-end flow implemented and locally validated on `codex/sbi-56-round-timer`
 - Blocked: none
 
 ## Time
 
 - Started: 2026-06-01 02:34 JST
-- Last checkpoint: 2026-06-01 23:00 JST
+- Last checkpoint: 2026-06-02 08:00 JST
 - Approximate duration: session-dependent
 
 ## PRs
@@ -40,6 +40,7 @@
 - `703c95f` feat(session): reopen saved sessions from history
 - `19332d6` feat(board): clarify current state and next action
 - `345a2ff` ci(actions): update checkout for node 24
+- local commit `feat(board): add round timer controls` on `codex/sbi-56-round-timer` (not pushed yet)
 
 ## GitHub Project Updates
 
@@ -75,16 +76,17 @@
 - Issue #54 created in Japanese, added to Project, moved to In Progress, Validation Status set to Passed after local validation
 - Issue #54 moved to In Review with PR #55 Evidence Link
 - Issue #54 set Done after PR #55 merge
+- Issue #56 is In Progress in Project; Validation Status is Passed; PR evidence and In Review transition are pending push/PR
 
 ## Pending GitHub Project Updates
 
-- none
+- Issue #56: add PR evidence and move Status/Scrum Status to In Review after push/PR creation.
 
 ## iOS Validation
 
-- Build: passed on PR #55 with GitHub Actions `validate` and locally with `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'`
-- Test: passed on PR #55 with GitHub Actions `validate` and locally with `swift test` and `xcodebuild test`
-- Lint: passed on PR #55 with GitHub Actions `validate`; local SwiftLint/SwiftFormat had 0 violations
+- Build: passed locally for Issue #56 with `xcodebuild build`
+- Test: passed locally for Issue #56 with `swift test` and `xcodebuild test`
+- Lint: passed locally for Issue #56 with SwiftLint 0 violations and SwiftFormat lint 0 files
 - Simulator: iPhone 16 on iOS 18.2 available
 
 ## Files Changed
@@ -192,10 +194,10 @@ A  scripts/codex/validate-ios.sh
 - Done: Issue #50 session history/reopen
 - Done: Issue #52 board current-state and next-action readability
 - Done: Issue #54 GitHub Actions Node 20 deprecation warning
-- In progress: none
+- In progress: Issue #56 round start/end and remaining-time display, pending PR/CI
 - In review: none
 - Blocked: none
-- Next: select the next highest-value MVP slice from Project/Sprint Backlog
+- Next: push and publish Issue #56, then continue board timer polish or score/result capture
 
 ## Architecture
 
@@ -203,6 +205,7 @@ A  scripts/codex/validate-ios.sh
 - Boundary changes: bootstrap matching model replaced by Participant/Session/Round/Match and OperationBoard Presentation; `SessionRepository` protocol added in Application and JSON implementation added in Infrastructure; participant status mutation stays in Presentation/ViewModel and reuses Domain availability rules; manual swap/undo mutates only the current round in Presentation without leaking Infrastructure into SwiftUI; any-player swap extends the same ViewModel boundary; multi-step undo remains a bounded in-memory ViewModel history and does not introduce persistence coupling; CSV export adds an Application protocol and Infrastructure exporter; PDF export adds `RoundPDFExporting` and `PDFRoundExporter` while Presentation shares a `Transferable` wrapper; large board display adds Presentation-only display models; session settings edit Domain `Session` values through the existing ViewModel and repository save path; participant skill/detail editing updates Domain `Participant` values through the existing ViewModel save path
 - Refactor tasks: add PDF/image export, richer undo/snapshot history, and session creation UI in follow-up SBIs
 - Risks: keep generated `.xcodeproj` ignored and regenerate from `project.yml`
+- Boundary changes in progress: Issue #56 adds Domain round timing fields and Presentation timer controls while keeping persistence/export boundaries unchanged.
 
 ## Local Environment
 
@@ -213,10 +216,11 @@ A  scripts/codex/validate-ios.sh
 ## Human Review Notes
 
 - Review merged PR #8, #14, #15, #22, #24, #26, #28, #31, #33, #35, #37, #39, #41, #43, #45, #47, #49, #51, #53, and #55
+- Issue #56 local validation passed; review PR once created for timer UX and whether remaining-time placement is visible enough during court-side use.
 - Pay attention to PR #33 for participant readability, iPad layout, long names, and accessibility labels
 - Pay attention to PR #53 for whether the new board summary reduces organizer ambiguity without crowding the main screen
 - Possible rollback: revert the relevant PR
 
 ## Next Recommended Codex Goal
 
-- Select the next highest-value MVP slice. The strongest candidate is adding start/remaining-time flow to the progress board.
+- Push Issue #56, create PR, sync Project, and merge if CI passes.

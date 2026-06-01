@@ -2,13 +2,13 @@
 
 ## Current
 
-- Active PBI: selecting next MVP PBI
-- Active SBI: selecting next safe SBI
-- Active Branch: dev
+- Active PBI: #18 進行ボードと大画面表示
+- Active SBI: #56 進行ボードで試合開始と残り時間を扱えるようにする
+- Active Branch: codex/sbi-56-round-timer
 - Active PR: none
-- GitHub Project Item: none
-- Status: Ready for next work selection
-- Next Action: select the next safe MVP SBI; progress-board start/timer flow is a likely candidate
+- GitHub Project Item: `PVTI_lAHOBHYYMs4BZUKkzguYuXg`
+- Status: Local validation passed; ready to push and open PR
+- Next Action: push `codex/sbi-56-round-timer`, open PR, and move Issue #56 to In Review with PR evidence
 
 ## Completed
 
@@ -95,12 +95,14 @@
 | 2026-06-01 22:48 JST | Chore #54 local implementation | Updated `actions/checkout` from v4 to v6 and validated local iOS project | `.github/workflows/ios-validation.yml` |
 | 2026-06-01 22:50 JST | PR opened | Created PR #55 for Chore #54 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/55 |
 | 2026-06-01 23:00 JST | Chore #54 merged | Squash merged PR #55 to `dev`; Issue #54 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/55 |
+| 2026-06-01 23:19 JST | SBI #56 local implementation | Added round start/end timestamps, remaining-time model, board controls, and timing tests | local branch `codex/sbi-56-round-timer` |
+| 2026-06-02 08:00 JST | SBI #56 local validation | Full iOS validation passed and Project Validation Status set to Passed | `scripts/codex/validate-ios.sh` |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| none | n/a | n/a | n/a | select next safe SBI |
+| Issue #56 `進行ボードで試合開始と残り時間を扱えるようにする` | `codex/sbi-56-round-timer` | none | validation passed; ready for PR | push branch, open PR, update Project evidence |
 
 ## Blocked
 
@@ -173,3 +175,8 @@
 | 2026-06-01 22:33 JST | GitHub Actions `validate` | pass | PR #53 passed before squash merge; noted actions/checkout Node 20 deprecation annotation |
 | 2026-06-01 22:47 JST | `scripts/codex/validate-ios.sh` | pass | Chore #54 workflow update branch; local validation still passes with 15 core tests and 38 app tests |
 | 2026-06-01 22:59 JST | GitHub Actions `validate` | pass | PR #55 passed before squash merge; Node 20 deprecation annotation absent |
+| 2026-06-01 23:19 JST | `swiftformat --cache ignore .` | blocked | escalation rejected by Codex execution usage limit; command not rerun through an indirect path |
+| 2026-06-01 23:19 JST | `swiftlint --no-cache` | blocked | escalation rejected by Codex execution usage limit; command not rerun through an indirect path |
+| 2026-06-01 23:19 JST | `swift test` | blocked | non-escalated SwiftPM cannot apply its sandbox / write required cache in current Codex sandbox |
+| 2026-06-01 23:22 JST | `git push -u origin codex/sbi-56-round-timer` | blocked | escalation rejected by Codex execution usage limit; REST push not attempted because it would be an indirect workaround |
+| 2026-06-02 08:00 JST | `scripts/codex/validate-ios.sh` | pass | Issue #56: `swift test` 19 core tests, SwiftLint 0 violations, SwiftFormat 0 files, XcodeGen, xcodebuild build, xcodebuild test 19 core + 43 app tests |

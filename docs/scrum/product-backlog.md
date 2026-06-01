@@ -40,3 +40,4 @@ GitHub Project `kanban@pickle_ball_matching` is the source of truth. This file m
 | SBI-020 | SBI | 過去セッションを一覧から再開できるようにする | P1 | Done | PR #51, Issue #50 |
 | SBI-021 | SBI | 進行ボードの現在と次アクションを見やすくする | P1 | Done | PR #53, Issue #52 |
 | CHORE-007 | Chore | GitHub ActionsのNode 20 deprecation警告を解消する | P1 | Done | PR #55, Issue #54 |
+| SBI-022 | SBI | 進行ボードで試合開始と残り時間を扱えるようにする | P1 | In Progress | Issue #56; local implementation on `codex/sbi-56-round-timer` |

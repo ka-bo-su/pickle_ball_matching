@@ -12,9 +12,9 @@ final class OperationBoardViewModel: ObservableObject {
 
     private let generateNextRoundUseCase: GenerateNextRoundUseCase
     private let sessionRepository: (any SessionRepository)?
-    private let roundExporter: any RoundExporting
-    private let pdfExporter: any RoundPDFExporting
-    private let imageExporter: any RoundImageExporting
+    let roundExporter: any RoundExporting
+    let pdfExporter: any RoundPDFExporting
+    let imageExporter: any RoundImageExporting
     private let undoHistoryLimit = 10
     private var undoSessions: [Session] = []
 
@@ -251,6 +251,12 @@ final class OperationBoardViewModel: ObservableObject {
         return participant
     }
 
+    func persistSessionMutation() {
+        session.updatedAt = Date()
+        errorMessage = nil
+        saveSession()
+    }
+
     private func saveSession() {
         do {
             try sessionRepository?.save(session)
@@ -284,48 +290,9 @@ private func defaultSkillLevel(for index: Int) -> SkillLevel {
     SkillLevel(rawValue: (index % SkillLevel.allCases.count) + 1) ?? .beginner
 }
 
-private func safeFileName(_ name: String) -> String {
-    let invalidCharacters = CharacterSet(charactersIn: "/\\?%*|\"<>:")
-    let sanitized = name
-        .components(separatedBy: invalidCharacters)
-        .joined(separator: "-")
-        .trimmingCharacters(in: .whitespacesAndNewlines)
-    return sanitized.isEmpty ? "pickleball-round" : sanitized
-}
-
 extension OperationBoardViewModel {
     var currentRound: Round? {
         session.currentRound
-    }
-
-    var currentRoundCSV: String? {
-        guard let currentRound else {
-            return nil
-        }
-
-        return roundExporter.exportCSV(session: session, round: currentRound)
-    }
-
-    var currentRoundPDFDocument: RoundPDFDocument? {
-        guard let currentRound else {
-            return nil
-        }
-
-        return RoundPDFDocument(
-            fileName: "\(safeFileName(session.name))-round-\(currentRound.number).pdf",
-            data: pdfExporter.exportPDF(session: session, round: currentRound)
-        )
-    }
-
-    var currentRoundImageDocument: RoundImageDocument? {
-        guard let currentRound else {
-            return nil
-        }
-
-        return RoundImageDocument(
-            fileName: "\(safeFileName(session.name))-round-\(currentRound.number).png",
-            data: imageExporter.exportPNG(session: session, round: currentRound)
-        )
     }
 
     var largeBoardDisplayModel: LargeBoardDisplayModel? {
