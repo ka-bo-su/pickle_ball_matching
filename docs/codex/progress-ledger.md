@@ -5,10 +5,10 @@
 - Active PBI: Issue #16
 - Active SBI: Issue #34
 - Active Branch: codex/sbi-34-session-settings
-- Active PR: n/a
+- Active PR: PR #35
 - GitHub Project Item: Issue #34
-- Status: In Progress
-- Next Action: commit Issue #34, open PR, update Project evidence, and merge to `dev`
+- Status: In Review
+- Next Action: wait for PR #35 CI, then squash merge to `dev` if validation passes
 
 ## Completed
 
@@ -53,12 +53,13 @@
 | 2026-06-01 10:20 JST | SBI #32 merged | Squash merged PR #33 to `dev`; Issue #32 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/33 |
 | 2026-06-01 10:24 JST | Next SBI selected | Created and selected Issue #34 for editable session settings | https://github.com/ka-bo-su/pickle_ball_matching/issues/34 |
 | 2026-06-01 10:35 JST | SBI #34 local implementation | Added session settings editing, blank new-session start, split presentation views, and ViewModel tests | `SessionSettingsSection`, `OperationBoardViewModel` |
+| 2026-06-01 10:38 JST | PR opened | Created PR #35 for SBI #34 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/35 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #34 | codex/sbi-34-session-settings | pending | In Progress | PR and Project evidence update |
+| Issue #34 | codex/sbi-34-session-settings | PR #35 | In Review | Wait for CI, then merge to `dev` |
 
 ## Blocked
 

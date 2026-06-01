@@ -1618,3 +1618,48 @@ Medium. The destructive new-session action is guarded by a confirmation dialog; 
 ### Follow-up
 
 Commit, open PR for Issue #34, update Project evidence to In Review, and merge to `dev` if CI passes.
+
+## 2026-06-01 10:38 JST
+
+### Action
+
+Pushed `codex/sbi-34-session-settings`, opened PR #35 for Issue #34, and moved the GitHub Project item to In Review.
+
+### Reason
+
+SBI #34 passed local validation and is ready for CI-backed review and autonomous merge to `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git push -u origin codex/sbi-34-session-settings`
+- GitHub connector create PR
+- `gh project item-edit ...` for Issue #34 In Review, Validation Passed, and Evidence Link
+
+### GitHub Project Updates
+
+Issue #34 set to Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, and Evidence Link PR #35.
+
+### Architecture Decision
+
+No new decision. The PR keeps session settings in Presentation/ViewModel and uses the existing repository boundary.
+
+### Validation
+
+PR #35 will run GitHub Actions. Local validation already passed before PR creation.
+
+### Risk
+
+Medium. The UI now has a destructive new-session action, mitigated by confirmation dialog and test coverage.
+
+### Follow-up
+
+Wait for PR #35 CI, squash merge to `dev` if it passes, then set Issue #34 and Project item Done.

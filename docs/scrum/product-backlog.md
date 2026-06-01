@@ -29,4 +29,4 @@ GitHub Project `kanban@pickle_ball_matching` is the source of truth. This file m
 | SBI-009 | SBI | 待機者との手動入れ替えと1手戻す | P1 | Done | PR #28, Issue #27 |
 | SBI-010 | SBI | 現在ラウンドをCSVで共有できるようにする | P2 | Done | PR #31, Issue #30 |
 | SBI-011 | SBI | 参加者向け大画面ボードを表示する | P1 | Done | PR #33, Issue #32 |
-| SBI-012 | SBI | セッション名と運営条件を編集できるようにする | P0 | In Progress | Issue #34 |
+| SBI-012 | SBI | セッション名と運営条件を編集できるようにする | P0 | In Review | PR #35, Issue #34 |
