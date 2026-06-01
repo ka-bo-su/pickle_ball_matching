@@ -3,13 +3,13 @@
 - Started at: 2026-06-01 02:34 JST
 - Current objective: Finish autonomous Codex iOS environment, then build the day-of doubles operation MVP.
 - Current PBI: #16 当日運営特化ダブルス組み合わせMVP
-- Current SBI: #60 同じ対戦相手の重複を減らして次ラウンドを生成する
-- Active branch: codex/sbi-60-avoid-repeat-opponents
+- Current SBI: Selecting next SBI
+- Active branch: dev
 - Active worktree: `/Users/kazuma/Documents/pickle_ball_matching`
-- Active PR: #61
+- Active PR: none
 - Active GitHub Project: `kanban@pickle_ball_matching`
 - Project owner: `ka-bo-su`
 - Project number: `3`
-- Last successful validation: 2026-06-02 08:29 JST, `scripts/codex/validate-ios.sh` on Issue #60
+- Last successful validation: 2026-06-02 08:37 JST, GitHub Actions `validate` on PR #61
 - Current blocker: none
-- Next action: watch PR #61 CI, squash merge to `dev` if it passes, then close Issue #60 and sync Project Done.
+- Next action: create and select the next MVP SBI after Issue #60 merge.

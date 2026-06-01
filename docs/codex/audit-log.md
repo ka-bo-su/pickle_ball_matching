@@ -3723,3 +3723,53 @@ Medium until PR #61 CI passes.
 ### Follow-up
 
 Watch PR #61 CI, squash merge to `dev` if it passes, close Issue #60, and set the Project item Done.
+
+## 2026-06-02 08:38 JST
+
+### Action
+
+Merged PR #61, closed Issue #60, and set the GitHub Project item to Done.
+
+### Reason
+
+PR #61 passed both local validation and GitHub Actions. Repeated-opponent avoidance meets the Issue #60 acceptance criteria and is ready as a Done increment on `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/audit-log.md`
+
+### Commands Run
+
+- `gh pr checks 61 --watch --interval 10`
+- `gh pr merge 61 --squash --delete-branch ...`
+- `gh issue edit 60 --remove-label status:in-review --add-label status:done`
+- `gh project item-edit ...` for Status `Done`
+- `gh project item-edit ...` for Scrum Status `Done`
+- `gh issue comment 60 ...`
+- `gh issue close 60 --reason completed`
+
+### GitHub Project Updates
+
+Issue #60 set to Status `Done`, Scrum Status `Done`, Validation Status `Passed`, and Evidence Link PR #61. The issue is closed.
+
+### Architecture Decision
+
+No additional architecture change after PR merge. Opponent-history scoring remains in Application and does not introduce UI or Infrastructure dependencies.
+
+### Validation
+
+GitHub Actions `validate` passed for PR #61 before merge.
+
+### Risk
+
+Low after merge.
+
+### Follow-up
+
+Select the next MVP SBI. Rule-setting UI is the strongest candidate because the fairness rules now exist in Domain/Application and need organizer-facing control.
