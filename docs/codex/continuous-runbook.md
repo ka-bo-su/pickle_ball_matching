@@ -37,3 +37,22 @@ Update `nightly-state.md`, `progress-ledger.md`, `audit-log.md`, and `sprint-bac
 - a blocker appears
 - a Project update succeeds or fails
 - an architecture decision is made
+
+## GitHub Push Fallback
+
+Use normal `git push` first.
+
+If `git push` fails because of Git transport, SSH/HTTPS credential, or branch ref update problems, Codex may use:
+
+```bash
+scripts/codex/push-via-github-api.sh --dry-run
+scripts/codex/push-via-github-api.sh
+```
+
+Safety rules:
+
+- Only use this for `codex/*` branches.
+- Never use it for `main`.
+- The script uses GitHub ref update with `force=false`; non-fast-forward updates fail.
+- Do not use this to bypass Codex usage limits, policy rejection, production restrictions, or secret handling restrictions.
+- Record the fallback reason, branch, target SHA, PR/Issue, and verification result in `docs/codex/audit-log.md`.

@@ -2262,3 +2262,43 @@ Medium. The current menu-based UI is still acceptable for MVP but may need a ded
 ### Follow-up
 
 Wait for PR #43 CI, squash merge to `dev` if it passes, then set Issue #42 and Project item Done.
+
+## 2026-06-01 12:10 JST
+
+### Action
+
+Added a GitHub REST push fallback runbook and script.
+
+### Reason
+
+The autonomous loop needs a documented fallback when normal `git push` fails due to Git transport, credential, or branch ref update issues. The fallback must remain narrow and auditable.
+
+### Files Changed
+
+- `scripts/codex/push-via-github-api.sh`
+- `docs/codex/continuous-runbook.md`
+- `docs/codex/github-projects-policy.md`
+
+### Commands Run
+
+- `chmod +x scripts/codex/push-via-github-api.sh`
+
+### GitHub Project Updates
+
+No Project item change required. This is operational tooling for the active autonomous loop.
+
+### Architecture Decision
+
+REST fallback is limited to fast-forward GitHub ref updates for `codex/*` branches. `main`, force updates, production/App Store/secret paths, and Codex usage-limit/policy-rejection workarounds remain prohibited.
+
+### Validation
+
+Pending local script dry-run and shell syntax check.
+
+### Risk
+
+Medium. Direct ref updates can bypass normal Git transport, so the script verifies branch naming, target SHA, and `force=false`.
+
+### Follow-up
+
+Run dry-run validation, commit the fallback tooling, and push with normal `git push` first. Use REST fallback only if the normal push path fails for allowed reasons.
