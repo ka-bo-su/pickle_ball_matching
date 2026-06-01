@@ -36,4 +36,4 @@ GitHub Project `kanban@pickle_ball_matching` is the source of truth. This file m
 | SBI-016 | SBI | 現在ラウンド内の任意プレイヤーを入れ替えられるようにする | P1 | Done | PR #43, Issue #42 |
 | SBI-017 | SBI | 複数手Undo履歴で手動修正を戻せるようにする | P1 | Done | PR #45, Issue #44 |
 | SBI-018 | SBI | 現在ラウンドをPDFで共有できるようにする | P2 | Done | PR #47, Issue #46 |
-| SBI-019 | SBI | 現在ラウンドを共有画像として出力できるようにする | P2 | In Progress | Issue #48 |
+| SBI-019 | SBI | 現在ラウンドを共有画像として出力できるようにする | P2 | In Review | PR #49, Issue #48 |

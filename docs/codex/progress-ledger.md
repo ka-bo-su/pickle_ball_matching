@@ -5,10 +5,10 @@
 - Active PBI: Issue #19
 - Active SBI: Issue #48
 - Active Branch: codex/sbi-48-image-export
-- Active PR: none
+- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/49
 - GitHub Project Item: PVTI_lAHOBHYYMs4BZUKkzguXCMI
-- Status: In Progress
-- Next Action: commit, push, open PR, and move Project item to In Review
+- Status: In Review
+- Next Action: watch PR #49 CI, then squash merge to `dev` if it passes
 
 ## Completed
 
@@ -81,12 +81,13 @@
 | 2026-06-01 18:34 JST | SBI #46 merged | Squash merged PR #47 to `dev`; Issue #46 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/47 |
 | 2026-06-01 18:43 JST | Next SBI selected | Created and selected Issue #48 for current-round image sharing | https://github.com/ka-bo-su/pickle_ball_matching/issues/48 |
 | 2026-06-01 18:49 JST | SBI #48 local implementation | Added PNG exporter, Transferable image document, image ShareLink, and image tests | `ImageRoundExporter`, `RoundImageDocument`, `OperationBoardView` |
+| 2026-06-01 18:51 JST | PR opened | Created PR #49 for SBI #48 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/49 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #48 | codex/sbi-48-image-export | pending | In Progress | Open PR after commit |
+| Issue #48 | codex/sbi-48-image-export | PR #49 | In Review | Wait for CI and merge if green |
 
 ## Blocked
 

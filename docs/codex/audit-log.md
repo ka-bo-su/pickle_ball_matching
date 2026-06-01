@@ -2698,3 +2698,49 @@ Medium. The generated image is intentionally simple and readable. Visual polish,
 ### Follow-up
 
 Commit, open PR for Issue #48, update Project evidence to In Review, and merge to `dev` if CI passes.
+
+## 2026-06-01 18:51 JST
+
+### Action
+
+Pushed `codex/sbi-48-image-export`, opened PR #49 for Issue #48, and moved the GitHub Project item to In Review.
+
+### Reason
+
+SBI #48 passed local validation and is ready for CI-backed review and autonomous merge to `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git push -u origin codex/sbi-48-image-export`
+- `gh pr create ...`
+- `gh issue edit 48 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit ...` for Issue #48 In Review and Evidence Link
+
+### GitHub Project Updates
+
+Issue #48 set to Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, and Evidence Link PR #49.
+
+### Architecture Decision
+
+No new decision. The PR keeps PNG generation behind `RoundImageExporting` and `ImageRoundExporter`.
+
+### Validation
+
+PR #49 will run GitHub Actions. Local validation already passed before PR creation.
+
+### Risk
+
+Medium. The share image is useful but visually basic; richer image layouts should remain follow-up SBIs.
+
+### Follow-up
+
+Wait for PR #49 CI, squash merge to `dev` if it passes, then set Issue #48 and Project item Done.
