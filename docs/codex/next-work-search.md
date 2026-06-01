@@ -109,3 +109,13 @@
 - Reason: It completes the core participant profile fields with a small reversible Presentation/ViewModel slice and keeps the pairing algorithm ready for future gender/age/memo-aware rules.
 - Human repair needed: none.
 - Pending updates: PR evidence for Issue #38 after PR creation.
+
+## 2026-06-01 11:34 JST
+
+- Searched candidates: GitHub Project open PBIs, Sprint Backlog after PR #39 merge, product vision roster reuse requirement, current session start flow.
+- Referenced GitHub Project / Issues / docs: Issues #17, #40, `docs/scrum/sprint-backlog.md`, product vision MVP flow and roster reuse requirements.
+- Findings: No ready SBI remained. The app can restore the latest session, but starting a new session currently clears participants, which forces repeated input for recurring circles.
+- Next selected work: Issue #40 `保存済み名簿から新規セッションを開始できるようにする`.
+- Reason: It directly reduces organizer setup time and supports the north star of creating the first doubles round within 3 minutes.
+- Human repair needed: none.
+- Pending updates: PR evidence for Issue #40 after PR creation.

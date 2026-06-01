@@ -2031,3 +2031,94 @@ Low after merge. Remaining UX risk is participant row density and edit discovera
 ### Follow-up
 
 Select the next MVP SBI from Project/Sprint Backlog. Good candidates are richer snapshot/undo history or roster reuse.
+
+## 2026-06-01 11:40 JST
+
+### Action
+
+Created and implemented Issue #40 for starting a new session while keeping the saved roster.
+
+### Reason
+
+Recurring circles should not re-enter the same participant list every session. This SBI directly reduces setup time and advances the 3-minute north star without introducing a full roster management screen yet.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/SessionSettingsSection.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardSessionReuseTests.swift`
+- Scrum/Codex ledger docs
+
+### Commands Run
+
+- `gh issue create ...`
+- `gh project item-add 3 --owner ka-bo-su --url https://github.com/ka-bo-su/pickle_ball_matching/issues/40`
+- `gh project item-edit ...` for Issue #40 In Progress metadata
+- `swiftformat --cache ignore .`
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+Issue #40 was added to Project `kanban@pickle_ball_matching` and set to In Progress with Role Owner `swift-developer`, Backlog Level `SBI`, Priority `P1`, Parent PBI `#17 ローカルファースト保存・復元`, and Validation Status `Not Run`.
+
+### Architecture Decision
+
+No new repository or persistence type was introduced. The first roster reuse increment keeps the behavior in `OperationBoardViewModel`, reuses the existing `SessionRepository` autosave boundary, and leaves multi-roster management for a later SBI.
+
+### Validation
+
+Full validation passed: `swift test`, SwiftLint, SwiftFormat lint, XcodeGen, `xcodebuild build`, and `xcodebuild test` on iPhone 16 Simulator. The Xcode test suite passed 10 core tests and 25 app tests with 0 lint violations.
+
+### Risk
+
+Medium. This keeps one saved roster path only and does not yet support multiple named rosters. That is acceptable for MVP because it removes the repeated-input pain with a reversible UI change.
+
+### Follow-up
+
+Commit, open PR for Issue #40, update Project evidence to In Review, and merge to `dev` if CI passes.
+
+## 2026-06-01 11:42 JST
+
+### Action
+
+Pushed `codex/sbi-40-roster-reuse`, opened PR #41 for Issue #40, and moved the GitHub Project item to In Review.
+
+### Reason
+
+SBI #40 passed local validation and is ready for CI-backed review and autonomous merge to `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git push -u origin codex/sbi-40-roster-reuse`
+- `gh pr create ...`
+- `gh issue edit 40 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit ...` for Issue #40 In Review, Validation Passed, and Evidence Link
+
+### GitHub Project Updates
+
+Issue #40 set to Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, and Evidence Link PR #41.
+
+### Architecture Decision
+
+No new decision. The PR keeps roster reuse in Presentation/ViewModel and uses existing persistence boundaries.
+
+### Validation
+
+PR #41 will run GitHub Actions. Local validation already passed before PR creation.
+
+### Risk
+
+Medium. The implementation intentionally handles only a single carried-over roster and leaves multi-roster management for later.
+
+### Follow-up
+
+Wait for PR #41 CI, squash merge to `dev` if it passes, then set Issue #40 and Project item Done.
