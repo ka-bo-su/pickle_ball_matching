@@ -2,13 +2,13 @@
 
 ## Current
 
-- Active PBI: Issue #16
-- Active SBI: Issue #32
-- Active Branch: codex/sbi-32-large-board-display
-- Active PR: PR #33
-- GitHub Project Item: Issue #32
-- Status: In Review
-- Next Action: wait for PR #33 CI, then squash merge to `dev` if validation passes
+- Active PBI: selecting next
+- Active SBI: selecting next
+- Active Branch: dev
+- Active PR: n/a
+- GitHub Project Item: n/a
+- Status: Ready for next SBI selection
+- Next Action: select the next highest-value MVP SBI from Sprint Backlog and GitHub Project
 
 ## Completed
 
@@ -50,12 +50,13 @@
 | 2026-06-01 10:00 JST | Next SBI selected | Created and selected Issue #32 for participant-facing large board display | https://github.com/ka-bo-su/pickle_ball_matching/issues/32 |
 | 2026-06-01 10:05 JST | SBI #32 local implementation | Added large board navigation, adaptive display view, and display model tests | `OperationBoardView`, `OperationBoardViewModel` |
 | 2026-06-01 10:14 JST | PR opened | Created PR #33 for SBI #32 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/33 |
+| 2026-06-01 10:20 JST | SBI #32 merged | Squash merged PR #33 to `dev`; Issue #32 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/33 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #32 | codex/sbi-32-large-board-display | PR #33 | In Review | Wait for CI, then merge to `dev` |
+| none | n/a | n/a | n/a | n/a |
 
 ## Blocked
 
@@ -101,3 +102,4 @@
 | 2026-06-01 09:22 JST | `scripts/codex/validate-ios.sh` | pass | SBI #30 full validation with 10 core tests and 14 app tests, 0 failures |
 | 2026-06-01 10:03 JST | `swift test` | pass | SBI #32 core tests, 10 tests |
 | 2026-06-01 10:05 JST | `scripts/codex/validate-ios.sh` | pass | SBI #32 full validation with 10 core tests and 17 app tests, 0 failures |
+| 2026-06-01 10:18 JST | GitHub Actions `validate` | pass | PR #33 passed before squash merge |

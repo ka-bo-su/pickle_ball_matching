@@ -3,13 +3,13 @@
 - Started at: 2026-06-01 02:34 JST
 - Current objective: Finish autonomous Codex iOS environment, then build the day-of doubles operation MVP.
 - Current PBI: Issue #16
-- Current SBI: Issue #32
-- Active branch: codex/sbi-32-large-board-display
+- Current SBI: selecting next
+- Active branch: dev
 - Active worktree: `/Users/kazuma/Documents/pickle_ball_matching`
-- Active PR: PR #33
+- Active PR: n/a
 - Active GitHub Project: `kanban@pickle_ball_matching`
 - Project owner: `ka-bo-su`
 - Project number: `3`
-- Last successful validation: 2026-06-01 10:05 JST, `scripts/codex/validate-ios.sh` on `codex/sbi-32-large-board-display`
+- Last successful validation: 2026-06-01 10:18 JST, GitHub Actions `validate` on PR #33
 - Current blocker: none
-- Next action: wait for PR #33 CI, merge to `dev` if it passes, then continue with the next highest-value MVP SBI.
+- Next action: select the next highest-value MVP SBI from Sprint Backlog and GitHub Project, then continue implementation.

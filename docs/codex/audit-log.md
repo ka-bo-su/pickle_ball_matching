@@ -1482,3 +1482,49 @@ Low to medium. Automated validation passed; remaining risk is real device readab
 ### Follow-up
 
 Wait for PR #33 CI, squash merge to `dev` if it passes, then set Issue #32 and Project item Done.
+
+## 2026-06-01 10:20 JST
+
+### Action
+
+Squash merged PR #33 to `dev`, closed Issue #32, and set the GitHub Project item to Done.
+
+### Reason
+
+PR #33 passed GitHub Actions `validate`, met the SBI acceptance criteria, and preserved the Presentation-only architecture boundary.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/OperationBoardView.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+- Scrum/Codex ledger docs
+
+### Commands Run
+
+- `gh pr checks 33 --watch --interval 10`
+- `gh pr merge 33 --squash --delete-branch ...`
+- `git fetch origin`
+- `git switch dev`
+- `git merge --ff-only origin/dev`
+- `gh project item-edit ...` for Issue #32 Done and Validation Passed
+
+### GitHub Project Updates
+
+Issue #32 set to Status `Done`, Scrum Status `Done`, Validation Status `Passed`, and Evidence Link PR #33.
+
+### Architecture Decision
+
+No new decision. The merged increment keeps large board rendering inside Presentation and does not add Infrastructure coupling.
+
+### Validation
+
+GitHub Actions `validate` passed before merge. Local `scripts/codex/validate-ios.sh` also passed before PR creation.
+
+### Risk
+
+Low after merge. Remaining UX risk is real-world readability on iPad or external display, tracked as a future validation concern.
+
+### Follow-up
+
+Select the next MVP SBI from Project/Sprint Backlog. Good candidates are richer snapshot/undo history or session creation UI.
