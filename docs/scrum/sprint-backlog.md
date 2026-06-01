@@ -63,10 +63,10 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 24. Issue #48 merged in PR #49 and Project item set Done.
 25. Issue #50 merged in PR #51 and Project item set Done.
 26. Issue #52 merged in PR #53 and Project item set Done.
-27. Issue #54 selected, local validation passed, and PR #55 opened.
+27. Issue #54 merged in PR #55 and Project item set Done.
 
 ## Next Ready Work
 
 | ID | Type | Status | Owner Role | Validation | Evidence |
 |---|---|---|---|---|---|
-| CHORE-007 | GitHub Actions Node 20 deprecation warning対応 | In Review | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions pending | PR #55, Issue #54 |
+| SBI-022 | 進行ボードで試合開始と残り時間を扱えるようにする | Backlog | swift-developer | ViewModel/UI tests, `scripts/codex/validate-ios.sh` | pending Issue |

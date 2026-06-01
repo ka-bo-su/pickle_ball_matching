@@ -3198,3 +3198,54 @@ Low. If `actions/checkout@v6` has unexpected runner compatibility issues, PR CI 
 ### Follow-up
 
 Wait for PR #55 CI, squash merge to `dev` if it passes, then set Issue #54 and Project item Done.
+
+## 2026-06-01 23:00 JST
+
+### Action
+
+Merged PR #55, closed Issue #54, and set the GitHub Project item to Done.
+
+### Reason
+
+Issue #54 passed local validation and GitHub Actions. The checkout action now uses `actions/checkout@v6`; PR #55 did not emit the prior Node.js 20 deprecation annotation.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `gh run watch 26759202053 --interval 10`
+- `gh pr merge 55 --squash --delete-branch ...`
+- `gh issue edit 54 --remove-label status:in-review --add-label status:done`
+- `gh issue comment 54 ...`
+- `gh issue close 54 --reason completed`
+- `gh project item-edit ...` for Issue #54 Done
+- `git fetch origin`
+- `git switch dev`
+- `git merge --ff-only origin/dev`
+
+### GitHub Project Updates
+
+Issue #54 set to Status `Done`, Scrum Status `Done`, Validation Status `Passed`, and Evidence Link PR #55. The issue is closed.
+
+### Architecture Decision
+
+No app architecture change. CI infrastructure now uses `actions/checkout@v6`.
+
+### Validation
+
+GitHub Actions `validate` passed before merge and did not report the Node.js 20 deprecation annotation. Local `scripts/codex/validate-ios.sh` also passed before PR creation.
+
+### Risk
+
+Low after merge.
+
+### Follow-up
+
+Select the next MVP SBI. The strongest candidate is progress-board start and remaining-time flow.

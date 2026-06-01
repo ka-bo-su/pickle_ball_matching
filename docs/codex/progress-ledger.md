@@ -2,13 +2,13 @@
 
 ## Current
 
-- Active PBI: Autonomous iOS development environment
-- Active SBI: #54 GitHub ActionsのNode 20 deprecation警告を解消する
-- Active Branch: codex/chore-54-actions-node24
-- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/55
-- GitHub Project Item: PVTI_lAHOBHYYMs4BZUKkzguYiqI
-- Status: In Review; waiting for GitHub Actions
-- Next Action: monitor PR #55 CI, then squash merge to `dev` if it passes
+- Active PBI: selecting next MVP PBI
+- Active SBI: selecting next safe SBI
+- Active Branch: dev
+- Active PR: none
+- GitHub Project Item: none
+- Status: Ready for next work selection
+- Next Action: select the next safe MVP SBI; progress-board start/timer flow is a likely candidate
 
 ## Completed
 
@@ -94,12 +94,13 @@
 | 2026-06-01 22:43 JST | Next chore selected | Created and selected Issue #54 for GitHub Actions Node 20 deprecation warning | https://github.com/ka-bo-su/pickle_ball_matching/issues/54 |
 | 2026-06-01 22:48 JST | Chore #54 local implementation | Updated `actions/checkout` from v4 to v6 and validated local iOS project | `.github/workflows/ios-validation.yml` |
 | 2026-06-01 22:50 JST | PR opened | Created PR #55 for Chore #54 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/55 |
+| 2026-06-01 23:00 JST | Chore #54 merged | Squash merged PR #55 to `dev`; Issue #54 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/55 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #54 | codex/chore-54-actions-node24 | PR #55 | In Review | wait for CI, then merge |
+| none | n/a | n/a | n/a | select next safe SBI |
 
 ## Blocked
 
@@ -171,3 +172,4 @@
 | 2026-06-01 22:26 JST | `scripts/codex/validate-ios.sh` | pass | SBI #52 full validation with 15 core tests and 38 app tests, 0 lint violations |
 | 2026-06-01 22:33 JST | GitHub Actions `validate` | pass | PR #53 passed before squash merge; noted actions/checkout Node 20 deprecation annotation |
 | 2026-06-01 22:47 JST | `scripts/codex/validate-ios.sh` | pass | Chore #54 workflow update branch; local validation still passes with 15 core tests and 38 app tests |
+| 2026-06-01 22:59 JST | GitHub Actions `validate` | pass | PR #55 passed before squash merge; Node 20 deprecation annotation absent |

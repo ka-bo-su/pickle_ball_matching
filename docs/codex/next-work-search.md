@@ -239,3 +239,13 @@
 - Reason: Autonomous CI reliability is a prerequisite for continuing many small PRs safely.
 - Human repair needed: none.
 - Pending updates: PR evidence for Issue #54 after PR creation.
+
+## 2026-06-01 23:00 JST
+
+- Searched candidates: GitHub Project open PBIs, Sprint Backlog after PR #55 merge, product vision progress-board MVP requirements.
+- Referenced GitHub Project / Issues / docs: Issues #18, #54, PR #55, `docs/scrum/sprint-backlog.md`, product vision MVP flow.
+- Findings: CI Node 20 deprecation warning is resolved. The board can show current/next state but does not yet support match start/end or remaining-time display, both required by the product vision.
+- Next selected work: candidate SBI `進行ボードで試合開始と残り時間を扱えるようにする`.
+- Reason: It directly supports the MVP flow: start match, show remaining time, finish round, then generate next round.
+- Human repair needed: none.
+- Pending updates: create Japanese GitHub Issue, add it to Project, then implement in a small branch.

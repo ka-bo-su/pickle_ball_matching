@@ -39,4 +39,4 @@ GitHub Project `kanban@pickle_ball_matching` is the source of truth. This file m
 | SBI-019 | SBI | 現在ラウンドを共有画像として出力できるようにする | P2 | Done | PR #49, Issue #48 |
 | SBI-020 | SBI | 過去セッションを一覧から再開できるようにする | P1 | Done | PR #51, Issue #50 |
 | SBI-021 | SBI | 進行ボードの現在と次アクションを見やすくする | P1 | Done | PR #53, Issue #52 |
-| CHORE-007 | Chore | GitHub ActionsのNode 20 deprecation警告を解消する | P1 | In Review | PR #55, Issue #54 |
+| CHORE-007 | Chore | GitHub ActionsのNode 20 deprecation警告を解消する | P1 | Done | PR #55, Issue #54 |
