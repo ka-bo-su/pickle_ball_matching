@@ -3675,3 +3675,51 @@ Medium until PR CI passes. The change affects pairing selection and JSON decodin
 ### Follow-up
 
 Commit, push, open PR, and move Issue #60 to In Review with PR evidence.
+
+## 2026-06-02 08:32 JST
+
+### Action
+
+Opened PR #61 for Issue #60 and moved the GitHub Project item to In Review.
+
+### Reason
+
+Repeated-opponent avoidance is implemented, locally validated, and ready for autonomous review through GitHub Actions before squash merge to `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/audit-log.md`
+
+### Commands Run
+
+- `git commit -m "feat(rounds): reduce repeated opponents"`
+- `git push -u origin codex/sbi-60-avoid-repeat-opponents`
+- `gh pr create ...`
+- `gh issue edit 60 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit ...` for Status `In review`, Scrum Status `In Review`, Evidence Link PR #61, and Validation Status `Passed`
+
+### GitHub Project Updates
+
+Issue #60 set to Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, and Evidence Link `https://github.com/ka-bo-su/pickle_ball_matching/pull/61`.
+
+### Architecture Decision
+
+No additional architecture change beyond the Application-layer opponent-history scoring and backward-compatible `SessionRuleSet` decoding.
+
+### Validation
+
+Local validation passed before PR creation. GitHub Actions is running.
+
+### Risk
+
+Medium until PR #61 CI passes.
+
+### Follow-up
+
+Watch PR #61 CI, squash merge to `dev` if it passes, close Issue #60, and set the Project item Done.

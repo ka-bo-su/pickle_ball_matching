@@ -6,10 +6,10 @@
 - Current SBI: #60 同じ対戦相手の重複を減らして次ラウンドを生成する
 - Active branch: codex/sbi-60-avoid-repeat-opponents
 - Active worktree: `/Users/kazuma/Documents/pickle_ball_matching`
-- Active PR: none
+- Active PR: #61
 - Active GitHub Project: `kanban@pickle_ball_matching`
 - Project owner: `ka-bo-su`
 - Project number: `3`
 - Last successful validation: 2026-06-02 08:29 JST, `scripts/codex/validate-ios.sh` on Issue #60
 - Current blocker: none
-- Next action: commit Issue #60, push branch, open PR, and update Project evidence.
+- Next action: watch PR #61 CI, squash merge to `dev` if it passes, then close Issue #60 and sync Project Done.
