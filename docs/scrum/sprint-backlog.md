@@ -28,6 +28,7 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 | SBI-014 | 参加者の性別・年齢帯・メモを編集できるようにする | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #39, Issue #38 |
 | SBI-015 | 保存済み名簿から新規セッションを開始できるようにする | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #41, Issue #40 |
 | SBI-016 | 現在ラウンド内の任意プレイヤーを入れ替えられるようにする | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #43, Issue #42 |
+| SBI-017 | 複数手Undo履歴で手動修正を戻せるようにする | In Progress | swift-developer | `scripts/codex/validate-ios.sh` passed | Issue #44 |
 
 ## Plan
 
@@ -52,9 +53,10 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 19. Issue #38 merged in PR #39 and Project item set Done.
 20. Issue #40 merged in PR #41 and Project item set Done.
 21. Issue #42 merged in PR #43 and Project item set Done.
+22. Issue #44 created, implemented locally, and Project validation set Passed.
 
 ## Next Ready Work
 
 | ID | Type | Status | Owner Role | Validation | Evidence |
 |---|---|---|---|---|---|
-| SBI-017 | Snapshot/Undo履歴強化 | Backlog | swift-developer | ViewModel tests, `xcodebuild test` | pending Issue |
+| SBI-018 | PDF/画像エクスポートまたはUndo履歴UI改善 | Backlog | swift-developer | ViewModel/UI tests, `xcodebuild test` | pending Issue |

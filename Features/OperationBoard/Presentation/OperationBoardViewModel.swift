@@ -7,11 +7,13 @@ final class OperationBoardViewModel: ObservableObject {
     @Published var newParticipantName = ""
     @Published private(set) var errorMessage: String?
     @Published private(set) var canUndo = false
+    @Published private(set) var undoCount = 0
 
     private let generateNextRoundUseCase: GenerateNextRoundUseCase
     private let sessionRepository: (any SessionRepository)?
     private let roundExporter: any RoundExporting
-    private var undoSession: Session?
+    private let undoHistoryLimit = 10
+    private var undoSessions: [Session] = []
 
     init(
         session: Session? = nil,
@@ -72,10 +74,19 @@ final class OperationBoardViewModel: ObservableObject {
         session.participants.count(where: { $0.status.isAvailableForRound }) >= 4
     }
 
+    var undoButtonTitle: String {
+        undoCount > 0 ? "1手戻す（\(undoCount)）" : "1手戻す"
+    }
+
+    var undoButtonAccessibilityLabel: String {
+        undoCount > 0 ? "直前の入れ替えを1手戻す。戻せる操作は\(undoCount)件です。" : "直前の入れ替えを1手戻す"
+    }
+
     func updateSessionName(_ name: String) {
         session.name = name
         session.updatedAt = Date()
         errorMessage = nil
+        clearUndoHistory()
         saveSession()
     }
 
@@ -83,6 +94,7 @@ final class OperationBoardViewModel: ObservableObject {
         session.roundDurationMinutes = max(1, minutes)
         session.updatedAt = Date()
         errorMessage = nil
+        clearUndoHistory()
         saveSession()
     }
 
@@ -90,13 +102,13 @@ final class OperationBoardViewModel: ObservableObject {
         session.mode = mode
         session.updatedAt = Date()
         errorMessage = nil
+        clearUndoHistory()
         saveSession()
     }
 
     func startNewSession() {
         session = .emptyDaySession()
-        undoSession = nil
-        canUndo = false
+        clearUndoHistory()
         errorMessage = nil
         saveSession()
     }
@@ -105,8 +117,7 @@ final class OperationBoardViewModel: ObservableObject {
         var newSession = Session.emptyDaySession()
         newSession.participants = session.participants.map(resetParticipantForNewSession)
         session = newSession
-        undoSession = nil
-        canUndo = false
+        clearUndoHistory()
         errorMessage = nil
         saveSession()
     }
@@ -126,18 +137,21 @@ final class OperationBoardViewModel: ObservableObject {
         newParticipantName = ""
         session.updatedAt = Date()
         errorMessage = nil
+        clearUndoHistory()
         saveSession()
     }
 
     func removeParticipants(at offsets: IndexSet) {
         session.participants.remove(atOffsets: offsets)
         session.updatedAt = Date()
+        clearUndoHistory()
         saveSession()
     }
 
     func updateCourtCount(_ courtCount: Int) {
         session.courtCount = max(1, courtCount)
         session.updatedAt = Date()
+        clearUndoHistory()
         saveSession()
     }
 
@@ -149,6 +163,7 @@ final class OperationBoardViewModel: ObservableObject {
         session.participants[index].status = status
         session.updatedAt = Date()
         errorMessage = nil
+        clearUndoHistory()
         saveSession()
     }
 
@@ -160,6 +175,7 @@ final class OperationBoardViewModel: ObservableObject {
         session.participants[index].skillLevel = skillLevel
         session.updatedAt = Date()
         errorMessage = nil
+        clearUndoHistory()
         saveSession()
     }
 
@@ -183,6 +199,7 @@ final class OperationBoardViewModel: ObservableObject {
         session.participants[index].memo = memo.trimmingCharacters(in: .whitespacesAndNewlines)
         session.updatedAt = Date()
         errorMessage = nil
+        clearUndoHistory()
         saveSession()
     }
 
@@ -190,6 +207,7 @@ final class OperationBoardViewModel: ObservableObject {
         do {
             session = try generateNextRoundUseCase.execute(session: session)
             errorMessage = nil
+            clearUndoHistory()
             saveSession()
         } catch {
             errorMessage = error.localizedDescription
@@ -219,14 +237,13 @@ final class OperationBoardViewModel: ObservableObject {
     }
 
     func undoLastChange() {
-        guard let undoSession else {
+        guard let undoSession = undoSessions.popLast() else {
             return
         }
 
         session = undoSession
         session.updatedAt = Date()
-        self.undoSession = nil
-        canUndo = false
+        syncUndoState()
         errorMessage = nil
         saveSession()
     }
@@ -236,8 +253,21 @@ final class OperationBoardViewModel: ObservableObject {
     }
 
     private func captureUndoSnapshot() {
-        undoSession = session
-        canUndo = true
+        undoSessions.append(session)
+        if undoSessions.count > undoHistoryLimit {
+            undoSessions.removeFirst(undoSessions.count - undoHistoryLimit)
+        }
+        syncUndoState()
+    }
+
+    private func clearUndoHistory() {
+        undoSessions = []
+        syncUndoState()
+    }
+
+    private func syncUndoState() {
+        undoCount = undoSessions.count
+        canUndo = undoCount > 0
     }
 
     private func resetParticipantForNewSession(_ participant: Participant) -> Participant {
@@ -256,40 +286,6 @@ final class OperationBoardViewModel: ObservableObject {
         } catch {
             errorMessage = "セッションを保存できませんでした。端末の空き容量を確認してください。"
         }
-    }
-}
-
-struct LargeBoardDisplayModel: Equatable {
-    var sessionName: String
-    var roundTitle: String
-    var announcement: String
-    var courts: [LargeBoardCourtDisplay]
-    var waitingPlayerNames: [String]
-
-    var waitingTitle: String {
-        waitingPlayerNames.isEmpty ? "待機なし" : "待機者"
-    }
-
-    var waitingSummary: String {
-        waitingPlayerNames.isEmpty ? "全員がコートに入っています" : waitingPlayerNames.joined(separator: "、")
-    }
-}
-
-struct LargeBoardCourtDisplay: Equatable, Identifiable {
-    var courtNumber: Int
-    var teamAPlayerNames: [String]
-    var teamBPlayerNames: [String]
-
-    var id: Int {
-        courtNumber
-    }
-
-    var courtTitle: String {
-        "コート\(courtNumber)"
-    }
-
-    var accessibilityLabel: String {
-        "\(courtTitle)、チームA \(teamAPlayerNames.joined(separator: "、"))、チームB \(teamBPlayerNames.joined(separator: "、"))"
     }
 }
 

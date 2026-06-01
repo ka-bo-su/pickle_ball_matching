@@ -3,13 +3,13 @@
 ## Result
 
 - Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31/#33/#35/#37/#39/#41/#43 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30/#32/#34/#36/#38/#40/#42 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, current-round CSV sharing, participant-facing large board display, editable session settings, participant skill editing, participant detail editing, roster reuse for new sessions, any-player current-round manual swap, and a guarded GitHub REST push fallback script/runbook
-- Partially completed: none
+- Partially completed: Issue #44 multi-step undo history is implemented locally and validated; PR creation is next
 - Blocked: none
 
 ## Time
 
 - Started: 2026-06-01 02:34 JST
-- Last checkpoint: 2026-06-01 14:19 JST
+- Last checkpoint: 2026-06-01 14:30 JST
 - Approximate duration: session-dependent
 
 ## PRs
@@ -59,6 +59,7 @@
 - Issue #38 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #39 merge
 - Issue #40 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #41 merge
 - Issue #42 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #43 merge
+- Issue #44 created in Japanese, added to Project, set In Progress, and Validation Status set Passed after local validation
 
 ## Pending GitHub Project Updates
 
@@ -66,9 +67,9 @@
 
 ## iOS Validation
 
-- Build: passed on PR #43 / `dev` with GitHub Actions `validate` and local `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'`
-- Test: passed on PR #43 / `dev` with GitHub Actions `validate`, local `swift test`, and local `xcodebuild test`
-- Lint: passed on PR #43 / `dev` with `swiftlint --no-cache` and `swiftformat --cache ignore --lint .`
+- Build: passed on Issue #44 branch with `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'`
+- Test: passed on Issue #44 branch with `swift test` and `xcodebuild test`
+- Lint: passed on Issue #44 branch with `swiftlint --no-cache` and `swiftformat --cache ignore --lint .`, 0 violations
 - Simulator: iPhone 16 on iOS 18.2 available
 
 ## Files Changed
@@ -170,13 +171,14 @@ A  scripts/codex/validate-ios.sh
 - Done: Issue #38 participant gender/age group/memo editing
 - Done: Issue #40 roster reuse for new sessions
 - Done: Issue #42 any-player current-round manual swap
+- In progress: Issue #44 multi-step undo history, local validation passed
 - Blocked: none
-- Next: create/select SBI-017 for richer snapshot/undo history, then continue with a small PR
+- Next: commit Issue #44, open PR, update Project evidence, and watch CI
 
 ## Architecture
 
 - Decisions: SwiftPM testable core plus XcodeGen-generated SwiftUI app; MVP domain starts with local-first day-of operation entities and `GenerateNextRoundUseCase`; JSON file persistence is used for MVP save/restore instead of SwiftData/CloudKit
-- Boundary changes: bootstrap matching model replaced by Participant/Session/Round/Match and OperationBoard Presentation; `SessionRepository` protocol added in Application and JSON implementation added in Infrastructure; participant status mutation stays in Presentation/ViewModel and reuses Domain availability rules; manual swap/undo mutates only the current round in Presentation without leaking Infrastructure into SwiftUI; any-player swap extends the same ViewModel boundary; CSV export adds an Application protocol and Infrastructure exporter; large board display adds Presentation-only display models; session settings edit Domain `Session` values through the existing ViewModel and repository save path; participant skill/detail editing updates Domain `Participant` values through the existing ViewModel save path
+- Boundary changes: bootstrap matching model replaced by Participant/Session/Round/Match and OperationBoard Presentation; `SessionRepository` protocol added in Application and JSON implementation added in Infrastructure; participant status mutation stays in Presentation/ViewModel and reuses Domain availability rules; manual swap/undo mutates only the current round in Presentation without leaking Infrastructure into SwiftUI; any-player swap extends the same ViewModel boundary; multi-step undo remains a bounded in-memory ViewModel history and does not introduce persistence coupling; CSV export adds an Application protocol and Infrastructure exporter; large board display adds Presentation-only display models; session settings edit Domain `Session` values through the existing ViewModel and repository save path; participant skill/detail editing updates Domain `Participant` values through the existing ViewModel save path
 - Refactor tasks: add PDF/image export, richer undo/snapshot history, and session creation UI in follow-up SBIs
 - Risks: keep generated `.xcodeproj` ignored and regenerate from `project.yml`
 
@@ -194,4 +196,4 @@ A  scripts/codex/validate-ios.sh
 
 ## Next Recommended Codex Goal
 
-- Create/select SBI-017 for richer snapshot/undo history, then implement it on a small `codex/*` branch.
+- Finish Issue #44 PR flow, then select the next highest-value MVP slice from Project/Sprint Backlog.
