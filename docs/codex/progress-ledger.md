@@ -5,10 +5,10 @@
 - Active PBI: Issue #16
 - Active SBI: Issue #46
 - Active Branch: codex/sbi-46-pdf-export
-- Active PR: none
+- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/47
 - GitHub Project Item: PVTI_lAHOBHYYMs4BZUKkzguV3IM
-- Status: In Progress
-- Next Action: commit, open PR, move Project item to In Review
+- Status: In Review
+- Next Action: watch PR #47 CI, then squash merge to `dev` if it passes
 
 ## Completed
 
@@ -77,12 +77,13 @@
 | 2026-06-01 14:41 JST | SBI #44 merged | Squash merged PR #45 to `dev`; Issue #44 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/45 |
 | 2026-06-01 15:33 JST | Next SBI selected | Created and selected Issue #46 for current-round PDF sharing | https://github.com/ka-bo-su/pickle_ball_matching/issues/46 |
 | 2026-06-01 15:42 JST | SBI #46 local implementation | Added PDF exporter, Transferable document, PDF ShareLink, and PDF tests | `PDFRoundExporter`, `RoundPDFDocument`, `OperationBoardView` |
+| 2026-06-01 15:43 JST | PR opened | Created PR #47 for SBI #46 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/47 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #46 | codex/sbi-46-pdf-export | none | In Progress | Commit and open PR |
+| Issue #46 | codex/sbi-46-pdf-export | PR #47 | In Review | Wait for CI and merge if green |
 
 ## Blocked
 

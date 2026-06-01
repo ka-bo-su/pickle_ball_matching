@@ -3,7 +3,7 @@
 ## Result
 
 - Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31/#33/#35/#37/#39/#41/#43/#45 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30/#32/#34/#36/#38/#40/#42/#44 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, current-round CSV sharing, participant-facing large board display, editable session settings, participant skill editing, participant detail editing, roster reuse for new sessions, any-player current-round manual swap, multi-step undo history, and a guarded GitHub REST push fallback script/runbook
-- Partially completed: Issue #46 current-round PDF sharing is implemented locally and validated; PR creation is next
+- Partially completed: Issue #46 current-round PDF sharing is open in PR #47 and waiting for CI
 - Blocked: none
 
 ## Time
@@ -61,7 +61,7 @@
 - Issue #40 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #41 merge
 - Issue #42 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #43 merge
 - Issue #44 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #45 merge
-- Issue #46 created in Japanese, added to Project, set In Progress, and Validation Status set Passed after local validation
+- Issue #46 created in Japanese, added to Project, moved through In Progress, and is In Review with PR #47 evidence
 
 ## Pending GitHub Project Updates
 
@@ -174,9 +174,9 @@ A  scripts/codex/validate-ios.sh
 - Done: Issue #40 roster reuse for new sessions
 - Done: Issue #42 any-player current-round manual swap
 - Done: Issue #44 multi-step undo history
-- In progress: Issue #46 current-round PDF sharing, local validation passed
+- In review: Issue #46 current-round PDF sharing, PR #47
 - Blocked: none
-- Next: commit Issue #46, open PR, update Project evidence, and watch CI
+- Next: watch PR #47 CI, then merge if green
 
 ## Architecture
 
@@ -199,4 +199,4 @@ A  scripts/codex/validate-ios.sh
 
 ## Next Recommended Codex Goal
 
-- Finish Issue #46 PR flow, then select the next highest-value MVP slice from Project/Sprint Backlog.
+- Merge PR #47 after CI, then select the next highest-value MVP slice from Project/Sprint Backlog.

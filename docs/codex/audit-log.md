@@ -2549,3 +2549,49 @@ Medium. The PDF layout is intentionally simple and local-first. Richer visual de
 ### Follow-up
 
 Commit, open PR for Issue #46, update Project evidence to In Review, and merge to `dev` if CI passes.
+
+## 2026-06-01 15:43 JST
+
+### Action
+
+Pushed `codex/sbi-46-pdf-export`, opened PR #47 for Issue #46, and moved the GitHub Project item to In Review.
+
+### Reason
+
+SBI #46 passed local validation and is ready for CI-backed review and autonomous merge to `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git push -u origin codex/sbi-46-pdf-export`
+- `gh pr create ...`
+- `gh issue edit 46 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit ...` for Issue #46 In Review and Evidence Link
+
+### GitHub Project Updates
+
+Issue #46 set to Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, and Evidence Link PR #47.
+
+### Architecture Decision
+
+No new decision. The PR keeps PDF generation behind `RoundPDFExporting` and `PDFRoundExporter`.
+
+### Validation
+
+PR #47 will run GitHub Actions. Local validation already passed before PR creation.
+
+### Risk
+
+Medium. The PDF is useful but visually basic; image export and PDF polish remain follow-ups.
+
+### Follow-up
+
+Wait for PR #47 CI, squash merge to `dev` if it passes, then set Issue #46 and Project item Done.
