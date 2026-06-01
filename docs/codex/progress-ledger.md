@@ -2,13 +2,13 @@
 
 ## Current
 
-- Active PBI: #18 進行ボードと大画面表示
-- Active SBI: #56 進行ボードで試合開始と残り時間を扱えるようにする
-- Active Branch: codex/sbi-56-round-timer
-- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/57
-- GitHub Project Item: `PVTI_lAHOBHYYMs4BZUKkzguYuXg`
-- Status: In Review
-- Next Action: wait for PR #57 CI, then squash merge to `dev` if it passes
+- Active PBI: selecting next MVP PBI
+- Active SBI: selecting next safe SBI
+- Active Branch: dev
+- Active PR: none
+- GitHub Project Item: none
+- Status: Ready for next work selection
+- Next Action: select the next safe MVP SBI from Project/Sprint Backlog
 
 ## Completed
 
@@ -98,12 +98,13 @@
 | 2026-06-01 23:19 JST | SBI #56 local implementation | Added round start/end timestamps, remaining-time model, board controls, and timing tests | local branch `codex/sbi-56-round-timer` |
 | 2026-06-02 08:00 JST | SBI #56 local validation | Full iOS validation passed and Project Validation Status set to Passed | `scripts/codex/validate-ios.sh` |
 | 2026-06-02 08:02 JST | PR opened | Created PR #57 for Issue #56 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/57 |
+| 2026-06-02 08:08 JST | SBI #56 merged | Squash merged PR #57 to `dev`; Issue #56 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/57 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #56 `進行ボードで試合開始と残り時間を扱えるようにする` | `codex/sbi-56-round-timer` | PR #57 | In Review | wait for CI, then squash merge |
+| none | n/a | n/a | n/a | select next safe SBI |
 
 ## Blocked
 
@@ -181,3 +182,4 @@
 | 2026-06-01 23:19 JST | `swift test` | blocked | non-escalated SwiftPM cannot apply its sandbox / write required cache in current Codex sandbox |
 | 2026-06-01 23:22 JST | `git push -u origin codex/sbi-56-round-timer` | blocked | escalation rejected by Codex execution usage limit; REST push not attempted because it would be an indirect workaround |
 | 2026-06-02 08:00 JST | `scripts/codex/validate-ios.sh` | pass | Issue #56: `swift test` 19 core tests, SwiftLint 0 violations, SwiftFormat 0 files, XcodeGen, xcodebuild build, xcodebuild test 19 core + 43 app tests |
+| 2026-06-02 08:07 JST | GitHub Actions `validate` | pass | PR #57 passed before squash merge |

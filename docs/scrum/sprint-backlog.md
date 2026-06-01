@@ -34,7 +34,7 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 | SBI-020 | 過去セッションを一覧から再開できるようにする | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #51, Issue #50 |
 | SBI-021 | 進行ボードの現在と次アクションを見やすくする | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #53, Issue #52 |
 | CHORE-007 | GitHub ActionsのNode 20 deprecation警告を解消する | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #55, Issue #54 |
-| SBI-022 | 進行ボードで試合開始と残り時間を扱えるようにする | In Review | swift-developer | `scripts/codex/validate-ios.sh` passed | PR #57, Issue #56 |
+| SBI-022 | 進行ボードで試合開始と残り時間を扱えるようにする | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #57, Issue #56 |
 
 ## Plan
 
@@ -65,10 +65,10 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 25. Issue #50 merged in PR #51 and Project item set Done.
 26. Issue #52 merged in PR #53 and Project item set Done.
 27. Issue #54 merged in PR #55 and Project item set Done.
-28. Issue #56 selected, locally validated, and opened as PR #57.
+28. Issue #56 merged in PR #57 and Project item set Done.
 
 ## Next Ready Work
 
 | ID | Type | Status | Owner Role | Validation | Evidence |
 |---|---|---|---|---|---|
-| SBI-022 | 進行ボードで試合開始と残り時間を扱えるようにする | In Review | swift-developer | ViewModel/UI tests, `scripts/codex/validate-ios.sh` | PR #57, Issue #56 |
+| TBD | 次のMVP縦切りを選定する | Backlog | scrum-master | Project/Sprint Backlog review | pending |

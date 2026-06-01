@@ -3392,3 +3392,53 @@ Medium until PR #57 CI passes.
 ### Follow-up
 
 Watch PR #57 CI, squash merge to `dev` if it passes, close Issue #56, and set the Project item Done.
+
+## 2026-06-02 08:08 JST
+
+### Action
+
+Merged PR #57, closed Issue #56, and set the GitHub Project item to Done.
+
+### Reason
+
+PR #57 passed local validation and GitHub Actions. The round timer/start-end flow meets the Issue #56 acceptance criteria and is ready as a Done increment on `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/audit-log.md`
+
+### Commands Run
+
+- `gh pr checks 57 --watch --interval 10`
+- `gh pr merge 57 --squash --delete-branch ...`
+- `gh issue edit 56 --remove-label status:in-review --add-label status:done`
+- `gh project item-edit ...` for Status `Done`
+- `gh project item-edit ...` for Scrum Status `Done`
+- `gh issue comment 56 ...`
+- `gh issue close 56 --reason completed`
+
+### GitHub Project Updates
+
+Issue #56 set to Status `Done`, Scrum Status `Done`, Validation Status `Passed`, and Evidence Link PR #57. The issue is closed.
+
+### Architecture Decision
+
+No additional architecture change after PR merge. Round timing remains Domain-derived and Presentation-rendered.
+
+### Validation
+
+GitHub Actions `validate` passed for PR #57 before merge.
+
+### Risk
+
+Low after merge.
+
+### Follow-up
+
+Select the next MVP SBI. Candidate areas are score/result capture, session history cleanup, or further timer visibility polish.
