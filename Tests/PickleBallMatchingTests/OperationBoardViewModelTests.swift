@@ -106,6 +106,53 @@ final class OperationBoardViewModelTests: XCTestCase {
         XCTAssertEqual(roundParticipants.count, 4)
     }
 
+    func testReplaceCurrentRoundPlayerWithWaiterUpdatesRoundAndAutosaves() throws {
+        let repository = SpySessionRepository()
+        let session = Session(name: "テスト", courtCount: 1, participants: makeParticipants(count: 5))
+        let viewModel = OperationBoardViewModel(session: session, sessionRepository: repository)
+        viewModel.generateNextRound()
+        let round = try XCTUnwrap(viewModel.currentRound)
+        let playingParticipant = try XCTUnwrap(round.matches.first?.teamA.players.first)
+        let waitingParticipant = try XCTUnwrap(round.waitingParticipants.first)
+
+        viewModel.replaceCurrentRoundPlayer(playerID: playingParticipant.id, with: waitingParticipant.id)
+
+        let updatedRound = try XCTUnwrap(viewModel.currentRound)
+        let playingIDs = Set(updatedRound.playingParticipants.map(\.id))
+        XCTAssertTrue(playingIDs.contains(waitingParticipant.id))
+        XCTAssertFalse(playingIDs.contains(playingParticipant.id))
+        XCTAssertEqual(updatedRound.waitingParticipants.map(\.id), [playingParticipant.id])
+        XCTAssertEqual(repository.savedSessions.last?.currentRound, updatedRound)
+        XCTAssertTrue(viewModel.canUndo)
+    }
+
+    func testUndoLastChangeRestoresPreviousRoundAndAutosaves() throws {
+        let repository = SpySessionRepository()
+        let session = Session(name: "テスト", courtCount: 1, participants: makeParticipants(count: 5))
+        let viewModel = OperationBoardViewModel(session: session, sessionRepository: repository)
+        viewModel.generateNextRound()
+        let originalRound = try XCTUnwrap(viewModel.currentRound)
+        let playingParticipant = try XCTUnwrap(originalRound.matches.first?.teamA.players.first)
+        let waitingParticipant = try XCTUnwrap(originalRound.waitingParticipants.first)
+        viewModel.replaceCurrentRoundPlayer(playerID: playingParticipant.id, with: waitingParticipant.id)
+
+        viewModel.undoLastChange()
+
+        XCTAssertEqual(viewModel.currentRound, originalRound)
+        XCTAssertFalse(viewModel.canUndo)
+        XCTAssertEqual(repository.savedSessions.last?.currentRound, originalRound)
+    }
+
+    func testUndoLastChangeDoesNothingWithoutSnapshot() {
+        let session = Session(name: "テスト", participants: makeParticipants(count: 4))
+        let viewModel = OperationBoardViewModel(session: session)
+
+        viewModel.undoLastChange()
+
+        XCTAssertEqual(viewModel.session, session)
+        XCTAssertFalse(viewModel.canUndo)
+    }
+
     private func makeParticipants(count: Int) -> [Participant] {
         (1 ... count).map { index in
             Participant(
@@ -113,6 +160,14 @@ final class OperationBoardViewModelTests: XCTestCase {
                 displayName: "参加者\(index)",
                 skillLevel: SkillLevel(rawValue: (index % 4) + 1) ?? .beginner
             )
+        }
+    }
+}
+
+private extension Round {
+    var playingParticipants: [Participant] {
+        matches.flatMap { match in
+            match.teamA.players + match.teamB.players
         }
     }
 }

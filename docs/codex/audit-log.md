@@ -932,3 +932,135 @@ Medium. Status changes directly affect round generation. Tests cover autosave an
 ### Follow-up
 
 Open PR for Issue #25, update Project evidence, merge to `dev`, then continue with manual swap/undo.
+
+## 2026-06-01 05:08 JST
+
+### Action
+
+Merged PR #26 to `dev`, closed Issue #25, and synchronized Project status to Done.
+
+### Reason
+
+Participant status changes passed validation and GitHub Actions. The MVP can now exclude break, absent, late, leaving, and observing participants from the next generated round without human approval gates.
+
+### Files Changed
+
+No local files changed in this checkpoint beyond merged PR contents.
+
+### Commands Run
+
+- GitHub connector merge for PR #26
+- GitHub connector issue update for Issue #25 close
+- `gh project item-edit ...` for Issue #25 Done and Validation Passed
+- `git fetch origin`
+- `git switch dev`
+- `git merge --ff-only origin/dev`
+- `git switch -c codex/sbi-27-manual-swap-undo`
+
+### GitHub Project Updates
+
+Issue #25 set to Status `Done`, Scrum Status `Done`, Validation Status `Passed`, and Evidence Link PR #26.
+
+### Architecture Decision
+
+No new architecture decision. Status availability remains owned by Domain and invoked from Presentation through the ViewModel.
+
+### Validation
+
+PR #26 GitHub Actions `validate` passed before merge.
+
+### Risk
+
+Low. Merge target was `dev`; `main` was not modified.
+
+### Follow-up
+
+Create and implement the next SBI for manual waiter swap and one-step undo.
+
+## 2026-06-01 08:55 JST
+
+### Action
+
+Created Issue #27 for manual waiter swap and one-step undo, added it to GitHub Project, and selected it for implementation.
+
+### Reason
+
+The product vision explicitly requires organizers to manually fix generated combinations at court-side. A narrow current-round swap plus one-step undo delivers that value without building a large editing subsystem first.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- GitHub connector issue creation for Issue #27
+- `gh project item-add ...`
+- `gh project item-edit ...` for Issue #27 fields
+- GitHub connector issue label update for `status:in-progress`
+
+### GitHub Project Updates
+
+Issue #27 added as SBI, Priority P1, Role Owner `swift-developer`, Parent PBI #16, Validation Status `Not Run`, then moved to In Progress.
+
+### Architecture Decision
+
+Keep the first manual edit capability Presentation-local: the View calls the ViewModel, and the ViewModel updates the current `Round` and persists through `SessionRepository`. No View-to-Infrastructure dependency is introduced.
+
+### Validation
+
+No source validation required for issue creation.
+
+### Risk
+
+Medium. Manual swaps can diverge from generated fairness counters; the first increment intentionally limits scope to current-round display and persistence.
+
+### Follow-up
+
+Implement swap/undo with ViewModel tests and full validation.
+
+## 2026-06-01 09:02 JST
+
+### Action
+
+Implemented SBI #27: waiting-player swap menus, one-step undo, autosave, and ViewModel tests.
+
+### Reason
+
+The organizer needs a fast way to correct generated pairings for context the algorithm cannot know, while preserving a safe undo path for court-side mistakes.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/OperationBoardView.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+- Scrum/Codex ledger docs
+
+### Commands Run
+
+- `swiftformat --cache ignore .`
+- `swift test`
+- `swiftlint --no-cache`
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+Issue #27 remains In Progress until PR evidence is available.
+
+### Architecture Decision
+
+Manual swap captures a single in-memory session snapshot before mutation. Undo restores that snapshot and autosaves it. This keeps the first implementation small and reversible; richer multi-step `Snapshot` history remains a future SBI.
+
+### Validation
+
+Full validation passed: `swift test`, SwiftLint, SwiftFormat lint, XcodeGen, `xcodebuild build`, and `xcodebuild test` on iPhone 16 Simulator. The Xcode test suite passed 8 core tests and 12 app tests.
+
+### Risk
+
+Medium. The current implementation updates the current round and waiting list but does not recalculate participant fairness counters after a manual swap. This is acceptable for the first manual-edit slice and should be revisited with snapshot/history improvements.
+
+### Follow-up
+
+Commit, open PR for Issue #27, update Project evidence to In Review, and merge to `dev` if CI passes.
