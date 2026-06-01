@@ -3576,3 +3576,53 @@ Medium until PR #59 CI passes.
 ### Follow-up
 
 Watch PR #59 CI, squash merge to `dev` if it passes, close Issue #58, and set the Project item Done.
+
+## 2026-06-02 08:22 JST
+
+### Action
+
+Merged PR #59, closed Issue #58, and set the GitHub Project item to Done.
+
+### Reason
+
+PR #59 passed local validation and GitHub Actions. Repeated-pair avoidance meets the Issue #58 acceptance criteria and is ready as a Done increment on `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/audit-log.md`
+
+### Commands Run
+
+- `gh pr checks 59 --watch --interval 10`
+- `gh pr merge 59 --squash --delete-branch ...`
+- `gh issue edit 58 --remove-label status:in-review --add-label status:done`
+- `gh project item-edit ...` for Status `Done`
+- `gh project item-edit ...` for Scrum Status `Done`
+- `gh issue comment 58 ...`
+- `gh issue close 58 --reason completed`
+
+### GitHub Project Updates
+
+Issue #58 set to Status `Done`, Scrum Status `Done`, Validation Status `Passed`, and Evidence Link PR #59. The issue is closed.
+
+### Architecture Decision
+
+No additional architecture change after PR merge. Pairing-history scoring remains in Application and does not introduce UI or Infrastructure dependencies.
+
+### Validation
+
+GitHub Actions `validate` passed for PR #59 before merge.
+
+### Risk
+
+Low after merge.
+
+### Follow-up
+
+Select the next MVP SBI. Candidate areas are same-opponent avoidance, score/result capture, or rule setting UI.
