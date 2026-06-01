@@ -2,13 +2,13 @@
 
 ## Current
 
-- Active PBI: Issue #19
-- Active SBI: Issue #48
-- Active Branch: codex/sbi-48-image-export
-- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/49
-- GitHub Project Item: PVTI_lAHOBHYYMs4BZUKkzguXCMI
-- Status: In Review
-- Next Action: watch PR #49 CI, then squash merge to `dev` if it passes
+- Active PBI: selecting next MVP PBI
+- Active SBI: selecting next safe SBI
+- Active Branch: dev
+- Active PR: none
+- GitHub Project Item: none
+- Status: Ready for next work selection
+- Next Action: search Project/Sprint Backlog and create the next Japanese SBI for the highest-value MVP gap
 
 ## Completed
 
@@ -82,12 +82,13 @@
 | 2026-06-01 18:43 JST | Next SBI selected | Created and selected Issue #48 for current-round image sharing | https://github.com/ka-bo-su/pickle_ball_matching/issues/48 |
 | 2026-06-01 18:49 JST | SBI #48 local implementation | Added PNG exporter, Transferable image document, image ShareLink, and image tests | `ImageRoundExporter`, `RoundImageDocument`, `OperationBoardView` |
 | 2026-06-01 18:51 JST | PR opened | Created PR #49 for SBI #48 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/49 |
+| 2026-06-01 19:05 JST | SBI #48 merged | Squash merged PR #49 to `dev`; Issue #48 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/49 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #48 | codex/sbi-48-image-export | PR #49 | In Review | Wait for CI and merge if green |
+| none | n/a | n/a | n/a | select next safe SBI |
 
 ## Blocked
 
@@ -152,3 +153,4 @@
 | 2026-06-01 18:32 JST | GitHub Actions `validate` | pass | PR #47 passed before squash merge |
 | 2026-06-01 18:46 JST | `swift test` | pass | SBI #48 core tests, 14 tests |
 | 2026-06-01 18:49 JST | `scripts/codex/validate-ios.sh` | pass | SBI #48 full validation with 14 core tests and 33 app tests, 0 lint violations |
+| 2026-06-01 19:02 JST | GitHub Actions `validate` | pass | PR #49 passed before squash merge |

@@ -179,3 +179,13 @@
 - Reason: It gives organizers a participant-readable output that is easier to drop into LINE/AirDrop/photos than CSV and lighter than opening a PDF.
 - Human repair needed: none.
 - Pending updates: PR evidence for Issue #48 after PR creation.
+
+## 2026-06-01 19:05 JST
+
+- Searched candidates: GitHub Project open PBIs, Sprint Backlog after PR #49 merge, remaining MVP gaps in saved sessions/history and board usability.
+- Referenced GitHub Project / Issues / docs: Issues #16-#20, #48, PR #49, `docs/scrum/sprint-backlog.md`, product vision session history and reopen requirements.
+- Findings: CSV/PDF/PNG sharing are now Done. The next substantial MVP gap is session history/reopen: the app restores only the latest session and does not expose a list of saved sessions.
+- Next selected work: candidate SBI `過去セッションを一覧から再開できるようにする`.
+- Reason: It supports recurring circles and reduces setup time without server, CloudKit, StoreKit, App Store, or secret work.
+- Human repair needed: none.
+- Pending updates: create Japanese GitHub Issue, add it to Project, then implement in a small `codex/*` branch.

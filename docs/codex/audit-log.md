@@ -2744,3 +2744,56 @@ Medium. The share image is useful but visually basic; richer image layouts shoul
 ### Follow-up
 
 Wait for PR #49 CI, squash merge to `dev` if it passes, then set Issue #48 and Project item Done.
+
+## 2026-06-01 19:05 JST
+
+### Action
+
+Merged PR #49, closed Issue #48, and set the GitHub Project item to Done.
+
+### Reason
+
+Issue #48 passed local validation and GitHub Actions. The PNG image sharing increment satisfies the MVP image export path while preserving local-first operation and avoiding server, CloudKit, App Store, billing, and secrets.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/codex/next-work-search.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `gh pr checks 49 --watch --interval 10`
+- `gh run view 26747878506 --json ...`
+- `gh pr merge 49 --squash --delete-branch ...`
+- `gh issue edit 48 --remove-label status:in-review --add-label status:done`
+- `gh issue comment 48 ...`
+- `gh issue close 48 --reason completed`
+- `gh project item-edit ...` for Issue #48 Done
+- `git fetch origin`
+- `git switch dev`
+- `git merge --ff-only origin/dev`
+
+### GitHub Project Updates
+
+Issue #48 set to Status `Done`, Scrum Status `Done`, Validation Status `Passed`, and Evidence Link PR #49. The issue is closed.
+
+### Architecture Decision
+
+No new decision after merge. PNG generation remains an Infrastructure adapter behind `RoundImageExporting`, and SwiftUI only receives a `Transferable` document.
+
+### Validation
+
+GitHub Actions `validate` passed before merge. Local `scripts/codex/validate-ios.sh` also passed before PR creation.
+
+### Risk
+
+Low after merge. Remaining export risk is visual polish and additional image layouts, which are follow-up SBIs.
+
+### Follow-up
+
+Select the next MVP SBI. The current highest-value candidate is a local session history/reopen flow.
