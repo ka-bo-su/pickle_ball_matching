@@ -2,13 +2,13 @@
 
 ## Current
 
-- Active PBI: #18 進行ボードと大画面表示
-- Active SBI: #52 進行ボードの現在と次アクションを見やすくする
-- Active Branch: codex/sbi-52-board-guidance
-- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/53
-- GitHub Project Item: PVTI_lAHOBHYYMs4BZUKkzguYW9c
-- Status: In Review; waiting for GitHub Actions
-- Next Action: monitor PR #53 CI, then squash merge to `dev` if it passes
+- Active PBI: selecting next MVP PBI
+- Active SBI: selecting next safe SBI
+- Active Branch: dev
+- Active PR: none
+- GitHub Project Item: none
+- Status: Ready for next work selection
+- Next Action: select the next safe MVP SBI; CI Node 20 deprecation warning is a likely environment chore candidate
 
 ## Completed
 
@@ -90,12 +90,13 @@
 | 2026-06-01 22:22 JST | Next SBI selected | Created and selected Issue #52 for board current-state and next-action readability | https://github.com/ka-bo-su/pickle_ball_matching/issues/52 |
 | 2026-06-01 22:26 JST | SBI #52 local implementation | Added board summary guidance, accessibility label, and presentation tests | `OperationBoardSummaryModel`, `OperationBoardView` |
 | 2026-06-01 22:28 JST | PR opened | Created PR #53 for SBI #52 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/53 |
+| 2026-06-01 22:34 JST | SBI #52 merged | Squash merged PR #53 to `dev`; Issue #52 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/53 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #52 | codex/sbi-52-board-guidance | PR #53 | In Review | wait for CI, then merge |
+| none | n/a | n/a | n/a | select next safe SBI |
 
 ## Blocked
 
@@ -165,3 +166,4 @@
 | 2026-06-01 19:19 JST | `scripts/codex/validate-ios.sh` | pass | SBI #50 full validation with 15 core tests and 35 app tests, 0 lint violations |
 | 2026-06-01 19:29 JST | GitHub Actions `validate` | pass | PR #51 passed before squash merge |
 | 2026-06-01 22:26 JST | `scripts/codex/validate-ios.sh` | pass | SBI #52 full validation with 15 core tests and 38 app tests, 0 lint violations |
+| 2026-06-01 22:33 JST | GitHub Actions `validate` | pass | PR #53 passed before squash merge; noted actions/checkout Node 20 deprecation annotation |

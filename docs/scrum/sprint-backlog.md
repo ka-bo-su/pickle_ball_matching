@@ -32,7 +32,7 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 | SBI-018 | 現在ラウンドをPDFで共有できるようにする | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #47, Issue #46 |
 | SBI-019 | 現在ラウンドを共有画像として出力できるようにする | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #49, Issue #48 |
 | SBI-020 | 過去セッションを一覧から再開できるようにする | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #51, Issue #50 |
-| SBI-021 | 進行ボードの現在と次アクションを見やすくする | In Review | swift-developer | `scripts/codex/validate-ios.sh` passed | PR #53, Issue #52 |
+| SBI-021 | 進行ボードの現在と次アクションを見やすくする | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #53, Issue #52 |
 
 ## Plan
 
@@ -61,10 +61,10 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 23. Issue #46 merged in PR #47 and Project item set Done.
 24. Issue #48 merged in PR #49 and Project item set Done.
 25. Issue #50 merged in PR #51 and Project item set Done.
-26. Issue #52 selected, local validation passed, and PR #53 opened.
+26. Issue #52 merged in PR #53 and Project item set Done.
 
 ## Next Ready Work
 
 | ID | Type | Status | Owner Role | Validation | Evidence |
 |---|---|---|---|---|---|
-| SBI-021 | 進行ボードの現在と次アクションを見やすくする | In Review | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions pending | PR #53, Issue #52 |
+| CHORE-007 | GitHub Actions Node 20 deprecation warning対応 | Backlog | swift-developer | GitHub Actions `validate` | pending Issue |

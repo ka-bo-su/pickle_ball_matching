@@ -3047,3 +3047,54 @@ Medium. Screen density should be checked after merge.
 ### Follow-up
 
 Wait for PR #53 CI, squash merge to `dev` if it passes, then set Issue #52 and Project item Done.
+
+## 2026-06-01 22:34 JST
+
+### Action
+
+Merged PR #53, closed Issue #52, and set the GitHub Project item to Done.
+
+### Reason
+
+Issue #52 passed local validation and GitHub Actions. The board summary increment improves organizer clarity without changing architecture boundaries.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `gh run watch 26758066914 --interval 10`
+- `gh pr merge 53 --squash --delete-branch ...`
+- `gh issue edit 52 --remove-label status:in-review --add-label status:done`
+- `gh issue comment 52 ...`
+- `gh issue close 52 --reason completed`
+- `gh project item-edit ...` for Issue #52 Done
+- `git fetch origin`
+- `git switch dev`
+- `git merge --ff-only origin/dev`
+
+### GitHub Project Updates
+
+Issue #52 set to Status `Done`, Scrum Status `Done`, Validation Status `Passed`, and Evidence Link PR #53. The issue is closed.
+
+### Architecture Decision
+
+No new decision after merge. The board summary remains Presentation-only.
+
+### Validation
+
+GitHub Actions `validate` passed before merge. Local `scripts/codex/validate-ios.sh` also passed before PR creation.
+
+### Risk
+
+Low after merge. CI emitted a Node.js 20 deprecation annotation for `actions/checkout@v4`; this is a follow-up environment chore candidate, not a blocker for PR #53.
+
+### Follow-up
+
+Select the next MVP or environment SBI. The strongest immediate candidate is resolving the GitHub Actions Node 20 deprecation warning.
