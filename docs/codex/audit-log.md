@@ -1252,3 +1252,52 @@ Medium. `ShareLink` currently shares CSV as text, not as a named `.csv` file. Th
 ### Follow-up
 
 Commit, open PR for Issue #30, update Project evidence to In Review, and merge to `dev` if CI passes.
+
+## 2026-06-01 09:24 JST
+
+### Action
+
+Created PR #31 for Issue #30 and moved the GitHub Project item to In Review.
+
+### Reason
+
+SBI #30 passed local validation and now needs PR/CI evidence before autonomous merge to `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git add ...`
+- `git diff --cached --check`
+- `git commit -m "feat(export): share current round as csv"`
+- `git push -u origin codex/sbi-30-csv-export`
+- `gh pr create ...`
+- `gh project item-edit ...` for Issue #30 In Review and Evidence Link
+- `gh issue edit 30 ...` for `status:in-review`
+
+### GitHub Project Updates
+
+Issue #30 set to Status `In review`, Scrum Status `In Review`, and Evidence Link `https://github.com/ka-bo-su/pickle_ball_matching/pull/31`.
+
+### Architecture Decision
+
+No new decision. PR #31 carries the CSV export Application/Infrastructure boundary and text sharing implementation.
+
+### Validation
+
+Local validation passed before PR creation. GitHub Actions `validate` started for PR #31.
+
+### Risk
+
+Medium until CI completes.
+
+### Follow-up
+
+Wait for PR #31 CI, merge to `dev` if clean, close Issue #30, update Project Done, and continue with the next MVP SBI.

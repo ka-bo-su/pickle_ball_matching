@@ -3,7 +3,7 @@
 ## Result
 
 - Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, and manual waiter swap/one-step undo
-- Partially completed: Issue #30 current-round CSV sharing implemented locally; PR/merge sync pending
+- Partially completed: Issue #30 current-round CSV sharing opened as PR #31; merge sync pending
 - Blocked: none
 
 ## Time
@@ -45,11 +45,11 @@
 - Issue #23 created in Japanese, added to Project, moved to In Progress/In Review, then Done after PR #24 merge
 - Issue #25 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #26 merge
 - Issue #27 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #28 merge
-- Issue #30 created in Japanese, added to Project, and moved to In Progress
+- Issue #30 created in Japanese, added to Project, moved to In Progress, then In Review with PR #31 evidence
 
 ## Pending GitHub Project Updates
 
-- Issue #30 PR evidence and In Review/Done transition after PR creation/merge
+- Issue #30 Done transition after PR #31 merge
 
 ## iOS Validation
 
