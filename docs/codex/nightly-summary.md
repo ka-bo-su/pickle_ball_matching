@@ -3,13 +3,13 @@
 ## Result
 
 - Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31/#33/#35/#37/#39/#41/#43/#45/#47/#49/#51 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30/#32/#34/#36/#38/#40/#42/#44/#46/#48/#50 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, current-round CSV sharing, participant-facing large board display, editable session settings, participant skill editing, participant detail editing, roster reuse for new sessions, any-player current-round manual swap, multi-step undo history, current-round PDF sharing, current-round image sharing, session history/reopen, and a guarded GitHub REST push fallback script/runbook
-- Partially completed: none
+- Partially completed: Issue #52 board current-state/next-action readability local implementation and validation; PR pending
 - Blocked: none
 
 ## Time
 
 - Started: 2026-06-01 02:34 JST
-- Last checkpoint: 2026-06-01 19:32 JST
+- Last checkpoint: 2026-06-01 22:26 JST
 - Approximate duration: session-dependent
 
 ## PRs
@@ -67,6 +67,7 @@
 - Issue #46 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #47 merge
 - Issue #48 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #49 merge
 - Issue #50 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #51 merge
+- Issue #52 created in Japanese, added to Project, moved to In Progress, Validation Status set to Passed after local validation
 
 ## Pending GitHub Project Updates
 
@@ -74,9 +75,9 @@
 
 ## iOS Validation
 
-- Build: passed on PR #51 with GitHub Actions `validate` and locally with `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'`
-- Test: passed on PR #51 with GitHub Actions `validate` and locally with `swift test` and `xcodebuild test`
-- Lint: passed on PR #51 with GitHub Actions `validate`; local SwiftLint/SwiftFormat had 0 violations
+- Build: passed locally for Issue #52 with `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'`
+- Test: passed locally for Issue #52 with `swift test` and `xcodebuild test`
+- Lint: passed locally for Issue #52; SwiftLint/SwiftFormat had 0 violations
 - Simulator: iPhone 16 on iOS 18.2 available
 
 ## Files Changed
@@ -182,7 +183,7 @@ A  scripts/codex/validate-ios.sh
 - Done: Issue #46 current-round PDF sharing
 - Done: Issue #48 current-round image sharing
 - Done: Issue #50 session history/reopen
-- In progress: none
+- In progress: Issue #52 board current-state and next-action readability
 - In review: none
 - Blocked: none
 - Next: select the next highest-value MVP slice from Project/Sprint Backlog
@@ -204,8 +205,9 @@ A  scripts/codex/validate-ios.sh
 
 - Review merged PR #8, #14, #15, #22, #24, #26, #28, #31, #33, #35, #37, #39, #41, #43, #45, #47, #49, and #51
 - Pay attention to PR #33 for participant readability, iPad layout, long names, and accessibility labels
+- Pay attention to upcoming Issue #52 PR for whether the new board summary reduces organizer ambiguity without crowding the main screen
 - Possible rollback: revert the relevant PR
 
 ## Next Recommended Codex Goal
 
-- Select the next highest-value MVP slice from Project/Sprint Backlog, likely session history deletion/search or board usability polish.
+- Finish Issue #52 PR and merge if CI passes; then select the next highest-value MVP slice.

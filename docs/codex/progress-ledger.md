@@ -2,13 +2,13 @@
 
 ## Current
 
-- Active PBI: selecting next MVP PBI
-- Active SBI: selecting next safe SBI
-- Active Branch: dev
+- Active PBI: #18 進行ボードと大画面表示
+- Active SBI: #52 進行ボードの現在と次アクションを見やすくする
+- Active Branch: codex/sbi-52-board-guidance
 - Active PR: none
-- GitHub Project Item: none
-- Status: Ready for next work selection
-- Next Action: search Project/Sprint Backlog and create the next Japanese SBI for the highest-value MVP gap
+- GitHub Project Item: PVTI_lAHOBHYYMs4BZUKkzguYW9c
+- Status: Local implementation complete; validation passed
+- Next Action: commit, open PR, and update Project evidence to In Review
 
 ## Completed
 
@@ -87,12 +87,14 @@
 | 2026-06-01 19:19 JST | SBI #50 local implementation | Added JSON session history, ViewModel reopen flow, settings menu, and repository/ViewModel tests | `JSONSessionRepository`, `SessionSettingsSection`, `OperationBoardViewModel` |
 | 2026-06-01 19:20 JST | PR opened | Created PR #51 for SBI #50 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/51 |
 | 2026-06-01 19:32 JST | SBI #50 merged | Squash merged PR #51 to `dev`; Issue #50 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/51 |
+| 2026-06-01 22:22 JST | Next SBI selected | Created and selected Issue #52 for board current-state and next-action readability | https://github.com/ka-bo-su/pickle_ball_matching/issues/52 |
+| 2026-06-01 22:26 JST | SBI #52 local implementation | Added board summary guidance, accessibility label, and presentation tests | `OperationBoardSummaryModel`, `OperationBoardView` |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| none | n/a | n/a | n/a | select next safe SBI |
+| Issue #52 | codex/sbi-52-board-guidance | pending | validation passed | commit and open PR |
 
 ## Blocked
 
@@ -161,3 +163,4 @@
 | 2026-06-01 19:14 JST | `swift test` | pass | SBI #50 core tests, 15 tests |
 | 2026-06-01 19:19 JST | `scripts/codex/validate-ios.sh` | pass | SBI #50 full validation with 15 core tests and 35 app tests, 0 lint violations |
 | 2026-06-01 19:29 JST | GitHub Actions `validate` | pass | PR #51 passed before squash merge |
+| 2026-06-01 22:26 JST | `scripts/codex/validate-ios.sh` | pass | SBI #52 full validation with 15 core tests and 38 app tests, 0 lint violations |
