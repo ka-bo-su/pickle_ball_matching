@@ -3249,3 +3249,146 @@ Low after merge.
 ### Follow-up
 
 Select the next MVP SBI. The strongest candidate is progress-board start and remaining-time flow.
+
+## 2026-06-01 23:19 JST
+
+### Action
+
+Implemented the local Issue #56 round timer slice on `codex/sbi-56-round-timer` and recorded the validation/publish blocker.
+
+### Reason
+
+The MVP progress board needs explicit match start, remaining-time display, and round finish controls so organizers can run an active session without external timers or verbal coordination.
+
+### Files Changed
+
+- `Sources/PickleBallMatchingCore/Domain/Round.swift`
+- `Features/OperationBoard/Presentation/OperationBoardView.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `Features/OperationBoard/Presentation/OperationBoardExports.swift`
+- `Features/OperationBoard/Presentation/OperationBoardRoundTimingActions.swift`
+- `Features/OperationBoard/Presentation/OperationBoardRoundTimingModel.swift`
+- `Features/OperationBoard/Presentation/RoundTimingSection.swift`
+- `Tests/PickleBallMatchingCoreTests/RoundTimingTests.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardRoundTimingTests.swift`
+- Codex/Scrum status docs
+
+### Commands Run
+
+- `swiftformat --cache ignore .` (blocked by Codex execution usage limit)
+- `swiftlint --no-cache` (blocked by Codex execution usage limit)
+- `swift test` (blocked by SwiftPM/Xcode sandbox restrictions in non-escalated execution)
+- `git push -u origin codex/sbi-56-round-timer` (blocked by Codex execution usage limit)
+
+### GitHub Project Updates
+
+Issue #56 is already In Progress in Project `kanban@pickle_ball_matching`. PR evidence, Validation Status `Passed`, and In Review transition are pending in `docs/codex/github-projects-pending-updates.md`.
+
+### Architecture Decision
+
+Round timing is modeled in Domain as optional `startedAt` / `finishedAt` timestamps and derived `RoundStatus`. Presentation owns timer display and start/end commands through ViewModel methods; Infrastructure remains unchanged.
+
+### Validation
+
+Not completed in this execution window. Prior full validation for `dev` remains PR #55 / GitHub Actions at 2026-06-01 22:59 JST.
+
+### Risk
+
+Medium until validation runs. Code changes are localized and reversible, but the branch must pass SwiftFormat, SwiftLint, SwiftPM tests, XcodeGen, and xcodebuild before PR creation.
+
+### Follow-up
+
+After execution quota resets, rerun `scripts/codex/validate-ios.sh`, push `codex/sbi-56-round-timer`, open the Issue #56 PR, update Project evidence, and merge only after CI passes. REST push was not attempted because the normal push was explicitly rejected by the execution approval layer.
+
+## 2026-06-02 08:00 JST
+
+### Action
+
+Resolved the Issue #56 execution blocker by running full local iOS validation and updating Project Validation Status to `Passed`.
+
+### Reason
+
+The previous blocker was caused by Codex execution quota and sandbox restrictions, not by known code failure. Once execution resumed, the branch needed full verification before push and PR creation.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/blockers.md`
+- `docs/codex/github-projects-pending-updates.md`
+- `docs/codex/ios-swift-validation.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/audit-log.md`
+
+### Commands Run
+
+- `scripts/codex/validate-ios.sh`
+- `gh project item-edit ... Validation Status Passed`
+
+### GitHub Project Updates
+
+Issue #56 Project item `PVTI_lAHOBHYYMs4BZUKkzguYuXg` was updated to Validation Status `Passed`.
+
+### Architecture Decision
+
+No additional architecture change beyond the Issue #56 round timing boundary already recorded.
+
+### Validation
+
+Passed: `swift test` 19 core tests, SwiftLint 0 violations, SwiftFormat lint 0 files, XcodeGen generation, `xcodebuild build`, and `xcodebuild test` with 19 core tests and 43 app tests.
+
+### Risk
+
+Medium until PR CI passes; local validation is clean.
+
+### Follow-up
+
+Push the branch, open the Issue #56 PR, move Project status to In Review, and watch CI before merge.
+
+## 2026-06-02 08:02 JST
+
+### Action
+
+Pushed `codex/sbi-56-round-timer`, opened PR #57 for Issue #56, and moved the GitHub Project item to In Review with PR evidence.
+
+### Reason
+
+Issue #56 passed local validation and is ready for CI/release-reviewer merge readiness checks.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/github-projects-pending-updates.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/audit-log.md`
+
+### Commands Run
+
+- `git push -u origin codex/sbi-56-round-timer`
+- `gh pr create --base dev --head codex/sbi-56-round-timer ...`
+- `gh issue edit 56 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit ...` for Status `In review`, Scrum Status `In Review`, and Evidence Link PR #57
+
+### GitHub Project Updates
+
+Issue #56 set to Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, and Evidence Link `https://github.com/ka-bo-su/pickle_ball_matching/pull/57`.
+
+### Architecture Decision
+
+No additional architecture change. PR #57 preserves Domain/Presentation separation for round timing.
+
+### Validation
+
+Local validation passed before PR creation. GitHub Actions is pending.
+
+### Risk
+
+Medium until PR #57 CI passes.
+
+### Follow-up
+
+Watch PR #57 CI, squash merge to `dev` if it passes, close Issue #56, and set the Project item Done.

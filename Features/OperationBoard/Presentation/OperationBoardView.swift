@@ -13,6 +13,7 @@ struct OperationBoardView: View {
             List {
                 sessionSection
                 boardSummarySection
+                RoundTimingSection(viewModel: viewModel)
                 participantSection
                 actionSection
                 currentRoundSection

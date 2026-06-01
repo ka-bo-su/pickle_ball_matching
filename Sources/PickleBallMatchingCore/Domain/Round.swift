@@ -5,6 +5,8 @@ public struct Round: Codable, Equatable, Identifiable, Sendable {
     public var number: Int
     public var matches: [Match]
     public var waitingParticipants: [Participant]
+    public var startedAt: Date?
+    public var finishedAt: Date?
     public var createdAt: Date
     public var isConfirmed: Bool
 
@@ -13,6 +15,8 @@ public struct Round: Codable, Equatable, Identifiable, Sendable {
         number: Int,
         matches: [Match],
         waitingParticipants: [Participant],
+        startedAt: Date? = nil,
+        finishedAt: Date? = nil,
         createdAt: Date = Date(),
         isConfirmed: Bool = false
     ) {
@@ -20,8 +24,50 @@ public struct Round: Codable, Equatable, Identifiable, Sendable {
         self.number = number
         self.matches = matches
         self.waitingParticipants = waitingParticipants
+        self.startedAt = startedAt
+        self.finishedAt = finishedAt
         self.createdAt = createdAt
         self.isConfirmed = isConfirmed
+    }
+
+    public var status: RoundStatus {
+        if finishedAt != nil {
+            return .finished
+        }
+        if startedAt != nil {
+            return .inProgress
+        }
+        return .scheduled
+    }
+
+    public func remainingSeconds(durationMinutes: Int, now: Date) -> Int {
+        let totalSeconds = max(1, durationMinutes) * 60
+        guard finishedAt == nil else {
+            return 0
+        }
+        guard let startedAt else {
+            return totalSeconds
+        }
+
+        let elapsedSeconds = max(0, Int(now.timeIntervalSince(startedAt)))
+        return max(0, totalSeconds - elapsedSeconds)
+    }
+}
+
+public enum RoundStatus: String, Codable, Sendable {
+    case scheduled
+    case inProgress
+    case finished
+
+    public var displayName: String {
+        switch self {
+        case .scheduled:
+            "未開始"
+        case .inProgress:
+            "進行中"
+        case .finished:
+            "終了"
+        }
     }
 }
 

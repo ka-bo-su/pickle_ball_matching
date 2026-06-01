@@ -37,7 +37,7 @@ xcodebuild test -scheme PickleBallMatching -destination 'platform=iOS Simulator,
 
 ## Latest Validation
 
-Last checked: 2026-06-01 12:02 JST
+Last checked: 2026-06-02 08:00 JST
 
 | Command | Result | Notes |
 |---|---|---|
@@ -50,7 +50,7 @@ Last checked: 2026-06-01 12:02 JST
 | `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'` | passed | initial generated Info.plist issue fixed in `project.yml` |
 | `xcodebuild test -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'` | passed | 10 core tests plus 27 app tests passed |
 
-Full validation script result: `scripts/codex/validate-ios.sh` passed on `codex/sbi-42-round-player-swap`.
+Full validation script result: `scripts/codex/validate-ios.sh` passed on `codex/sbi-56-round-timer` at 2026-06-02 08:00 JST.
 
 `scripts/codex/validate-ios.sh` uses `iPhone 16` when available and falls back to the first available iPhone Simulator on CI runners. If no iPhone Simulator exists, validation fails instead of silently skipping the Xcode build/test path.
 
@@ -60,3 +60,13 @@ Full validation script result: `scripts/codex/validate-ios.sh` passed on `codex/
 - `xcodebuild test` also requires `PRODUCT_BUNDLE_IDENTIFIER` on generated framework and test bundle targets.
 - GitHub Actions fresh checkout needs tracked source directories. `Shared/.gitkeep` keeps the XcodeGen `Shared/` source path present before future shared code is added.
 - No current blocker prevents SwiftPM or XcodeGen-based iOS development.
+
+## Resolved Validation Blocker
+
+Issue #56 local code could not complete validation in the current Codex execution window:
+
+- `swiftformat --cache ignore .`: blocked because escalated execution was rejected by Codex usage limit.
+- `swiftlint --no-cache`: blocked because escalated execution was rejected by Codex usage limit.
+- `swift test`: non-escalated attempts failed because SwiftPM/Xcode sandbox/cache access is unavailable in the current sandbox.
+
+This was an execution-environment blocker, not a code failure. It was resolved on 2026-06-02 after execution quota reset; Issue #56 full validation passed.
