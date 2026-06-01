@@ -2,13 +2,13 @@
 
 ## Current
 
-- Active PBI: Issue #16
-- Active SBI: Issue #36
-- Active Branch: codex/sbi-36-participant-skill-editing
-- Active PR: PR #37
-- GitHub Project Item: Issue #36
-- Status: In Review
-- Next Action: wait for PR #37 CI, then squash merge to `dev` if validation passes
+- Active PBI: selecting next
+- Active SBI: selecting next
+- Active Branch: dev
+- Active PR: n/a
+- GitHub Project Item: n/a
+- Status: Ready for next SBI selection
+- Next Action: select the next highest-value MVP SBI from Sprint Backlog and GitHub Project
 
 ## Completed
 
@@ -58,12 +58,13 @@
 | 2026-06-01 10:50 JST | Next SBI selected | Created and selected Issue #36 for participant skill level editing | https://github.com/ka-bo-su/pickle_ball_matching/issues/36 |
 | 2026-06-01 10:54 JST | SBI #36 local implementation | Added participant skill level menu, autosave ViewModel method, and tests | `OperationBoardView`, `OperationBoardViewModel` |
 | 2026-06-01 10:56 JST | PR opened | Created PR #37 for SBI #36 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/37 |
+| 2026-06-01 11:04 JST | SBI #36 merged | Squash merged PR #37 to `dev`; Issue #36 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/37 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #36 | codex/sbi-36-participant-skill-editing | PR #37 | In Review | Wait for CI, then merge to `dev` |
+| none | n/a | n/a | n/a | n/a |
 
 ## Blocked
 
@@ -113,3 +114,4 @@
 | 2026-06-01 10:35 JST | `scripts/codex/validate-ios.sh` | pass | SBI #34 full validation with 10 core tests and 21 app tests, 0 lint violations |
 | 2026-06-01 10:46 JST | GitHub Actions `validate` | pass | PR #35 passed before squash merge |
 | 2026-06-01 10:54 JST | `scripts/codex/validate-ios.sh` | pass | SBI #36 full validation with 10 core tests and 22 app tests, 0 lint violations |
+| 2026-06-01 11:03 JST | GitHub Actions `validate` | pass | PR #37 passed before squash merge |
