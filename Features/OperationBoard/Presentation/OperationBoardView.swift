@@ -12,6 +12,7 @@ struct OperationBoardView: View {
         NavigationStack {
             List {
                 sessionSection
+                ruleSettingsSection
                 boardSummarySection
                 RoundTimingSection(viewModel: viewModel)
                 participantSection
@@ -24,6 +25,10 @@ struct OperationBoardView: View {
 
     private var sessionSection: some View {
         SessionSettingsSection(viewModel: viewModel)
+    }
+
+    private var ruleSettingsSection: some View {
+        RuleSettingsSection(viewModel: viewModel)
     }
 
     private var participantSection: some View {

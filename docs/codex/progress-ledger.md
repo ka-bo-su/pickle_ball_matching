@@ -3,12 +3,12 @@
 ## Current
 
 - Active PBI: #16 当日運営特化ダブルス組み合わせMVP
-- Active SBI: Selecting next SBI
-- Active Branch: dev
-- Active PR: none
-- GitHub Project Item: n/a
-- Status: Issue #60 Done; selecting next Scrum item
-- Next Action: create and select the next P0/P1 SBI from the MVP backlog
+- Active SBI: #62 ルール設定を編集して組み合わせ生成に反映する
+- Active Branch: codex/sbi-62-rule-settings-ui
+- Active PR: #63
+- GitHub Project Item: `PVTI_lAHOBHYYMs4BZUKkzgubpEM`
+- Status: In Review; local validation passed and GitHub Actions running
+- Next Action: watch PR #63 CI, squash merge to `dev` if it passes, then close Issue #62 and sync Project Done
 
 ## Completed
 
@@ -105,12 +105,15 @@
 | 2026-06-02 08:29 JST | Next SBI selected | Created and selected Issue #60 for reducing repeated opponents | https://github.com/ka-bo-su/pickle_ball_matching/issues/60 |
 | 2026-06-02 08:32 JST | PR opened | Created PR #61 for Issue #60 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/61 |
 | 2026-06-02 08:38 JST | SBI #60 merged | Squash merged PR #61 to `dev`; Issue #60 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/61 |
+| 2026-06-02 08:46 JST | Next SBI selected | Created and selected Issue #62 for organizer-facing rule settings UI | https://github.com/ka-bo-su/pickle_ball_matching/issues/62 |
+| 2026-06-02 08:46 JST | SBI #62 local implementation | Added rule settings UI, ViewModel rule updates, autosave, and rule setting tests | local branch `codex/sbi-62-rule-settings-ui` |
+| 2026-06-02 08:49 JST | PR opened | Created PR #63 for Issue #62 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/63 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| none | n/a | n/a | n/a | select next SBI |
+| Issue #62 `ルール設定を編集して組み合わせ生成に反映する` | `codex/sbi-62-rule-settings-ui` | PR #63 | In Review; GitHub Actions running | watch CI and merge when green |
 
 ## Blocked
 
@@ -194,3 +197,4 @@
 | 2026-06-02 08:21 JST | GitHub Actions `validate` | pass | PR #59 passed before squash merge |
 | 2026-06-02 08:29 JST | `scripts/codex/validate-ios.sh` | pass | Issue #60: `swift test` 24 core tests, SwiftLint 0 violations, SwiftFormat 0 files, XcodeGen, xcodebuild build, xcodebuild test 24 core + 43 app tests |
 | 2026-06-02 08:37 JST | GitHub Actions `validate` | pass | PR #61 passed before squash merge |
+| 2026-06-02 08:46 JST | `scripts/codex/validate-ios.sh` | pass | Issue #62: `swift test` 24 core tests, SwiftLint 0 violations, SwiftFormat 0 files, XcodeGen, xcodebuild build, xcodebuild test 24 core + 45 app tests |

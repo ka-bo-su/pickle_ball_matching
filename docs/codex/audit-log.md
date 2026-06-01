@@ -3773,3 +3773,102 @@ Low after merge.
 ### Follow-up
 
 Select the next MVP SBI. Rule-setting UI is the strongest candidate because the fairness rules now exist in Domain/Application and need organizer-facing control.
+
+## 2026-06-02 08:46 JST
+
+### Action
+
+Created and selected Issue #62, added it to Project `kanban@pickle_ball_matching`, implemented organizer-facing rule settings UI, and completed full local validation.
+
+### Reason
+
+After repeated-pair and repeated-opponent avoidance were implemented, `SessionRuleSet` contained organizer-relevant rules without a visible control surface. A rule settings UI is the next small vertical slice that lets organizers adapt fairness behavior without changing code.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/OperationBoardView.swift`
+- `Features/OperationBoard/Presentation/OperationBoardRuleSettings.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `Features/OperationBoard/Presentation/RuleSettingsSection.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardRuleSettingsTests.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+- Codex/Scrum status docs
+
+### Commands Run
+
+- `gh issue create ...`
+- `gh project item-add ...`
+- `gh project item-edit ...`
+- `git switch -c codex/sbi-62-rule-settings-ui`
+- `swiftformat --cache ignore .`
+- `swift test`
+- `scripts/codex/validate-ios.sh`
+- `gh project item-edit ... Validation Status Passed`
+
+### GitHub Project Updates
+
+Issue #62 added to Project as SBI, Status `In progress`, Scrum Status `In Progress`, Priority `P1`, Role Owner `swift-developer`, Risk `medium`, Area `UI`, Validation Status `Passed`, Parent PBI `#16`, and Sprint `Sprint 2026-06 MVP`.
+
+### Architecture Decision
+
+Presentation adds `RuleSettingsSection` and an `OperationBoardViewModel` extension for `SessionRuleSet` updates. The View still talks only to the ViewModel, persistence remains behind `SessionRepository`, and Domain remains framework-free.
+
+### Validation
+
+Full validation passed: `swift test` 24 core tests, SwiftLint 0 violations, SwiftFormat lint 0 files, XcodeGen generation, `xcodebuild build`, and `xcodebuild test` with 24 core tests and 45 app tests.
+
+### Risk
+
+Medium until PR CI passes. The change affects on-screen settings and session autosave behavior, with ViewModel tests covering rule update and no-op save behavior.
+
+### Follow-up
+
+Commit, push, open PR, and move Issue #62 to In Review with PR evidence.
+
+## 2026-06-02 08:49 JST
+
+### Action
+
+Opened PR #63 for Issue #62 and moved the GitHub Project item to In Review.
+
+### Reason
+
+Rule settings UI is implemented, locally validated, and ready for autonomous review through GitHub Actions before squash merge to `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/audit-log.md`
+
+### Commands Run
+
+- `git commit -m "feat(settings): edit pairing rules"`
+- `git push -u origin codex/sbi-62-rule-settings-ui`
+- `gh pr create ...`
+- `gh issue edit 62 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit ...` for Status `In review`, Scrum Status `In Review`, and Evidence Link PR #63
+
+### GitHub Project Updates
+
+Issue #62 set to Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, and Evidence Link `https://github.com/ka-bo-su/pickle_ball_matching/pull/63`.
+
+### Architecture Decision
+
+No additional architecture change beyond the Presentation/ViewModel rule settings boundary.
+
+### Validation
+
+Local validation passed before PR creation. GitHub Actions is running.
+
+### Risk
+
+Medium until PR #63 CI passes.
+
+### Follow-up
+
+Watch PR #63 CI, squash merge to `dev` if it passes, close Issue #62, and set the Project item Done.

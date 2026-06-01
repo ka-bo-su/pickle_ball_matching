@@ -1,5 +1,15 @@
 # Next Work Search
 
+## 2026-06-02 08:46 JST
+
+- Searched candidates: GitHub Project In Progress/Ready items, open GitHub Issues, Sprint Backlog, MVP fairness-rule gaps after PR #61.
+- Referenced GitHub Project / Issues / docs: Issues #16-#20, #60, #62, `docs/scrum/sprint-backlog.md`, product vision rule setting requirements.
+- Findings: Project had no open Ready SBI after Issue #60. The strongest next vertical slice is exposing the existing `SessionRuleSet` rules to organizers.
+- Next selected work: Issue #62 `ルール設定を編集して組み合わせ生成に反映する`.
+- Reason: Pairing fairness rules now exist in Domain/Application; organizers need a visible, local-first way to adjust them for beginner sessions, social play, and balanced practice.
+- Human repair needed: none.
+- Pending updates: PR evidence for Issue #62 after PR creation.
+
 ## 2026-06-01 02:34 JST
 
 - Searched candidates: GitHub Project items, existing Swift/iOS project files, existing Claude docs, local validation tools.
