@@ -3626,3 +3626,52 @@ Low after merge.
 ### Follow-up
 
 Select the next MVP SBI. Candidate areas are same-opponent avoidance, score/result capture, or rule setting UI.
+
+## 2026-06-02 08:29 JST
+
+### Action
+
+Created and selected Issue #60, added it to Project `kanban@pickle_ball_matching`, implemented repeated-opponent avoidance, and completed full local validation.
+
+### Reason
+
+After repeated-pair avoidance, repeated-opponent avoidance is the next fairness gap in the MVP pairing algorithm and can reuse the pairing-history scoring structure.
+
+### Files Changed
+
+- `Sources/PickleBallMatchingCore/Domain/Session.swift`
+- `Sources/PickleBallMatchingCore/Application/GenerateNextRoundUseCase.swift`
+- `Tests/PickleBallMatchingCoreTests/GenerateNextRoundUseCaseTests.swift`
+- `Tests/PickleBallMatchingCoreTests/JSONSessionRepositoryTests.swift`
+- Codex/Scrum status docs
+
+### Commands Run
+
+- `gh issue create ...`
+- `gh project item-add ...`
+- `gh project item-edit ...`
+- `git switch -c codex/sbi-60-avoid-repeat-opponents`
+- `swiftformat --cache ignore .`
+- `swift test`
+- `scripts/codex/validate-ios.sh`
+- `gh project item-edit ... Validation Status Passed`
+
+### GitHub Project Updates
+
+Issue #60 added to Project as SBI, Status `In progress`, Scrum Status `In Progress`, Priority `P0`, Role Owner `swift-developer`, Risk `medium`, Area `Application`, Validation Status `Passed`, Parent PBI `#16`, and Sprint `Sprint 2026-06 MVP`.
+
+### Architecture Decision
+
+`SessionRuleSet` gains `avoidsRepeatedOpponents` with backward-compatible decoding. Opponent-history scoring stays in `GenerateNextRoundUseCase`; no UI or Infrastructure dependency is introduced.
+
+### Validation
+
+Full validation passed: `swift test` 24 core tests, SwiftLint 0 violations, SwiftFormat lint 0 files, XcodeGen generation, `xcodebuild build`, and `xcodebuild test` with 24 core tests and 43 app tests.
+
+### Risk
+
+Medium until PR CI passes. The change affects pairing selection and JSON decoding behavior, but both are covered by tests.
+
+### Follow-up
+
+Commit, push, open PR, and move Issue #60 to In Review with PR evidence.
