@@ -229,3 +229,13 @@
 - Reason: CI reliability is part of the completed autonomous environment, and this warning has a concrete remediation path without touching product code.
 - Human repair needed: none.
 - Pending updates: create Japanese GitHub Issue, add it to Project, then update workflow in a small branch.
+
+## 2026-06-01 22:48 JST
+
+- Searched candidates: GitHub Actions annotation from PR #53, workflow configuration, GitHub API release data for `actions/checkout`.
+- Referenced GitHub Project / Issues / docs: Issue #54, `.github/workflows/ios-validation.yml`, GitHub API `actions/checkout` latest release and `v6` tag.
+- Findings: `actions/checkout@v4` causes a Node.js 20 deprecation annotation; GitHub API shows latest `actions/checkout` is `v6.0.2`, `v6` tag exists, and v6 release notes mention Node.js 24 support details.
+- Next selected work: Issue #54 `GitHub ActionsのNode 20 deprecation警告を解消する`.
+- Reason: Autonomous CI reliability is a prerequisite for continuing many small PRs safely.
+- Human repair needed: none.
+- Pending updates: PR evidence for Issue #54 after PR creation.

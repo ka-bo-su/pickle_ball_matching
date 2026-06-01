@@ -3098,3 +3098,57 @@ Low after merge. CI emitted a Node.js 20 deprecation annotation for `actions/che
 ### Follow-up
 
 Select the next MVP or environment SBI. The strongest immediate candidate is resolving the GitHub Actions Node 20 deprecation warning.
+
+## 2026-06-01 22:48 JST
+
+### Action
+
+Created Issue #54, added it to GitHub Project `kanban@pickle_ball_matching`, selected it as the next environment Chore, updated `actions/checkout` from v4 to v6, and ran full local validation.
+
+### Reason
+
+PR #53 CI passed but emitted a Node.js 20 deprecation annotation for `actions/checkout@v4`. Keeping CI warning-free protects the autonomous development loop before runner defaults change.
+
+### Files Changed
+
+- `.github/workflows/ios-validation.yml`
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `gh api repos/actions/checkout/releases/latest --jq ...`
+- `gh api repos/actions/checkout/git/ref/tags/v6 --jq ...`
+- `gh api repos/actions/checkout/releases/tags/v6.0.0 --jq ...`
+- `gh issue create ...`
+- `gh project item-add 3 --owner ka-bo-su --url https://github.com/ka-bo-su/pickle_ball_matching/issues/54`
+- `gh project item-edit ...` for Issue #54 In Progress and Validation Passed
+- `gh issue edit 54 --remove-label status:ready --add-label status:in-progress`
+- `git switch -c codex/chore-54-actions-node24`
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+Issue #54 was added to Project `kanban@pickle_ball_matching` and set to Status `In progress`, Scrum Status `In Progress`, Backlog Level `Chore`, Priority `P1`, Role Owner `swift-developer`, Risk `low`, Area `Infrastructure`, Architecture Impact, and Validation Status `Passed`.
+
+One initial Role Owner field update used the option name instead of option id and failed with a GraphQL option mismatch. It was immediately retried with option id `abd38c90` and succeeded.
+
+### Architecture Decision
+
+No app architecture change. This is CI infrastructure only. GitHub API confirmed `actions/checkout` latest release `v6.0.2`, the `v6` major tag exists, and the v6.0.0 release notes mention Node.js 24 support details.
+
+### Validation
+
+Full local validation passed: `swift test`, SwiftLint with 0 violations, SwiftFormat lint, XcodeGen, `xcodebuild build`, and `xcodebuild test` on iPhone 16 Simulator.
+
+### Risk
+
+Low. The only runtime change is GitHub Actions checkout behavior in CI. PR CI will validate the workflow update.
+
+### Follow-up
+
+Commit, open PR for Issue #54, update Project evidence to In Review, and merge to `dev` if CI passes.

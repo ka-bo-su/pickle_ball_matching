@@ -2,13 +2,13 @@
 
 ## Current
 
-- Active PBI: selecting next MVP PBI
-- Active SBI: selecting next safe SBI
-- Active Branch: dev
+- Active PBI: Autonomous iOS development environment
+- Active SBI: #54 GitHub ActionsのNode 20 deprecation警告を解消する
+- Active Branch: codex/chore-54-actions-node24
 - Active PR: none
-- GitHub Project Item: none
-- Status: Ready for next work selection
-- Next Action: select the next safe MVP SBI; CI Node 20 deprecation warning is a likely environment chore candidate
+- GitHub Project Item: PVTI_lAHOBHYYMs4BZUKkzguYiqI
+- Status: Local implementation complete; validation passed
+- Next Action: commit, open PR, and update Project evidence to In Review
 
 ## Completed
 
@@ -91,12 +91,14 @@
 | 2026-06-01 22:26 JST | SBI #52 local implementation | Added board summary guidance, accessibility label, and presentation tests | `OperationBoardSummaryModel`, `OperationBoardView` |
 | 2026-06-01 22:28 JST | PR opened | Created PR #53 for SBI #52 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/53 |
 | 2026-06-01 22:34 JST | SBI #52 merged | Squash merged PR #53 to `dev`; Issue #52 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/53 |
+| 2026-06-01 22:43 JST | Next chore selected | Created and selected Issue #54 for GitHub Actions Node 20 deprecation warning | https://github.com/ka-bo-su/pickle_ball_matching/issues/54 |
+| 2026-06-01 22:48 JST | Chore #54 local implementation | Updated `actions/checkout` from v4 to v6 and validated local iOS project | `.github/workflows/ios-validation.yml` |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| none | n/a | n/a | n/a | select next safe SBI |
+| Issue #54 | codex/chore-54-actions-node24 | pending | validation passed | commit and open PR |
 
 ## Blocked
 
@@ -167,3 +169,4 @@
 | 2026-06-01 19:29 JST | GitHub Actions `validate` | pass | PR #51 passed before squash merge |
 | 2026-06-01 22:26 JST | `scripts/codex/validate-ios.sh` | pass | SBI #52 full validation with 15 core tests and 38 app tests, 0 lint violations |
 | 2026-06-01 22:33 JST | GitHub Actions `validate` | pass | PR #53 passed before squash merge; noted actions/checkout Node 20 deprecation annotation |
+| 2026-06-01 22:47 JST | `scripts/codex/validate-ios.sh` | pass | Chore #54 workflow update branch; local validation still passes with 15 core tests and 38 app tests |
