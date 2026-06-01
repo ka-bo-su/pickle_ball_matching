@@ -2946,3 +2946,104 @@ Low after merge. Deleting/searching session history remains a separate follow-up
 ### Follow-up
 
 Select the next MVP SBI. The current safest candidate is board usability/readability polish.
+
+## 2026-06-01 22:26 JST
+
+### Action
+
+Created Issue #52, added it to GitHub Project `kanban@pickle_ball_matching`, selected it as the next SBI, implemented board current-state and next-action guidance, and ran full local validation.
+
+### Reason
+
+After session history/reopen, the safest high-value next work was a non-destructive Presentation improvement: helping organizers see whether they need to add participants, generate the first round, adjust the current round, or proceed to the next round.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/OperationBoardSummaryModel.swift`
+- `Features/OperationBoard/Presentation/OperationBoardView.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardSummaryModelTests.swift`
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/codex/next-work-search.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `gh issue create ...`
+- `gh project item-add 3 --owner ka-bo-su --url https://github.com/ka-bo-su/pickle_ball_matching/issues/52`
+- `gh project item-edit ...` for Issue #52 In Progress and Validation Passed
+- `gh issue edit 52 --remove-label status:ready --add-label status:in-progress`
+- `git switch -c codex/sbi-52-board-guidance`
+- `swiftformat --cache ignore .`
+- `swiftlint --no-cache`
+- `swift test`
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+Issue #52 was added to Project `kanban@pickle_ball_matching` and set to Status `In progress`, Scrum Status `In Progress`, Backlog Level `SBI`, Priority `P1`, Role Owner `swift-developer`, Risk `medium`, Area `UI`, Parent PBI `#18 進行ボードと大画面表示`, Architecture Impact, and Validation Status `Passed`.
+
+### Architecture Decision
+
+The change is Presentation-only. `OperationBoardSummaryModel` and a ViewModel computed property derive display text from existing `Session` and `Round` state without adding Domain/Application/Infrastructure dependencies.
+
+### Validation
+
+Full validation passed: `swift test`, SwiftLint with 0 violations, SwiftFormat lint, XcodeGen, `xcodebuild build`, and `xcodebuild test` on iPhone 16 Simulator. The Xcode test suite passed 15 core tests and 38 app tests.
+
+### Risk
+
+Medium. The added summary could crowd the board on small iPhone screens, but it is text-based, accessible, and reversible. Human review should check screen density after PR merge.
+
+### Follow-up
+
+Commit, open PR for Issue #52, update Project evidence to In Review, and merge to `dev` if CI passes.
+
+## 2026-06-01 22:28 JST
+
+### Action
+
+Pushed `codex/sbi-52-board-guidance`, opened PR #53 for Issue #52, and moved the GitHub Project item to In Review with PR evidence.
+
+### Reason
+
+The local implementation passed validation and was ready for CI-backed review and autonomous merge to `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git push -u origin codex/sbi-52-board-guidance`
+- `gh pr create ...`
+- `gh issue edit 52 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit ...` for Issue #52 In Review and Evidence Link
+
+### GitHub Project Updates
+
+Issue #52 set to Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, and Evidence Link PR #53.
+
+### Architecture Decision
+
+No new decision. The PR remains Presentation-only.
+
+### Validation
+
+PR #53 will run GitHub Actions. Local validation already passed before PR creation.
+
+### Risk
+
+Medium. Screen density should be checked after merge.
+
+### Follow-up
+
+Wait for PR #53 CI, squash merge to `dev` if it passes, then set Issue #52 and Project item Done.

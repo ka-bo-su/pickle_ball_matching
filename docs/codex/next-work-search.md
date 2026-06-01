@@ -209,3 +209,13 @@
 - Reason: The north star depends on participants and organizers quickly understanding the board; this avoids destructive history actions and keeps focus on the current MVP experience.
 - Human repair needed: none.
 - Pending updates: create Japanese GitHub Issue, add it to Project, then implement in a small `codex/*` branch.
+
+## 2026-06-01 22:26 JST
+
+- Searched candidates: Project Ready PBIs, Sprint Backlog after PR #51 merge, remaining board usability and session history management gaps.
+- Referenced GitHub Project / Issues / docs: Issues #18, #50, #52, `docs/scrum/sprint-backlog.md`, MVP north star.
+- Findings: Session history/reopen is Done. The safest next SBI is board readability because deletion/search is more destructive and the north star depends on organizers understanding the current state quickly.
+- Next selected work: Issue #52 `進行ボードの現在と次アクションを見やすくする`.
+- Reason: It directly reduces organizer ambiguity without changing Domain/Application/Infrastructure boundaries.
+- Human repair needed: none.
+- Pending updates: PR evidence for Issue #52 after PR creation.

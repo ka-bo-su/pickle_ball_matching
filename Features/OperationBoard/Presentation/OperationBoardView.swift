@@ -12,6 +12,7 @@ struct OperationBoardView: View {
         NavigationStack {
             List {
                 sessionSection
+                boardSummarySection
                 participantSection
                 actionSection
                 currentRoundSection
@@ -28,6 +29,39 @@ struct OperationBoardView: View {
         ParticipantListSection(viewModel: viewModel)
     }
 
+    private var boardSummarySection: some View {
+        let summary = viewModel.boardSummaryModel
+        return Section("現在状態") {
+            VStack(alignment: .leading, spacing: 12) {
+                Label(summary.statusTitle, systemImage: "rectangle.and.text.magnifyingglass")
+                    .font(.headline)
+
+                Text(summary.statusDetail)
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+
+                VStack(alignment: .leading, spacing: 8) {
+                    summaryLine(title: "参加者", value: summary.participantSummary, systemImage: "person.3")
+                    summaryLine(title: "コート", value: summary.courtSummary, systemImage: "sportscourt")
+                    summaryLine(title: "待機", value: summary.waitingSummary, systemImage: "person.2.slash")
+                }
+
+                Divider()
+
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(summary.nextActionTitle)
+                        .font(.subheadline.weight(.semibold))
+                    Text(summary.nextActionDetail)
+                        .font(.body)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+            .padding(.vertical, 4)
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel(summary.accessibilityLabel)
+        }
+    }
+
     private var actionSection: some View {
         Section {
             generateRoundButton
@@ -37,6 +71,20 @@ struct OperationBoardView: View {
             pdfShareButton
             imageShareButton
             errorMessageView
+        }
+    }
+
+    private func summaryLine(title: String, value: String, systemImage: String) -> some View {
+        HStack(alignment: .firstTextBaseline, spacing: 8) {
+            Label(title, systemImage: systemImage)
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(.secondary)
+                .frame(width: 72, alignment: .leading)
+
+            Text(value)
+                .font(.subheadline)
+                .foregroundStyle(.primary)
+                .fixedSize(horizontal: false, vertical: true)
         }
     }
 
