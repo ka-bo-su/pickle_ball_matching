@@ -139,3 +139,13 @@
 - Reason: It improves organizer confidence during manual corrections and protects the current MVP board without adding external services, StoreKit, or CloudKit.
 - Human repair needed: none.
 - Pending updates: create Japanese GitHub Issue, add it to Project, then link PR evidence after implementation.
+
+## 2026-06-01 14:41 JST
+
+- Searched candidates: GitHub Project open PBIs, Sprint Backlog after PR #45 merge, MVP sharing/export requirements, board usability gaps.
+- Referenced GitHub Project / Issues / docs: Issues #16, #18, #19, #44, `docs/scrum/sprint-backlog.md`, product vision sharing image/PDF requirements.
+- Findings: Issue #44 is merged and Done. CSV sharing exists, but MVP still asks for image or PDF output so organizers can share or display pairings beyond raw CSV.
+- Next selected work: candidate SBI `現在ラウンドをPDFまたは共有画像で出力できるようにする`.
+- Reason: It advances the sharing/export MVP promise while staying local-first and avoiding server, CloudKit, StoreKit, App Store, or secret work.
+- Human repair needed: none.
+- Pending updates: create Japanese GitHub Issue, add it to Project, then implement in a small `codex/*` branch.

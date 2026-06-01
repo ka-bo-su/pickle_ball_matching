@@ -2,21 +2,21 @@
 
 ## Result
 
-- Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31/#33/#35/#37/#39/#41/#43 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30/#32/#34/#36/#38/#40/#42 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, current-round CSV sharing, participant-facing large board display, editable session settings, participant skill editing, participant detail editing, roster reuse for new sessions, any-player current-round manual swap, and a guarded GitHub REST push fallback script/runbook
-- Partially completed: Issue #44 multi-step undo history is open in PR #45 and waiting for CI
+- Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31/#33/#35/#37/#39/#41/#43/#45 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30/#32/#34/#36/#38/#40/#42/#44 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, current-round CSV sharing, participant-facing large board display, editable session settings, participant skill editing, participant detail editing, roster reuse for new sessions, any-player current-round manual swap, multi-step undo history, and a guarded GitHub REST push fallback script/runbook
+- Partially completed: none
 - Blocked: none
 
 ## Time
 
 - Started: 2026-06-01 02:34 JST
-- Last checkpoint: 2026-06-01 14:30 JST
+- Last checkpoint: 2026-06-01 14:41 JST
 - Approximate duration: session-dependent
 
 ## PRs
 
 - Opened: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24, https://github.com/ka-bo-su/pickle_ball_matching/pull/26, https://github.com/ka-bo-su/pickle_ball_matching/pull/28, https://github.com/ka-bo-su/pickle_ball_matching/pull/31, https://github.com/ka-bo-su/pickle_ball_matching/pull/33, https://github.com/ka-bo-su/pickle_ball_matching/pull/35, https://github.com/ka-bo-su/pickle_ball_matching/pull/37, https://github.com/ka-bo-su/pickle_ball_matching/pull/39, https://github.com/ka-bo-su/pickle_ball_matching/pull/41, https://github.com/ka-bo-su/pickle_ball_matching/pull/43
-- Merged: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24, https://github.com/ka-bo-su/pickle_ball_matching/pull/26, https://github.com/ka-bo-su/pickle_ball_matching/pull/28, https://github.com/ka-bo-su/pickle_ball_matching/pull/31, https://github.com/ka-bo-su/pickle_ball_matching/pull/33, https://github.com/ka-bo-su/pickle_ball_matching/pull/35, https://github.com/ka-bo-su/pickle_ball_matching/pull/37, https://github.com/ka-bo-su/pickle_ball_matching/pull/39, https://github.com/ka-bo-su/pickle_ball_matching/pull/41, https://github.com/ka-bo-su/pickle_ball_matching/pull/43
-- Closed: Issues #1-#7, #9-#13, #21, #23, #25, #27, #30, #32, #34, #36, #38, #40, #42
+- Merged: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24, https://github.com/ka-bo-su/pickle_ball_matching/pull/26, https://github.com/ka-bo-su/pickle_ball_matching/pull/28, https://github.com/ka-bo-su/pickle_ball_matching/pull/31, https://github.com/ka-bo-su/pickle_ball_matching/pull/33, https://github.com/ka-bo-su/pickle_ball_matching/pull/35, https://github.com/ka-bo-su/pickle_ball_matching/pull/37, https://github.com/ka-bo-su/pickle_ball_matching/pull/39, https://github.com/ka-bo-su/pickle_ball_matching/pull/41, https://github.com/ka-bo-su/pickle_ball_matching/pull/43, https://github.com/ka-bo-su/pickle_ball_matching/pull/45
+- Closed: Issues #1-#7, #9-#13, #21, #23, #25, #27, #30, #32, #34, #36, #38, #40, #42, #44
 
 ## Commits
 
@@ -34,6 +34,7 @@
 - `9af6365` feat(participants): edit participant details
 - `52dc627` feat(session): reuse roster for new sessions
 - `5242423` feat(operation): swap any current round participant
+- `722a9ea` feat(operation): add multi-step undo history
 
 ## GitHub Project Updates
 
@@ -59,7 +60,7 @@
 - Issue #38 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #39 merge
 - Issue #40 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #41 merge
 - Issue #42 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #43 merge
-- Issue #44 created in Japanese, added to Project, moved through In Progress, and is In Review with PR #45 evidence
+- Issue #44 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #45 merge
 
 ## Pending GitHub Project Updates
 
@@ -67,9 +68,9 @@
 
 ## iOS Validation
 
-- Build: passed on Issue #44 branch with `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'`
-- Test: passed on Issue #44 branch with `swift test` and `xcodebuild test`
-- Lint: passed on Issue #44 branch with `swiftlint --no-cache` and `swiftformat --cache ignore --lint .`, 0 violations
+- Build: passed on PR #45 / `dev` with GitHub Actions `validate` and local `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'`
+- Test: passed on PR #45 / `dev` with GitHub Actions `validate`, local `swift test`, and local `xcodebuild test`
+- Lint: passed on PR #45 / `dev` with `swiftlint --no-cache` and `swiftformat --cache ignore --lint .`, 0 violations
 - Simulator: iPhone 16 on iOS 18.2 available
 
 ## Files Changed
@@ -171,9 +172,9 @@ A  scripts/codex/validate-ios.sh
 - Done: Issue #38 participant gender/age group/memo editing
 - Done: Issue #40 roster reuse for new sessions
 - Done: Issue #42 any-player current-round manual swap
-- In review: Issue #44 multi-step undo history, PR #45
+- Done: Issue #44 multi-step undo history
 - Blocked: none
-- Next: watch PR #45 CI, then merge if green
+- Next: select the next export or board usability SBI
 
 ## Architecture
 
@@ -190,10 +191,10 @@ A  scripts/codex/validate-ios.sh
 
 ## Human Review Notes
 
-- Review merged PR #8, #14, #15, #22, #24, #26, #28, #31, #33, #35, #37, #39, #41, and #43
+- Review merged PR #8, #14, #15, #22, #24, #26, #28, #31, #33, #35, #37, #39, #41, #43, and #45
 - Pay attention to PR #33 for participant readability, iPad layout, long names, and accessibility labels
 - Possible rollback: revert the relevant PR
 
 ## Next Recommended Codex Goal
 
-- Merge PR #45 after CI, then select the next highest-value MVP slice from Project/Sprint Backlog.
+- Select the next highest-value MVP slice from Project/Sprint Backlog; likely PDF/image export or board usability.

@@ -2446,3 +2446,54 @@ Medium. Runtime-only undo history is acceptable for the MVP slice; persistent hi
 ### Follow-up
 
 Wait for PR #45 CI, squash merge to `dev` if it passes, then set Issue #44 and Project item Done.
+
+## 2026-06-01 14:41 JST
+
+### Action
+
+Squash merged PR #45 to `dev`, closed Issue #44, and set the GitHub Project item to Done.
+
+### Reason
+
+Issue #44 passed local validation and GitHub Actions. The multi-step undo MVP increment was complete enough to merge without human approval under the autonomous run policy.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `gh pr checks 45 --watch --interval 10`
+- `gh pr merge 45 --squash --delete-branch ...`
+- `gh issue edit 44 --remove-label status:in-review --add-label status:done`
+- `gh issue comment 44 ...`
+- `gh issue close 44 --reason completed`
+- `gh project item-edit ...` for Issue #44 Done
+- `git fetch origin`
+- `git switch dev`
+- `git merge --ff-only origin/dev`
+
+### GitHub Project Updates
+
+Issue #44 set to Status `Done`, Scrum Status `Done`, Validation Status `Passed`, and Evidence Link PR #45. The issue is closed.
+
+### Architecture Decision
+
+No new decision after PR merge. Runtime-only multi-step undo remains a Presentation/ViewModel concern. Persistent operation history is still intentionally deferred.
+
+### Validation
+
+GitHub Actions `validate` passed before merge. Local `scripts/codex/validate-ios.sh` also passed before PR creation.
+
+### Risk
+
+Low after merge. Remaining undo risk is that history is not persisted across relaunch, which is documented as a follow-up.
+
+### Follow-up
+
+Select the next MVP SBI, with PDF/image export or board usability as likely candidates.
