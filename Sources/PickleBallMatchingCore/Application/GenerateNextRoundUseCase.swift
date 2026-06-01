@@ -165,6 +165,12 @@ public struct GenerateNextRoundUseCase: Sendable {
             penalty += history.teammateCount(for: match.teamA.players) * 100
             penalty += history.teammateCount(for: match.teamB.players) * 100
         }
+        if ruleSet.avoidsRepeatedOpponents {
+            penalty += history.opponentCount(
+                teamA: match.teamA.players,
+                teamB: match.teamB.players
+            ) * 25
+        }
         return penalty
     }
 
@@ -191,18 +197,36 @@ public struct GenerateNextRoundUseCase: Sendable {
 
 private struct MatchHistory {
     private var teammateCounts: [PlayerPair: Int]
+    private var opponentCounts: [PlayerPair: Int]
 
     init(rounds: [Round]) {
         var teammateCounts: [PlayerPair: Int] = [:]
+        var opponentCounts: [PlayerPair: Int] = [:]
         for match in rounds.flatMap(\.matches) {
             teammateCounts[PlayerPair(match.teamA.players), default: 0] += 1
             teammateCounts[PlayerPair(match.teamB.players), default: 0] += 1
+            for teamAPlayer in match.teamA.players {
+                for teamBPlayer in match.teamB.players {
+                    opponentCounts[PlayerPair([teamAPlayer, teamBPlayer]), default: 0] += 1
+                }
+            }
         }
         self.teammateCounts = teammateCounts
+        self.opponentCounts = opponentCounts
     }
 
     func teammateCount(for players: [Participant]) -> Int {
         teammateCounts[PlayerPair(players), default: 0]
+    }
+
+    func opponentCount(teamA: [Participant], teamB: [Participant]) -> Int {
+        teamA.flatMap { teamAPlayer in
+            teamB.map { teamBPlayer in
+                PlayerPair([teamAPlayer, teamBPlayer])
+            }
+        }
+        .map { opponentCounts[$0, default: 0] }
+        .reduce(0, +)
     }
 }
 

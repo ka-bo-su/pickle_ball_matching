@@ -68,6 +68,22 @@ final class JSONSessionRepositoryTests: XCTestCase {
         }
     }
 
+    func testSessionRuleSetDecodesMissingRepeatedOpponentRuleAsEnabled() throws {
+        let json = """
+        {
+          "balancesWaitingCount": true,
+          "avoidsConsecutiveWaiting": true,
+          "avoidsRepeatedPairs": true,
+          "reducesLevelGap": true,
+          "protectsBeginners": true
+        }
+        """
+
+        let ruleSet = try JSONDecoder().decode(SessionRuleSet.self, from: Data(json.utf8))
+
+        XCTAssertTrue(ruleSet.avoidsRepeatedOpponents)
+    }
+
     private func makeSession(
         id: UUID = UUID(uuidString: "00000000-0000-0000-0000-000000000301")!,
         name: String = "保存テスト",

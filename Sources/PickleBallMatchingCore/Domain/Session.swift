@@ -68,6 +68,7 @@ public struct SessionRuleSet: Codable, Equatable, Sendable {
     public var balancesWaitingCount: Bool
     public var avoidsConsecutiveWaiting: Bool
     public var avoidsRepeatedPairs: Bool
+    public var avoidsRepeatedOpponents: Bool
     public var reducesLevelGap: Bool
     public var protectsBeginners: Bool
 
@@ -75,15 +76,64 @@ public struct SessionRuleSet: Codable, Equatable, Sendable {
         balancesWaitingCount: Bool = true,
         avoidsConsecutiveWaiting: Bool = true,
         avoidsRepeatedPairs: Bool = true,
+        avoidsRepeatedOpponents: Bool = true,
         reducesLevelGap: Bool = true,
         protectsBeginners: Bool = true
     ) {
         self.balancesWaitingCount = balancesWaitingCount
         self.avoidsConsecutiveWaiting = avoidsConsecutiveWaiting
         self.avoidsRepeatedPairs = avoidsRepeatedPairs
+        self.avoidsRepeatedOpponents = avoidsRepeatedOpponents
         self.reducesLevelGap = reducesLevelGap
         self.protectsBeginners = protectsBeginners
     }
 
     public static let balancedPractice = SessionRuleSet()
+
+    private enum CodingKeys: String, CodingKey {
+        case balancesWaitingCount
+        case avoidsConsecutiveWaiting
+        case avoidsRepeatedPairs
+        case avoidsRepeatedOpponents
+        case reducesLevelGap
+        case protectsBeginners
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        balancesWaitingCount = try container.decodeIfPresent(
+            Bool.self,
+            forKey: .balancesWaitingCount
+        ) ?? true
+        avoidsConsecutiveWaiting = try container.decodeIfPresent(
+            Bool.self,
+            forKey: .avoidsConsecutiveWaiting
+        ) ?? true
+        avoidsRepeatedPairs = try container.decodeIfPresent(
+            Bool.self,
+            forKey: .avoidsRepeatedPairs
+        ) ?? true
+        avoidsRepeatedOpponents = try container.decodeIfPresent(
+            Bool.self,
+            forKey: .avoidsRepeatedOpponents
+        ) ?? true
+        reducesLevelGap = try container.decodeIfPresent(
+            Bool.self,
+            forKey: .reducesLevelGap
+        ) ?? true
+        protectsBeginners = try container.decodeIfPresent(
+            Bool.self,
+            forKey: .protectsBeginners
+        ) ?? true
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(balancesWaitingCount, forKey: .balancesWaitingCount)
+        try container.encode(avoidsConsecutiveWaiting, forKey: .avoidsConsecutiveWaiting)
+        try container.encode(avoidsRepeatedPairs, forKey: .avoidsRepeatedPairs)
+        try container.encode(avoidsRepeatedOpponents, forKey: .avoidsRepeatedOpponents)
+        try container.encode(reducesLevelGap, forKey: .reducesLevelGap)
+        try container.encode(protectsBeginners, forKey: .protectsBeginners)
+    }
 }

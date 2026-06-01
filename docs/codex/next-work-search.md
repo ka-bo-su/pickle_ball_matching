@@ -269,3 +269,13 @@
 - Reason: It directly addresses the product pain "また同じ人と組んでいる" with a small Application-layer algorithm improvement and focused tests.
 - Human repair needed: none.
 - Pending updates: PR evidence for Issue #58 after PR creation.
+
+## 2026-06-02 08:29 JST
+
+- Searched candidates: GitHub Project open PBIs, Sprint Backlog after PR #59 merge, remaining fairness gaps.
+- Referenced GitHub Project / Issues / docs: Issues #16-#20, #58, #60, `docs/product/vision.md`, `docs/scrum/sprint-backlog.md`.
+- Findings: Same-pair avoidance is Done. The next fairness gap is repeated opponent avoidance; it can reuse the new pairing-history scoring structure and add a backward-compatible rule flag.
+- Next selected work: Issue #60 `同じ対戦相手の重複を減らして次ラウンドを生成する`.
+- Reason: It directly addresses the product pain "また同じ相手と当たっている" and continues the MVP fairness increment without UI or Infrastructure coupling.
+- Human repair needed: none.
+- Pending updates: PR evidence for Issue #60 after PR creation.

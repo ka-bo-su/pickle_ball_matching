@@ -109,6 +109,7 @@ final class GenerateNextRoundUseCaseTests: XCTestCase {
     func testRepeatedPairAvoidanceCanBeDisabled() throws {
         var ruleSet = SessionRuleSet.balancedPractice
         ruleSet.avoidsRepeatedPairs = false
+        ruleSet.avoidsRepeatedOpponents = false
         let useCase = GenerateNextRoundUseCase()
         let firstSession = try useCase.execute(
             session: Session(
@@ -124,6 +125,49 @@ final class GenerateNextRoundUseCaseTests: XCTestCase {
         let secondRound = try XCTUnwrap(secondSession.currentRound)
 
         XCTAssertEqual(teamPairs(in: firstRound), teamPairs(in: secondRound))
+    }
+
+    func testAvoidsRepeatedOpponentsWhenPairAvoidanceIsDisabled() throws {
+        var ruleSet = SessionRuleSet.balancedPractice
+        ruleSet.avoidsRepeatedPairs = false
+        ruleSet.avoidsRepeatedOpponents = true
+        let useCase = GenerateNextRoundUseCase()
+        let firstSession = try useCase.execute(
+            session: Session(
+                name: "同対戦相手回避",
+                courtCount: 1,
+                participants: makeParticipants(count: 4),
+                ruleSet: ruleSet
+            )
+        )
+        let firstRound = try XCTUnwrap(firstSession.currentRound)
+
+        let secondSession = try useCase.execute(session: firstSession)
+        let secondRound = try XCTUnwrap(secondSession.currentRound)
+        let repeatedOpponentPairs = opponentPairs(in: firstRound).intersection(opponentPairs(in: secondRound))
+
+        XCTAssertLessThan(repeatedOpponentPairs.count, opponentPairs(in: firstRound).count)
+    }
+
+    func testRepeatedOpponentAvoidanceCanBeDisabled() throws {
+        var ruleSet = SessionRuleSet.balancedPractice
+        ruleSet.avoidsRepeatedPairs = false
+        ruleSet.avoidsRepeatedOpponents = false
+        let useCase = GenerateNextRoundUseCase()
+        let firstSession = try useCase.execute(
+            session: Session(
+                name: "同対戦相手回避なし",
+                courtCount: 1,
+                participants: makeParticipants(count: 4),
+                ruleSet: ruleSet
+            )
+        )
+        let firstRound = try XCTUnwrap(firstSession.currentRound)
+
+        let secondSession = try useCase.execute(session: firstSession)
+        let secondRound = try XCTUnwrap(secondSession.currentRound)
+
+        XCTAssertEqual(opponentPairs(in: firstRound), opponentPairs(in: secondRound))
     }
 
     private func makeParticipants(count: Int) -> [Participant] {
@@ -142,6 +186,16 @@ final class GenerateNextRoundUseCaseTests: XCTestCase {
                 TestPlayerPair(match.teamA.players),
                 TestPlayerPair(match.teamB.players)
             ]
+        })
+    }
+
+    private func opponentPairs(in round: Round) -> Set<TestPlayerPair> {
+        Set(round.matches.flatMap { match in
+            match.teamA.players.flatMap { teamAPlayer in
+                match.teamB.players.map { teamBPlayer in
+                    TestPlayerPair([teamAPlayer, teamBPlayer])
+                }
+            }
         })
     }
 }
