@@ -1933,3 +1933,49 @@ Medium. The profile fields are editable and persisted, but the generation algori
 ### Follow-up
 
 Commit, open PR for Issue #38, update Project evidence to In Review, and merge to `dev` if CI passes.
+
+## 2026-06-01 11:17 JST
+
+### Action
+
+Pushed `codex/sbi-38-participant-details`, opened PR #39 for Issue #38, and moved the GitHub Project item to In Review.
+
+### Reason
+
+SBI #38 passed local validation and now needs CI-backed review evidence before autonomous merge to `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git push -u origin codex/sbi-38-participant-details`
+- `gh pr create ...`
+- `gh issue edit 38 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit ...` for Issue #38 In Review, Validation Passed, and Evidence Link
+
+### GitHub Project Updates
+
+Issue #38 set to Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, and Evidence Link PR #39.
+
+### Architecture Decision
+
+No new decision. The PR keeps participant detail editing in Presentation/ViewModel and uses existing Domain/Persistence boundaries.
+
+### Validation
+
+PR #39 will run GitHub Actions. Local validation already passed before PR creation.
+
+### Risk
+
+Medium. The UI adds another participant edit path; CI and review focus on keeping the row readable and maintaining accessibility labels.
+
+### Follow-up
+
+Wait for PR #39 CI, squash merge to `dev` if it passes, then set Issue #38 and Project item Done.
