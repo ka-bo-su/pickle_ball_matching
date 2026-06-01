@@ -68,7 +68,67 @@ final class OperationBoardViewModelTests: XCTestCase {
         let viewModel = OperationBoardViewModel(sessionRepository: repository)
 
         XCTAssertEqual(viewModel.session.name, "今日のピックルボール")
+        XCTAssertTrue(viewModel.session.participants.isEmpty)
         XCTAssertEqual(viewModel.errorMessage, "保存済みセッションを読み込めませんでした。新規セッションで開始します。")
+    }
+
+    func testUpdateSessionNameAutosaves() {
+        let repository = SpySessionRepository()
+        let viewModel = OperationBoardViewModel(
+            session: Session(name: "変更前"),
+            sessionRepository: repository
+        )
+
+        viewModel.updateSessionName("初心者体験会")
+
+        XCTAssertEqual(viewModel.session.name, "初心者体験会")
+        XCTAssertEqual(repository.savedSessions.last?.name, "初心者体験会")
+    }
+
+    func testUpdateRoundDurationAutosaves() {
+        let repository = SpySessionRepository()
+        let viewModel = OperationBoardViewModel(
+            session: Session(name: "テスト", roundDurationMinutes: 12),
+            sessionRepository: repository
+        )
+
+        viewModel.updateRoundDurationMinutes(15)
+
+        XCTAssertEqual(viewModel.session.roundDurationMinutes, 15)
+        XCTAssertEqual(repository.savedSessions.last?.roundDurationMinutes, 15)
+    }
+
+    func testUpdateOperationModeAutosaves() {
+        let repository = SpySessionRepository()
+        let viewModel = OperationBoardViewModel(
+            session: Session(name: "テスト", mode: .normalPractice),
+            sessionRepository: repository
+        )
+
+        viewModel.updateOperationMode(.beginnerSession)
+
+        XCTAssertEqual(viewModel.session.mode, .beginnerSession)
+        XCTAssertEqual(repository.savedSessions.last?.mode, .beginnerSession)
+    }
+
+    func testStartNewSessionClearsParticipantsRoundsAndAutosaves() {
+        let repository = SpySessionRepository()
+        let viewModel = OperationBoardViewModel(
+            session: Session(name: "古い会", courtCount: 1, participants: makeParticipants(count: 5)),
+            sessionRepository: repository
+        )
+        viewModel.generateNextRound()
+
+        viewModel.startNewSession()
+
+        XCTAssertEqual(viewModel.session.name, "今日のピックルボール")
+        XCTAssertEqual(viewModel.session.courtCount, 2)
+        XCTAssertEqual(viewModel.session.roundDurationMinutes, 12)
+        XCTAssertEqual(viewModel.session.mode, .normalPractice)
+        XCTAssertTrue(viewModel.session.participants.isEmpty)
+        XCTAssertTrue(viewModel.session.rounds.isEmpty)
+        XCTAssertFalse(viewModel.canUndo)
+        XCTAssertEqual(repository.savedSessions.last?.participants, [])
     }
 
     func testUpdateParticipantStatusChangesStatusAndAutosaves() throws {

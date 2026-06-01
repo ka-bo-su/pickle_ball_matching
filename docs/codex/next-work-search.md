@@ -79,3 +79,13 @@
 - Reason: It advances the north star that participants can understand the next match without organizer explanation, using existing Round/Match data and a Presentation-only display model.
 - Human repair needed: none.
 - Pending updates: PR evidence for Issue #32 after PR creation.
+
+## 2026-06-01 10:24 JST
+
+- Searched candidates: GitHub Project open Ready PBIs, Sprint Backlog after PR #33 merge, current UI start flow, MVP north star.
+- Referenced GitHub Project / Issues / docs: Issues #16, #17, #18, #32, #34, `docs/scrum/sprint-backlog.md`, product vision MVP flow.
+- Findings: Project has no open ready SBI. The app can add participants and set court count, but it still starts from a fixed session name/default state and lacks direct editing of round duration and operation mode.
+- Next selected work: Issue #34 `セッション名と運営条件を編集できるようにする`.
+- Reason: It directly supports the north star that an organizer can start today's operation quickly with their own session name, court count, round time, and mode.
+- Human repair needed: none.
+- Pending updates: PR evidence for Issue #34 after PR creation.

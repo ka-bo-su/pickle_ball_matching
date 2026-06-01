@@ -72,6 +72,35 @@ final class OperationBoardViewModel: ObservableObject {
         session.participants.count(where: { $0.status.isAvailableForRound }) >= 4
     }
 
+    func updateSessionName(_ name: String) {
+        session.name = name
+        session.updatedAt = Date()
+        errorMessage = nil
+        saveSession()
+    }
+
+    func updateRoundDurationMinutes(_ minutes: Int) {
+        session.roundDurationMinutes = max(1, minutes)
+        session.updatedAt = Date()
+        errorMessage = nil
+        saveSession()
+    }
+
+    func updateOperationMode(_ mode: OperationMode) {
+        session.mode = mode
+        session.updatedAt = Date()
+        errorMessage = nil
+        saveSession()
+    }
+
+    func startNewSession() {
+        session = .emptyDaySession()
+        undoSession = nil
+        canUndo = false
+        errorMessage = nil
+        saveSession()
+    }
+
     func addParticipant() {
         let name = newParticipantName.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !name.isEmpty else {
@@ -236,23 +265,15 @@ private extension DoublesTeam {
 
 extension Session {
     static func defaultSession() -> Session {
+        .emptyDaySession()
+    }
+
+    static func emptyDaySession() -> Session {
         Session(
             name: "今日のピックルボール",
             courtCount: 2,
             roundDurationMinutes: 12,
-            mode: .normalPractice,
-            participants: [
-                Participant(displayName: "佐藤", skillLevel: .beginner),
-                Participant(displayName: "鈴木", skillLevel: .novice),
-                Participant(displayName: "高橋", skillLevel: .intermediate),
-                Participant(displayName: "田中", skillLevel: .advanced),
-                Participant(displayName: "伊藤", skillLevel: .beginner),
-                Participant(displayName: "渡辺", skillLevel: .novice),
-                Participant(displayName: "山本", skillLevel: .intermediate),
-                Participant(displayName: "中村", skillLevel: .advanced),
-                Participant(displayName: "小林", skillLevel: .beginner),
-                Participant(displayName: "加藤", skillLevel: .novice)
-            ]
+            mode: .normalPractice
         )
     }
 }
