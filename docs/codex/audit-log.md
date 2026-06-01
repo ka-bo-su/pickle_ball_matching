@@ -1114,3 +1114,49 @@ Medium until CI completes. During the first PR creation attempt, shell expansion
 ### Follow-up
 
 Wait for PR #28 CI, merge to `dev` if clean, close Issue #27, update Project Done, and continue with the next MVP SBI.
+
+## 2026-06-01 09:10 JST
+
+### Action
+
+Squash merged PR #28 to `dev`, closed Issue #27, and synchronized Project status to Done.
+
+### Reason
+
+Manual waiter swap and one-step undo passed local validation and GitHub Actions. The increment is small, reversible, and directly supports court-side manual correction.
+
+### Files Changed
+
+- Post-merge Codex/Scrum ledger docs
+
+### Commands Run
+
+- `gh pr checks 28 --watch --interval 10`
+- `gh pr merge 28 --squash --delete-branch ...`
+- `gh pr view 28 --json ...`
+- `gh project item-edit ...` for Issue #27 Done and Validation Passed
+- `gh issue edit 27 ...`
+- `gh issue close 27 ...`
+- `git fetch origin`
+- `git switch dev`
+- `git merge --ff-only origin/dev`
+
+### GitHub Project Updates
+
+Issue #27 set to Status `Done`, Scrum Status `Done`, Validation Status `Passed`, and Evidence Link PR #28.
+
+### Architecture Decision
+
+No new decision. The richer `Snapshot` history and fairness counter recalculation remain explicit follow-up work instead of expanding this SBI.
+
+### Validation
+
+PR #28 GitHub Actions `validate` passed before merge. Local validation also passed before PR creation.
+
+### Risk
+
+Low after merge. `dev` was updated; `main` was not modified.
+
+### Follow-up
+
+Select the next MVP SBI from Project/Sprint Backlog. Good candidates are CSV export, larger progress board, or richer snapshot/undo history.
