@@ -49,12 +49,12 @@
 | Type | Count |
 |---|---:|
 | PBI | 6 |
-| SBI | 9 |
+| SBI | 10 |
 | Task | 0 |
 | Bug | 0 |
 | Chore | 6 |
 | Blocked | 0 |
 | Done | 16 |
 | Ready | 5 |
-| In Progress | 0 |
+| In Progress | 1 |
 | In Review | 0 |

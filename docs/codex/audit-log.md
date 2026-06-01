@@ -1160,3 +1160,95 @@ Low after merge. `dev` was updated; `main` was not modified.
 ### Follow-up
 
 Select the next MVP SBI from Project/Sprint Backlog. Good candidates are CSV export, larger progress board, or richer snapshot/undo history.
+
+## 2026-06-01 09:18 JST
+
+### Action
+
+Created Issue #30 for current-round CSV sharing, added it to GitHub Project, and selected it for implementation.
+
+### Reason
+
+The MVP includes lightweight sharing/export. CSV is the smallest useful export increment because it is local-first, server-free, and testable without App Store or external services.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `gh issue create ...`
+- `gh project item-add ...`
+- `gh project item-edit ...`
+- `gh issue edit 30 ...`
+- `git switch -c codex/sbi-30-csv-export`
+
+### GitHub Project Updates
+
+Issue #30 added as SBI, Priority P2, Role Owner `swift-developer`, Parent PBI #19, Validation Status `Not Run`, then moved to In Progress.
+
+### Architecture Decision
+
+Implement CSV generation through an Application-layer `RoundExporting` protocol and Infrastructure `CSVRoundExporter`, then expose it through Presentation without adding server or CloudKit dependencies.
+
+### Validation
+
+No source validation required for issue creation.
+
+### Risk
+
+Medium. Export formats can spread UI assumptions if not isolated; this is controlled by putting CSV generation behind a core exporter.
+
+### Follow-up
+
+Implement CSV exporter, SwiftUI sharing, tests, validation, PR, and Project evidence sync.
+
+## 2026-06-01 09:22 JST
+
+### Action
+
+Implemented SBI #30: current-round CSV exporter, SwiftUI `ShareLink`, CSV escaping tests, and ViewModel export tests.
+
+### Reason
+
+Organizers need a quick way to share the current round without manually copying court assignments. CSV text sharing is the smallest local-first export increment.
+
+### Files Changed
+
+- `Sources/PickleBallMatchingCore/Application/RoundExporting.swift`
+- `Sources/PickleBallMatchingCore/Infrastructure/CSVRoundExporter.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `Features/OperationBoard/Presentation/OperationBoardView.swift`
+- `App/CompositionRoot/DependencyContainer.swift`
+- `Tests/PickleBallMatchingCoreTests/CSVRoundExporterTests.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+- Scrum/Codex ledger docs
+
+### Commands Run
+
+- `swiftformat --cache ignore .`
+- `swift test`
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+Issue #30 remains In Progress until PR evidence is available.
+
+### Architecture Decision
+
+`RoundExporting` lives in Application and `CSVRoundExporter` lives in Infrastructure. The app Composition Root injects the concrete exporter into the ViewModel. SwiftUI receives already-generated CSV text and does not know export formatting rules.
+
+### Validation
+
+Full validation passed: `swift test`, SwiftLint, SwiftFormat lint, XcodeGen, `xcodebuild build`, and `xcodebuild test` on iPhone 16 Simulator. The Xcode test suite passed 10 core tests and 14 app tests.
+
+### Risk
+
+Medium. `ShareLink` currently shares CSV as text, not as a named `.csv` file. This is acceptable for the first export slice; file-based CSV/PDF/image export can be a follow-up.
+
+### Follow-up
+
+Commit, open PR for Issue #30, update Project evidence to In Review, and merge to `dev` if CI passes.

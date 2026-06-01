@@ -59,3 +59,13 @@
 - Reason: It supports late arrival, break requests, absence, and observing states without adding new persistence or algorithm complexity.
 - Human repair needed: none.
 - Pending updates: PR evidence for Issue #25 after PR creation.
+
+## 2026-06-01 09:18 JST
+
+- Searched candidates: GitHub Project Ready PBIs, Sprint Backlog after PR #28 merge, MVP sharing/export requirements, board display follow-ups.
+- Referenced GitHub Project / Issues / docs: Issues #16, #19, #27, #30, `docs/scrum/sprint-backlog.md`, product vision MVP export requirements.
+- Findings: Issue #27 is merged and Done. The next safe vertical slice is CSV sharing because it is local-first, testable, and does not require App Store/TestFlight, billing, CloudKit, or external services.
+- Next selected work: Issue #30 `現在ラウンドをCSVで共有できるようにする`.
+- Reason: It advances the MVP sharing/export requirement with a small Application/Infrastructure boundary and SwiftUI sharing surface.
+- Human repair needed: none.
+- Pending updates: PR evidence for Issue #30 after PR creation.

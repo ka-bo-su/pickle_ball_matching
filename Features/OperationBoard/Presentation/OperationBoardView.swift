@@ -77,6 +77,18 @@ struct OperationBoardView: View {
             .disabled(!viewModel.canUndo)
             .accessibilityLabel("直前の入れ替えを1手戻す")
 
+            if let csvText = viewModel.currentRoundCSV {
+                ShareLink(
+                    item: csvText,
+                    subject: Text("\(viewModel.session.name) ラウンドCSV"),
+                    message: Text("現在ラウンドの組み合わせCSVです。")
+                ) {
+                    Label("CSV共有", systemImage: "square.and.arrow.up")
+                        .frame(maxWidth: .infinity, alignment: .center)
+                }
+                .accessibilityLabel("現在ラウンドをCSVで共有")
+            }
+
             if let errorMessage = viewModel.errorMessage {
                 Label(errorMessage, systemImage: "exclamationmark.triangle")
                     .foregroundStyle(.red)

@@ -3,7 +3,7 @@
 ## Result
 
 - Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, and manual waiter swap/one-step undo
-- Partially completed: none
+- Partially completed: Issue #30 current-round CSV sharing implemented locally; PR/merge sync pending
 - Blocked: none
 
 ## Time
@@ -45,16 +45,17 @@
 - Issue #23 created in Japanese, added to Project, moved to In Progress/In Review, then Done after PR #24 merge
 - Issue #25 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #26 merge
 - Issue #27 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #28 merge
+- Issue #30 created in Japanese, added to Project, and moved to In Progress
 
 ## Pending GitHub Project Updates
 
-- none
+- Issue #30 PR evidence and In Review/Done transition after PR creation/merge
 
 ## iOS Validation
 
-- Build: passed on `codex/sbi-27-manual-swap-undo` with `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'`
-- Test: passed on `codex/sbi-27-manual-swap-undo` with `swift test` and `xcodebuild test`
-- Lint: passed on `codex/sbi-27-manual-swap-undo` with `swiftlint --no-cache` and `swiftformat --cache ignore --lint .`
+- Build: passed on `codex/sbi-30-csv-export` with `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'`
+- Test: passed on `codex/sbi-30-csv-export` with `swift test` and `xcodebuild test`
+- Lint: passed on `codex/sbi-30-csv-export` with `swiftlint --no-cache` and `swiftformat --cache ignore --lint .`
 - Simulator: iPhone 16 on iOS 18.2 available
 
 ## Files Changed
@@ -149,14 +150,15 @@ A  scripts/codex/validate-ios.sh
 
 - Done: environment completion, Issue #9 ViewModel/accessibility hardening, Issue #21 first operation board slice, Issue #23 JSON save/restore, and Issue #25 participant status changes
 - Done: Issue #27 manual waiter swap and one-step undo
+- In progress: Issue #30 current-round CSV sharing
 - Blocked: none
-- Next: open and merge Issue #25 PR, then continue with manual swap/undo
+- Next: open and merge Issue #30 PR, then continue with larger board mode or richer snapshot history
 
 ## Architecture
 
 - Decisions: SwiftPM testable core plus XcodeGen-generated SwiftUI app; MVP domain starts with local-first day-of operation entities and `GenerateNextRoundUseCase`; JSON file persistence is used for MVP save/restore instead of SwiftData/CloudKit
-- Boundary changes: bootstrap matching model replaced by Participant/Session/Round/Match and OperationBoard Presentation; `SessionRepository` protocol added in Application and JSON implementation added in Infrastructure; participant status mutation stays in Presentation/ViewModel and reuses Domain availability rules; manual swap/undo mutates only the current round in Presentation without leaking Infrastructure into SwiftUI
-- Refactor tasks: add larger board mode, CSV export, and richer undo/snapshot history in follow-up SBIs
+- Boundary changes: bootstrap matching model replaced by Participant/Session/Round/Match and OperationBoard Presentation; `SessionRepository` protocol added in Application and JSON implementation added in Infrastructure; participant status mutation stays in Presentation/ViewModel and reuses Domain availability rules; manual swap/undo mutates only the current round in Presentation without leaking Infrastructure into SwiftUI; CSV export adds an Application protocol and Infrastructure exporter
+- Refactor tasks: add larger board mode, PDF/image export, and richer undo/snapshot history in follow-up SBIs
 - Risks: keep generated `.xcodeproj` ignored and regenerate from `project.yml`
 
 ## Local Environment
@@ -167,10 +169,10 @@ A  scripts/codex/validate-ios.sh
 
 ## Human Review Notes
 
-- Review merged PR #8, #14, #15, #22, #24, and #26
-- Pay attention to next PR for Issue #27: manual swap UI, one-step undo behavior, and whether fairness counters should be recalculated after manual swaps
+- Review merged PR #8, #14, #15, #22, #24, #26, and #28
+- Pay attention to next PR for Issue #30: CSV shape, Japanese names, and whether future file-based export should replace text sharing
 - Possible rollback: revert the relevant PR
 
 ## Next Recommended Codex Goal
 
-- Select and implement the next MVP slice: CSV export or larger progress board.
+- Open and merge Issue #30, then implement larger progress board or richer snapshot/undo history.

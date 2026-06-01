@@ -10,15 +10,18 @@ final class OperationBoardViewModel: ObservableObject {
 
     private let generateNextRoundUseCase: GenerateNextRoundUseCase
     private let sessionRepository: (any SessionRepository)?
+    private let roundExporter: any RoundExporting
     private var undoSession: Session?
 
     init(
         session: Session? = nil,
         generateNextRoundUseCase: GenerateNextRoundUseCase = GenerateNextRoundUseCase(),
-        sessionRepository: (any SessionRepository)? = nil
+        sessionRepository: (any SessionRepository)? = nil,
+        roundExporter: any RoundExporting = CSVRoundExporter()
     ) {
         self.generateNextRoundUseCase = generateNextRoundUseCase
         self.sessionRepository = sessionRepository
+        self.roundExporter = roundExporter
 
         if let session {
             self.session = session
@@ -34,6 +37,14 @@ final class OperationBoardViewModel: ObservableObject {
 
     var currentRound: Round? {
         session.currentRound
+    }
+
+    var currentRoundCSV: String? {
+        guard let currentRound else {
+            return nil
+        }
+
+        return roundExporter.exportCSV(session: session, round: currentRound)
     }
 
     var canGenerateRound: Bool {
