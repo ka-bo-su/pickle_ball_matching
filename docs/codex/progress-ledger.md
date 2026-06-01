@@ -5,10 +5,10 @@
 - Active PBI: Issue #17
 - Active SBI: Issue #40
 - Active Branch: codex/sbi-40-roster-reuse
-- Active PR: n/a
+- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/41
 - GitHub Project Item: PVTI_lAHOBHYYMs4BZUKkzguU-44
-- Status: Implemented locally; validated; preparing PR
-- Next Action: commit, push, open PR, and move Project item to In Review
+- Status: In Review
+- Next Action: watch PR #41 CI, then squash merge to `dev` if it passes
 
 ## Completed
 
@@ -65,12 +65,13 @@
 | 2026-06-01 11:26 JST | SBI #38 merged | Squash merged PR #39 to `dev`; Issue #38 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/39 |
 | 2026-06-01 11:34 JST | Next SBI selected | Created and selected Issue #40 for starting a new session while reusing the saved roster | https://github.com/ka-bo-su/pickle_ball_matching/issues/40 |
 | 2026-06-01 11:40 JST | SBI #40 local implementation | Added roster-carryover new-session action, reset logic, and ViewModel test | `SessionSettingsSection`, `OperationBoardViewModel` |
+| 2026-06-01 11:42 JST | PR opened | Created PR #41 for SBI #40 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/41 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #40 | codex/sbi-40-roster-reuse | n/a | Validated locally | Open PR and update Project evidence |
+| Issue #40 | codex/sbi-40-roster-reuse | PR #41 | In Review | Wait for CI and merge if green |
 
 ## Blocked
 

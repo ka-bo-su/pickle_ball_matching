@@ -32,4 +32,4 @@ GitHub Project `kanban@pickle_ball_matching` is the source of truth. This file m
 | SBI-012 | SBI | セッション名と運営条件を編集できるようにする | P0 | Done | PR #35, Issue #34 |
 | SBI-013 | SBI | 参加者レベルを編集して組み合わせに反映する | P0 | Done | PR #37, Issue #36 |
 | SBI-014 | SBI | 参加者の性別・年齢帯・メモを編集できるようにする | P1 | Done | PR #39, Issue #38 |
-| SBI-015 | SBI | 保存済み名簿から新規セッションを開始できるようにする | P1 | In Progress | Issue #40 |
+| SBI-015 | SBI | 保存済み名簿から新規セッションを開始できるようにする | P1 | In Review | PR #41, Issue #40 |

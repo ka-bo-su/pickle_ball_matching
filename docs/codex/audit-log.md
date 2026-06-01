@@ -2076,3 +2076,49 @@ Medium. This keeps one saved roster path only and does not yet support multiple 
 ### Follow-up
 
 Commit, open PR for Issue #40, update Project evidence to In Review, and merge to `dev` if CI passes.
+
+## 2026-06-01 11:42 JST
+
+### Action
+
+Pushed `codex/sbi-40-roster-reuse`, opened PR #41 for Issue #40, and moved the GitHub Project item to In Review.
+
+### Reason
+
+SBI #40 passed local validation and is ready for CI-backed review and autonomous merge to `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git push -u origin codex/sbi-40-roster-reuse`
+- `gh pr create ...`
+- `gh issue edit 40 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit ...` for Issue #40 In Review, Validation Passed, and Evidence Link
+
+### GitHub Project Updates
+
+Issue #40 set to Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, and Evidence Link PR #41.
+
+### Architecture Decision
+
+No new decision. The PR keeps roster reuse in Presentation/ViewModel and uses existing persistence boundaries.
+
+### Validation
+
+PR #41 will run GitHub Actions. Local validation already passed before PR creation.
+
+### Risk
+
+Medium. The implementation intentionally handles only a single carried-over roster and leaves multi-roster management for later.
+
+### Follow-up
+
+Wait for PR #41 CI, squash merge to `dev` if it passes, then set Issue #40 and Project item Done.
