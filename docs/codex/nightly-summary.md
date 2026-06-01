@@ -3,7 +3,7 @@
 ## Result
 
 - Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31/#33/#35 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30/#32/#34 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, current-round CSV sharing, participant-facing large board display, and editable session settings
-- Partially completed: none
+- Partially completed: Issue #36 participant skill editing implemented locally; PR/merge sync pending
 - Blocked: none
 
 ## Time
@@ -51,16 +51,17 @@
 - Issue #30 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #31 merge
 - Issue #32 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #33 merge
 - Issue #34 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #35 merge
+- Issue #36 created in Japanese, added to Project, and moved to In Progress
 
 ## Pending GitHub Project Updates
 
-- none
+- Issue #36 PR evidence and In Review/Done transition after PR creation/merge
 
 ## iOS Validation
 
-- Build: passed on `codex/sbi-34-session-settings` with `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'`
-- Test: passed on `codex/sbi-34-session-settings` with `swift test` and `xcodebuild test`
-- Lint: passed on `codex/sbi-34-session-settings` with `swiftlint --no-cache` and `swiftformat --cache ignore --lint .`
+- Build: passed on `codex/sbi-36-participant-skill-editing` with `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'`
+- Test: passed on `codex/sbi-36-participant-skill-editing` with `swift test` and `xcodebuild test`
+- Lint: passed on `codex/sbi-36-participant-skill-editing` with `swiftlint --no-cache` and `swiftformat --cache ignore --lint .`
 - Simulator: iPhone 16 on iOS 18.2 available
 
 ## Files Changed
@@ -158,13 +159,14 @@ A  scripts/codex/validate-ios.sh
 - Done: Issue #30 current-round CSV sharing
 - Done: Issue #32 participant-facing large board display
 - Done: Issue #34 session settings editing
+- In progress: Issue #36 participant skill editing
 - Blocked: none
-- Next: continue with richer snapshot history or participant editing details
+- Next: open and merge Issue #36 PR, then continue with richer snapshot history or participant editing details
 
 ## Architecture
 
 - Decisions: SwiftPM testable core plus XcodeGen-generated SwiftUI app; MVP domain starts with local-first day-of operation entities and `GenerateNextRoundUseCase`; JSON file persistence is used for MVP save/restore instead of SwiftData/CloudKit
-- Boundary changes: bootstrap matching model replaced by Participant/Session/Round/Match and OperationBoard Presentation; `SessionRepository` protocol added in Application and JSON implementation added in Infrastructure; participant status mutation stays in Presentation/ViewModel and reuses Domain availability rules; manual swap/undo mutates only the current round in Presentation without leaking Infrastructure into SwiftUI; CSV export adds an Application protocol and Infrastructure exporter; large board display adds Presentation-only display models; session settings edit Domain `Session` values through the existing ViewModel and repository save path
+- Boundary changes: bootstrap matching model replaced by Participant/Session/Round/Match and OperationBoard Presentation; `SessionRepository` protocol added in Application and JSON implementation added in Infrastructure; participant status mutation stays in Presentation/ViewModel and reuses Domain availability rules; manual swap/undo mutates only the current round in Presentation without leaking Infrastructure into SwiftUI; CSV export adds an Application protocol and Infrastructure exporter; large board display adds Presentation-only display models; session settings edit Domain `Session` values through the existing ViewModel and repository save path; participant skill editing updates Domain `Participant` values through the existing ViewModel save path
 - Refactor tasks: add PDF/image export, richer undo/snapshot history, and session creation UI in follow-up SBIs
 - Risks: keep generated `.xcodeproj` ignored and regenerate from `project.yml`
 
@@ -182,4 +184,4 @@ A  scripts/codex/validate-ios.sh
 
 ## Next Recommended Codex Goal
 
-- Implement richer snapshot/undo history or participant editing details.
+- Open and merge Issue #36, then implement richer snapshot/undo history or participant editing details.

@@ -142,6 +142,17 @@ final class OperationBoardViewModel: ObservableObject {
         saveSession()
     }
 
+    func updateParticipantSkillLevel(participantID: Participant.ID, skillLevel: SkillLevel) {
+        guard let index = session.participants.firstIndex(where: { $0.id == participantID }) else {
+            return
+        }
+
+        session.participants[index].skillLevel = skillLevel
+        session.updatedAt = Date()
+        errorMessage = nil
+        saveSession()
+    }
+
     func generateNextRound() {
         do {
             session = try generateNextRoundUseCase.execute(session: session)

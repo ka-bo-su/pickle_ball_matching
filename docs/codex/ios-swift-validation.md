@@ -37,7 +37,7 @@ xcodebuild test -scheme PickleBallMatching -destination 'platform=iOS Simulator,
 
 ## Latest Validation
 
-Last checked: 2026-06-01 10:35 JST
+Last checked: 2026-06-01 10:54 JST
 
 | Command | Result | Notes |
 |---|---|---|
@@ -48,9 +48,9 @@ Last checked: 2026-06-01 10:35 JST
 | `xcodegen generate` | passed | generated `PickleBallMatching.xcodeproj` locally; ignored by git |
 | `xcodebuild -list -project PickleBallMatching.xcodeproj` | passed | schemes: `PickleBallMatching`, `PickleBallMatchingCore` |
 | `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'` | passed | initial generated Info.plist issue fixed in `project.yml` |
-| `xcodebuild test -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'` | passed | 10 core tests plus 21 app tests passed |
+| `xcodebuild test -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'` | passed | 10 core tests plus 22 app tests passed |
 
-Full validation script result: `scripts/codex/validate-ios.sh` passed on `codex/sbi-34-session-settings`.
+Full validation script result: `scripts/codex/validate-ios.sh` passed on `codex/sbi-36-participant-skill-editing`.
 
 `scripts/codex/validate-ios.sh` uses `iPhone 16` when available and falls back to the first available iPhone Simulator on CI runners. If no iPhone Simulator exists, validation fails instead of silently skipping the Xcode build/test path.
 

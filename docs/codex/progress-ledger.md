@@ -2,13 +2,13 @@
 
 ## Current
 
-- Active PBI: selecting next
-- Active SBI: selecting next
-- Active Branch: dev
+- Active PBI: Issue #16
+- Active SBI: Issue #36
+- Active Branch: codex/sbi-36-participant-skill-editing
 - Active PR: n/a
-- GitHub Project Item: n/a
-- Status: Ready for next SBI selection
-- Next Action: select the next highest-value MVP SBI from Sprint Backlog and GitHub Project
+- GitHub Project Item: Issue #36
+- Status: In Progress
+- Next Action: commit Issue #36, open PR, update Project evidence, and merge to `dev`
 
 ## Completed
 
@@ -55,12 +55,14 @@
 | 2026-06-01 10:35 JST | SBI #34 local implementation | Added session settings editing, blank new-session start, split presentation views, and ViewModel tests | `SessionSettingsSection`, `OperationBoardViewModel` |
 | 2026-06-01 10:38 JST | PR opened | Created PR #35 for SBI #34 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/35 |
 | 2026-06-01 10:47 JST | SBI #34 merged | Squash merged PR #35 to `dev`; Issue #34 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/35 |
+| 2026-06-01 10:50 JST | Next SBI selected | Created and selected Issue #36 for participant skill level editing | https://github.com/ka-bo-su/pickle_ball_matching/issues/36 |
+| 2026-06-01 10:54 JST | SBI #36 local implementation | Added participant skill level menu, autosave ViewModel method, and tests | `OperationBoardView`, `OperationBoardViewModel` |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| none | n/a | n/a | n/a | n/a |
+| Issue #36 | codex/sbi-36-participant-skill-editing | pending | In Progress | PR and Project evidence update |
 
 ## Blocked
 
@@ -109,3 +111,4 @@
 | 2026-06-01 10:18 JST | GitHub Actions `validate` | pass | PR #33 passed before squash merge |
 | 2026-06-01 10:35 JST | `scripts/codex/validate-ios.sh` | pass | SBI #34 full validation with 10 core tests and 21 app tests, 0 lint violations |
 | 2026-06-01 10:46 JST | GitHub Actions `validate` | pass | PR #35 passed before squash merge |
+| 2026-06-01 10:54 JST | `scripts/codex/validate-ios.sh` | pass | SBI #36 full validation with 10 core tests and 22 app tests, 0 lint violations |
