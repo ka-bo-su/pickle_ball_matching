@@ -2,13 +2,13 @@
 
 ## Current
 
-- Active PBI: Issue #16
-- Active SBI: Issue #38
-- Active Branch: codex/sbi-38-participant-details
-- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/39
-- GitHub Project Item: PVTI_lAHOBHYYMs4BZUKkzguU4lY
-- Status: In Review
-- Next Action: watch PR #39 CI, then squash merge to `dev` if it passes
+- Active PBI: selecting next
+- Active SBI: selecting next
+- Active Branch: dev
+- Active PR: n/a
+- GitHub Project Item: n/a
+- Status: Ready for next SBI selection
+- Next Action: select the next highest-value MVP SBI from Sprint Backlog and GitHub Project
 
 ## Completed
 
@@ -62,12 +62,13 @@
 | 2026-06-01 11:07 JST | Next SBI selected | Created and selected Issue #38 for participant gender, age group, and memo editing | https://github.com/ka-bo-su/pickle_ball_matching/issues/38 |
 | 2026-06-01 11:15 JST | SBI #38 local implementation | Added participant detail editor, participant list split, ViewModel update method, and autosave tests | `ParticipantDetailEditorView`, `ParticipantListSection`, `OperationBoardViewModel` |
 | 2026-06-01 11:17 JST | PR opened | Created PR #39 for SBI #38 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/39 |
+| 2026-06-01 11:26 JST | SBI #38 merged | Squash merged PR #39 to `dev`; Issue #38 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/39 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #38 | codex/sbi-38-participant-details | PR #39 | In Review | Wait for CI and merge if green |
+| none | n/a | n/a | n/a | n/a |
 
 ## Blocked
 
@@ -119,3 +120,4 @@
 | 2026-06-01 10:54 JST | `scripts/codex/validate-ios.sh` | pass | SBI #36 full validation with 10 core tests and 22 app tests, 0 lint violations |
 | 2026-06-01 11:03 JST | GitHub Actions `validate` | pass | PR #37 passed before squash merge |
 | 2026-06-01 11:15 JST | `scripts/codex/validate-ios.sh` | pass | SBI #38 full validation with 10 core tests and 24 app tests, 0 lint violations |
+| 2026-06-01 11:25 JST | GitHub Actions `validate` | pass | PR #39 passed before squash merge |
