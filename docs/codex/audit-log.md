@@ -1663,3 +1663,51 @@ Medium. The UI now has a destructive new-session action, mitigated by confirmati
 ### Follow-up
 
 Wait for PR #35 CI, squash merge to `dev` if it passes, then set Issue #34 and Project item Done.
+
+## 2026-06-01 10:47 JST
+
+### Action
+
+Squash merged PR #35 to `dev`, closed Issue #34, and set the GitHub Project item to Done.
+
+### Reason
+
+PR #35 passed GitHub Actions `validate`, met the SBI acceptance criteria, and preserved the Presentation/ViewModel architecture boundary.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/OperationBoardView.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `Features/OperationBoard/Presentation/LargeBoardView.swift`
+- `Features/OperationBoard/Presentation/SessionSettingsSection.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+- Scrum/Codex ledger docs
+
+### Commands Run
+
+- `gh pr checks 35 --watch --interval 10`
+- `gh pr merge 35 --squash --delete-branch ...`
+- `git fetch origin`
+- `git switch dev`
+- `git merge --ff-only origin/dev`
+- `gh project item-edit ...` for Issue #34 Done and Validation Passed
+
+### GitHub Project Updates
+
+Issue #34 set to Status `Done`, Scrum Status `Done`, Validation Status `Passed`, and Evidence Link PR #35.
+
+### Architecture Decision
+
+No new decision. The merged increment keeps session settings in Presentation/ViewModel and does not introduce direct Infrastructure usage from SwiftUI.
+
+### Validation
+
+GitHub Actions `validate` passed before merge. Local `scripts/codex/validate-ios.sh` also passed before PR creation.
+
+### Risk
+
+Low after merge. Remaining UX risk is whether a blank first session needs more onboarding, tracked as a future product refinement concern.
+
+### Follow-up
+
+Select the next MVP SBI from Project/Sprint Backlog. Good candidates are richer snapshot/undo history or participant editing details.

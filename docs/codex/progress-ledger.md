@@ -2,13 +2,13 @@
 
 ## Current
 
-- Active PBI: Issue #16
-- Active SBI: Issue #34
-- Active Branch: codex/sbi-34-session-settings
-- Active PR: PR #35
-- GitHub Project Item: Issue #34
-- Status: In Review
-- Next Action: wait for PR #35 CI, then squash merge to `dev` if validation passes
+- Active PBI: selecting next
+- Active SBI: selecting next
+- Active Branch: dev
+- Active PR: n/a
+- GitHub Project Item: n/a
+- Status: Ready for next SBI selection
+- Next Action: select the next highest-value MVP SBI from Sprint Backlog and GitHub Project
 
 ## Completed
 
@@ -54,12 +54,13 @@
 | 2026-06-01 10:24 JST | Next SBI selected | Created and selected Issue #34 for editable session settings | https://github.com/ka-bo-su/pickle_ball_matching/issues/34 |
 | 2026-06-01 10:35 JST | SBI #34 local implementation | Added session settings editing, blank new-session start, split presentation views, and ViewModel tests | `SessionSettingsSection`, `OperationBoardViewModel` |
 | 2026-06-01 10:38 JST | PR opened | Created PR #35 for SBI #34 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/35 |
+| 2026-06-01 10:47 JST | SBI #34 merged | Squash merged PR #35 to `dev`; Issue #34 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/35 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #34 | codex/sbi-34-session-settings | PR #35 | In Review | Wait for CI, then merge to `dev` |
+| none | n/a | n/a | n/a | n/a |
 
 ## Blocked
 
@@ -107,3 +108,4 @@
 | 2026-06-01 10:05 JST | `scripts/codex/validate-ios.sh` | pass | SBI #32 full validation with 10 core tests and 17 app tests, 0 failures |
 | 2026-06-01 10:18 JST | GitHub Actions `validate` | pass | PR #33 passed before squash merge |
 | 2026-06-01 10:35 JST | `scripts/codex/validate-ios.sh` | pass | SBI #34 full validation with 10 core tests and 21 app tests, 0 lint violations |
+| 2026-06-01 10:46 JST | GitHub Actions `validate` | pass | PR #35 passed before squash merge |

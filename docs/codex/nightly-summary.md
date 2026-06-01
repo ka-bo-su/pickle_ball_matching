@@ -2,8 +2,8 @@
 
 ## Result
 
-- Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31/#33 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30/#32 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, current-round CSV sharing, and participant-facing large board display
-- Partially completed: Issue #34 session settings editing is in review; PR #35 CI/merge sync pending
+- Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31/#33/#35 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30/#32/#34 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, current-round CSV sharing, participant-facing large board display, and editable session settings
+- Partially completed: none
 - Blocked: none
 
 ## Time
@@ -15,8 +15,8 @@
 ## PRs
 
 - Opened: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24, https://github.com/ka-bo-su/pickle_ball_matching/pull/26, https://github.com/ka-bo-su/pickle_ball_matching/pull/28, https://github.com/ka-bo-su/pickle_ball_matching/pull/31, https://github.com/ka-bo-su/pickle_ball_matching/pull/33, https://github.com/ka-bo-su/pickle_ball_matching/pull/35
-- Merged: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24, https://github.com/ka-bo-su/pickle_ball_matching/pull/26, https://github.com/ka-bo-su/pickle_ball_matching/pull/28, https://github.com/ka-bo-su/pickle_ball_matching/pull/31, https://github.com/ka-bo-su/pickle_ball_matching/pull/33
-- Closed: Issues #1-#7, #9-#13, #21, #23, #25, #27, #30, #32
+- Merged: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24, https://github.com/ka-bo-su/pickle_ball_matching/pull/26, https://github.com/ka-bo-su/pickle_ball_matching/pull/28, https://github.com/ka-bo-su/pickle_ball_matching/pull/31, https://github.com/ka-bo-su/pickle_ball_matching/pull/33, https://github.com/ka-bo-su/pickle_ball_matching/pull/35
+- Closed: Issues #1-#7, #9-#13, #21, #23, #25, #27, #30, #32, #34
 
 ## Commits
 
@@ -50,11 +50,11 @@
 - Issue #27 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #28 merge
 - Issue #30 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #31 merge
 - Issue #32 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #33 merge
-- Issue #34 created in Japanese, added to Project, moved to In Progress, then moved to In Review with PR #35 evidence
+- Issue #34 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #35 merge
 
 ## Pending GitHub Project Updates
 
-- Issue #34 Done transition after PR #35 merge
+- none
 
 ## iOS Validation
 
@@ -157,9 +157,9 @@ A  scripts/codex/validate-ios.sh
 - Done: Issue #27 manual waiter swap and one-step undo
 - Done: Issue #30 current-round CSV sharing
 - Done: Issue #32 participant-facing large board display
-- In review: Issue #34 session settings editing
+- Done: Issue #34 session settings editing
 - Blocked: none
-- Next: merge PR #35 after CI passes, then continue with richer snapshot history or participant editing details
+- Next: continue with richer snapshot history or participant editing details
 
 ## Architecture
 
@@ -176,10 +176,10 @@ A  scripts/codex/validate-ios.sh
 
 ## Human Review Notes
 
-- Review merged PR #8, #14, #15, #22, #24, #26, #28, #31, and #33
+- Review merged PR #8, #14, #15, #22, #24, #26, #28, #31, #33, and #35
 - Pay attention to PR #33 for participant readability, iPad layout, long names, and accessibility labels
 - Possible rollback: revert the relevant PR
 
 ## Next Recommended Codex Goal
 
-- Merge PR #35 after CI passes, then implement richer snapshot/undo history or participant editing details.
+- Implement richer snapshot/undo history or participant editing details.
