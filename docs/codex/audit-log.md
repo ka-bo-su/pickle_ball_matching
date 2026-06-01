@@ -2171,3 +2171,134 @@ Low after merge. Remaining product scope risk is lack of multiple saved rosters,
 ### Follow-up
 
 Select the next MVP SBI from Project/Sprint Backlog. Good candidates are richer snapshot/undo history or PDF/image export.
+
+## 2026-06-01 12:02 JST
+
+### Action
+
+Created and implemented Issue #42 for swapping any participant within the current round.
+
+### Reason
+
+The MVP promises that organizers can manually correct generated pairings. The app already supported swapping a playing participant with a waiter; this increment removes the next obvious limitation by allowing swaps with other playing participants too.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/OperationBoardView.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardManualSwapTests.swift`
+- Scrum/Codex ledger docs
+
+### Commands Run
+
+- `gh issue create ...`
+- `gh project item-add 3 --owner ka-bo-su --url https://github.com/ka-bo-su/pickle_ball_matching/issues/42`
+- `gh project item-edit ...` for Issue #42 In Progress metadata
+- `swiftformat --cache ignore .`
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+Issue #42 was added to Project `kanban@pickle_ball_matching` and set to In Progress with Role Owner `swift-developer`, Backlog Level `SBI`, Priority `P1`, Parent PBI `#16 当日運営特化ダブルス組み合わせMVP`, and Validation Status `Not Run`.
+
+### Architecture Decision
+
+No new infrastructure or persistence boundary was added. Manual swapping remains in Presentation/ViewModel, and the existing `SessionRepository` autosave boundary is reused.
+
+### Validation
+
+Full validation passed: `swift test`, SwiftLint, SwiftFormat lint, XcodeGen, `xcodebuild build`, and `xcodebuild test` on iPhone 16 Simulator. The Xcode test suite passed 10 core tests and 27 app tests with 0 lint violations.
+
+### Risk
+
+Medium. The menu now lists all current-round participants, so future UX may need a dedicated manual-edit screen for dense events.
+
+### Follow-up
+
+Commit, open PR for Issue #42, update Project evidence to In Review, and merge to `dev` if CI passes.
+
+## 2026-06-01 12:04 JST
+
+### Action
+
+Pushed `codex/sbi-42-round-player-swap`, opened PR #43 for Issue #42, and moved the GitHub Project item to In Review.
+
+### Reason
+
+SBI #42 passed local validation and is ready for CI-backed review and autonomous merge to `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git push -u origin codex/sbi-42-round-player-swap`
+- `gh pr create ...`
+- `gh issue edit 42 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit ...` for Issue #42 In Review, Validation Passed, and Evidence Link
+
+### GitHub Project Updates
+
+Issue #42 set to Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, and Evidence Link PR #43.
+
+### Architecture Decision
+
+No new decision. The PR keeps manual swap behavior in Presentation/ViewModel and uses existing persistence boundaries.
+
+### Validation
+
+PR #43 will run GitHub Actions. Local validation already passed before PR creation.
+
+### Risk
+
+Medium. The current menu-based UI is still acceptable for MVP but may need a dedicated editor once court/player counts grow.
+
+### Follow-up
+
+Wait for PR #43 CI, squash merge to `dev` if it passes, then set Issue #42 and Project item Done.
+
+## 2026-06-01 12:10 JST
+
+### Action
+
+Added a GitHub REST push fallback runbook and script.
+
+### Reason
+
+The autonomous loop needs a documented fallback when normal `git push` fails due to Git transport, credential, or branch ref update issues. The fallback must remain narrow and auditable.
+
+### Files Changed
+
+- `scripts/codex/push-via-github-api.sh`
+- `docs/codex/continuous-runbook.md`
+- `docs/codex/github-projects-policy.md`
+
+### Commands Run
+
+- `chmod +x scripts/codex/push-via-github-api.sh`
+
+### GitHub Project Updates
+
+No Project item change required. This is operational tooling for the active autonomous loop.
+
+### Architecture Decision
+
+REST fallback is limited to fast-forward GitHub ref updates for `codex/*` branches. `main`, force updates, production/App Store/secret paths, and Codex usage-limit/policy-rejection workarounds remain prohibited.
+
+### Validation
+
+Pending local script dry-run and shell syntax check.
+
+### Risk
+
+Medium. Direct ref updates can bypass normal Git transport, so the script verifies branch naming, target SHA, and `force=false`.
+
+### Follow-up
+
+Run dry-run validation, commit the fallback tooling, and push with normal `git push` first. Use REST fallback only if the normal push path fails for allowed reasons.

@@ -48,3 +48,15 @@ parallel:safe parallel:blocked
 - Open PR: set In Review and record validation/risk.
 - Merge/close PR: set Done, close issue, link evidence.
 - Blocker: set Blocked for only the affected item and select next safe item.
+
+## REST Push Fallback
+
+Normal `git push` remains the default. If Git transport or credential handling prevents pushing a `codex/*` branch, Codex may update that branch ref through GitHub API with:
+
+```bash
+scripts/codex/push-via-github-api.sh
+```
+
+This fallback is limited to fast-forward updates of `codex/*` branches. It refuses `main`, refuses non-`codex/*` branches, verifies the target SHA against local branch HEAD, and sends `force=false` to GitHub.
+
+Never use REST push fallback for production deployment, App Store/TestFlight, secret handling, `main` updates, force pushes, or Codex usage-limit/policy-rejection workarounds.
