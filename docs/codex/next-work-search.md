@@ -89,3 +89,13 @@
 - Reason: It directly supports the north star that an organizer can start today's operation quickly with their own session name, court count, round time, and mode.
 - Human repair needed: none.
 - Pending updates: PR evidence for Issue #34 after PR creation.
+
+## 2026-06-01 10:50 JST
+
+- Searched candidates: GitHub Project open Ready PBIs, Sprint Backlog after PR #35 merge, current participant management gaps, MVP level balancing requirements.
+- Referenced GitHub Project / Issues / docs: Issues #16, #34, #36, `docs/scrum/sprint-backlog.md`, product vision participant management requirements.
+- Findings: The app can add participant names and edit status, but cannot manually set participant level even though round generation already uses `SkillLevel`.
+- Next selected work: Issue #36 `参加者レベルを編集して組み合わせに反映する`.
+- Reason: It makes the existing level balancing algorithm usable in real beginner/experience-mixed sessions with a small Presentation/ViewModel slice.
+- Human repair needed: none.
+- Pending updates: PR evidence for Issue #36 after PR creation.

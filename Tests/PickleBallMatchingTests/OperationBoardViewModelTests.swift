@@ -148,6 +148,23 @@ final class OperationBoardViewModelTests: XCTestCase {
         XCTAssertEqual(repository.savedSessions.last?.participants.first?.status, .wantsBreak)
     }
 
+    func testUpdateParticipantSkillLevelChangesLevelAndAutosaves() throws {
+        let repository = SpySessionRepository()
+        let participantID = try XCTUnwrap(UUID(uuidString: "00000000-0000-0000-0000-000000000001"))
+        let session = Session(
+            name: "テスト",
+            participants: [
+                Participant(id: participantID, displayName: "山田", skillLevel: .beginner)
+            ]
+        )
+        let viewModel = OperationBoardViewModel(session: session, sessionRepository: repository)
+
+        viewModel.updateParticipantSkillLevel(participantID: participantID, skillLevel: .advanced)
+
+        XCTAssertEqual(viewModel.session.participants.first?.skillLevel, .advanced)
+        XCTAssertEqual(repository.savedSessions.last?.participants.first?.skillLevel, .advanced)
+    }
+
     func testGenerateNextRoundExcludesUnavailableStatuses() {
         var participants = makeParticipants(count: 6)
         participants[0].status = .wantsBreak

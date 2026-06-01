@@ -135,12 +135,36 @@ struct OperationBoardView: View {
                 "\(participant.displayName)、\(participant.skillLevel.displayName)、\(participant.status.displayName)"
             )
             Spacer()
+            skillLevelMenu(for: participant)
             statusMenu(for: participant)
             Text("待機 \(participant.waitingCount)")
                 .font(.caption.monospacedDigit())
                 .foregroundStyle(.secondary)
                 .accessibilityLabel("待機回数 \(participant.waitingCount)回")
         }
+    }
+
+    private func skillLevelMenu(for participant: Participant) -> some View {
+        Menu {
+            ForEach(SkillLevel.allCases, id: \.self) { skillLevel in
+                Button {
+                    viewModel.updateParticipantSkillLevel(
+                        participantID: participant.id,
+                        skillLevel: skillLevel
+                    )
+                } label: {
+                    Label(
+                        skillLevel.displayName,
+                        systemImage: skillLevel == participant.skillLevel ? "checkmark" : "circle"
+                    )
+                }
+            }
+        } label: {
+            Label(participant.skillLevel.displayName, systemImage: "chart.bar")
+                .labelStyle(.titleAndIcon)
+                .font(.caption)
+        }
+        .accessibilityLabel("\(participant.displayName)のレベル \(participant.skillLevel.displayName)。変更")
     }
 
     private func statusMenu(for participant: Participant) -> some View {

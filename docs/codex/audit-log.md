@@ -1711,3 +1711,134 @@ Low after merge. Remaining UX risk is whether a blank first session needs more o
 ### Follow-up
 
 Select the next MVP SBI from Project/Sprint Backlog. Good candidates are richer snapshot/undo history or participant editing details.
+
+## 2026-06-01 10:50 JST
+
+### Action
+
+Created Issue #36 for participant skill level editing, added it to GitHub Project, and selected it for implementation.
+
+### Reason
+
+The MVP requires level-aware matching, but organizers could not manually set levels from the current participant list.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- GitHub connector create issue
+- `gh project item-add ...`
+- `gh project item-edit ...`
+- `git switch -c codex/sbi-36-participant-skill-editing`
+
+### GitHub Project Updates
+
+Issue #36 added as SBI, Priority P0, Role Owner `swift-developer`, Parent PBI #16, Validation Status `Not Run`, and moved to In Progress.
+
+### Architecture Decision
+
+Keep the slice in Presentation/ViewModel. Participant level edits mutate Domain `Participant` values and use the existing `SessionRepository` save path.
+
+### Validation
+
+No source validation required for issue creation.
+
+### Risk
+
+Medium. The UI needs to stay compact while adding another per-participant control.
+
+### Follow-up
+
+Implement participant skill level menu, ViewModel autosave method, tests, validation, PR, and Project evidence sync.
+
+## 2026-06-01 10:54 JST
+
+### Action
+
+Implemented SBI #36: participant skill level menu, ViewModel skill update/autosave method, and test coverage.
+
+### Reason
+
+Level balancing only becomes useful when the organizer can adjust participant levels at the venue.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/OperationBoardView.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+- Scrum/Codex ledger docs
+
+### Commands Run
+
+- `swiftformat --cache ignore .`
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+Issue #36 remains In Progress until PR evidence is available.
+
+### Architecture Decision
+
+No new protocol or infrastructure change. SwiftUI calls ViewModel, ViewModel mutates Domain values and autosaves via the existing repository boundary.
+
+### Validation
+
+Full validation passed: `swift test`, SwiftLint, SwiftFormat lint, XcodeGen, `xcodebuild build`, and `xcodebuild test` on iPhone 16 Simulator. The Xcode test suite passed 10 core tests and 22 app tests with 0 lint violations.
+
+### Risk
+
+Low to medium. Extra participant-row control may need later UI tuning, but it is compact and accessibility-labeled.
+
+### Follow-up
+
+Commit, open PR for Issue #36, update Project evidence to In Review, and merge to `dev` if CI passes.
+
+## 2026-06-01 10:56 JST
+
+### Action
+
+Pushed `codex/sbi-36-participant-skill-editing`, opened PR #37 for Issue #36, and moved the GitHub Project item to In Review.
+
+### Reason
+
+SBI #36 passed local validation and is ready for CI-backed review and autonomous merge to `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git push -u origin codex/sbi-36-participant-skill-editing`
+- GitHub connector create PR
+- `gh project item-edit ...` for Issue #36 In Review, Validation Passed, and Evidence Link
+
+### GitHub Project Updates
+
+Issue #36 set to Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, and Evidence Link PR #37.
+
+### Architecture Decision
+
+No new decision. The PR keeps participant skill edits in Presentation/ViewModel and uses existing Domain values.
+
+### Validation
+
+PR #37 will run GitHub Actions. Local validation already passed before PR creation.
+
+### Risk
+
+Medium. Participant row has multiple menus; later participant detail editing can reduce row density.
+
+### Follow-up
+
+Wait for PR #37 CI, squash merge to `dev` if it passes, then set Issue #36 and Project item Done.
