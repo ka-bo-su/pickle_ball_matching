@@ -21,6 +21,7 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 | SBI-007 | ローカルJSON保存・復元 | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #24, Issue #23 |
 | SBI-008 | 参加者状態を変更して次ラウンドに反映する | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #26, Issue #25 |
 | SBI-009 | 待機者との手動入れ替えと1手戻す | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #28, Issue #27 |
+| SBI-010 | 現在ラウンドをCSVで共有できるようにする | In Review | swift-developer | `scripts/codex/validate-ios.sh` passed locally; GitHub Actions running | PR #31, Issue #30 |
 
 ## Plan
 
@@ -38,9 +39,10 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 12. Issue #23 merged in PR #24 and Project item set Done.
 13. Issue #25 merged in PR #26 and Project item set Done.
 14. Issue #27 merged in PR #28 and Project item set Done.
+15. Issue #30 selected, implemented locally, and opened as PR #31.
 
 ## Next Ready Work
 
 | ID | Type | Status | Owner Role | Validation | Evidence |
 |---|---|---|---|---|---|
-| SBI-010 | 共有CSV出力 | Backlog | swift-developer | exporter tests, `xcodebuild test` | pending Issue |
+| SBI-011 | 大画面ボード表示 | Backlog | swift-developer | ViewModel/UI tests, `xcodebuild test` | pending Issue |

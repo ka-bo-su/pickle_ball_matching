@@ -153,6 +153,24 @@ final class OperationBoardViewModelTests: XCTestCase {
         XCTAssertFalse(viewModel.canUndo)
     }
 
+    func testCurrentRoundCSVExportsCurrentRound() {
+        let session = Session(name: "テスト", courtCount: 1, participants: makeParticipants(count: 5))
+        let viewModel = OperationBoardViewModel(session: session)
+        viewModel.generateNextRound()
+
+        let csv = viewModel.currentRoundCSV
+
+        XCTAssertNotNil(csv)
+        XCTAssertTrue(csv?.contains("セッション,テスト") == true)
+        XCTAssertTrue(csv?.contains("ラウンド,1") == true)
+    }
+
+    func testCurrentRoundCSVIsNilBeforeRoundGeneration() {
+        let viewModel = OperationBoardViewModel(session: Session(name: "テスト"))
+
+        XCTAssertNil(viewModel.currentRoundCSV)
+    }
+
     private func makeParticipants(count: Int) -> [Participant] {
         (1 ... count).map { index in
             Participant(
