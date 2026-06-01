@@ -2,13 +2,13 @@
 
 ## Current
 
-- Active PBI: Issue #17
-- Active SBI: Issue #50
-- Active Branch: codex/sbi-50-session-history
-- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/51
-- GitHub Project Item: PVTI_lAHOBHYYMs4BZUKkzguXOGc
-- Status: In Review
-- Next Action: watch PR #51 CI, then squash merge to `dev` if it passes
+- Active PBI: selecting next MVP PBI
+- Active SBI: selecting next safe SBI
+- Active Branch: dev
+- Active PR: none
+- GitHub Project Item: none
+- Status: Ready for next work selection
+- Next Action: search Project/Sprint Backlog and create the next Japanese SBI for the highest-value MVP gap
 
 ## Completed
 
@@ -86,12 +86,13 @@
 | 2026-06-01 19:10 JST | Next SBI selected | Created and selected Issue #50 for reopening saved sessions from history | https://github.com/ka-bo-su/pickle_ball_matching/issues/50 |
 | 2026-06-01 19:19 JST | SBI #50 local implementation | Added JSON session history, ViewModel reopen flow, settings menu, and repository/ViewModel tests | `JSONSessionRepository`, `SessionSettingsSection`, `OperationBoardViewModel` |
 | 2026-06-01 19:20 JST | PR opened | Created PR #51 for SBI #50 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/51 |
+| 2026-06-01 19:32 JST | SBI #50 merged | Squash merged PR #51 to `dev`; Issue #50 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/51 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #50 | codex/sbi-50-session-history | PR #51 | In Review | Wait for CI and merge if green |
+| none | n/a | n/a | n/a | select next safe SBI |
 
 ## Blocked
 
@@ -159,3 +160,4 @@
 | 2026-06-01 19:02 JST | GitHub Actions `validate` | pass | PR #49 passed before squash merge |
 | 2026-06-01 19:14 JST | `swift test` | pass | SBI #50 core tests, 15 tests |
 | 2026-06-01 19:19 JST | `scripts/codex/validate-ios.sh` | pass | SBI #50 full validation with 15 core tests and 35 app tests, 0 lint violations |
+| 2026-06-01 19:29 JST | GitHub Actions `validate` | pass | PR #51 passed before squash merge |

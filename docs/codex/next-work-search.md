@@ -199,3 +199,13 @@
 - Reason: It makes recurring club operation more practical and reduces setup time without introducing external services.
 - Human repair needed: none.
 - Pending updates: PR evidence for Issue #50 after PR creation.
+
+## 2026-06-01 19:32 JST
+
+- Searched candidates: GitHub Project open PBIs, Sprint Backlog after PR #51 merge, remaining session history and board usability gaps.
+- Referenced GitHub Project / Issues / docs: Issues #17, #18, #50, PR #51, `docs/scrum/sprint-backlog.md`, product vision session history and board display requirements.
+- Findings: Session history/reopen is Done. The next safe candidates are history deletion/search, improved board readability, or score/result capture. Deletion is useful but can be destructive, so board usability is safer next.
+- Next selected work: candidate SBI `進行ボードの現在/次アクションをさらに見やすくする`.
+- Reason: The north star depends on participants and organizers quickly understanding the board; this avoids destructive history actions and keeps focus on the current MVP experience.
+- Human repair needed: none.
+- Pending updates: create Japanese GitHub Issue, add it to Project, then implement in a small `codex/*` branch.
