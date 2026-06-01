@@ -30,49 +30,85 @@ struct OperationBoardView: View {
 
     private var actionSection: some View {
         Section {
-            Button {
-                viewModel.generateNextRound()
-            } label: {
-                Label("次ラウンド生成", systemImage: "shuffle")
+            generateRoundButton
+            undoButton
+            largeBoardLink
+            csvShareButton
+            pdfShareButton
+            errorMessageView
+        }
+    }
+
+    private var generateRoundButton: some View {
+        Button {
+            viewModel.generateNextRound()
+        } label: {
+            Label("次ラウンド生成", systemImage: "shuffle")
+                .frame(maxWidth: .infinity, alignment: .center)
+        }
+        .disabled(!viewModel.canGenerateRound)
+        .accessibilityLabel("次ラウンドを生成")
+    }
+
+    private var undoButton: some View {
+        Button {
+            viewModel.undoLastChange()
+        } label: {
+            Label(viewModel.undoButtonTitle, systemImage: "arrow.uturn.backward")
+                .frame(maxWidth: .infinity, alignment: .center)
+        }
+        .disabled(!viewModel.canUndo)
+        .accessibilityLabel(viewModel.undoButtonAccessibilityLabel)
+    }
+
+    private var largeBoardLink: some View {
+        NavigationLink {
+            LargeBoardView(viewModel: viewModel)
+        } label: {
+            Label("大画面表示", systemImage: "display")
+                .frame(maxWidth: .infinity, alignment: .center)
+        }
+        .accessibilityLabel("参加者向け大画面ボードを表示")
+    }
+
+    @ViewBuilder
+    private var csvShareButton: some View {
+        if let csvText = viewModel.currentRoundCSV {
+            ShareLink(
+                item: csvText,
+                subject: Text("\(viewModel.session.name) ラウンドCSV"),
+                message: Text("現在ラウンドの組み合わせCSVです。")
+            ) {
+                Label("CSV共有", systemImage: "square.and.arrow.up")
                     .frame(maxWidth: .infinity, alignment: .center)
             }
-            .disabled(!viewModel.canGenerateRound)
-            .accessibilityLabel("次ラウンドを生成")
+            .accessibilityLabel("現在ラウンドをCSVで共有")
+        }
+    }
 
-            Button {
-                viewModel.undoLastChange()
-            } label: {
-                Label(viewModel.undoButtonTitle, systemImage: "arrow.uturn.backward")
+    @ViewBuilder
+    private var pdfShareButton: some View {
+        if let pdfDocument = viewModel.currentRoundPDFDocument {
+            ShareLink(
+                item: pdfDocument,
+                preview: SharePreview(
+                    pdfDocument.fileName,
+                    image: Image(systemName: "doc.richtext")
+                )
+            ) {
+                Label("PDF共有", systemImage: "doc.richtext")
                     .frame(maxWidth: .infinity, alignment: .center)
             }
-            .disabled(!viewModel.canUndo)
-            .accessibilityLabel(viewModel.undoButtonAccessibilityLabel)
+            .accessibilityLabel("現在ラウンドをPDFで共有")
+        }
+    }
 
-            NavigationLink {
-                LargeBoardView(viewModel: viewModel)
-            } label: {
-                Label("大画面表示", systemImage: "display")
-                    .frame(maxWidth: .infinity, alignment: .center)
-            }
-            .accessibilityLabel("参加者向け大画面ボードを表示")
-
-            if let csvText = viewModel.currentRoundCSV {
-                ShareLink(
-                    item: csvText,
-                    subject: Text("\(viewModel.session.name) ラウンドCSV"),
-                    message: Text("現在ラウンドの組み合わせCSVです。")
-                ) {
-                    Label("CSV共有", systemImage: "square.and.arrow.up")
-                        .frame(maxWidth: .infinity, alignment: .center)
-                }
-                .accessibilityLabel("現在ラウンドをCSVで共有")
-            }
-
-            if let errorMessage = viewModel.errorMessage {
-                Label(errorMessage, systemImage: "exclamationmark.triangle")
-                    .foregroundStyle(.red)
-                    .accessibilityLabel(errorMessage)
-            }
+    @ViewBuilder
+    private var errorMessageView: some View {
+        if let errorMessage = viewModel.errorMessage {
+            Label(errorMessage, systemImage: "exclamationmark.triangle")
+                .foregroundStyle(.red)
+                .accessibilityLabel(errorMessage)
         }
     }
 

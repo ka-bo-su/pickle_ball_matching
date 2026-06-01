@@ -149,3 +149,13 @@
 - Reason: It advances the sharing/export MVP promise while staying local-first and avoiding server, CloudKit, StoreKit, App Store, or secret work.
 - Human repair needed: none.
 - Pending updates: create Japanese GitHub Issue, add it to Project, then implement in a small `codex/*` branch.
+
+## 2026-06-01 15:42 JST
+
+- Searched candidates: GitHub Project open PBIs, Sprint Backlog, sharing/export gap after CSV sharing.
+- Referenced GitHub Project / Issues / docs: Issues #19, #30, #46, `docs/scrum/sprint-backlog.md`, product vision sharing image/PDF requirements.
+- Findings: Issue #46 was created and selected for current-round PDF sharing. Local implementation and validation are complete.
+- Next selected work: Issue #46 `現在ラウンドをPDFで共有できるようにする`.
+- Reason: PDF sharing gives organizers a readable local-first output for AirDrop, printing, and external display without adding server or App Store work.
+- Human repair needed: none.
+- Pending updates: PR evidence for Issue #46 after PR creation.
