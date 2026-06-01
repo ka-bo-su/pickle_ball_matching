@@ -2216,3 +2216,49 @@ Medium. The menu now lists all current-round participants, so future UX may need
 ### Follow-up
 
 Commit, open PR for Issue #42, update Project evidence to In Review, and merge to `dev` if CI passes.
+
+## 2026-06-01 12:04 JST
+
+### Action
+
+Pushed `codex/sbi-42-round-player-swap`, opened PR #43 for Issue #42, and moved the GitHub Project item to In Review.
+
+### Reason
+
+SBI #42 passed local validation and is ready for CI-backed review and autonomous merge to `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git push -u origin codex/sbi-42-round-player-swap`
+- `gh pr create ...`
+- `gh issue edit 42 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit ...` for Issue #42 In Review, Validation Passed, and Evidence Link
+
+### GitHub Project Updates
+
+Issue #42 set to Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, and Evidence Link PR #43.
+
+### Architecture Decision
+
+No new decision. The PR keeps manual swap behavior in Presentation/ViewModel and uses existing persistence boundaries.
+
+### Validation
+
+PR #43 will run GitHub Actions. Local validation already passed before PR creation.
+
+### Risk
+
+Medium. The current menu-based UI is still acceptable for MVP but may need a dedicated editor once court/player counts grow.
+
+### Follow-up
+
+Wait for PR #43 CI, squash merge to `dev` if it passes, then set Issue #42 and Project item Done.

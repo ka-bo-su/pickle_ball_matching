@@ -5,10 +5,10 @@
 - Active PBI: Issue #16
 - Active SBI: Issue #42
 - Active Branch: codex/sbi-42-round-player-swap
-- Active PR: n/a
+- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/43
 - GitHub Project Item: PVTI_lAHOBHYYMs4BZUKkzguVDx4
-- Status: Implemented locally; validated; preparing PR
-- Next Action: commit, push, open PR, and move Project item to In Review
+- Status: In Review
+- Next Action: watch PR #43 CI, then squash merge to `dev` if it passes
 
 ## Completed
 
@@ -69,12 +69,13 @@
 | 2026-06-01 11:49 JST | SBI #40 merged | Squash merged PR #41 to `dev`; Issue #40 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/41 |
 | 2026-06-01 11:55 JST | Next SBI selected | Created and selected Issue #42 for swapping any current-round participant | https://github.com/ka-bo-su/pickle_ball_matching/issues/42 |
 | 2026-06-01 12:02 JST | SBI #42 local implementation | Generalized manual swap to any current-round participant and added ViewModel tests | `OperationBoardView`, `OperationBoardViewModel` |
+| 2026-06-01 12:04 JST | PR opened | Created PR #43 for SBI #42 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/43 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #42 | codex/sbi-42-round-player-swap | n/a | Validated locally | Open PR and update Project evidence |
+| Issue #42 | codex/sbi-42-round-player-swap | PR #43 | In Review | Wait for CI and merge if green |
 
 ## Blocked
 
