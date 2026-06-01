@@ -1528,3 +1528,93 @@ Low after merge. Remaining UX risk is real-world readability on iPad or external
 ### Follow-up
 
 Select the next MVP SBI from Project/Sprint Backlog. Good candidates are richer snapshot/undo history or session creation UI.
+
+## 2026-06-01 10:24 JST
+
+### Action
+
+Created Issue #34 for editable session settings, added it to GitHub Project, and selected it for implementation.
+
+### Reason
+
+After PR #33, the highest-value next slice is helping the organizer start today's session with the correct name, round duration, and operation mode instead of relying on a fixed default state.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- GitHub connector create issue
+- `gh project item-add ...`
+- `gh project item-edit ...`
+- `git switch -c codex/sbi-34-session-settings`
+
+### GitHub Project Updates
+
+Issue #34 added as SBI, Priority P0, Role Owner `swift-developer`, Parent PBI #16, Validation Status `Not Run`, and moved to In Progress.
+
+### Architecture Decision
+
+Keep the slice in Presentation/ViewModel. Session edits mutate Domain `Session` values and use the existing `SessionRepository` save path; no new Infrastructure dependency is introduced.
+
+### Validation
+
+No source validation required for issue creation.
+
+### Risk
+
+Medium. New session start clears local in-memory session state, so the UI uses a confirmation dialog.
+
+### Follow-up
+
+Implement session name, round duration, operation mode, blank new-session start, tests, validation, PR, and Project evidence sync.
+
+## 2026-06-01 10:35 JST
+
+### Action
+
+Implemented SBI #34: editable session settings, blank new-session start, autosave coverage, and presentation file split to keep SwiftLint clean.
+
+### Reason
+
+Organizers need to quickly configure today's session without hidden sample data or fixed session settings.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/OperationBoardView.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `Features/OperationBoard/Presentation/LargeBoardView.swift`
+- `Features/OperationBoard/Presentation/SessionSettingsSection.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+- Scrum/Codex ledger docs
+
+### Commands Run
+
+- `swiftformat --cache ignore .`
+- `swift test`
+- `scripts/codex/validate-ios.sh`
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+Issue #34 remains In Progress until PR evidence is available.
+
+### Architecture Decision
+
+`SessionSettingsSection` is a Presentation subview observing the existing `OperationBoardViewModel`. It does not call repositories directly. `LargeBoardView` was split out to keep `OperationBoardView` from becoming a large UI object.
+
+### Validation
+
+Full validation passed: `swift test`, SwiftLint, SwiftFormat lint, XcodeGen, `xcodebuild build`, and `xcodebuild test` on iPhone 16 Simulator. The Xcode test suite passed 10 core tests and 21 app tests with 0 lint violations.
+
+### Risk
+
+Medium. The destructive new-session action is guarded by a confirmation dialog; further UX review can refine wording and placement.
+
+### Follow-up
+
+Commit, open PR for Issue #34, update Project evidence to In Review, and merge to `dev` if CI passes.
