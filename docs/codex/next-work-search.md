@@ -169,3 +169,13 @@
 - Reason: A share image is more immediately useful for LINE/AirDrop/social sharing than CSV and easier for participants to read than a raw data export, while staying local-first.
 - Human repair needed: none.
 - Pending updates: create Japanese GitHub Issue, add it to Project, then implement in a small `codex/*` branch.
+
+## 2026-06-01 18:43 JST
+
+- Searched candidates: Project Ready PBIs, Sprint Backlog next ready work, product vision export requirements after PDF completion.
+- Referenced GitHub Project / Issues / docs: Issues #19, #46, #48, `docs/scrum/sprint-backlog.md`, MVP sharing/export requirements.
+- Findings: Issue #46 is Done. The next small local-first export slice is PNG image sharing for the current round.
+- Next selected work: Issue #48 `現在ラウンドを共有画像として出力できるようにする`.
+- Reason: It gives organizers a participant-readable output that is easier to drop into LINE/AirDrop/photos than CSV and lighter than opening a PDF.
+- Human repair needed: none.
+- Pending updates: PR evidence for Issue #48 after PR creation.

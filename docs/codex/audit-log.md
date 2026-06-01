@@ -2646,3 +2646,55 @@ Low after merge. Remaining export risk is visual polish and image export coverag
 ### Follow-up
 
 Select the next MVP SBI. The current highest-value candidate is sharing the current round as a participant-friendly image.
+
+## 2026-06-01 18:49 JST
+
+### Action
+
+Created and implemented Issue #48 for current-round PNG image sharing.
+
+### Reason
+
+The MVP export requirement includes image/PDF/CSV. CSV and PDF now exist, but a participant-readable image is the most convenient format for LINE, AirDrop, photos, and quick projection at a venue.
+
+### Files Changed
+
+- `Sources/PickleBallMatchingCore/Application/RoundImageExporting.swift`
+- `Sources/PickleBallMatchingCore/Infrastructure/ImageRoundExporter.swift`
+- `Features/OperationBoard/Presentation/RoundImageDocument.swift`
+- `Features/OperationBoard/Presentation/RoundParticipantSwap.swift`
+- `Features/OperationBoard/Presentation/OperationBoardView.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `App/CompositionRoot/DependencyContainer.swift`
+- `Tests/PickleBallMatchingCoreTests/ImageRoundExporterTests.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+- Scrum/Codex ledger docs
+
+### Commands Run
+
+- `gh issue create ...` for Issue #48
+- `gh project item-add 3 --owner ka-bo-su --url https://github.com/ka-bo-su/pickle_ball_matching/issues/48`
+- `gh project item-edit ...` for Issue #48 In Progress metadata
+- `swiftformat --cache ignore .`
+- `swift test`
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+Issue #48 was added to Project `kanban@pickle_ball_matching` and set to Status `In progress`, Scrum Status `In Progress`, Backlog Level `SBI`, Priority `P2`, Role Owner `swift-developer`, Risk `medium`, Area `UI`, Parent PBI `#19 共有・エクスポート`, Architecture Impact, and Validation Status `Passed`.
+
+### Architecture Decision
+
+PNG generation is an Infrastructure adapter behind the new Application protocol `RoundImageExporting`. Presentation shares a `RoundImageDocument` `Transferable`, keeping SwiftUI away from CoreGraphics/ImageIO rendering details. Manual-swap helper logic was split into `RoundParticipantSwap.swift` to keep the ViewModel under SwiftLint file-length limits.
+
+### Validation
+
+Full validation passed: `swift test`, SwiftLint, SwiftFormat lint, XcodeGen, `xcodebuild build`, and `xcodebuild test` on iPhone 16 Simulator. The Xcode test suite passed 14 core tests and 33 app tests with 0 lint violations.
+
+### Risk
+
+Medium. The generated image is intentionally simple and readable. Visual polish, multiple layouts, and multi-round image exports remain follow-up SBIs.
+
+### Follow-up
+
+Commit, open PR for Issue #48, update Project evidence to In Review, and merge to `dev` if CI passes.
