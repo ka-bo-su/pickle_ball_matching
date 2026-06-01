@@ -2595,3 +2595,54 @@ Medium. The PDF is useful but visually basic; image export and PDF polish remain
 ### Follow-up
 
 Wait for PR #47 CI, squash merge to `dev` if it passes, then set Issue #46 and Project item Done.
+
+## 2026-06-01 18:34 JST
+
+### Action
+
+Merged PR #47, closed Issue #46, and set the GitHub Project item to Done.
+
+### Reason
+
+Issue #46 passed local validation and GitHub Actions. The PDF sharing increment satisfies a local-first MVP export path without requiring server, CloudKit, App Store, TestFlight, billing, or secrets.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/codex/next-work-search.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `gh pr view 47 --json ...`
+- `gh issue edit 46 --remove-label status:in-review --add-label status:done`
+- `gh issue comment 46 ...`
+- `gh issue close 46 --reason completed`
+- `gh project item-edit ...` for Issue #46 Done
+- `git fetch origin`
+- `git switch dev`
+- `git merge --ff-only origin/dev`
+
+### GitHub Project Updates
+
+Issue #46 set to Status `Done`, Scrum Status `Done`, Validation Status `Passed`, and Evidence Link PR #47. The issue is closed.
+
+### Architecture Decision
+
+No new decision after merge. PDF generation remains an Infrastructure adapter behind `RoundPDFExporting`, and SwiftUI only receives a `Transferable` document.
+
+### Validation
+
+GitHub Actions `validate` passed before merge. Local `scripts/codex/validate-ios.sh` also passed before PR creation.
+
+### Risk
+
+Low after merge. Remaining export risk is visual polish and image export coverage, which are better handled as separate small SBIs.
+
+### Follow-up
+
+Select the next MVP SBI. The current highest-value candidate is sharing the current round as a participant-friendly image.

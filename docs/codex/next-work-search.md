@@ -159,3 +159,13 @@
 - Reason: PDF sharing gives organizers a readable local-first output for AirDrop, printing, and external display without adding server or App Store work.
 - Human repair needed: none.
 - Pending updates: PR evidence for Issue #46 after PR creation.
+
+## 2026-06-01 18:34 JST
+
+- Searched candidates: GitHub Project open PBIs, Sprint Backlog after PR #47 merge, sharing/export gap after CSV/PDF, board usability gaps.
+- Referenced GitHub Project / Issues / docs: Issues #16, #18, #19, #46, PR #47, `docs/scrum/sprint-backlog.md`, product vision sharing image/PDF requirements.
+- Findings: Issue #46 is merged and Done. CSV and PDF exports exist; the remaining MVP sharing gap is participant-friendly image export or continued board readability polish.
+- Next selected work: candidate SBI `現在ラウンドを共有画像として出力できるようにする`.
+- Reason: A share image is more immediately useful for LINE/AirDrop/social sharing than CSV and easier for participants to read than a raw data export, while staying local-first.
+- Human repair needed: none.
+- Pending updates: create Japanese GitHub Issue, add it to Project, then implement in a small `codex/*` branch.
