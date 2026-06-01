@@ -3824,3 +3824,51 @@ Medium until PR CI passes. The change affects on-screen settings and session aut
 ### Follow-up
 
 Commit, push, open PR, and move Issue #62 to In Review with PR evidence.
+
+## 2026-06-02 08:49 JST
+
+### Action
+
+Opened PR #63 for Issue #62 and moved the GitHub Project item to In Review.
+
+### Reason
+
+Rule settings UI is implemented, locally validated, and ready for autonomous review through GitHub Actions before squash merge to `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/audit-log.md`
+
+### Commands Run
+
+- `git commit -m "feat(settings): edit pairing rules"`
+- `git push -u origin codex/sbi-62-rule-settings-ui`
+- `gh pr create ...`
+- `gh issue edit 62 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit ...` for Status `In review`, Scrum Status `In Review`, and Evidence Link PR #63
+
+### GitHub Project Updates
+
+Issue #62 set to Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, and Evidence Link `https://github.com/ka-bo-su/pickle_ball_matching/pull/63`.
+
+### Architecture Decision
+
+No additional architecture change beyond the Presentation/ViewModel rule settings boundary.
+
+### Validation
+
+Local validation passed before PR creation. GitHub Actions is running.
+
+### Risk
+
+Medium until PR #63 CI passes.
+
+### Follow-up
+
+Watch PR #63 CI, squash merge to `dev` if it passes, close Issue #62, and set the Project item Done.

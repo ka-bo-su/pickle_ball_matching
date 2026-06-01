@@ -37,7 +37,7 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 | SBI-022 | 進行ボードで試合開始と残り時間を扱えるようにする | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #57, Issue #56 |
 | SBI-023 | 同じペアの重複を減らして次ラウンドを生成する | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #59, Issue #58 |
 | SBI-024 | 同じ対戦相手の重複を減らして次ラウンドを生成する | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #61, Issue #60 |
-| SBI-025 | ルール設定を編集して組み合わせ生成に反映する | In Progress | swift-developer | `scripts/codex/validate-ios.sh` passed | Issue #62 |
+| SBI-025 | ルール設定を編集して組み合わせ生成に反映する | In Review | swift-developer | `scripts/codex/validate-ios.sh` passed; GitHub Actions running | PR #63, Issue #62 |
 
 ## Plan
 
@@ -71,10 +71,10 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 28. Issue #56 merged in PR #57 and Project item set Done.
 29. Issue #58 merged in PR #59 and Project item set Done.
 30. Issue #60 merged in PR #61 and Project item set Done.
-31. Issue #62 created, implemented, and locally validated.
+31. Issue #62 created, implemented, locally validated, and opened as PR #63.
 
 ## Next Ready Work
 
 | ID | Type | Status | Owner Role | Validation | Evidence |
 |---|---|---|---|---|---|
-| SBI-025 | ルール設定を編集して組み合わせ生成に反映する | In Progress | swift-developer | `scripts/codex/validate-ios.sh` | Issue #62 |
+| SBI-025 | ルール設定を編集して組み合わせ生成に反映する | In Review | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #63, Issue #62 |
