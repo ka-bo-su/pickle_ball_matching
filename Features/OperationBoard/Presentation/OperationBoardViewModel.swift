@@ -8,6 +8,7 @@ final class OperationBoardViewModel: ObservableObject {
     @Published private(set) var errorMessage: String?
     @Published private(set) var canUndo = false
     @Published private(set) var undoCount = 0
+    @Published private(set) var savedSessions: [Session] = []
 
     private let generateNextRoundUseCase: GenerateNextRoundUseCase
     private let sessionRepository: (any SessionRepository)?
@@ -41,6 +42,8 @@ final class OperationBoardViewModel: ObservableObject {
                 errorMessage = "保存済みセッションを読み込めませんでした。新規セッションで開始します。"
             }
         }
+
+        loadSavedSessions()
     }
 
     func updateSessionName(_ name: String) {
@@ -78,6 +81,17 @@ final class OperationBoardViewModel: ObservableObject {
         var newSession = Session.emptyDaySession()
         newSession.participants = session.participants.map(resetParticipantForNewSession)
         session = newSession
+        clearUndoHistory()
+        errorMessage = nil
+        saveSession()
+    }
+
+    func reopenSession(sessionID: Session.ID) {
+        guard let savedSession = savedSessions.first(where: { $0.id == sessionID }) else {
+            return
+        }
+
+        session = savedSession
         clearUndoHistory()
         errorMessage = nil
         saveSession()
@@ -209,19 +223,6 @@ final class OperationBoardViewModel: ObservableObject {
         saveSession()
     }
 
-    private func defaultSkillLevel(for index: Int) -> SkillLevel {
-        SkillLevel(rawValue: (index % SkillLevel.allCases.count) + 1) ?? .beginner
-    }
-
-    private func safeFileName(_ name: String) -> String {
-        let invalidCharacters = CharacterSet(charactersIn: "/\\?%*|\"<>:")
-        let sanitized = name
-            .components(separatedBy: invalidCharacters)
-            .joined(separator: "-")
-            .trimmingCharacters(in: .whitespacesAndNewlines)
-        return sanitized.isEmpty ? "pickleball-round" : sanitized
-    }
-
     private func captureUndoSnapshot() {
         undoSessions.append(session)
         if undoSessions.count > undoHistoryLimit {
@@ -253,10 +254,43 @@ final class OperationBoardViewModel: ObservableObject {
     private func saveSession() {
         do {
             try sessionRepository?.save(session)
+            syncSavedSessionCache(with: session)
         } catch {
             errorMessage = "セッションを保存できませんでした。端末の空き容量を確認してください。"
         }
     }
+
+    private func loadSavedSessions() {
+        do {
+            savedSessions = try sessionRepository?.loadSavedSessions() ?? []
+        } catch {
+            savedSessions = []
+            if errorMessage == nil {
+                errorMessage = "保存済みセッション一覧を読み込めませんでした。"
+            }
+        }
+    }
+
+    private func syncSavedSessionCache(with session: Session) {
+        savedSessions.removeAll { $0.id == session.id }
+        savedSessions.append(session)
+        savedSessions.sort { lhs, rhs in
+            lhs.updatedAt > rhs.updatedAt
+        }
+    }
+}
+
+private func defaultSkillLevel(for index: Int) -> SkillLevel {
+    SkillLevel(rawValue: (index % SkillLevel.allCases.count) + 1) ?? .beginner
+}
+
+private func safeFileName(_ name: String) -> String {
+    let invalidCharacters = CharacterSet(charactersIn: "/\\?%*|\"<>:")
+    let sanitized = name
+        .components(separatedBy: invalidCharacters)
+        .joined(separator: "-")
+        .trimmingCharacters(in: .whitespacesAndNewlines)
+    return sanitized.isEmpty ? "pickleball-round" : sanitized
 }
 
 extension OperationBoardViewModel {
@@ -325,6 +359,14 @@ extension OperationBoardViewModel {
 
     var undoButtonAccessibilityLabel: String {
         undoCount > 0 ? "直前の入れ替えを1手戻す。戻せる操作は\(undoCount)件です。" : "直前の入れ替えを1手戻す"
+    }
+
+    var savedSessionsForReopen: [Session] {
+        savedSessions.filter { $0.id != session.id }
+    }
+
+    func savedSessionTitle(_ savedSession: Session) -> String {
+        "\(savedSession.name)（\(savedSession.participants.count)人・\(savedSession.rounds.count)R）"
     }
 }
 

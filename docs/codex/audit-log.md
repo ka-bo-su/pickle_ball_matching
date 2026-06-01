@@ -2797,3 +2797,53 @@ Low after merge. Remaining export risk is visual polish and additional image lay
 ### Follow-up
 
 Select the next MVP SBI. The current highest-value candidate is a local session history/reopen flow.
+
+## 2026-06-01 19:19 JST
+
+### Action
+
+Created and implemented Issue #50 for reopening saved sessions from local history.
+
+### Reason
+
+The app could auto-restore the latest session, but recurring circles need to choose from multiple saved sessions. This advances the local-first save/restore PBI without adding CloudKit, server sync, App Store, billing, or secrets.
+
+### Files Changed
+
+- `Sources/PickleBallMatchingCore/Application/SessionRepository.swift`
+- `Sources/PickleBallMatchingCore/Infrastructure/JSONSessionRepository.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `Features/OperationBoard/Presentation/SessionSettingsSection.swift`
+- `Tests/PickleBallMatchingCoreTests/JSONSessionRepositoryTests.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardSessionHistoryTests.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+- Scrum/Codex ledger docs
+
+### Commands Run
+
+- `gh issue create ...` for Issue #50
+- `gh project item-add 3 --owner ka-bo-su --url https://github.com/ka-bo-su/pickle_ball_matching/issues/50`
+- `gh project item-edit ...` for Issue #50 In Progress metadata
+- `swiftformat --cache ignore .`
+- `swift test`
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+Issue #50 was added to Project `kanban@pickle_ball_matching` and set to Status `In progress`, Scrum Status `In Progress`, Backlog Level `SBI`, Priority `P1`, Role Owner `swift-developer`, Risk `medium`, Area `Infrastructure`, Parent PBI `#17 ローカルファースト保存・復元`, Architecture Impact, and Validation Status `Passed`.
+
+### Architecture Decision
+
+`SessionRepository` now exposes `loadSavedSessions()` with a default latest-session fallback. `JSONSessionRepository` persists both `latest-session.json` and ID-addressed history files under `sessions/`. Presentation reopens history through `OperationBoardViewModel`, preserving the repository boundary.
+
+### Validation
+
+Full validation passed: `swift test`, SwiftLint, SwiftFormat lint, XcodeGen, `xcodebuild build`, and `xcodebuild test` on iPhone 16 Simulator. The Xcode test suite passed 15 core tests and 35 app tests with 0 lint violations.
+
+### Risk
+
+Medium. The history UI is intentionally compact inside the session settings section. Delete/search/full history screens should be follow-up SBIs.
+
+### Follow-up
+
+Commit, open PR for Issue #50, update Project evidence to In Review, and merge to `dev` if CI passes.

@@ -2,6 +2,9 @@ import Foundation
 
 public struct JSONSessionRepository: SessionRepository {
     private let fileURL: URL
+    private var historyDirectoryURL: URL {
+        fileURL.deletingLastPathComponent().appendingPathComponent("sessions", isDirectory: true)
+    }
 
     public init(fileURL: URL) {
         self.fileURL = fileURL
@@ -16,6 +19,53 @@ public struct JSONSessionRepository: SessionRepository {
             return nil
         }
 
+        return try decodeSession(at: fileURL)
+    }
+
+    public func loadSavedSessions() throws -> [Session] {
+        var sessions: [Session] = []
+        if FileManager.default.fileExists(atPath: historyDirectoryURL.path) {
+            let fileURLs = try FileManager.default.contentsOfDirectory(
+                at: historyDirectoryURL,
+                includingPropertiesForKeys: nil
+            )
+            for fileURL in fileURLs where fileURL.pathExtension == "json" {
+                try sessions.append(decodeSession(at: fileURL))
+            }
+        }
+
+        if let latestSession = try loadLatestSession() {
+            if !sessions.contains(where: { $0.id == latestSession.id }) {
+                sessions.append(latestSession)
+            }
+        }
+
+        return sessions.sorted { lhs, rhs in
+            lhs.updatedAt > rhs.updatedAt
+        }
+    }
+
+    public func save(_ session: Session) throws {
+        do {
+            let data = try Self.encoder.encode(session)
+            try FileManager.default.createDirectory(
+                at: fileURL.deletingLastPathComponent(),
+                withIntermediateDirectories: true
+            )
+            try FileManager.default.createDirectory(
+                at: historyDirectoryURL,
+                withIntermediateDirectories: true
+            )
+            try data.write(to: fileURL, options: [.atomic])
+            try data.write(to: historyFileURL(for: session), options: [.atomic])
+        } catch let error as EncodingError {
+            throw SessionPersistenceError.encodingFailed(error.localizedDescription)
+        } catch {
+            throw SessionPersistenceError.writeFailed(error.localizedDescription)
+        }
+    }
+
+    private func decodeSession(at fileURL: URL) throws -> Session {
         do {
             let data = try Data(contentsOf: fileURL)
             return try Self.decoder.decode(Session.self, from: data)
@@ -26,19 +76,8 @@ public struct JSONSessionRepository: SessionRepository {
         }
     }
 
-    public func save(_ session: Session) throws {
-        do {
-            try FileManager.default.createDirectory(
-                at: fileURL.deletingLastPathComponent(),
-                withIntermediateDirectories: true
-            )
-            let data = try Self.encoder.encode(session)
-            try data.write(to: fileURL, options: [.atomic])
-        } catch let error as EncodingError {
-            throw SessionPersistenceError.encodingFailed(error.localizedDescription)
-        } catch {
-            throw SessionPersistenceError.writeFailed(error.localizedDescription)
-        }
+    private func historyFileURL(for session: Session) -> URL {
+        historyDirectoryURL.appendingPathComponent("\(session.id.uuidString).json")
     }
 
     private static var encoder: JSONEncoder {
