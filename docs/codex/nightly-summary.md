@@ -3,13 +3,13 @@
 ## Result
 
 - Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31/#33/#35/#37/#39/#41/#43/#45/#47/#49/#51/#53/#55/#57/#59/#61 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30/#32/#34/#36/#38/#40/#42/#44/#46/#48/#50/#52/#54/#56/#58/#60 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, current-round CSV sharing, participant-facing large board display, editable session settings, participant skill editing, participant detail editing, roster reuse for new sessions, any-player current-round manual swap, multi-step undo history, current-round PDF sharing, current-round image sharing, session history/reopen, board current-state/next-action readability, round timer/start-end flow, repeated-pair avoidance, repeated-opponent avoidance, GitHub Actions Node 20 deprecation fix, and a guarded GitHub REST push fallback script/runbook
-- Partially completed: none
+- Partially completed: Issue #62 rule settings UI implemented and fully validated locally
 - Blocked: none
 
 ## Time
 
 - Started: 2026-06-01 02:34 JST
-- Last checkpoint: 2026-06-02 08:38 JST
+- Last checkpoint: 2026-06-02 08:46 JST
 - Approximate duration: session-dependent
 
 ## PRs
@@ -43,6 +43,7 @@
 - `118abdb` feat(board): add round timer controls
 - `a151084` feat(rounds): reduce repeated pairings
 - `2d147e8` feat(rounds): reduce repeated opponents
+- local branch `codex/sbi-62-rule-settings-ui` implements rule settings UI; commit pending
 
 ## GitHub Project Updates
 
@@ -85,6 +86,7 @@
 - Issue #60 created, added to Project, set In Progress, and Validation Status Passed
 - Issue #60 moved to In Review with PR #61 Evidence Link
 - Issue #60 set Done after PR #61 merge
+- Issue #62 created in Japanese, added to Project, set In Progress, and Validation Status Passed
 
 ## Pending GitHub Project Updates
 
@@ -202,13 +204,13 @@ A  scripts/codex/validate-ios.sh
 - Done: Issue #50 session history/reopen
 - Done: Issue #52 board current-state and next-action readability
 - Done: Issue #54 GitHub Actions Node 20 deprecation warning
-- In progress: none
+- In progress: Issue #62 rule settings UI
 - In review: none
 - Done: Issue #60 repeated-opponent avoidance
 - Done: Issue #58 repeated-pair avoidance
 - Done: Issue #56 round start/end and remaining-time display
 - Blocked: none
-- Next: create and select the next MVP SBI
+- Next: commit, PR, and Project sync for Issue #62
 
 ## Architecture
 
@@ -234,4 +236,4 @@ A  scripts/codex/validate-ios.sh
 
 ## Next Recommended Codex Goal
 
-- Continue with the next MVP vertical slice; recommended candidate is rule-setting UI because the fairness rules now exist in `SessionRuleSet`.
+- Complete Issue #62 rule settings UI, then continue with score/result capture, rule presets, or Pro boundary work.

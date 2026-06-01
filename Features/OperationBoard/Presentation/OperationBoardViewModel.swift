@@ -231,7 +231,7 @@ final class OperationBoardViewModel: ObservableObject {
         syncUndoState()
     }
 
-    private func clearUndoHistory() {
+    func clearUndoHistory() {
         undoSessions = []
         syncUndoState()
     }
