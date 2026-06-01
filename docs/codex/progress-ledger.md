@@ -5,10 +5,10 @@
 - Active PBI: #16 当日運営特化ダブルス組み合わせMVP
 - Active SBI: #58 同じペアの重複を減らして次ラウンドを生成する
 - Active Branch: codex/sbi-58-avoid-repeat-pairs
-- Active PR: none
+- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/59
 - GitHub Project Item: `PVTI_lAHOBHYYMs4BZUKkzgubhfs`
-- Status: Local validation passed; ready for PR
-- Next Action: commit, push, open PR, and update Project evidence
+- Status: In Review
+- Next Action: wait for PR #59 CI, then squash merge to `dev` if it passes
 
 ## Completed
 
@@ -100,12 +100,13 @@
 | 2026-06-02 08:02 JST | PR opened | Created PR #57 for Issue #56 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/57 |
 | 2026-06-02 08:08 JST | SBI #56 merged | Squash merged PR #57 to `dev`; Issue #56 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/57 |
 | 2026-06-02 08:14 JST | Next SBI selected | Created and selected Issue #58 for reducing repeated pairings | https://github.com/ka-bo-su/pickle_ball_matching/issues/58 |
+| 2026-06-02 08:17 JST | PR opened | Created PR #59 for Issue #58 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/59 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #58 `同じペアの重複を減らして次ラウンドを生成する` | `codex/sbi-58-avoid-repeat-pairs` | none | full validation passed | commit, push, PR |
+| Issue #58 `同じペアの重複を減らして次ラウンドを生成する` | `codex/sbi-58-avoid-repeat-pairs` | PR #59 | In Review | wait for CI, then squash merge |
 
 ## Blocked
 

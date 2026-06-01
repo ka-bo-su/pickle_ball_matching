@@ -3,18 +3,18 @@
 ## Result
 
 - Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31/#33/#35/#37/#39/#41/#43/#45/#47/#49/#51/#53/#55/#57 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30/#32/#34/#36/#38/#40/#42/#44/#46/#48/#50/#52/#54/#56 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, current-round CSV sharing, participant-facing large board display, editable session settings, participant skill editing, participant detail editing, roster reuse for new sessions, any-player current-round manual swap, multi-step undo history, current-round PDF sharing, current-round image sharing, session history/reopen, board current-state/next-action readability, round timer/start-end flow, GitHub Actions Node 20 deprecation fix, and a guarded GitHub REST push fallback script/runbook
-- Partially completed: Issue #58 repeated-pair avoidance implemented and fully validated locally
+- Partially completed: Issue #58 repeated-pair avoidance implemented, fully validated locally, and opened as PR #59
 - Blocked: none
 
 ## Time
 
 - Started: 2026-06-01 02:34 JST
-- Last checkpoint: 2026-06-02 08:16 JST
+- Last checkpoint: 2026-06-02 08:17 JST
 - Approximate duration: session-dependent
 
 ## PRs
 
-- Opened: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24, https://github.com/ka-bo-su/pickle_ball_matching/pull/26, https://github.com/ka-bo-su/pickle_ball_matching/pull/28, https://github.com/ka-bo-su/pickle_ball_matching/pull/31, https://github.com/ka-bo-su/pickle_ball_matching/pull/33, https://github.com/ka-bo-su/pickle_ball_matching/pull/35, https://github.com/ka-bo-su/pickle_ball_matching/pull/37, https://github.com/ka-bo-su/pickle_ball_matching/pull/39, https://github.com/ka-bo-su/pickle_ball_matching/pull/41, https://github.com/ka-bo-su/pickle_ball_matching/pull/43, https://github.com/ka-bo-su/pickle_ball_matching/pull/45, https://github.com/ka-bo-su/pickle_ball_matching/pull/47, https://github.com/ka-bo-su/pickle_ball_matching/pull/49, https://github.com/ka-bo-su/pickle_ball_matching/pull/51, https://github.com/ka-bo-su/pickle_ball_matching/pull/53, https://github.com/ka-bo-su/pickle_ball_matching/pull/55, https://github.com/ka-bo-su/pickle_ball_matching/pull/57
+- Opened: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24, https://github.com/ka-bo-su/pickle_ball_matching/pull/26, https://github.com/ka-bo-su/pickle_ball_matching/pull/28, https://github.com/ka-bo-su/pickle_ball_matching/pull/31, https://github.com/ka-bo-su/pickle_ball_matching/pull/33, https://github.com/ka-bo-su/pickle_ball_matching/pull/35, https://github.com/ka-bo-su/pickle_ball_matching/pull/37, https://github.com/ka-bo-su/pickle_ball_matching/pull/39, https://github.com/ka-bo-su/pickle_ball_matching/pull/41, https://github.com/ka-bo-su/pickle_ball_matching/pull/43, https://github.com/ka-bo-su/pickle_ball_matching/pull/45, https://github.com/ka-bo-su/pickle_ball_matching/pull/47, https://github.com/ka-bo-su/pickle_ball_matching/pull/49, https://github.com/ka-bo-su/pickle_ball_matching/pull/51, https://github.com/ka-bo-su/pickle_ball_matching/pull/53, https://github.com/ka-bo-su/pickle_ball_matching/pull/55, https://github.com/ka-bo-su/pickle_ball_matching/pull/57, https://github.com/ka-bo-su/pickle_ball_matching/pull/59
 - Merged: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24, https://github.com/ka-bo-su/pickle_ball_matching/pull/26, https://github.com/ka-bo-su/pickle_ball_matching/pull/28, https://github.com/ka-bo-su/pickle_ball_matching/pull/31, https://github.com/ka-bo-su/pickle_ball_matching/pull/33, https://github.com/ka-bo-su/pickle_ball_matching/pull/35, https://github.com/ka-bo-su/pickle_ball_matching/pull/37, https://github.com/ka-bo-su/pickle_ball_matching/pull/39, https://github.com/ka-bo-su/pickle_ball_matching/pull/41, https://github.com/ka-bo-su/pickle_ball_matching/pull/43, https://github.com/ka-bo-su/pickle_ball_matching/pull/45, https://github.com/ka-bo-su/pickle_ball_matching/pull/47, https://github.com/ka-bo-su/pickle_ball_matching/pull/49, https://github.com/ka-bo-su/pickle_ball_matching/pull/51, https://github.com/ka-bo-su/pickle_ball_matching/pull/53, https://github.com/ka-bo-su/pickle_ball_matching/pull/55, https://github.com/ka-bo-su/pickle_ball_matching/pull/57
 - Closed: Issues #1-#7, #9-#13, #21, #23, #25, #27, #30, #32, #34, #36, #38, #40, #42, #44, #46, #48, #50, #52, #54, #56
 
@@ -78,6 +78,7 @@
 - Issue #54 set Done after PR #55 merge
 - Issue #56 set Done after PR #57 merge
 - Issue #58 created, added to Project, and set In Progress
+- Issue #58 moved to In Review with PR #59 Evidence Link and Validation Status Passed
 
 ## Pending GitHub Project Updates
 
@@ -195,11 +196,11 @@ A  scripts/codex/validate-ios.sh
 - Done: Issue #50 session history/reopen
 - Done: Issue #52 board current-state and next-action readability
 - Done: Issue #54 GitHub Actions Node 20 deprecation warning
-- In progress: Issue #58 repeated-pair avoidance
-- In review: none
+- In progress: none
+- In review: Issue #58 repeated-pair avoidance, PR #59
 - Done: Issue #56 round start/end and remaining-time display
 - Blocked: none
-- Next: commit, PR, and Project sync for Issue #58
+- Next: wait for PR #59 CI, merge if passed, then continue same-opponent avoidance or score/result capture
 
 ## Architecture
 

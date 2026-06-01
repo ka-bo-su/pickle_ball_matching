@@ -3529,3 +3529,50 @@ Medium until PR CI passes.
 ### Follow-up
 
 Commit, push, open PR, and move Issue #58 to In Review with PR evidence.
+
+## 2026-06-02 08:17 JST
+
+### Action
+
+Pushed `codex/sbi-58-avoid-repeat-pairs`, opened PR #59 for Issue #58, and moved the Project item to In Review with PR evidence.
+
+### Reason
+
+Issue #58 passed full local validation and is ready for GitHub Actions and merge readiness checks.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/audit-log.md`
+
+### Commands Run
+
+- `git push -u origin codex/sbi-58-avoid-repeat-pairs`
+- `gh pr create --base dev --head codex/sbi-58-avoid-repeat-pairs ...`
+- `gh issue edit 58 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit ...` for Status `In review`, Scrum Status `In Review`, and Evidence Link PR #59
+
+### GitHub Project Updates
+
+Issue #58 set to Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, and Evidence Link `https://github.com/ka-bo-su/pickle_ball_matching/pull/59`.
+
+### Architecture Decision
+
+No additional architecture change beyond the Application-layer pairing-history scoring.
+
+### Validation
+
+Local validation passed before PR creation. GitHub Actions is pending.
+
+### Risk
+
+Medium until PR #59 CI passes.
+
+### Follow-up
+
+Watch PR #59 CI, squash merge to `dev` if it passes, close Issue #58, and set the Project item Done.
