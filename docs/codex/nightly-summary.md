@@ -2,8 +2,8 @@
 
 ## Result
 
-- Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, and current-round CSV sharing
-- Partially completed: Issue #32 participant-facing large board display implemented locally; PR/merge sync pending
+- Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, current-round CSV sharing, and Issue #32 local implementation plus PR #33 opening
+- Partially completed: Issue #32 participant-facing large board display is in review; PR #33 CI/merge sync pending
 - Blocked: none
 
 ## Time
@@ -14,7 +14,7 @@
 
 ## PRs
 
-- Opened: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24, https://github.com/ka-bo-su/pickle_ball_matching/pull/26, https://github.com/ka-bo-su/pickle_ball_matching/pull/28, https://github.com/ka-bo-su/pickle_ball_matching/pull/31
+- Opened: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24, https://github.com/ka-bo-su/pickle_ball_matching/pull/26, https://github.com/ka-bo-su/pickle_ball_matching/pull/28, https://github.com/ka-bo-su/pickle_ball_matching/pull/31, https://github.com/ka-bo-su/pickle_ball_matching/pull/33
 - Merged: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24, https://github.com/ka-bo-su/pickle_ball_matching/pull/26, https://github.com/ka-bo-su/pickle_ball_matching/pull/28, https://github.com/ka-bo-su/pickle_ball_matching/pull/31
 - Closed: Issues #1-#7, #9-#13, #21, #23, #25, #27, #30
 
@@ -28,6 +28,7 @@
 - `378e108` feat(operation): edit participant availability status
 - `b1292c7` feat(operation): add waiter swap and undo
 - `4bb46be` feat(export): share current round as csv
+- `5cca0f4` feat(board): add participant large display
 
 ## GitHub Project Updates
 
@@ -47,11 +48,11 @@
 - Issue #25 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #26 merge
 - Issue #27 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #28 merge
 - Issue #30 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #31 merge
-- Issue #32 created in Japanese, added to Project, and moved to In Progress
+- Issue #32 created in Japanese, added to Project, moved to In Progress, then moved to In Review with PR #33 evidence
 
 ## Pending GitHub Project Updates
 
-- Issue #32 PR evidence and In Review/Done transition after PR creation/merge
+- Issue #32 Done transition after PR #33 merge
 
 ## iOS Validation
 
@@ -153,7 +154,7 @@ A  scripts/codex/validate-ios.sh
 - Done: environment completion, Issue #9 ViewModel/accessibility hardening, Issue #21 first operation board slice, Issue #23 JSON save/restore, and Issue #25 participant status changes
 - Done: Issue #27 manual waiter swap and one-step undo
 - Done: Issue #30 current-round CSV sharing
-- In progress: Issue #32 participant-facing large board display
+- In review: Issue #32 participant-facing large board display
 - Blocked: none
 - Next: open and merge Issue #32 PR, then continue with richer snapshot history or session creation UI
 
@@ -173,9 +174,9 @@ A  scripts/codex/validate-ios.sh
 ## Human Review Notes
 
 - Review merged PR #8, #14, #15, #22, #24, #26, #28, and #31
-- Pay attention to next PR for Issue #32: participant readability, iPad layout, long names, and accessibility labels
+- Review open PR #33 for participant readability, iPad layout, long names, and accessibility labels
 - Possible rollback: revert the relevant PR
 
 ## Next Recommended Codex Goal
 
-- Open and merge Issue #32, then implement richer snapshot/undo history or session creation UI.
+- Merge PR #33 after CI passes, then implement richer snapshot/undo history or session creation UI.

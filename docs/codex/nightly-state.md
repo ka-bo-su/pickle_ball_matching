@@ -6,10 +6,10 @@
 - Current SBI: Issue #32
 - Active branch: codex/sbi-32-large-board-display
 - Active worktree: `/Users/kazuma/Documents/pickle_ball_matching`
-- Active PR: n/a
+- Active PR: PR #33
 - Active GitHub Project: `kanban@pickle_ball_matching`
 - Project owner: `ka-bo-su`
 - Project number: `3`
 - Last successful validation: 2026-06-01 10:05 JST, `scripts/codex/validate-ios.sh` on `codex/sbi-32-large-board-display`
 - Current blocker: none
-- Next action: open and merge Issue #32 PR, then continue with the next highest-value MVP SBI.
+- Next action: wait for PR #33 CI, merge to `dev` if it passes, then continue with the next highest-value MVP SBI.

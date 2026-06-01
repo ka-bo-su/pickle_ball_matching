@@ -5,10 +5,10 @@
 - Active PBI: Issue #16
 - Active SBI: Issue #32
 - Active Branch: codex/sbi-32-large-board-display
-- Active PR: pending
+- Active PR: PR #33
 - GitHub Project Item: Issue #32
-- Status: In Progress
-- Next Action: commit SBI #32, open PR, update Project evidence, and merge to `dev`
+- Status: In Review
+- Next Action: wait for PR #33 CI, then squash merge to `dev` if validation passes
 
 ## Completed
 
@@ -49,12 +49,13 @@
 | 2026-06-01 09:32 JST | SBI #30 merged | Squash merged PR #31 to `dev`; Issue #30 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/31 |
 | 2026-06-01 10:00 JST | Next SBI selected | Created and selected Issue #32 for participant-facing large board display | https://github.com/ka-bo-su/pickle_ball_matching/issues/32 |
 | 2026-06-01 10:05 JST | SBI #32 local implementation | Added large board navigation, adaptive display view, and display model tests | `OperationBoardView`, `OperationBoardViewModel` |
+| 2026-06-01 10:14 JST | PR opened | Created PR #33 for SBI #32 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/33 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #32 | codex/sbi-32-large-board-display | pending | In Progress | PR and Project evidence update |
+| Issue #32 | codex/sbi-32-large-board-display | PR #33 | In Review | Wait for CI, then merge to `dev` |
 
 ## Blocked
 
