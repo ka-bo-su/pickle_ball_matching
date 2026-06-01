@@ -1301,3 +1301,49 @@ Medium until CI completes.
 ### Follow-up
 
 Wait for PR #31 CI, merge to `dev` if clean, close Issue #30, update Project Done, and continue with the next MVP SBI.
+
+## 2026-06-01 09:32 JST
+
+### Action
+
+Squash merged PR #31 to `dev`, closed Issue #30, and synchronized Project status to Done.
+
+### Reason
+
+Current-round CSV sharing passed local validation and GitHub Actions. This completes the first small sharing/export increment without server, login, CloudKit, App Store, or billing dependencies.
+
+### Files Changed
+
+- Post-merge Codex/Scrum ledger docs
+
+### Commands Run
+
+- `gh pr checks 31 --watch --interval 10`
+- `gh pr merge 31 --squash --delete-branch ...`
+- `gh pr view 31 --json ...`
+- `gh project item-edit ...` for Issue #30 Done and Validation Passed
+- `gh issue edit 30 ...`
+- `gh issue close 30 ...`
+- `git fetch origin`
+- `git switch dev`
+- `git merge --ff-only origin/dev`
+
+### GitHub Project Updates
+
+Issue #30 set to Status `Done`, Scrum Status `Done`, Validation Status `Passed`, and Evidence Link PR #31.
+
+### Architecture Decision
+
+No new decision. CSV text sharing is accepted as the smallest export increment; file-based CSV/PDF/image export remains follow-up work.
+
+### Validation
+
+PR #31 GitHub Actions `validate` passed before merge. Local validation also passed before PR creation.
+
+### Risk
+
+Low after merge. `dev` was updated; `main` was not modified.
+
+### Follow-up
+
+Select the next MVP SBI from Project/Sprint Backlog. Good candidates are larger board display or richer snapshot/undo history.

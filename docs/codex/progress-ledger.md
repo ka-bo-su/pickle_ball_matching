@@ -3,12 +3,12 @@
 ## Current
 
 - Active PBI: Issue #16
-- Active SBI: Issue #30
-- Active Branch: codex/sbi-30-csv-export
-- Active PR: PR #31
-- GitHub Project Item: Issue #30
-- Status: In Review
-- Next Action: wait for PR #31 CI, merge to `dev`, close Issue #30, and continue the next MVP SBI
+- Active SBI: next selection pending
+- Active Branch: dev
+- Active PR: n/a
+- GitHub Project Item: n/a
+- Status: Selecting next work
+- Next Action: select the next highest-value MVP SBI from GitHub Project and Sprint Backlog
 
 ## Completed
 
@@ -46,12 +46,13 @@
 | 2026-06-01 09:18 JST | Next SBI selected | Created and selected Issue #30 for current-round CSV sharing | https://github.com/ka-bo-su/pickle_ball_matching/issues/30 |
 | 2026-06-01 09:22 JST | SBI #30 local implementation | Added CSV exporter, SwiftUI ShareLink, and CSV/ViewModel tests | `CSVRoundExporter`, `OperationBoardView` |
 | 2026-06-01 09:24 JST | PR opened | Created PR #31 for SBI #30 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/31 |
+| 2026-06-01 09:32 JST | SBI #30 merged | Squash merged PR #31 to `dev`; Issue #30 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/31 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #30 | codex/sbi-30-csv-export | PR #31 | In Review | wait for CI, then merge |
+| none | n/a | n/a | n/a | next SBI selection |
 
 ## Blocked
 

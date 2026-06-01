@@ -2,8 +2,8 @@
 
 ## Result
 
-- Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, and manual waiter swap/one-step undo
-- Partially completed: Issue #30 current-round CSV sharing opened as PR #31; merge sync pending
+- Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, and current-round CSV sharing
+- Partially completed: none
 - Blocked: none
 
 ## Time
@@ -14,9 +14,9 @@
 
 ## PRs
 
-- Opened: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24, https://github.com/ka-bo-su/pickle_ball_matching/pull/26, https://github.com/ka-bo-su/pickle_ball_matching/pull/28
-- Merged: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24, https://github.com/ka-bo-su/pickle_ball_matching/pull/26, https://github.com/ka-bo-su/pickle_ball_matching/pull/28
-- Closed: Issues #1-#7, #9-#13, #21, #23, #25, #27
+- Opened: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24, https://github.com/ka-bo-su/pickle_ball_matching/pull/26, https://github.com/ka-bo-su/pickle_ball_matching/pull/28, https://github.com/ka-bo-su/pickle_ball_matching/pull/31
+- Merged: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24, https://github.com/ka-bo-su/pickle_ball_matching/pull/26, https://github.com/ka-bo-su/pickle_ball_matching/pull/28, https://github.com/ka-bo-su/pickle_ball_matching/pull/31
+- Closed: Issues #1-#7, #9-#13, #21, #23, #25, #27, #30
 
 ## Commits
 
@@ -27,6 +27,7 @@
 - `a61d632` feat(persistence): save and restore operation sessions
 - `378e108` feat(operation): edit participant availability status
 - `b1292c7` feat(operation): add waiter swap and undo
+- `4bb46be` feat(export): share current round as csv
 
 ## GitHub Project Updates
 
@@ -45,11 +46,11 @@
 - Issue #23 created in Japanese, added to Project, moved to In Progress/In Review, then Done after PR #24 merge
 - Issue #25 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #26 merge
 - Issue #27 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #28 merge
-- Issue #30 created in Japanese, added to Project, moved to In Progress, then In Review with PR #31 evidence
+- Issue #30 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #31 merge
 
 ## Pending GitHub Project Updates
 
-- Issue #30 Done transition after PR #31 merge
+- none
 
 ## iOS Validation
 
@@ -150,7 +151,7 @@ A  scripts/codex/validate-ios.sh
 
 - Done: environment completion, Issue #9 ViewModel/accessibility hardening, Issue #21 first operation board slice, Issue #23 JSON save/restore, and Issue #25 participant status changes
 - Done: Issue #27 manual waiter swap and one-step undo
-- In progress: Issue #30 current-round CSV sharing
+- Done: Issue #30 current-round CSV sharing
 - Blocked: none
 - Next: open and merge Issue #30 PR, then continue with larger board mode or richer snapshot history
 
@@ -175,4 +176,4 @@ A  scripts/codex/validate-ios.sh
 
 ## Next Recommended Codex Goal
 
-- Open and merge Issue #30, then implement larger progress board or richer snapshot/undo history.
+- Select and implement the next MVP slice: larger progress board or richer snapshot/undo history.

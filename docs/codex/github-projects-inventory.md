@@ -54,7 +54,7 @@
 | Bug | 0 |
 | Chore | 6 |
 | Blocked | 0 |
-| Done | 16 |
+| Done | 17 |
 | Ready | 5 |
 | In Progress | 0 |
-| In Review | 1 |
+| In Review | 0 |
