@@ -5,10 +5,10 @@
 - Active PBI: Issue #16
 - Active SBI: Issue #27
 - Active Branch: codex/sbi-27-manual-swap-undo
-- Active PR: pending
+- Active PR: PR #28
 - GitHub Project Item: Issue #27
-- Status: In Progress
-- Next Action: commit SBI #27, open PR, update Project evidence, and merge to `dev`
+- Status: In Review
+- Next Action: wait for PR #28 CI, merge to `dev`, close Issue #27, and continue the next MVP SBI
 
 ## Completed
 
@@ -41,12 +41,13 @@
 | 2026-06-01 05:08 JST | SBI #25 merged | Squash merged PR #26 to `dev`; Issue #25 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/26 |
 | 2026-06-01 08:55 JST | Next SBI selected | Created and selected Issue #27 for manual waiter swap and one-step undo | https://github.com/ka-bo-su/pickle_ball_matching/issues/27 |
 | 2026-06-01 09:00 JST | SBI #27 local implementation | Added waiter swap menus, one-step undo, autosave, and ViewModel tests | `OperationBoardView`, `OperationBoardViewModel` |
+| 2026-06-01 09:06 JST | PR opened | Created PR #28 for SBI #27 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/28 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #27 | codex/sbi-27-manual-swap-undo | pending | In Progress | PR and Project evidence update |
+| Issue #27 | codex/sbi-27-manual-swap-undo | PR #28 | In Review | wait for CI, then merge |
 
 ## Blocked
 

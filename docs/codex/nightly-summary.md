@@ -3,7 +3,7 @@
 ## Result
 
 - Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, and participant status changes
-- Partially completed: SBI #27 manual waiter swap and one-step undo implemented locally; PR/merge sync pending
+- Partially completed: SBI #27 manual waiter swap and one-step undo opened as PR #28; merge sync pending
 - Blocked: none
 
 ## Time
@@ -14,7 +14,7 @@
 
 ## PRs
 
-- Opened: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24, https://github.com/ka-bo-su/pickle_ball_matching/pull/26
+- Opened: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24, https://github.com/ka-bo-su/pickle_ball_matching/pull/26, https://github.com/ka-bo-su/pickle_ball_matching/pull/28
 - Merged: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24, https://github.com/ka-bo-su/pickle_ball_matching/pull/26
 - Closed: Issues #1-#7, #9-#13, #21, #23, #25
 
@@ -43,11 +43,11 @@
 - Issue #21 created, selected, moved to In Review with PR #22 evidence, then Done after merge
 - Issue #23 created in Japanese, added to Project, moved to In Progress/In Review, then Done after PR #24 merge
 - Issue #25 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #26 merge
-- Issue #27 created in Japanese, added to Project, and moved to In Progress
+- Issue #27 created in Japanese, added to Project, moved to In Progress, then In Review with PR #28 evidence
 
 ## Pending GitHub Project Updates
 
-- Issue #27 PR evidence and In Review/Done transition after PR creation/merge
+- Issue #27 Done transition after PR #28 merge
 
 ## iOS Validation
 
@@ -147,7 +147,7 @@ A  scripts/codex/validate-ios.sh
 ## PBI/SBI Progress
 
 - Done: environment completion, Issue #9 ViewModel/accessibility hardening, Issue #21 first operation board slice, Issue #23 JSON save/restore, and Issue #25 participant status changes
-- In progress: Issue #27 manual waiter swap and one-step undo
+- In review: Issue #27 manual waiter swap and one-step undo
 - Blocked: none
 - Next: open and merge Issue #25 PR, then continue with manual swap/undo
 
@@ -172,4 +172,4 @@ A  scripts/codex/validate-ios.sh
 
 ## Next Recommended Codex Goal
 
-- Open and merge Issue #27, then implement the next MVP slice: CSV export or larger progress board.
+- Merge Issue #27 after CI, then implement the next MVP slice: CSV export or larger progress board.

@@ -20,7 +20,7 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 | SBI-006 | 参加者とコート数から最初のラウンドを生成する | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #22, Issue #21 |
 | SBI-007 | ローカルJSON保存・復元 | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #24, Issue #23 |
 | SBI-008 | 参加者状態を変更して次ラウンドに反映する | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #26, Issue #25 |
-| SBI-009 | 待機者との手動入れ替えと1手戻す | In Progress | swift-developer | `scripts/codex/validate-ios.sh` passed locally | Issue #27 |
+| SBI-009 | 待機者との手動入れ替えと1手戻す | In Review | swift-developer | `scripts/codex/validate-ios.sh` passed locally; GitHub Actions running | PR #28, Issue #27 |
 
 ## Plan
 
@@ -37,7 +37,7 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 11. Issue #21 merged in PR #22 and Project item set Done.
 12. Issue #23 merged in PR #24 and Project item set Done.
 13. Issue #25 merged in PR #26 and Project item set Done.
-14. Issue #27 selected and implemented locally; PR is next.
+14. Issue #27 selected, implemented locally, and opened as PR #28.
 
 ## Next Ready Work
 

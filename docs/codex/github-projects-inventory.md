@@ -56,5 +56,5 @@
 | Blocked | 0 |
 | Done | 15 |
 | Ready | 5 |
-| In Progress | 1 |
-| In Review | 0 |
+| In Progress | 0 |
+| In Review | 1 |

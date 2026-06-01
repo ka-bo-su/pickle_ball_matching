@@ -1064,3 +1064,53 @@ Medium. The current implementation updates the current round and waiting list bu
 ### Follow-up
 
 Commit, open PR for Issue #27, update Project evidence to In Review, and merge to `dev` if CI passes.
+
+## 2026-06-01 09:06 JST
+
+### Action
+
+Created PR #28 for Issue #27 and moved the GitHub Project item to In Review.
+
+### Reason
+
+SBI #27 passed local validation and now needs PR/CI evidence before autonomous merge to `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git add ...`
+- `git diff --cached --check`
+- `git commit -m "feat(operation): add waiter swap and undo"`
+- `git push -u origin codex/sbi-27-manual-swap-undo`
+- `gh pr create ...`
+- `gh project item-edit ...` for Issue #27 In Review and Evidence Link
+- `gh issue edit 27 ...` for `status:in-review`
+- `gh pr view 28 --json ...`
+
+### GitHub Project Updates
+
+Issue #27 set to Status `In review`, Scrum Status `In Review`, and Evidence Link `https://github.com/ka-bo-su/pickle_ball_matching/pull/28`.
+
+### Architecture Decision
+
+No new architecture decision. PR #28 carries the manual swap/undo implementation and the documented follow-up for fairness counter recalculation.
+
+### Validation
+
+Local validation passed before PR creation. GitHub Actions `validate` started for PR #28.
+
+### Risk
+
+Medium until CI completes. During the first PR creation attempt, shell expansion interpreted Markdown command spans and reran validation commands locally; no destructive operation occurred, and the PR was recreated with a shorter shell-safe body.
+
+### Follow-up
+
+Wait for PR #28 CI, merge to `dev` if clean, close Issue #27, update Project Done, and continue with the next MVP SBI.
