@@ -5,10 +5,10 @@
 - Active PBI: #18 進行ボードと大画面表示
 - Active SBI: #52 進行ボードの現在と次アクションを見やすくする
 - Active Branch: codex/sbi-52-board-guidance
-- Active PR: none
+- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/53
 - GitHub Project Item: PVTI_lAHOBHYYMs4BZUKkzguYW9c
-- Status: Local implementation complete; validation passed
-- Next Action: commit, open PR, and update Project evidence to In Review
+- Status: In Review; waiting for GitHub Actions
+- Next Action: monitor PR #53 CI, then squash merge to `dev` if it passes
 
 ## Completed
 
@@ -89,12 +89,13 @@
 | 2026-06-01 19:32 JST | SBI #50 merged | Squash merged PR #51 to `dev`; Issue #50 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/51 |
 | 2026-06-01 22:22 JST | Next SBI selected | Created and selected Issue #52 for board current-state and next-action readability | https://github.com/ka-bo-su/pickle_ball_matching/issues/52 |
 | 2026-06-01 22:26 JST | SBI #52 local implementation | Added board summary guidance, accessibility label, and presentation tests | `OperationBoardSummaryModel`, `OperationBoardView` |
+| 2026-06-01 22:28 JST | PR opened | Created PR #53 for SBI #52 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/53 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #52 | codex/sbi-52-board-guidance | pending | validation passed | commit and open PR |
+| Issue #52 | codex/sbi-52-board-guidance | PR #53 | In Review | wait for CI, then merge |
 
 ## Blocked
 
