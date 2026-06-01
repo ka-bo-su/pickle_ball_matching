@@ -13,6 +13,7 @@ final class OperationBoardViewModel: ObservableObject {
     private let sessionRepository: (any SessionRepository)?
     private let roundExporter: any RoundExporting
     private let pdfExporter: any RoundPDFExporting
+    private let imageExporter: any RoundImageExporting
     private let undoHistoryLimit = 10
     private var undoSessions: [Session] = []
 
@@ -21,12 +22,14 @@ final class OperationBoardViewModel: ObservableObject {
         generateNextRoundUseCase: GenerateNextRoundUseCase = GenerateNextRoundUseCase(),
         sessionRepository: (any SessionRepository)? = nil,
         roundExporter: any RoundExporting = CSVRoundExporter(),
-        pdfExporter: any RoundPDFExporting = PDFRoundExporter()
+        pdfExporter: any RoundPDFExporting = PDFRoundExporter(),
+        imageExporter: any RoundImageExporting = ImageRoundExporter()
     ) {
         self.generateNextRoundUseCase = generateNextRoundUseCase
         self.sessionRepository = sessionRepository
         self.roundExporter = roundExporter
         self.pdfExporter = pdfExporter
+        self.imageExporter = imageExporter
 
         if let session {
             self.session = session
@@ -280,6 +283,17 @@ extension OperationBoardViewModel {
         )
     }
 
+    var currentRoundImageDocument: RoundImageDocument? {
+        guard let currentRound else {
+            return nil
+        }
+
+        return RoundImageDocument(
+            fileName: "\(safeFileName(session.name))-round-\(currentRound.number).png",
+            data: imageExporter.exportPNG(session: session, round: currentRound)
+        )
+    }
+
     var largeBoardDisplayModel: LargeBoardDisplayModel? {
         guard let currentRound else {
             return nil
@@ -312,75 +326,6 @@ extension OperationBoardViewModel {
     var undoButtonAccessibilityLabel: String {
         undoCount > 0 ? "直前の入れ替えを1手戻す。戻せる操作は\(undoCount)件です。" : "直前の入れ替えを1手戻す"
     }
-}
-
-private extension Round {
-    var participantsInRound: [Participant] {
-        matches.flatMap { match in
-            match.teamA.players + match.teamB.players
-        } + waitingParticipants
-    }
-
-    mutating func swapParticipants(firstID: Participant.ID, secondID: Participant.ID) -> Bool {
-        guard firstID != secondID,
-              let first = participantLocation(for: firstID),
-              let second = participantLocation(for: secondID)
-        else {
-            return false
-        }
-
-        setParticipant(second.participant, at: first.slot)
-        setParticipant(first.participant, at: second.slot)
-        return true
-    }
-
-    private func participantLocation(for participantID: Participant.ID) -> RoundParticipantLocation? {
-        for matchIndex in matches.indices {
-            if let playerIndex = matches[matchIndex].teamA.players.firstIndex(where: { $0.id == participantID }) {
-                return RoundParticipantLocation(
-                    participant: matches[matchIndex].teamA.players[playerIndex],
-                    slot: .teamA(matchIndex: matchIndex, playerIndex: playerIndex)
-                )
-            }
-            if let playerIndex = matches[matchIndex].teamB.players.firstIndex(where: { $0.id == participantID }) {
-                return RoundParticipantLocation(
-                    participant: matches[matchIndex].teamB.players[playerIndex],
-                    slot: .teamB(matchIndex: matchIndex, playerIndex: playerIndex)
-                )
-            }
-        }
-
-        if let waitingIndex = waitingParticipants.firstIndex(where: { $0.id == participantID }) {
-            return RoundParticipantLocation(
-                participant: waitingParticipants[waitingIndex],
-                slot: .waiting(index: waitingIndex)
-            )
-        }
-
-        return nil
-    }
-
-    private mutating func setParticipant(_ participant: Participant, at slot: RoundParticipantSlot) {
-        switch slot {
-        case let .teamA(matchIndex, playerIndex):
-            matches[matchIndex].teamA.players[playerIndex] = participant
-        case let .teamB(matchIndex, playerIndex):
-            matches[matchIndex].teamB.players[playerIndex] = participant
-        case let .waiting(index):
-            waitingParticipants[index] = participant
-        }
-    }
-}
-
-private struct RoundParticipantLocation {
-    var participant: Participant
-    var slot: RoundParticipantSlot
-}
-
-private enum RoundParticipantSlot {
-    case teamA(matchIndex: Int, playerIndex: Int)
-    case teamB(matchIndex: Int, playerIndex: Int)
-    case waiting(index: Int)
 }
 
 extension Session {

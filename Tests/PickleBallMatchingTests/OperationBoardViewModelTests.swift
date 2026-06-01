@@ -248,6 +248,23 @@ final class OperationBoardViewModelTests: XCTestCase {
         XCTAssertNil(viewModel.currentRoundPDFDocument)
     }
 
+    func testCurrentRoundImageDocumentExportsCurrentRound() throws {
+        let session = Session(name: "初心者/体験会", courtCount: 1, participants: makeParticipants(count: 5))
+        let viewModel = OperationBoardViewModel(session: session)
+        viewModel.generateNextRound()
+
+        let imageDocument = try XCTUnwrap(viewModel.currentRoundImageDocument)
+
+        XCTAssertEqual(Array(imageDocument.data.prefix(8)), [137, 80, 78, 71, 13, 10, 26, 10])
+        XCTAssertEqual(imageDocument.fileName, "初心者-体験会-round-1.png")
+    }
+
+    func testCurrentRoundImageDocumentIsNilBeforeRoundGeneration() {
+        let viewModel = OperationBoardViewModel(session: Session(name: "テスト"))
+
+        XCTAssertNil(viewModel.currentRoundImageDocument)
+    }
+
     func testLargeBoardDisplayModelSummarizesCurrentRound() throws {
         let session = Session(
             name: "初心者会",

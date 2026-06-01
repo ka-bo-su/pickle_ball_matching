@@ -30,6 +30,7 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 | SBI-016 | 現在ラウンド内の任意プレイヤーを入れ替えられるようにする | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #43, Issue #42 |
 | SBI-017 | 複数手Undo履歴で手動修正を戻せるようにする | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #45, Issue #44 |
 | SBI-018 | 現在ラウンドをPDFで共有できるようにする | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #47, Issue #46 |
+| SBI-019 | 現在ラウンドを共有画像として出力できるようにする | In Review | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions pending | PR #49, Issue #48 |
 
 ## Plan
 
@@ -56,6 +57,7 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 21. Issue #42 merged in PR #43 and Project item set Done.
 22. Issue #44 merged in PR #45 and Project item set Done.
 23. Issue #46 merged in PR #47 and Project item set Done.
+24. Issue #48 opened as PR #49 and Project item moved to In Review.
 
 ## Next Ready Work
 

@@ -3,12 +3,12 @@
 ## Current
 
 - Active PBI: Issue #19
-- Active SBI: selecting next sharing/export or board usability slice
-- Active Branch: dev
-- Active PR: none
-- GitHub Project Item: none
-- Status: Ready for next work selection
-- Next Action: search Project/Sprint Backlog and create the next Japanese SBI for the highest-value MVP gap
+- Active SBI: Issue #48
+- Active Branch: codex/sbi-48-image-export
+- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/49
+- GitHub Project Item: PVTI_lAHOBHYYMs4BZUKkzguXCMI
+- Status: In Review
+- Next Action: watch PR #49 CI, then squash merge to `dev` if it passes
 
 ## Completed
 
@@ -79,12 +79,15 @@
 | 2026-06-01 15:42 JST | SBI #46 local implementation | Added PDF exporter, Transferable document, PDF ShareLink, and PDF tests | `PDFRoundExporter`, `RoundPDFDocument`, `OperationBoardView` |
 | 2026-06-01 15:43 JST | PR opened | Created PR #47 for SBI #46 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/47 |
 | 2026-06-01 18:34 JST | SBI #46 merged | Squash merged PR #47 to `dev`; Issue #46 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/47 |
+| 2026-06-01 18:43 JST | Next SBI selected | Created and selected Issue #48 for current-round image sharing | https://github.com/ka-bo-su/pickle_ball_matching/issues/48 |
+| 2026-06-01 18:49 JST | SBI #48 local implementation | Added PNG exporter, Transferable image document, image ShareLink, and image tests | `ImageRoundExporter`, `RoundImageDocument`, `OperationBoardView` |
+| 2026-06-01 18:51 JST | PR opened | Created PR #49 for SBI #48 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/49 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| none | n/a | n/a | n/a | select next safe SBI |
+| Issue #48 | codex/sbi-48-image-export | PR #49 | In Review | Wait for CI and merge if green |
 
 ## Blocked
 
@@ -147,3 +150,5 @@
 | 2026-06-01 15:37 JST | `swift test` | pass | SBI #46 core tests, 12 tests |
 | 2026-06-01 15:42 JST | `scripts/codex/validate-ios.sh` | pass | SBI #46 full validation with 12 core tests and 31 app tests, 0 lint violations |
 | 2026-06-01 18:32 JST | GitHub Actions `validate` | pass | PR #47 passed before squash merge |
+| 2026-06-01 18:46 JST | `swift test` | pass | SBI #48 core tests, 14 tests |
+| 2026-06-01 18:49 JST | `scripts/codex/validate-ios.sh` | pass | SBI #48 full validation with 14 core tests and 33 app tests, 0 lint violations |

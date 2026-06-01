@@ -35,6 +35,7 @@ struct OperationBoardView: View {
             largeBoardLink
             csvShareButton
             pdfShareButton
+            imageShareButton
             errorMessageView
         }
     }
@@ -100,6 +101,23 @@ struct OperationBoardView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
             }
             .accessibilityLabel("現在ラウンドをPDFで共有")
+        }
+    }
+
+    @ViewBuilder
+    private var imageShareButton: some View {
+        if let imageDocument = viewModel.currentRoundImageDocument {
+            ShareLink(
+                item: imageDocument,
+                preview: SharePreview(
+                    imageDocument.fileName,
+                    image: Image(systemName: "photo")
+                )
+            ) {
+                Label("画像共有", systemImage: "photo")
+                    .frame(maxWidth: .infinity, alignment: .center)
+            }
+            .accessibilityLabel("現在ラウンドを画像で共有")
         }
     }
 

@@ -11,7 +11,8 @@ struct DependencyContainer {
                 generateNextRoundUseCase: GenerateNextRoundUseCase(),
                 sessionRepository: makeSessionRepository(),
                 roundExporter: CSVRoundExporter(),
-                pdfExporter: PDFRoundExporter()
+                pdfExporter: PDFRoundExporter(),
+                imageExporter: ImageRoundExporter()
             )
         )
     }
