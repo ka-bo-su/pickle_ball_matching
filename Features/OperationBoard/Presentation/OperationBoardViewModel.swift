@@ -47,6 +47,27 @@ final class OperationBoardViewModel: ObservableObject {
         return roundExporter.exportCSV(session: session, round: currentRound)
     }
 
+    var largeBoardDisplayModel: LargeBoardDisplayModel? {
+        guard let currentRound else {
+            return nil
+        }
+
+        let waitingNames = currentRound.waitingParticipants.map(\.displayName)
+        return LargeBoardDisplayModel(
+            sessionName: session.name,
+            roundTitle: "ラウンド\(currentRound.number)",
+            announcement: waitingNames.isEmpty ? "待機者はいません" : "待機 \(waitingNames.joined(separator: "、"))",
+            courts: currentRound.matches.map { match in
+                LargeBoardCourtDisplay(
+                    courtNumber: match.courtNumber,
+                    teamAPlayerNames: match.teamA.players.map(\.displayName),
+                    teamBPlayerNames: match.teamB.players.map(\.displayName)
+                )
+            },
+            waitingPlayerNames: waitingNames
+        )
+    }
+
     var canGenerateRound: Bool {
         session.participants.count(where: { $0.status.isAvailableForRound }) >= 4
     }
@@ -150,6 +171,40 @@ final class OperationBoardViewModel: ObservableObject {
         } catch {
             errorMessage = "セッションを保存できませんでした。端末の空き容量を確認してください。"
         }
+    }
+}
+
+struct LargeBoardDisplayModel: Equatable {
+    var sessionName: String
+    var roundTitle: String
+    var announcement: String
+    var courts: [LargeBoardCourtDisplay]
+    var waitingPlayerNames: [String]
+
+    var waitingTitle: String {
+        waitingPlayerNames.isEmpty ? "待機なし" : "待機者"
+    }
+
+    var waitingSummary: String {
+        waitingPlayerNames.isEmpty ? "全員がコートに入っています" : waitingPlayerNames.joined(separator: "、")
+    }
+}
+
+struct LargeBoardCourtDisplay: Equatable, Identifiable {
+    var courtNumber: Int
+    var teamAPlayerNames: [String]
+    var teamBPlayerNames: [String]
+
+    var id: Int {
+        courtNumber
+    }
+
+    var courtTitle: String {
+        "コート\(courtNumber)"
+    }
+
+    var accessibilityLabel: String {
+        "\(courtTitle)、チームA \(teamAPlayerNames.joined(separator: "、"))、チームB \(teamBPlayerNames.joined(separator: "、"))"
     }
 }
 

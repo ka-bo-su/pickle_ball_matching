@@ -2,8 +2,8 @@
 
 ## Result
 
-- Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, and current-round CSV sharing
-- Partially completed: none
+- Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, current-round CSV sharing, and Issue #32 local implementation plus PR #33 opening
+- Partially completed: Issue #32 participant-facing large board display is in review; PR #33 CI/merge sync pending
 - Blocked: none
 
 ## Time
@@ -14,7 +14,7 @@
 
 ## PRs
 
-- Opened: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24, https://github.com/ka-bo-su/pickle_ball_matching/pull/26, https://github.com/ka-bo-su/pickle_ball_matching/pull/28, https://github.com/ka-bo-su/pickle_ball_matching/pull/31
+- Opened: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24, https://github.com/ka-bo-su/pickle_ball_matching/pull/26, https://github.com/ka-bo-su/pickle_ball_matching/pull/28, https://github.com/ka-bo-su/pickle_ball_matching/pull/31, https://github.com/ka-bo-su/pickle_ball_matching/pull/33
 - Merged: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24, https://github.com/ka-bo-su/pickle_ball_matching/pull/26, https://github.com/ka-bo-su/pickle_ball_matching/pull/28, https://github.com/ka-bo-su/pickle_ball_matching/pull/31
 - Closed: Issues #1-#7, #9-#13, #21, #23, #25, #27, #30
 
@@ -28,6 +28,7 @@
 - `378e108` feat(operation): edit participant availability status
 - `b1292c7` feat(operation): add waiter swap and undo
 - `4bb46be` feat(export): share current round as csv
+- `5cca0f4` feat(board): add participant large display
 
 ## GitHub Project Updates
 
@@ -47,16 +48,17 @@
 - Issue #25 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #26 merge
 - Issue #27 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #28 merge
 - Issue #30 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #31 merge
+- Issue #32 created in Japanese, added to Project, moved to In Progress, then moved to In Review with PR #33 evidence
 
 ## Pending GitHub Project Updates
 
-- none
+- Issue #32 Done transition after PR #33 merge
 
 ## iOS Validation
 
-- Build: passed on `codex/sbi-30-csv-export` with `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'`
-- Test: passed on `codex/sbi-30-csv-export` with `swift test` and `xcodebuild test`
-- Lint: passed on `codex/sbi-30-csv-export` with `swiftlint --no-cache` and `swiftformat --cache ignore --lint .`
+- Build: passed on `codex/sbi-32-large-board-display` with `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'`
+- Test: passed on `codex/sbi-32-large-board-display` with `swift test` and `xcodebuild test`
+- Lint: passed on `codex/sbi-32-large-board-display` with `swiftlint --no-cache` and `swiftformat --cache ignore --lint .`
 - Simulator: iPhone 16 on iOS 18.2 available
 
 ## Files Changed
@@ -152,14 +154,15 @@ A  scripts/codex/validate-ios.sh
 - Done: environment completion, Issue #9 ViewModel/accessibility hardening, Issue #21 first operation board slice, Issue #23 JSON save/restore, and Issue #25 participant status changes
 - Done: Issue #27 manual waiter swap and one-step undo
 - Done: Issue #30 current-round CSV sharing
+- In review: Issue #32 participant-facing large board display
 - Blocked: none
-- Next: open and merge Issue #30 PR, then continue with larger board mode or richer snapshot history
+- Next: open and merge Issue #32 PR, then continue with richer snapshot history or session creation UI
 
 ## Architecture
 
 - Decisions: SwiftPM testable core plus XcodeGen-generated SwiftUI app; MVP domain starts with local-first day-of operation entities and `GenerateNextRoundUseCase`; JSON file persistence is used for MVP save/restore instead of SwiftData/CloudKit
-- Boundary changes: bootstrap matching model replaced by Participant/Session/Round/Match and OperationBoard Presentation; `SessionRepository` protocol added in Application and JSON implementation added in Infrastructure; participant status mutation stays in Presentation/ViewModel and reuses Domain availability rules; manual swap/undo mutates only the current round in Presentation without leaking Infrastructure into SwiftUI; CSV export adds an Application protocol and Infrastructure exporter
-- Refactor tasks: add larger board mode, PDF/image export, and richer undo/snapshot history in follow-up SBIs
+- Boundary changes: bootstrap matching model replaced by Participant/Session/Round/Match and OperationBoard Presentation; `SessionRepository` protocol added in Application and JSON implementation added in Infrastructure; participant status mutation stays in Presentation/ViewModel and reuses Domain availability rules; manual swap/undo mutates only the current round in Presentation without leaking Infrastructure into SwiftUI; CSV export adds an Application protocol and Infrastructure exporter; large board display adds Presentation-only display models
+- Refactor tasks: add PDF/image export, richer undo/snapshot history, and session creation UI in follow-up SBIs
 - Risks: keep generated `.xcodeproj` ignored and regenerate from `project.yml`
 
 ## Local Environment
@@ -170,10 +173,10 @@ A  scripts/codex/validate-ios.sh
 
 ## Human Review Notes
 
-- Review merged PR #8, #14, #15, #22, #24, #26, and #28
-- Pay attention to next PR for Issue #30: CSV shape, Japanese names, and whether future file-based export should replace text sharing
+- Review merged PR #8, #14, #15, #22, #24, #26, #28, and #31
+- Review open PR #33 for participant readability, iPad layout, long names, and accessibility labels
 - Possible rollback: revert the relevant PR
 
 ## Next Recommended Codex Goal
 
-- Select and implement the next MVP slice: larger progress board or richer snapshot/undo history.
+- Merge PR #33 after CI passes, then implement richer snapshot/undo history or session creation UI.
