@@ -2,13 +2,13 @@
 
 ## Current
 
-- Active PBI: Issue #17
-- Active SBI: Issue #40
-- Active Branch: codex/sbi-40-roster-reuse
-- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/41
-- GitHub Project Item: PVTI_lAHOBHYYMs4BZUKkzguU-44
-- Status: In Review
-- Next Action: watch PR #41 CI, then squash merge to `dev` if it passes
+- Active PBI: selecting next
+- Active SBI: selecting next
+- Active Branch: dev
+- Active PR: n/a
+- GitHub Project Item: n/a
+- Status: Ready for next SBI selection
+- Next Action: select the next highest-value MVP SBI from Sprint Backlog and GitHub Project
 
 ## Completed
 
@@ -66,12 +66,13 @@
 | 2026-06-01 11:34 JST | Next SBI selected | Created and selected Issue #40 for starting a new session while reusing the saved roster | https://github.com/ka-bo-su/pickle_ball_matching/issues/40 |
 | 2026-06-01 11:40 JST | SBI #40 local implementation | Added roster-carryover new-session action, reset logic, and ViewModel test | `SessionSettingsSection`, `OperationBoardViewModel` |
 | 2026-06-01 11:42 JST | PR opened | Created PR #41 for SBI #40 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/41 |
+| 2026-06-01 11:49 JST | SBI #40 merged | Squash merged PR #41 to `dev`; Issue #40 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/41 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #40 | codex/sbi-40-roster-reuse | PR #41 | In Review | Wait for CI and merge if green |
+| none | n/a | n/a | n/a | n/a |
 
 ## Blocked
 
@@ -125,3 +126,4 @@
 | 2026-06-01 11:15 JST | `scripts/codex/validate-ios.sh` | pass | SBI #38 full validation with 10 core tests and 24 app tests, 0 lint violations |
 | 2026-06-01 11:25 JST | GitHub Actions `validate` | pass | PR #39 passed before squash merge |
 | 2026-06-01 11:40 JST | `scripts/codex/validate-ios.sh` | pass | SBI #40 full validation with 10 core tests and 25 app tests, 0 lint violations |
+| 2026-06-01 11:49 JST | GitHub Actions `validate` | pass | PR #41 passed before squash merge |

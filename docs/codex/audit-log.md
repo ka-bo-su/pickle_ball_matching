@@ -2122,3 +2122,52 @@ Medium. The implementation intentionally handles only a single carried-over rost
 ### Follow-up
 
 Wait for PR #41 CI, squash merge to `dev` if it passes, then set Issue #40 and Project item Done.
+
+## 2026-06-01 11:49 JST
+
+### Action
+
+Squash merged PR #41 to `dev`, closed Issue #40, and set the GitHub Project item to Done.
+
+### Reason
+
+PR #41 passed GitHub Actions `validate`, met the SBI acceptance criteria, and preserved the Presentation/ViewModel architecture boundary.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/SessionSettingsSection.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardSessionReuseTests.swift`
+- Scrum/Codex ledger docs
+
+### Commands Run
+
+- `gh pr checks 41 --watch --interval 10`
+- `gh pr merge 41 --squash --delete-branch ...`
+- `gh issue edit 40 --remove-label status:in-review --add-label status:done`
+- `gh issue comment 40 ...`
+- `gh issue close 40 --reason completed`
+- `gh project item-edit ...` for Issue #40 Done and Validation Passed
+- `git fetch origin`
+- `git switch dev`
+- `git merge --ff-only origin/dev`
+
+### GitHub Project Updates
+
+Issue #40 set to Status `Done`, Scrum Status `Done`, Validation Status `Passed`, and Evidence Link PR #41.
+
+### Architecture Decision
+
+No new decision. The merged increment keeps roster reuse in Presentation/ViewModel and does not introduce a separate repository before multiple roster use cases exist.
+
+### Validation
+
+GitHub Actions `validate` passed before merge. Local `scripts/codex/validate-ios.sh` also passed before PR creation.
+
+### Risk
+
+Low after merge. Remaining product scope risk is lack of multiple saved rosters, which should be addressed only after the single-roster MVP flow proves useful.
+
+### Follow-up
+
+Select the next MVP SBI from Project/Sprint Backlog. Good candidates are richer snapshot/undo history or PDF/image export.
