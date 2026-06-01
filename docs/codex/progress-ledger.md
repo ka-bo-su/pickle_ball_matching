@@ -3,12 +3,12 @@
 ## Current
 
 - Active PBI: Issue #16
-- Active SBI: next selection pending
-- Active Branch: dev
-- Active PR: n/a
-- GitHub Project Item: n/a
-- Status: Selecting next work
-- Next Action: select the next highest-value MVP SBI from GitHub Project and Sprint Backlog
+- Active SBI: Issue #32
+- Active Branch: codex/sbi-32-large-board-display
+- Active PR: pending
+- GitHub Project Item: Issue #32
+- Status: In Progress
+- Next Action: commit SBI #32, open PR, update Project evidence, and merge to `dev`
 
 ## Completed
 
@@ -47,12 +47,14 @@
 | 2026-06-01 09:22 JST | SBI #30 local implementation | Added CSV exporter, SwiftUI ShareLink, and CSV/ViewModel tests | `CSVRoundExporter`, `OperationBoardView` |
 | 2026-06-01 09:24 JST | PR opened | Created PR #31 for SBI #30 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/31 |
 | 2026-06-01 09:32 JST | SBI #30 merged | Squash merged PR #31 to `dev`; Issue #30 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/31 |
+| 2026-06-01 10:00 JST | Next SBI selected | Created and selected Issue #32 for participant-facing large board display | https://github.com/ka-bo-su/pickle_ball_matching/issues/32 |
+| 2026-06-01 10:05 JST | SBI #32 local implementation | Added large board navigation, adaptive display view, and display model tests | `OperationBoardView`, `OperationBoardViewModel` |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| none | n/a | n/a | n/a | next SBI selection |
+| Issue #32 | codex/sbi-32-large-board-display | pending | In Progress | PR and Project evidence update |
 
 ## Blocked
 
@@ -96,3 +98,5 @@
 | 2026-06-01 09:02 JST | `scripts/codex/validate-ios.sh` | pass | SBI #27 final validation with 8 core tests and 12 app tests, 0 failures |
 | 2026-06-01 09:21 JST | `swift test` | pass | SBI #30 core CSV exporter tests, 10 tests |
 | 2026-06-01 09:22 JST | `scripts/codex/validate-ios.sh` | pass | SBI #30 full validation with 10 core tests and 14 app tests, 0 failures |
+| 2026-06-01 10:03 JST | `swift test` | pass | SBI #32 core tests, 10 tests |
+| 2026-06-01 10:05 JST | `scripts/codex/validate-ios.sh` | pass | SBI #32 full validation with 10 core tests and 17 app tests, 0 failures |

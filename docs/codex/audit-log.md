@@ -1347,3 +1347,93 @@ Low after merge. `dev` was updated; `main` was not modified.
 ### Follow-up
 
 Select the next MVP SBI from Project/Sprint Backlog. Good candidates are larger board display or richer snapshot/undo history.
+
+## 2026-06-01 10:00 JST
+
+### Action
+
+Created Issue #32 for participant-facing large board display, added it to GitHub Project, and selected it for implementation.
+
+### Reason
+
+The MVP north star requires participants to understand the next match without repeated organizer explanation. After CSV export, the highest-value next slice is a large, readable board display.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `gh issue create ...`
+- `gh project item-add ...`
+- `gh project item-edit ...`
+- `gh issue edit 32 ...`
+- `git switch -c codex/sbi-32-large-board-display`
+
+### GitHub Project Updates
+
+Issue #32 added as SBI, Priority P1, Role Owner `swift-developer`, Parent PBI #18, Validation Status `Not Run`, then moved to In Progress.
+
+### Architecture Decision
+
+Keep this slice in Presentation. Add a display model in the ViewModel and a SwiftUI `LargeBoardView`; no Infrastructure dependency is introduced.
+
+### Validation
+
+No source validation required for issue creation.
+
+### Risk
+
+Medium. The board must remain readable on iPhone and iPad and must not rely on color alone.
+
+### Follow-up
+
+Implement large board navigation, adaptive display, accessibility labels, tests, validation, PR, and Project evidence sync.
+
+## 2026-06-01 10:05 JST
+
+### Action
+
+Implemented SBI #32: large board navigation, adaptive participant-facing display, no-round guidance, and display model tests.
+
+### Reason
+
+Participants need to read current courts, teams, waiters, and round information from a shared iPad or external display without asking the organizer.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/OperationBoardView.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+- Scrum/Codex ledger docs
+
+### Commands Run
+
+- `swiftformat --cache ignore .`
+- `swift test`
+- `scripts/codex/validate-ios.sh`
+- `swiftlint --no-cache`
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+Issue #32 remains In Progress until PR evidence is available.
+
+### Architecture Decision
+
+`LargeBoardDisplayModel` and `LargeBoardCourtDisplay` are Presentation display models derived from Domain `Session` and `Round`. `LargeBoardView` observes the existing ViewModel and does not call repositories, exporters, or use cases directly.
+
+### Validation
+
+Full validation passed: `swift test`, SwiftLint, SwiftFormat lint, XcodeGen, `xcodebuild build`, and `xcodebuild test` on iPhone 16 Simulator. The Xcode test suite passed 10 core tests and 17 app tests.
+
+### Risk
+
+Medium. UI readability still benefits from later manual device/screenshot review, but automated build/test/lint coverage and display model tests passed.
+
+### Follow-up
+
+Commit, open PR for Issue #32, update Project evidence to In Review, and merge to `dev` if CI passes.

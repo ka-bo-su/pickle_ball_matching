@@ -28,3 +28,4 @@ GitHub Project `kanban@pickle_ball_matching` is the source of truth. This file m
 | SBI-008 | SBI | 参加者状態を変更して次ラウンドに反映する | P1 | Done | PR #26, Issue #25 |
 | SBI-009 | SBI | 待機者との手動入れ替えと1手戻す | P1 | Done | PR #28, Issue #27 |
 | SBI-010 | SBI | 現在ラウンドをCSVで共有できるようにする | P2 | Done | PR #31, Issue #30 |
+| SBI-011 | SBI | 参加者向け大画面ボードを表示する | P1 | In Progress | Issue #32 |

@@ -69,3 +69,13 @@
 - Reason: It advances the MVP sharing/export requirement with a small Application/Infrastructure boundary and SwiftUI sharing surface.
 - Human repair needed: none.
 - Pending updates: PR evidence for Issue #30 after PR creation.
+
+## 2026-06-01 10:00 JST
+
+- Searched candidates: GitHub Project Ready PBIs, Sprint Backlog after PR #31 merge, MVP display requirements, participant-facing board gaps.
+- Referenced GitHub Project / Issues / docs: Issues #16, #18, #30, #32, `docs/scrum/sprint-backlog.md`, product vision large-screen display requirements.
+- Findings: Issue #30 is merged and Done. The next highest-value vertical slice is participant-facing large board display because it directly reduces "次どこですか？" questions and improves on-site readability.
+- Next selected work: Issue #32 `参加者向け大画面ボードを表示する`.
+- Reason: It advances the north star that participants can understand the next match without organizer explanation, using existing Round/Match data and a Presentation-only display model.
+- Human repair needed: none.
+- Pending updates: PR evidence for Issue #32 after PR creation.
