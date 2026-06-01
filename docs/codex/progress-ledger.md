@@ -5,10 +5,10 @@
 - Active PBI: Issue #16
 - Active SBI: Issue #44
 - Active Branch: codex/sbi-44-multi-undo
-- Active PR: none
+- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/45
 - GitHub Project Item: PVTI_lAHOBHYYMs4BZUKkzguVl3o
-- Status: In Progress
-- Next Action: commit, open PR, move Project item to In Review
+- Status: In Review
+- Next Action: watch PR #45 CI, then squash merge to `dev` if it passes
 
 ## Completed
 
@@ -73,12 +73,13 @@
 | 2026-06-01 14:19 JST | SBI #42 merged | Squash merged PR #43 to `dev`; Issue #42 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/43 |
 | 2026-06-01 14:24 JST | Next SBI selected | Created and selected Issue #44 for multi-step undo history | https://github.com/ka-bo-su/pickle_ball_matching/issues/44 |
 | 2026-06-01 14:29 JST | SBI #44 local implementation | Added bounded multi-step undo history, undo count UI, reset rules, and ViewModel tests | `OperationBoardViewModel`, `OperationBoardView` |
+| 2026-06-01 14:31 JST | PR opened | Created PR #45 for SBI #44 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/45 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #44 | codex/sbi-44-multi-undo | none | In Progress | Commit and open PR |
+| Issue #44 | codex/sbi-44-multi-undo | PR #45 | In Review | Wait for CI and merge if green |
 
 ## Blocked
 

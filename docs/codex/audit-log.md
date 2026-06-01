@@ -2400,3 +2400,49 @@ Medium. Undo history is intentionally not persisted yet, so it protects the acti
 ### Follow-up
 
 Commit, open PR for Issue #44, update Project evidence to In Review, and merge to `dev` if CI passes.
+
+## 2026-06-01 14:31 JST
+
+### Action
+
+Pushed `codex/sbi-44-multi-undo`, opened PR #45 for Issue #44, and moved the GitHub Project item to In Review.
+
+### Reason
+
+SBI #44 passed local validation and is ready for CI-backed review and autonomous merge to `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git push -u origin codex/sbi-44-multi-undo`
+- `gh pr create ...`
+- `gh issue edit 44 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit ...` for Issue #44 In Review and Evidence Link
+
+### GitHub Project Updates
+
+Issue #44 set to Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, and Evidence Link PR #45.
+
+### Architecture Decision
+
+No new decision. The PR keeps undo history in Presentation/ViewModel and does not introduce persistent operation history yet.
+
+### Validation
+
+PR #45 will run GitHub Actions. Local validation already passed before PR creation.
+
+### Risk
+
+Medium. Runtime-only undo history is acceptable for the MVP slice; persistent history remains a follow-up.
+
+### Follow-up
+
+Wait for PR #45 CI, squash merge to `dev` if it passes, then set Issue #44 and Project item Done.
