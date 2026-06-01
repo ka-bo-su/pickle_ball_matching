@@ -2302,3 +2302,54 @@ Medium. Direct ref updates can bypass normal Git transport, so the script verifi
 ### Follow-up
 
 Run dry-run validation, commit the fallback tooling, and push with normal `git push` first. Use REST fallback only if the normal push path fails for allowed reasons.
+
+## 2026-06-01 14:19 JST
+
+### Action
+
+Squash merged PR #43 to `dev`, closed Issue #42, and set the GitHub Project item to Done.
+
+### Reason
+
+Issue #42 passed local validation and GitHub Actions. The manual-edit MVP increment was complete enough to merge without human approval under the autonomous run policy.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `gh pr checks 43 --watch --interval 10`
+- `gh pr merge 43 --squash --delete-branch ...`
+- `gh issue edit 42 --remove-label status:in-review --add-label status:done`
+- `gh issue comment 42 ...`
+- `gh issue close 42 --reason completed`
+- `gh project item-edit ...` for Issue #42 Done
+- `git fetch origin`
+- `git switch dev`
+- `git merge --ff-only origin/dev`
+
+### GitHub Project Updates
+
+Issue #42 set to Status `Done`, Scrum Status `Done`, Validation Status `Passed`, and Evidence Link PR #43. The issue is closed.
+
+### Architecture Decision
+
+No new product architecture decision. The REST push fallback added in PR #43 is operational tooling only and is limited to non-main `codex/*` branch ref updates with `force=false`.
+
+### Validation
+
+GitHub Actions `validate` passed before merge. Local `scripts/codex/validate-ios.sh` passed before PR creation with 10 core tests, 27 app tests, and 0 lint violations.
+
+### Risk
+
+Low after merge. Normal `git push` succeeded for PR #43, so the REST fallback was not used; it remains a documented contingency.
+
+### Follow-up
+
+Create/select SBI-017 for richer snapshot/undo history and continue the autonomous loop.

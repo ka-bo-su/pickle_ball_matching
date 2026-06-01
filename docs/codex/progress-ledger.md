@@ -3,12 +3,12 @@
 ## Current
 
 - Active PBI: Issue #16
-- Active SBI: Issue #42
-- Active Branch: codex/sbi-42-round-player-swap
-- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/43
-- GitHub Project Item: PVTI_lAHOBHYYMs4BZUKkzguVDx4
-- Status: In Review
-- Next Action: watch PR #43 CI, then squash merge to `dev` if it passes
+- Active SBI: selecting next SBI
+- Active Branch: dev
+- Active PR: none
+- GitHub Project Item: none
+- Status: Ready for next work selection
+- Next Action: create/select SBI-017 for richer snapshot/undo history, then implement on a new `codex/*` branch
 
 ## Completed
 
@@ -70,12 +70,13 @@
 | 2026-06-01 11:55 JST | Next SBI selected | Created and selected Issue #42 for swapping any current-round participant | https://github.com/ka-bo-su/pickle_ball_matching/issues/42 |
 | 2026-06-01 12:02 JST | SBI #42 local implementation | Generalized manual swap to any current-round participant and added ViewModel tests | `OperationBoardView`, `OperationBoardViewModel` |
 | 2026-06-01 12:04 JST | PR opened | Created PR #43 for SBI #42 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/43 |
+| 2026-06-01 14:19 JST | SBI #42 merged | Squash merged PR #43 to `dev`; Issue #42 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/43 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #42 | codex/sbi-42-round-player-swap | PR #43 | In Review | Wait for CI and merge if green |
+| none | n/a | n/a | n/a | next SBI selection |
 
 ## Blocked
 
@@ -131,3 +132,4 @@
 | 2026-06-01 11:40 JST | `scripts/codex/validate-ios.sh` | pass | SBI #40 full validation with 10 core tests and 25 app tests, 0 lint violations |
 | 2026-06-01 11:49 JST | GitHub Actions `validate` | pass | PR #41 passed before squash merge |
 | 2026-06-01 12:02 JST | `scripts/codex/validate-ios.sh` | pass | SBI #42 full validation with 10 core tests and 27 app tests, 0 lint violations |
+| 2026-06-01 14:16 JST | GitHub Actions `validate` | pass | PR #43 passed before squash merge |

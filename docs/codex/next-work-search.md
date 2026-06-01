@@ -129,3 +129,13 @@
 - Reason: It strengthens the MVP promise that the organizer can quickly correct generated pairings without waiting for algorithm perfection.
 - Human repair needed: none.
 - Pending updates: PR evidence for Issue #42 after PR creation.
+
+## 2026-06-01 14:19 JST
+
+- Searched candidates: GitHub Project open PBIs, Sprint Backlog after PR #43 merge, MVP undo/snapshot requirements, manual correction follow-ups.
+- Referenced GitHub Project / Issues / docs: Issues #16, #17, #42, `docs/scrum/sprint-backlog.md`, product vision Snapshot / 1手戻す / 複数手Undo requirements.
+- Findings: Issue #42 is merged and Done. The app has one-step undo for manual swaps, but it does not yet expose richer snapshot history or multiple-step undo, which is a known on-site safety requirement.
+- Next selected work: SBI-017 `Snapshot/Undo履歴強化`.
+- Reason: It improves organizer confidence during manual corrections and protects the current MVP board without adding external services, StoreKit, or CloudKit.
+- Human repair needed: none.
+- Pending updates: create Japanese GitHub Issue, add it to Project, then link PR evidence after implementation.
