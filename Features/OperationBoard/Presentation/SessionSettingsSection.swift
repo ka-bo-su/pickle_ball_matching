@@ -31,6 +31,22 @@ struct SessionSettingsSection: View {
                 }
                 .accessibilityLabel("運営モード \(viewModel.session.mode.displayName)")
 
+                if !viewModel.savedSessionsForReopen.isEmpty {
+                    Menu {
+                        ForEach(viewModel.savedSessionsForReopen) { savedSession in
+                            Button {
+                                viewModel.reopenSession(sessionID: savedSession.id)
+                            } label: {
+                                Text(viewModel.savedSessionTitle(savedSession))
+                            }
+                        }
+                    } label: {
+                        Label("過去セッションを再開", systemImage: "clock.arrow.circlepath")
+                    }
+                    .buttonStyle(.borderless)
+                    .accessibilityLabel("過去セッションを再開")
+                }
+
                 Button(role: .destructive) {
                     isShowingNewSessionConfirmation = true
                 } label: {

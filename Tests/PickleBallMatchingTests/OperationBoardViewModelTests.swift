@@ -329,11 +329,13 @@ private extension Round {
 
 final class SpySessionRepository: SessionRepository, @unchecked Sendable {
     private let restoredSession: Session?
+    private let storedSessions: [Session]
     private let loadError: Error?
     var savedSessions: [Session] = []
 
-    init(restoredSession: Session? = nil, loadError: Error? = nil) {
+    init(restoredSession: Session? = nil, storedSessions: [Session] = [], loadError: Error? = nil) {
         self.restoredSession = restoredSession
+        self.storedSessions = storedSessions
         self.loadError = loadError
     }
 
@@ -342,6 +344,13 @@ final class SpySessionRepository: SessionRepository, @unchecked Sendable {
             throw loadError
         }
         return restoredSession
+    }
+
+    func loadSavedSessions() throws -> [Session] {
+        if let loadError {
+            throw loadError
+        }
+        return storedSessions
     }
 
     func save(_ session: Session) throws {

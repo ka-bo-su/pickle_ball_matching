@@ -37,3 +37,4 @@ GitHub Project `kanban@pickle_ball_matching` is the source of truth. This file m
 | SBI-017 | SBI | 複数手Undo履歴で手動修正を戻せるようにする | P1 | Done | PR #45, Issue #44 |
 | SBI-018 | SBI | 現在ラウンドをPDFで共有できるようにする | P2 | Done | PR #47, Issue #46 |
 | SBI-019 | SBI | 現在ラウンドを共有画像として出力できるようにする | P2 | Done | PR #49, Issue #48 |
+| SBI-020 | SBI | 過去セッションを一覧から再開できるようにする | P1 | In Review | PR #51, Issue #50 |

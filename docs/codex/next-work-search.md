@@ -189,3 +189,13 @@
 - Reason: It supports recurring circles and reduces setup time without server, CloudKit, StoreKit, App Store, or secret work.
 - Human repair needed: none.
 - Pending updates: create Japanese GitHub Issue, add it to Project, then implement in a small `codex/*` branch.
+
+## 2026-06-01 19:10 JST
+
+- Searched candidates: Project Ready PBIs, Sprint Backlog after PR #49 merge, local-first save/restore gaps.
+- Referenced GitHub Project / Issues / docs: Issues #17, #50, `docs/scrum/sprint-backlog.md`, product vision session history and reopen requirements.
+- Findings: Sharing/export path now covers CSV/PDF/PNG. The app still lacks a visible saved-session history and can only restore the latest session automatically.
+- Next selected work: Issue #50 `過去セッションを一覧から再開できるようにする`.
+- Reason: It makes recurring club operation more practical and reduces setup time without introducing external services.
+- Human repair needed: none.
+- Pending updates: PR evidence for Issue #50 after PR creation.

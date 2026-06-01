@@ -27,6 +27,28 @@ final class JSONSessionRepositoryTests: XCTestCase {
         XCTAssertEqual(restored, session)
     }
 
+    func testLoadSavedSessionsReturnsSessionsNewestFirst() throws {
+        let repository = JSONSessionRepository(directoryURL: directoryURL)
+        let olderSession = try makeSession(
+            id: XCTUnwrap(UUID(uuidString: "00000000-0000-0000-0000-000000000311")),
+            name: "先週の練習",
+            updatedAt: Date(timeIntervalSince1970: 1_717_171_200)
+        )
+        let newerSession = try makeSession(
+            id: XCTUnwrap(UUID(uuidString: "00000000-0000-0000-0000-000000000312")),
+            name: "今日の練習",
+            updatedAt: Date(timeIntervalSince1970: 1_717_257_600)
+        )
+
+        try repository.save(olderSession)
+        try repository.save(newerSession)
+
+        let sessions = try repository.loadSavedSessions()
+
+        XCTAssertEqual(sessions.map(\.id), [newerSession.id, olderSession.id])
+        XCTAssertEqual(try XCTUnwrap(repository.loadLatestSession()).id, newerSession.id)
+    }
+
     func testLoadLatestSessionReturnsNilWhenFileDoesNotExist() throws {
         let repository = JSONSessionRepository(directoryURL: directoryURL)
 
@@ -46,12 +68,16 @@ final class JSONSessionRepositoryTests: XCTestCase {
         }
     }
 
-    private func makeSession() -> Session {
+    private func makeSession(
+        id: UUID = UUID(uuidString: "00000000-0000-0000-0000-000000000301")!,
+        name: String = "保存テスト",
+        updatedAt: Date = Date(timeIntervalSince1970: 1_717_171_200)
+    ) -> Session {
         let date = Date(timeIntervalSince1970: 1_717_171_200)
         let participants = makeParticipants()
         return Session(
-            id: UUID(uuidString: "00000000-0000-0000-0000-000000000301")!,
-            name: "保存テスト",
+            id: id,
+            name: name,
             date: date,
             courtCount: 1,
             roundDurationMinutes: 12,
@@ -60,7 +86,7 @@ final class JSONSessionRepositoryTests: XCTestCase {
             ruleSet: .balancedPractice,
             rounds: [makeRound(participants: participants, date: date)],
             createdAt: date,
-            updatedAt: date
+            updatedAt: updatedAt
         )
     }
 
