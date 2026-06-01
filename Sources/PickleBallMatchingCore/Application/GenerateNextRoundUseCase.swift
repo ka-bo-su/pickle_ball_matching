@@ -22,7 +22,13 @@ public struct GenerateNextRoundUseCase: Sendable {
             .filter { !selectedIDs.contains($0.id) }
             .sortedForDisplay()
 
-        let matches = makeMatches(from: selectedParticipants, courtCount: playableCourtCount)
+        let matchHistory = MatchHistory(rounds: session.rounds)
+        let matches = makeMatches(
+            from: selectedParticipants,
+            courtCount: playableCourtCount,
+            history: matchHistory,
+            ruleSet: session.ruleSet
+        )
         let round = Round(
             number: session.rounds.count + 1,
             matches: matches,
@@ -85,7 +91,12 @@ public struct GenerateNextRoundUseCase: Sendable {
         return score
     }
 
-    private func makeMatches(from participants: [Participant], courtCount: Int) -> [Match] {
+    private func makeMatches(
+        from participants: [Participant],
+        courtCount: Int,
+        history: MatchHistory,
+        ruleSet: SessionRuleSet
+    ) -> [Match] {
         (0 ..< courtCount).map { index in
             let startIndex = index * 4
             let group = Array(participants[startIndex ..< startIndex + 4])
@@ -95,10 +106,66 @@ public struct GenerateNextRoundUseCase: Sendable {
                     }
                     return lhs.skillLevel.rawValue > rhs.skillLevel.rawValue
                 }
-            let teamA = DoublesTeam(players: [group[0], group[3]])
-            let teamB = DoublesTeam(players: [group[1], group[2]])
-            return Match(courtNumber: index + 1, teamA: teamA, teamB: teamB)
+            return bestMatch(
+                for: group,
+                courtNumber: index + 1,
+                history: history,
+                ruleSet: ruleSet
+            )
         }
+    }
+
+    private func bestMatch(
+        for group: [Participant],
+        courtNumber: Int,
+        history: MatchHistory,
+        ruleSet: SessionRuleSet
+    ) -> Match {
+        matchCandidates(for: group, courtNumber: courtNumber)
+            .enumerated()
+            .min { lhs, rhs in
+                let lhsPenalty = matchPenalty(lhs.element, history: history, ruleSet: ruleSet)
+                let rhsPenalty = matchPenalty(rhs.element, history: history, ruleSet: ruleSet)
+                if lhsPenalty == rhsPenalty {
+                    return lhs.offset < rhs.offset
+                }
+                return lhsPenalty < rhsPenalty
+            }?
+            .element ?? Match(
+                courtNumber: courtNumber,
+                teamA: DoublesTeam(players: [group[0], group[3]]),
+                teamB: DoublesTeam(players: [group[1], group[2]])
+            )
+    }
+
+    private func matchCandidates(for group: [Participant], courtNumber: Int) -> [Match] {
+        [
+            ([group[0], group[3]], [group[1], group[2]]),
+            ([group[0], group[1]], [group[2], group[3]]),
+            ([group[0], group[2]], [group[1], group[3]])
+        ].map { teamAPlayers, teamBPlayers in
+            Match(
+                courtNumber: courtNumber,
+                teamA: DoublesTeam(players: teamAPlayers),
+                teamB: DoublesTeam(players: teamBPlayers)
+            )
+        }
+    }
+
+    private func matchPenalty(
+        _ match: Match,
+        history: MatchHistory,
+        ruleSet: SessionRuleSet
+    ) -> Int {
+        var penalty = 0
+        if ruleSet.reducesLevelGap {
+            penalty += abs(match.teamA.skillTotal - match.teamB.skillTotal) * 10
+        }
+        if ruleSet.avoidsRepeatedPairs {
+            penalty += history.teammateCount(for: match.teamA.players) * 100
+            penalty += history.teammateCount(for: match.teamB.players) * 100
+        }
+        return penalty
     }
 
     private func updateParticipantCounters(
@@ -119,6 +186,36 @@ public struct GenerateNextRoundUseCase: Sendable {
             }
             return updated
         }
+    }
+}
+
+private struct MatchHistory {
+    private var teammateCounts: [PlayerPair: Int]
+
+    init(rounds: [Round]) {
+        var teammateCounts: [PlayerPair: Int] = [:]
+        for match in rounds.flatMap(\.matches) {
+            teammateCounts[PlayerPair(match.teamA.players), default: 0] += 1
+            teammateCounts[PlayerPair(match.teamB.players), default: 0] += 1
+        }
+        self.teammateCounts = teammateCounts
+    }
+
+    func teammateCount(for players: [Participant]) -> Int {
+        teammateCounts[PlayerPair(players), default: 0]
+    }
+}
+
+private struct PlayerPair: Hashable {
+    private let first: UUID
+    private let second: UUID
+
+    init(_ players: [Participant]) {
+        let ids = players.map(\.id).sorted { lhs, rhs in
+            lhs.uuidString < rhs.uuidString
+        }
+        first = ids[0]
+        second = ids[1]
     }
 }
 

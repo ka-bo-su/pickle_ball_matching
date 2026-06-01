@@ -3442,3 +3442,137 @@ Low after merge.
 ### Follow-up
 
 Select the next MVP SBI. Candidate areas are score/result capture, session history cleanup, or further timer visibility polish.
+
+## 2026-06-02 08:14 JST
+
+### Action
+
+Created and selected Issue #58, added it to Project `kanban@pickle_ball_matching`, and implemented repeated-pair avoidance in local round generation.
+
+### Reason
+
+The MVP fairness promise includes reducing repeated pairs. Existing generation handled availability, waiting fairness, and level balance, but did not score teammate history.
+
+### Files Changed
+
+- `Sources/PickleBallMatchingCore/Application/GenerateNextRoundUseCase.swift`
+- `Tests/PickleBallMatchingCoreTests/GenerateNextRoundUseCaseTests.swift`
+- Codex/Scrum status docs
+
+### Commands Run
+
+- `gh issue create ...`
+- `gh project item-add ...`
+- `gh project item-edit ...`
+- `git switch -c codex/sbi-58-avoid-repeat-pairs`
+- `swiftformat --cache ignore .`
+- `swift test`
+
+### GitHub Project Updates
+
+Issue #58 added to Project as SBI, Status `In progress`, Scrum Status `In Progress`, Priority `P0`, Role Owner `swift-developer`, Risk `medium`, Area `Application`, Validation Status `Not Run`, Parent PBI `#16`, and Sprint `Sprint 2026-06 MVP`.
+
+### Architecture Decision
+
+Repeated-pair scoring stays inside `GenerateNextRoundUseCase`. Domain entities remain framework-free and no Infrastructure dependency is added.
+
+### Validation
+
+Partial validation passed: `swift test` with 21 core tests.
+
+### Risk
+
+Medium. Pairing behavior changes, so full iOS validation and CI are required before merge.
+
+### Follow-up
+
+Run `scripts/codex/validate-ios.sh`, commit, push, open PR, and update Project evidence.
+
+## 2026-06-02 08:16 JST
+
+### Action
+
+Ran full local validation for Issue #58 and updated Project Validation Status to `Passed`.
+
+### Reason
+
+The round-generation algorithm changed, so the branch needed full SwiftPM/lint/Xcode validation before commit and PR creation.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/audit-log.md`
+
+### Commands Run
+
+- `scripts/codex/validate-ios.sh`
+- `gh project item-edit ... Validation Status Passed`
+
+### GitHub Project Updates
+
+Issue #58 Project item `PVTI_lAHOBHYYMs4BZUKkzgubhfs` was updated to Validation Status `Passed`.
+
+### Architecture Decision
+
+No additional architecture decision. The pairing-history logic remains inside Application use case code.
+
+### Validation
+
+Passed: `swift test` 21 core tests, SwiftLint 0 violations, SwiftFormat lint 0 files, XcodeGen generation, `xcodebuild build`, and `xcodebuild test` with 21 core tests and 43 app tests.
+
+### Risk
+
+Medium until PR CI passes.
+
+### Follow-up
+
+Commit, push, open PR, and move Issue #58 to In Review with PR evidence.
+
+## 2026-06-02 08:17 JST
+
+### Action
+
+Pushed `codex/sbi-58-avoid-repeat-pairs`, opened PR #59 for Issue #58, and moved the Project item to In Review with PR evidence.
+
+### Reason
+
+Issue #58 passed full local validation and is ready for GitHub Actions and merge readiness checks.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/audit-log.md`
+
+### Commands Run
+
+- `git push -u origin codex/sbi-58-avoid-repeat-pairs`
+- `gh pr create --base dev --head codex/sbi-58-avoid-repeat-pairs ...`
+- `gh issue edit 58 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit ...` for Status `In review`, Scrum Status `In Review`, and Evidence Link PR #59
+
+### GitHub Project Updates
+
+Issue #58 set to Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, and Evidence Link `https://github.com/ka-bo-su/pickle_ball_matching/pull/59`.
+
+### Architecture Decision
+
+No additional architecture change beyond the Application-layer pairing-history scoring.
+
+### Validation
+
+Local validation passed before PR creation. GitHub Actions is pending.
+
+### Risk
+
+Medium until PR #59 CI passes.
+
+### Follow-up
+
+Watch PR #59 CI, squash merge to `dev` if it passes, close Issue #58, and set the Project item Done.
