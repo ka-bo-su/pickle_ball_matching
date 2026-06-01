@@ -25,25 +25,7 @@ struct OperationBoardView: View {
     }
 
     private var participantSection: some View {
-        Section("参加者") {
-            HStack {
-                TextField("参加者名", text: $viewModel.newParticipantName)
-                    .textInputAutocapitalization(.never)
-                    .accessibilityLabel("参加者名入力")
-                Button {
-                    viewModel.addParticipant()
-                } label: {
-                    Label("追加", systemImage: "plus.circle.fill")
-                }
-                .buttonStyle(.borderless)
-                .accessibilityLabel("参加者を追加")
-            }
-
-            ForEach(viewModel.session.participants) { participant in
-                participantRow(participant)
-            }
-            .onDelete(perform: viewModel.removeParticipants)
-        }
+        ParticipantListSection(viewModel: viewModel)
     }
 
     private var actionSection: some View {
@@ -119,72 +101,6 @@ struct OperationBoardView: View {
                     .accessibilityLabel("まだラウンドがありません")
             }
         }
-    }
-
-    private func participantRow(_ participant: Participant) -> some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(participant.displayName)
-                    .font(.body)
-                Text("\(participant.skillLevel.displayName)・\(participant.status.displayName)")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
-            .accessibilityElement(children: .combine)
-            .accessibilityLabel(
-                "\(participant.displayName)、\(participant.skillLevel.displayName)、\(participant.status.displayName)"
-            )
-            Spacer()
-            skillLevelMenu(for: participant)
-            statusMenu(for: participant)
-            Text("待機 \(participant.waitingCount)")
-                .font(.caption.monospacedDigit())
-                .foregroundStyle(.secondary)
-                .accessibilityLabel("待機回数 \(participant.waitingCount)回")
-        }
-    }
-
-    private func skillLevelMenu(for participant: Participant) -> some View {
-        Menu {
-            ForEach(SkillLevel.allCases, id: \.self) { skillLevel in
-                Button {
-                    viewModel.updateParticipantSkillLevel(
-                        participantID: participant.id,
-                        skillLevel: skillLevel
-                    )
-                } label: {
-                    Label(
-                        skillLevel.displayName,
-                        systemImage: skillLevel == participant.skillLevel ? "checkmark" : "circle"
-                    )
-                }
-            }
-        } label: {
-            Label(participant.skillLevel.displayName, systemImage: "chart.bar")
-                .labelStyle(.titleAndIcon)
-                .font(.caption)
-        }
-        .accessibilityLabel("\(participant.displayName)のレベル \(participant.skillLevel.displayName)。変更")
-    }
-
-    private func statusMenu(for participant: Participant) -> some View {
-        Menu {
-            ForEach(ParticipantStatus.allCases, id: \.rawValue) { status in
-                Button {
-                    viewModel.updateParticipantStatus(participantID: participant.id, status: status)
-                } label: {
-                    Label(status.displayName, systemImage: status == participant.status ? "checkmark" : "circle")
-                }
-            }
-        } label: {
-            Label(
-                participant.status.displayName,
-                systemImage: participant.status.isAvailableForRound ? "checkmark.circle" : "pause.circle"
-            )
-            .labelStyle(.titleAndIcon)
-            .font(.caption)
-        }
-        .accessibilityLabel("\(participant.displayName)の状態 \(participant.status.displayName)。変更")
     }
 
     private func matchRow(_ match: Match) -> some View {

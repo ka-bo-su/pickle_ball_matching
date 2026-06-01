@@ -153,6 +153,29 @@ final class OperationBoardViewModel: ObservableObject {
         saveSession()
     }
 
+    func updateParticipantDetails(
+        participantID: Participant.ID,
+        displayName: String,
+        gender: Gender,
+        ageGroup: AgeGroup,
+        memo: String
+    ) {
+        let trimmedName = displayName.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmedName.isEmpty,
+              let index = session.participants.firstIndex(where: { $0.id == participantID })
+        else {
+            return
+        }
+
+        session.participants[index].displayName = trimmedName
+        session.participants[index].gender = gender
+        session.participants[index].ageGroup = ageGroup
+        session.participants[index].memo = memo.trimmingCharacters(in: .whitespacesAndNewlines)
+        session.updatedAt = Date()
+        errorMessage = nil
+        saveSession()
+    }
+
     func generateNextRound() {
         do {
             session = try generateNextRoundUseCase.execute(session: session)

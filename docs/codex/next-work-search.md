@@ -99,3 +99,13 @@
 - Reason: It makes the existing level balancing algorithm usable in real beginner/experience-mixed sessions with a small Presentation/ViewModel slice.
 - Human repair needed: none.
 - Pending updates: PR evidence for Issue #36 after PR creation.
+
+## 2026-06-01 11:07 JST
+
+- Searched candidates: GitHub Project open Ready PBIs, Sprint Backlog after PR #37 merge, participant management requirements, MVP optional profile fields.
+- Referenced GitHub Project / Issues / docs: Issues #16, #36, #38, `docs/scrum/sprint-backlog.md`, product vision participant management requirements.
+- Findings: The app can edit participant name/status/level, but MVP requires optional gender, age group, and memo so organizers can remember on-site constraints without external notes.
+- Next selected work: Issue #38 `参加者の性別・年齢帯・メモを編集できるようにする`.
+- Reason: It completes the core participant profile fields with a small reversible Presentation/ViewModel slice and keeps the pairing algorithm ready for future gender/age/memo-aware rules.
+- Human repair needed: none.
+- Pending updates: PR evidence for Issue #38 after PR creation.
