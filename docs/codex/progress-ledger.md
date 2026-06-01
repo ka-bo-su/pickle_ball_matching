@@ -3,12 +3,12 @@
 ## Current
 
 - Active PBI: Issue #16
-- Active SBI: Issue #25
-- Active Branch: codex/sbi-25-participant-status
-- Active PR: pending
-- GitHub Project Item: Issue #25
-- Status: In Progress
-- Next Action: commit SBI #25, open PR, update Project evidence, and merge to `dev`
+- Active SBI: Issue #27
+- Active Branch: codex/sbi-27-manual-swap-undo
+- Active PR: PR #28
+- GitHub Project Item: Issue #27
+- Status: In Review
+- Next Action: wait for PR #28 CI, merge to `dev`, close Issue #27, and continue the next MVP SBI
 
 ## Completed
 
@@ -38,12 +38,16 @@
 | 2026-06-01 04:57 JST | SBI #23 merged | Squash merged PR #24 to `dev`; Issue #23 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/24 |
 | 2026-06-01 04:58 JST | Next SBI selected | Created and selected Issue #25 for participant status changes | https://github.com/ka-bo-su/pickle_ball_matching/issues/25 |
 | 2026-06-01 05:00 JST | SBI #25 local implementation | Added participant status menu, ViewModel status update, autosave, and exclusion tests | `OperationBoardView`, `OperationBoardViewModel` |
+| 2026-06-01 05:08 JST | SBI #25 merged | Squash merged PR #26 to `dev`; Issue #25 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/26 |
+| 2026-06-01 08:55 JST | Next SBI selected | Created and selected Issue #27 for manual waiter swap and one-step undo | https://github.com/ka-bo-su/pickle_ball_matching/issues/27 |
+| 2026-06-01 09:00 JST | SBI #27 local implementation | Added waiter swap menus, one-step undo, autosave, and ViewModel tests | `OperationBoardView`, `OperationBoardViewModel` |
+| 2026-06-01 09:06 JST | PR opened | Created PR #28 for SBI #27 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/28 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #25 | codex/sbi-25-participant-status | pending | In Progress | PR and Project evidence update |
+| Issue #27 | codex/sbi-27-manual-swap-undo | PR #28 | In Review | wait for CI, then merge |
 
 ## Blocked
 
@@ -83,3 +87,5 @@
 | 2026-06-01 04:59 JST | `scripts/codex/validate-ios.sh` | pass | SBI #25 full validation; first pass had 1 SwiftLint warning but no failures |
 | 2026-06-01 05:00 JST | `scripts/codex/validate-ios.sh` | pass | SBI #25 validation with 8 core tests and 9 app tests, 0 lint failures |
 | 2026-06-01 05:03 JST | `scripts/codex/validate-ios.sh` | pass | SBI #25 final validation after accessibility adjustment, 0 lint violations |
+| 2026-06-01 08:58 JST | `swift test` | pass | SBI #27 core tests, 8 tests |
+| 2026-06-01 09:02 JST | `scripts/codex/validate-ios.sh` | pass | SBI #27 final validation with 8 core tests and 12 app tests, 0 failures |

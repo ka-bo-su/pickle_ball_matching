@@ -68,6 +68,15 @@ struct OperationBoardView: View {
             .disabled(!viewModel.canGenerateRound)
             .accessibilityLabel("次ラウンドを生成")
 
+            Button {
+                viewModel.undoLastChange()
+            } label: {
+                Label("1手戻す", systemImage: "arrow.uturn.backward")
+                    .frame(maxWidth: .infinity, alignment: .center)
+            }
+            .disabled(!viewModel.canUndo)
+            .accessibilityLabel("直前の入れ替えを1手戻す")
+
             if let errorMessage = viewModel.errorMessage {
                 Label(errorMessage, systemImage: "exclamationmark.triangle")
                     .foregroundStyle(.red)
@@ -165,7 +174,7 @@ struct OperationBoardView: View {
                 teamColumn(title: "B", players: match.teamB.players)
             }
         }
-        .accessibilityElement(children: .combine)
+        .accessibilityElement(children: .contain)
         .accessibilityLabel(matchAccessibilityLabel(match))
     }
 
@@ -175,13 +184,42 @@ struct OperationBoardView: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
             ForEach(players) { player in
-                Text(player.displayName)
-                    .font(.title3.weight(.semibold))
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.75)
+                playerRowForMatch(player)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private func playerRowForMatch(_ player: Participant) -> some View {
+        HStack(spacing: 6) {
+            Text(player.displayName)
+                .font(.title3.weight(.semibold))
+                .lineLimit(1)
+                .minimumScaleFactor(0.75)
+
+            if let waitingParticipants = viewModel.currentRound?.waitingParticipants, !waitingParticipants.isEmpty {
+                Menu {
+                    ForEach(waitingParticipants) { waitingParticipant in
+                        Button {
+                            viewModel.replaceCurrentRoundPlayer(
+                                playerID: player.id,
+                                with: waitingParticipant.id
+                            )
+                        } label: {
+                            Label(
+                                "\(waitingParticipant.displayName)と交代",
+                                systemImage: "arrow.left.arrow.right"
+                            )
+                        }
+                    }
+                } label: {
+                    Image(systemName: "arrow.left.arrow.right.circle")
+                        .imageScale(.medium)
+                }
+                .buttonStyle(.borderless)
+                .accessibilityLabel("\(player.displayName)を待機者と交代")
+            }
+        }
     }
 
     private func matchAccessibilityLabel(_ match: Match) -> String {

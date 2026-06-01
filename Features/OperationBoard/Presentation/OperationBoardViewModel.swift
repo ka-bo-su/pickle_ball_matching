@@ -6,9 +6,11 @@ final class OperationBoardViewModel: ObservableObject {
     @Published var session: Session
     @Published var newParticipantName = ""
     @Published private(set) var errorMessage: String?
+    @Published private(set) var canUndo = false
 
     private let generateNextRoundUseCase: GenerateNextRoundUseCase
     private let sessionRepository: (any SessionRepository)?
+    private var undoSession: Session?
 
     init(
         session: Session? = nil,
@@ -89,8 +91,46 @@ final class OperationBoardViewModel: ObservableObject {
         }
     }
 
+    func replaceCurrentRoundPlayer(playerID: Participant.ID, with waitingParticipantID: Participant.ID) {
+        guard var currentRound,
+              let waitingIndex = currentRound.waitingParticipants.firstIndex(where: { $0.id == waitingParticipantID })
+        else {
+            return
+        }
+
+        let waitingParticipant = currentRound.waitingParticipants[waitingIndex]
+        guard let replacement = currentRound.replacePlayer(id: playerID, with: waitingParticipant) else {
+            return
+        }
+
+        captureUndoSnapshot()
+        currentRound.waitingParticipants[waitingIndex] = replacement
+        session.rounds[session.rounds.count - 1] = currentRound
+        session.updatedAt = Date()
+        errorMessage = nil
+        saveSession()
+    }
+
+    func undoLastChange() {
+        guard let undoSession else {
+            return
+        }
+
+        session = undoSession
+        session.updatedAt = Date()
+        self.undoSession = nil
+        canUndo = false
+        errorMessage = nil
+        saveSession()
+    }
+
     private func defaultSkillLevel(for index: Int) -> SkillLevel {
         SkillLevel(rawValue: (index % SkillLevel.allCases.count) + 1) ?? .beginner
+    }
+
+    private func captureUndoSnapshot() {
+        undoSession = session
+        canUndo = true
     }
 
     private func saveSession() {
@@ -99,6 +139,32 @@ final class OperationBoardViewModel: ObservableObject {
         } catch {
             errorMessage = "セッションを保存できませんでした。端末の空き容量を確認してください。"
         }
+    }
+}
+
+private extension Round {
+    mutating func replacePlayer(id playerID: Participant.ID, with replacement: Participant) -> Participant? {
+        for matchIndex in matches.indices {
+            if let replaced = matches[matchIndex].teamA.replacePlayer(id: playerID, with: replacement) {
+                return replaced
+            }
+            if let replaced = matches[matchIndex].teamB.replacePlayer(id: playerID, with: replacement) {
+                return replaced
+            }
+        }
+        return nil
+    }
+}
+
+private extension DoublesTeam {
+    mutating func replacePlayer(id playerID: Participant.ID, with replacement: Participant) -> Participant? {
+        guard let playerIndex = players.firstIndex(where: { $0.id == playerID }) else {
+            return nil
+        }
+
+        let replaced = players[playerIndex]
+        players[playerIndex] = replacement
+        return replaced
     }
 }
 
