@@ -3152,3 +3152,49 @@ Low. The only runtime change is GitHub Actions checkout behavior in CI. PR CI wi
 ### Follow-up
 
 Commit, open PR for Issue #54, update Project evidence to In Review, and merge to `dev` if CI passes.
+
+## 2026-06-01 22:50 JST
+
+### Action
+
+Pushed `codex/chore-54-actions-node24`, opened PR #55 for Issue #54, and moved the GitHub Project item to In Review with PR evidence.
+
+### Reason
+
+The local workflow update passed validation and is ready for GitHub Actions to verify the checkout version change in CI.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git push -u origin codex/chore-54-actions-node24`
+- `gh pr create ...`
+- `gh issue edit 54 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit ...` for Issue #54 In Review and Evidence Link
+
+### GitHub Project Updates
+
+Issue #54 set to Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, and Evidence Link PR #55.
+
+### Architecture Decision
+
+No app architecture impact.
+
+### Validation
+
+PR #55 will run GitHub Actions. Local validation already passed before PR creation.
+
+### Risk
+
+Low. If `actions/checkout@v6` has unexpected runner compatibility issues, PR CI will fail before merge.
+
+### Follow-up
+
+Wait for PR #55 CI, squash merge to `dev` if it passes, then set Issue #54 and Project item Done.

@@ -3,7 +3,7 @@
 ## Result
 
 - Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31/#33/#35/#37/#39/#41/#43/#45/#47/#49/#51/#53 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30/#32/#34/#36/#38/#40/#42/#44/#46/#48/#50/#52 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, current-round CSV sharing, participant-facing large board display, editable session settings, participant skill editing, participant detail editing, roster reuse for new sessions, any-player current-round manual swap, multi-step undo history, current-round PDF sharing, current-round image sharing, session history/reopen, board current-state/next-action readability, and a guarded GitHub REST push fallback script/runbook
-- Partially completed: Issue #54 GitHub Actions Node 20 deprecation warning local workflow update and validation; PR pending
+- Partially completed: Issue #54 GitHub Actions Node 20 deprecation warning workflow update, validation, and PR #55; CI/merge pending
 - Blocked: none
 
 ## Time
@@ -72,6 +72,7 @@
 - Issue #52 moved to In Review with PR #53 Evidence Link
 - Issue #52 set Done after PR #53 merge
 - Issue #54 created in Japanese, added to Project, moved to In Progress, Validation Status set to Passed after local validation
+- Issue #54 moved to In Review with PR #55 Evidence Link
 
 ## Pending GitHub Project Updates
 
@@ -188,7 +189,8 @@ A  scripts/codex/validate-ios.sh
 - Done: Issue #48 current-round image sharing
 - Done: Issue #50 session history/reopen
 - Done: Issue #52 board current-state and next-action readability
-- In progress: Issue #54 GitHub Actions Node 20 deprecation warning
+- In progress: none
+- In review: Issue #54 GitHub Actions Node 20 deprecation warning, PR #55
 - In review: none
 - In review: none
 - Blocked: none
@@ -216,4 +218,4 @@ A  scripts/codex/validate-ios.sh
 
 ## Next Recommended Codex Goal
 
-- Finish Issue #54 PR and merge if CI passes; then select the next highest-value MVP slice.
+- Monitor PR #55 CI and merge if it passes; then select the next highest-value MVP slice.

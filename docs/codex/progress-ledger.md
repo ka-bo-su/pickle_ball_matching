@@ -5,10 +5,10 @@
 - Active PBI: Autonomous iOS development environment
 - Active SBI: #54 GitHub ActionsのNode 20 deprecation警告を解消する
 - Active Branch: codex/chore-54-actions-node24
-- Active PR: none
+- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/55
 - GitHub Project Item: PVTI_lAHOBHYYMs4BZUKkzguYiqI
-- Status: Local implementation complete; validation passed
-- Next Action: commit, open PR, and update Project evidence to In Review
+- Status: In Review; waiting for GitHub Actions
+- Next Action: monitor PR #55 CI, then squash merge to `dev` if it passes
 
 ## Completed
 
@@ -93,12 +93,13 @@
 | 2026-06-01 22:34 JST | SBI #52 merged | Squash merged PR #53 to `dev`; Issue #52 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/53 |
 | 2026-06-01 22:43 JST | Next chore selected | Created and selected Issue #54 for GitHub Actions Node 20 deprecation warning | https://github.com/ka-bo-su/pickle_ball_matching/issues/54 |
 | 2026-06-01 22:48 JST | Chore #54 local implementation | Updated `actions/checkout` from v4 to v6 and validated local iOS project | `.github/workflows/ios-validation.yml` |
+| 2026-06-01 22:50 JST | PR opened | Created PR #55 for Chore #54 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/55 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #54 | codex/chore-54-actions-node24 | pending | validation passed | commit and open PR |
+| Issue #54 | codex/chore-54-actions-node24 | PR #55 | In Review | wait for CI, then merge |
 
 ## Blocked
 
