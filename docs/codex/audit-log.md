@@ -2847,3 +2847,49 @@ Medium. The history UI is intentionally compact inside the session settings sect
 ### Follow-up
 
 Commit, open PR for Issue #50, update Project evidence to In Review, and merge to `dev` if CI passes.
+
+## 2026-06-01 19:20 JST
+
+### Action
+
+Pushed `codex/sbi-50-session-history`, opened PR #51 for Issue #50, and moved the GitHub Project item to In Review.
+
+### Reason
+
+SBI #50 passed local validation and is ready for CI-backed review and autonomous merge to `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git push -u origin codex/sbi-50-session-history`
+- `gh pr create ...`
+- `gh issue edit 50 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit ...` for Issue #50 In Review and Evidence Link
+
+### GitHub Project Updates
+
+Issue #50 set to Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, and Evidence Link PR #51.
+
+### Architecture Decision
+
+No new decision. The PR keeps session history behind `SessionRepository` and `JSONSessionRepository`.
+
+### Validation
+
+PR #51 will run GitHub Actions. Local validation already passed before PR creation.
+
+### Risk
+
+Medium. The history list is compact and delete/search are deferred.
+
+### Follow-up
+
+Wait for PR #51 CI, squash merge to `dev` if it passes, then set Issue #50 and Project item Done.

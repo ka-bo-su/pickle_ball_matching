@@ -5,10 +5,10 @@
 - Active PBI: Issue #17
 - Active SBI: Issue #50
 - Active Branch: codex/sbi-50-session-history
-- Active PR: none
+- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/51
 - GitHub Project Item: PVTI_lAHOBHYYMs4BZUKkzguXOGc
-- Status: In Progress
-- Next Action: commit, push, open PR, and move Project item to In Review
+- Status: In Review
+- Next Action: watch PR #51 CI, then squash merge to `dev` if it passes
 
 ## Completed
 
@@ -85,12 +85,13 @@
 | 2026-06-01 19:05 JST | SBI #48 merged | Squash merged PR #49 to `dev`; Issue #48 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/49 |
 | 2026-06-01 19:10 JST | Next SBI selected | Created and selected Issue #50 for reopening saved sessions from history | https://github.com/ka-bo-su/pickle_ball_matching/issues/50 |
 | 2026-06-01 19:19 JST | SBI #50 local implementation | Added JSON session history, ViewModel reopen flow, settings menu, and repository/ViewModel tests | `JSONSessionRepository`, `SessionSettingsSection`, `OperationBoardViewModel` |
+| 2026-06-01 19:20 JST | PR opened | Created PR #51 for SBI #50 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/51 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #50 | codex/sbi-50-session-history | pending | In Progress | Open PR after commit |
+| Issue #50 | codex/sbi-50-session-history | PR #51 | In Review | Wait for CI and merge if green |
 
 ## Blocked
 
