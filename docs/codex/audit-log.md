@@ -2171,3 +2171,48 @@ Low after merge. Remaining product scope risk is lack of multiple saved rosters,
 ### Follow-up
 
 Select the next MVP SBI from Project/Sprint Backlog. Good candidates are richer snapshot/undo history or PDF/image export.
+
+## 2026-06-01 12:02 JST
+
+### Action
+
+Created and implemented Issue #42 for swapping any participant within the current round.
+
+### Reason
+
+The MVP promises that organizers can manually correct generated pairings. The app already supported swapping a playing participant with a waiter; this increment removes the next obvious limitation by allowing swaps with other playing participants too.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/OperationBoardView.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardManualSwapTests.swift`
+- Scrum/Codex ledger docs
+
+### Commands Run
+
+- `gh issue create ...`
+- `gh project item-add 3 --owner ka-bo-su --url https://github.com/ka-bo-su/pickle_ball_matching/issues/42`
+- `gh project item-edit ...` for Issue #42 In Progress metadata
+- `swiftformat --cache ignore .`
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+Issue #42 was added to Project `kanban@pickle_ball_matching` and set to In Progress with Role Owner `swift-developer`, Backlog Level `SBI`, Priority `P1`, Parent PBI `#16 当日運営特化ダブルス組み合わせMVP`, and Validation Status `Not Run`.
+
+### Architecture Decision
+
+No new infrastructure or persistence boundary was added. Manual swapping remains in Presentation/ViewModel, and the existing `SessionRepository` autosave boundary is reused.
+
+### Validation
+
+Full validation passed: `swift test`, SwiftLint, SwiftFormat lint, XcodeGen, `xcodebuild build`, and `xcodebuild test` on iPhone 16 Simulator. The Xcode test suite passed 10 core tests and 27 app tests with 0 lint violations.
+
+### Risk
+
+Medium. The menu now lists all current-round participants, so future UX may need a dedicated manual-edit screen for dense events.
+
+### Follow-up
+
+Commit, open PR for Issue #42, update Project evidence to In Review, and merge to `dev` if CI passes.

@@ -139,17 +139,18 @@ struct OperationBoardView: View {
                 .lineLimit(1)
                 .minimumScaleFactor(0.75)
 
-            if let waitingParticipants = viewModel.currentRound?.waitingParticipants, !waitingParticipants.isEmpty {
+            let swapCandidates = viewModel.swapCandidates(for: player.id)
+            if !swapCandidates.isEmpty {
                 Menu {
-                    ForEach(waitingParticipants) { waitingParticipant in
+                    ForEach(swapCandidates) { candidate in
                         Button {
-                            viewModel.replaceCurrentRoundPlayer(
-                                playerID: player.id,
-                                with: waitingParticipant.id
+                            viewModel.swapCurrentRoundParticipants(
+                                firstID: player.id,
+                                secondID: candidate.id
                             )
                         } label: {
                             Label(
-                                "\(waitingParticipant.displayName)と交代",
+                                "\(candidate.displayName)と入れ替え",
                                 systemImage: "arrow.left.arrow.right"
                             )
                         }
@@ -159,7 +160,7 @@ struct OperationBoardView: View {
                         .imageScale(.medium)
                 }
                 .buttonStyle(.borderless)
-                .accessibilityLabel("\(player.displayName)を待機者と交代")
+                .accessibilityLabel("\(player.displayName)をラウンド内の参加者と入れ替え")
             }
         }
     }

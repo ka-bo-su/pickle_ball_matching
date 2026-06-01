@@ -3,7 +3,7 @@
 ## Result
 
 - Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31/#33/#35/#37/#39/#41 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30/#32/#34/#36/#38/#40 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, current-round CSV sharing, participant-facing large board display, editable session settings, participant skill editing, participant detail editing, and roster reuse for new sessions
-- Partially completed: none
+- Partially completed: Issue #42 any-player current-round swap implemented and validated locally; PR creation is next
 - Blocked: none
 
 ## Time
@@ -57,6 +57,7 @@
 - Issue #36 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #37 merge
 - Issue #38 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #39 merge
 - Issue #40 created in Japanese, added to Project, moved through In Progress/In Review, then Done after PR #41 merge
+- Issue #42 created in Japanese, added to Project, and moved to In Progress for current-round manual swap
 
 ## Pending GitHub Project Updates
 
@@ -64,9 +65,9 @@
 
 ## iOS Validation
 
-- Build: passed on `codex/sbi-40-roster-reuse` with `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'`
-- Test: passed on `codex/sbi-40-roster-reuse` with `swift test` and `xcodebuild test`
-- Lint: passed on `codex/sbi-40-roster-reuse` with `swiftlint --no-cache` and `swiftformat --cache ignore --lint .`
+- Build: passed on `codex/sbi-42-round-player-swap` with `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'`
+- Test: passed on `codex/sbi-42-round-player-swap` with `swift test` and `xcodebuild test`
+- Lint: passed on `codex/sbi-42-round-player-swap` with `swiftlint --no-cache` and `swiftformat --cache ignore --lint .`
 - Simulator: iPhone 16 on iOS 18.2 available
 
 ## Files Changed
@@ -167,8 +168,9 @@ A  scripts/codex/validate-ios.sh
 - Done: Issue #36 participant skill editing
 - Done: Issue #38 participant gender/age group/memo editing
 - Done: Issue #40 roster reuse for new sessions
+- In progress: Issue #42 any-player current-round manual swap
 - Blocked: none
-- Next: continue with richer snapshot history or export improvements
+- Next: open PR for Issue #42, then continue with richer snapshot history or export improvements
 
 ## Architecture
 
@@ -191,4 +193,4 @@ A  scripts/codex/validate-ios.sh
 
 ## Next Recommended Codex Goal
 
-- Implement richer snapshot/undo history or export improvements.
+- Create and merge the Issue #42 manual swap PR, then implement richer snapshot/undo history or export improvements.

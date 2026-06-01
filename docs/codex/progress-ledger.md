@@ -2,13 +2,13 @@
 
 ## Current
 
-- Active PBI: selecting next
-- Active SBI: selecting next
-- Active Branch: dev
+- Active PBI: Issue #16
+- Active SBI: Issue #42
+- Active Branch: codex/sbi-42-round-player-swap
 - Active PR: n/a
-- GitHub Project Item: n/a
-- Status: Ready for next SBI selection
-- Next Action: select the next highest-value MVP SBI from Sprint Backlog and GitHub Project
+- GitHub Project Item: PVTI_lAHOBHYYMs4BZUKkzguVDx4
+- Status: Implemented locally; validated; preparing PR
+- Next Action: commit, push, open PR, and move Project item to In Review
 
 ## Completed
 
@@ -67,12 +67,14 @@
 | 2026-06-01 11:40 JST | SBI #40 local implementation | Added roster-carryover new-session action, reset logic, and ViewModel test | `SessionSettingsSection`, `OperationBoardViewModel` |
 | 2026-06-01 11:42 JST | PR opened | Created PR #41 for SBI #40 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/41 |
 | 2026-06-01 11:49 JST | SBI #40 merged | Squash merged PR #41 to `dev`; Issue #40 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/41 |
+| 2026-06-01 11:55 JST | Next SBI selected | Created and selected Issue #42 for swapping any current-round participant | https://github.com/ka-bo-su/pickle_ball_matching/issues/42 |
+| 2026-06-01 12:02 JST | SBI #42 local implementation | Generalized manual swap to any current-round participant and added ViewModel tests | `OperationBoardView`, `OperationBoardViewModel` |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| none | n/a | n/a | n/a | n/a |
+| Issue #42 | codex/sbi-42-round-player-swap | n/a | Validated locally | Open PR and update Project evidence |
 
 ## Blocked
 
@@ -127,3 +129,4 @@
 | 2026-06-01 11:25 JST | GitHub Actions `validate` | pass | PR #39 passed before squash merge |
 | 2026-06-01 11:40 JST | `scripts/codex/validate-ios.sh` | pass | SBI #40 full validation with 10 core tests and 25 app tests, 0 lint violations |
 | 2026-06-01 11:49 JST | GitHub Actions `validate` | pass | PR #41 passed before squash merge |
+| 2026-06-01 12:02 JST | `scripts/codex/validate-ios.sh` | pass | SBI #42 full validation with 10 core tests and 27 app tests, 0 lint violations |

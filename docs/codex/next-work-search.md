@@ -119,3 +119,13 @@
 - Reason: It directly reduces organizer setup time and supports the north star of creating the first doubles round within 3 minutes.
 - Human repair needed: none.
 - Pending updates: PR evidence for Issue #40 after PR creation.
+
+## 2026-06-01 11:55 JST
+
+- Searched candidates: GitHub Project open PBIs, Sprint Backlog after PR #41 merge, MVP manual correction requirements, current swap UI.
+- Referenced GitHub Project / Issues / docs: Issues #16, #42, `docs/scrum/sprint-backlog.md`, product vision manual swap requirements.
+- Findings: The app can swap a playing participant with a waiter, but cannot swap two players already assigned to matches. That leaves common on-site corrections awkward.
+- Next selected work: Issue #42 `現在ラウンド内の任意プレイヤーを入れ替えられるようにする`.
+- Reason: It strengthens the MVP promise that the organizer can quickly correct generated pairings without waiting for algorithm perfection.
+- Human repair needed: none.
+- Pending updates: PR evidence for Issue #42 after PR creation.
