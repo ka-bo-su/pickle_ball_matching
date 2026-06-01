@@ -1888,3 +1888,48 @@ Low after merge. Remaining UX risk is participant row density, tracked as a futu
 ### Follow-up
 
 Select the next MVP SBI from Project/Sprint Backlog. Good candidates are richer snapshot/undo history or participant detail editing.
+
+## 2026-06-01 11:15 JST
+
+### Action
+
+Created and implemented Issue #38 for participant gender, age group, and memo editing.
+
+### Reason
+
+The MVP requires organizers to capture optional participant context during day-of operations without external notes. Gender, age group, and memo also prepare the model for later rule weights such as mixed priority and beginner protection while keeping the current change small.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/ParticipantDetailEditorView.swift`
+- `Features/OperationBoard/Presentation/ParticipantListSection.swift`
+- `Features/OperationBoard/Presentation/OperationBoardView.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardParticipantEditingTests.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+- Scrum/Codex ledger docs
+
+### Commands Run
+
+- `swiftformat --cache ignore .`
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+Issue #38 was added to Project `kanban@pickle_ball_matching` and set to In Progress with Role Owner `swift-developer`, Backlog Level `SBI`, Priority `P1`, Parent PBI `#16 当日運営特化ダブルス組み合わせMVP`, and Validation Status `Not Run`.
+
+### Architecture Decision
+
+No new infrastructure or persistence boundary was added. SwiftUI uses `ParticipantDetailEditorView`, the participant list is split into `ParticipantListSection`, and `OperationBoardViewModel` mutates Domain `Participant` fields before autosaving through the existing `SessionRepository` boundary.
+
+### Validation
+
+Full validation passed: `swift test`, SwiftLint, SwiftFormat lint, XcodeGen, `xcodebuild build`, and `xcodebuild test` on iPhone 16 Simulator. The Xcode test suite passed 10 core tests and 24 app tests with 0 lint violations.
+
+### Risk
+
+Medium. The profile fields are editable and persisted, but the generation algorithm does not yet use gender or age group. This is acceptable for the SBI because the immediate user value is on-site participant context capture.
+
+### Follow-up
+
+Commit, open PR for Issue #38, update Project evidence to In Review, and merge to `dev` if CI passes.

@@ -31,3 +31,4 @@ GitHub Project `kanban@pickle_ball_matching` is the source of truth. This file m
 | SBI-011 | SBI | 参加者向け大画面ボードを表示する | P1 | Done | PR #33, Issue #32 |
 | SBI-012 | SBI | セッション名と運営条件を編集できるようにする | P0 | Done | PR #35, Issue #34 |
 | SBI-013 | SBI | 参加者レベルを編集して組み合わせに反映する | P0 | Done | PR #37, Issue #36 |
+| SBI-014 | SBI | 参加者の性別・年齢帯・メモを編集できるようにする | P1 | In Progress | Issue #38 |
