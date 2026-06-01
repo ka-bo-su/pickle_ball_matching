@@ -10,7 +10,8 @@ struct DependencyContainer {
             operationBoardViewModel: OperationBoardViewModel(
                 generateNextRoundUseCase: GenerateNextRoundUseCase(),
                 sessionRepository: makeSessionRepository(),
-                roundExporter: CSVRoundExporter()
+                roundExporter: CSVRoundExporter(),
+                pdfExporter: PDFRoundExporter()
             )
         )
     }

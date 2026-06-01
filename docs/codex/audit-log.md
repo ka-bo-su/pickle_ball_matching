@@ -2497,3 +2497,101 @@ Low after merge. Remaining undo risk is that history is not persisted across rel
 ### Follow-up
 
 Select the next MVP SBI, with PDF/image export or board usability as likely candidates.
+
+## 2026-06-01 15:42 JST
+
+### Action
+
+Created and implemented Issue #46 for current-round PDF sharing.
+
+### Reason
+
+MVP sharing already had CSV, but the product vision asks for PNG, PDF, CSV, or a share image. PDF is a useful local-first export because organizers can share, AirDrop, print, or project it without server work.
+
+### Files Changed
+
+- `Sources/PickleBallMatchingCore/Application/RoundPDFExporting.swift`
+- `Sources/PickleBallMatchingCore/Infrastructure/PDFRoundExporter.swift`
+- `Features/OperationBoard/Presentation/RoundPDFDocument.swift`
+- `Features/OperationBoard/Presentation/OperationBoardView.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `App/CompositionRoot/DependencyContainer.swift`
+- `Tests/PickleBallMatchingCoreTests/PDFRoundExporterTests.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+- Scrum/Codex ledger docs
+
+### Commands Run
+
+- `gh issue create ...` for Issue #46
+- `gh project item-add 3 --owner ka-bo-su --url https://github.com/ka-bo-su/pickle_ball_matching/issues/46`
+- `gh project item-edit ...` for Issue #46 In Progress metadata
+- `swiftformat --cache ignore .`
+- `swift test`
+- `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16' IDEPackageSupportUseBuiltinSCM=YES | xcbeautify`
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+Issue #46 was added to Project `kanban@pickle_ball_matching` and set to Status `In progress`, Scrum Status `In Progress`, Backlog Level `SBI`, Priority `P2`, Role Owner `swift-developer`, Risk `medium`, Area `Infrastructure`, Parent PBI `#19 共有・エクスポート`, Architecture Impact, and Validation Status `Passed`.
+
+### Architecture Decision
+
+PDF generation is an Infrastructure adapter behind the new Application protocol `RoundPDFExporting`. Presentation receives PDF bytes through `OperationBoardViewModel` and shares them via a `Transferable` wrapper. This keeps SwiftUI away from PDF drawing details.
+
+### Validation
+
+Full validation passed: `swift test`, SwiftLint, SwiftFormat lint, XcodeGen, `xcodebuild build`, and `xcodebuild test` on iPhone 16 Simulator. The Xcode test suite passed 12 core tests and 31 app tests with 0 lint violations.
+
+### Risk
+
+Medium. The PDF layout is intentionally simple and local-first. Richer visual design, image export, and multi-round PDFs should be follow-up SBIs.
+
+### Follow-up
+
+Commit, open PR for Issue #46, update Project evidence to In Review, and merge to `dev` if CI passes.
+
+## 2026-06-01 15:43 JST
+
+### Action
+
+Pushed `codex/sbi-46-pdf-export`, opened PR #47 for Issue #46, and moved the GitHub Project item to In Review.
+
+### Reason
+
+SBI #46 passed local validation and is ready for CI-backed review and autonomous merge to `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git push -u origin codex/sbi-46-pdf-export`
+- `gh pr create ...`
+- `gh issue edit 46 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit ...` for Issue #46 In Review and Evidence Link
+
+### GitHub Project Updates
+
+Issue #46 set to Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, and Evidence Link PR #47.
+
+### Architecture Decision
+
+No new decision. The PR keeps PDF generation behind `RoundPDFExporting` and `PDFRoundExporter`.
+
+### Validation
+
+PR #47 will run GitHub Actions. Local validation already passed before PR creation.
+
+### Risk
+
+Medium. The PDF is useful but visually basic; image export and PDF polish remain follow-ups.
+
+### Follow-up
+
+Wait for PR #47 CI, squash merge to `dev` if it passes, then set Issue #46 and Project item Done.

@@ -231,6 +231,23 @@ final class OperationBoardViewModelTests: XCTestCase {
         XCTAssertNil(viewModel.currentRoundCSV)
     }
 
+    func testCurrentRoundPDFDocumentExportsCurrentRound() throws {
+        let session = Session(name: "初心者/体験会", courtCount: 1, participants: makeParticipants(count: 5))
+        let viewModel = OperationBoardViewModel(session: session)
+        viewModel.generateNextRound()
+
+        let pdfDocument = try XCTUnwrap(viewModel.currentRoundPDFDocument)
+
+        XCTAssertEqual(String(data: pdfDocument.data.prefix(4), encoding: .ascii), "%PDF")
+        XCTAssertEqual(pdfDocument.fileName, "初心者-体験会-round-1.pdf")
+    }
+
+    func testCurrentRoundPDFDocumentIsNilBeforeRoundGeneration() {
+        let viewModel = OperationBoardViewModel(session: Session(name: "テスト"))
+
+        XCTAssertNil(viewModel.currentRoundPDFDocument)
+    }
+
     func testLargeBoardDisplayModelSummarizesCurrentRound() throws {
         let session = Session(
             name: "初心者会",

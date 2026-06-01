@@ -12,6 +12,7 @@ final class OperationBoardViewModel: ObservableObject {
     private let generateNextRoundUseCase: GenerateNextRoundUseCase
     private let sessionRepository: (any SessionRepository)?
     private let roundExporter: any RoundExporting
+    private let pdfExporter: any RoundPDFExporting
     private let undoHistoryLimit = 10
     private var undoSessions: [Session] = []
 
@@ -19,11 +20,13 @@ final class OperationBoardViewModel: ObservableObject {
         session: Session? = nil,
         generateNextRoundUseCase: GenerateNextRoundUseCase = GenerateNextRoundUseCase(),
         sessionRepository: (any SessionRepository)? = nil,
-        roundExporter: any RoundExporting = CSVRoundExporter()
+        roundExporter: any RoundExporting = CSVRoundExporter(),
+        pdfExporter: any RoundPDFExporting = PDFRoundExporter()
     ) {
         self.generateNextRoundUseCase = generateNextRoundUseCase
         self.sessionRepository = sessionRepository
         self.roundExporter = roundExporter
+        self.pdfExporter = pdfExporter
 
         if let session {
             self.session = session
@@ -35,51 +38,6 @@ final class OperationBoardViewModel: ObservableObject {
                 errorMessage = "保存済みセッションを読み込めませんでした。新規セッションで開始します。"
             }
         }
-    }
-
-    var currentRound: Round? {
-        session.currentRound
-    }
-
-    var currentRoundCSV: String? {
-        guard let currentRound else {
-            return nil
-        }
-
-        return roundExporter.exportCSV(session: session, round: currentRound)
-    }
-
-    var largeBoardDisplayModel: LargeBoardDisplayModel? {
-        guard let currentRound else {
-            return nil
-        }
-
-        let waitingNames = currentRound.waitingParticipants.map(\.displayName)
-        return LargeBoardDisplayModel(
-            sessionName: session.name,
-            roundTitle: "ラウンド\(currentRound.number)",
-            announcement: waitingNames.isEmpty ? "待機者はいません" : "待機 \(waitingNames.joined(separator: "、"))",
-            courts: currentRound.matches.map { match in
-                LargeBoardCourtDisplay(
-                    courtNumber: match.courtNumber,
-                    teamAPlayerNames: match.teamA.players.map(\.displayName),
-                    teamBPlayerNames: match.teamB.players.map(\.displayName)
-                )
-            },
-            waitingPlayerNames: waitingNames
-        )
-    }
-
-    var canGenerateRound: Bool {
-        session.participants.count(where: { $0.status.isAvailableForRound }) >= 4
-    }
-
-    var undoButtonTitle: String {
-        undoCount > 0 ? "1手戻す（\(undoCount)）" : "1手戻す"
-    }
-
-    var undoButtonAccessibilityLabel: String {
-        undoCount > 0 ? "直前の入れ替えを1手戻す。戻せる操作は\(undoCount)件です。" : "直前の入れ替えを1手戻す"
     }
 
     func updateSessionName(_ name: String) {
@@ -252,6 +210,15 @@ final class OperationBoardViewModel: ObservableObject {
         SkillLevel(rawValue: (index % SkillLevel.allCases.count) + 1) ?? .beginner
     }
 
+    private func safeFileName(_ name: String) -> String {
+        let invalidCharacters = CharacterSet(charactersIn: "/\\?%*|\"<>:")
+        let sanitized = name
+            .components(separatedBy: invalidCharacters)
+            .joined(separator: "-")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        return sanitized.isEmpty ? "pickleball-round" : sanitized
+    }
+
     private func captureUndoSnapshot() {
         undoSessions.append(session)
         if undoSessions.count > undoHistoryLimit {
@@ -286,6 +253,64 @@ final class OperationBoardViewModel: ObservableObject {
         } catch {
             errorMessage = "セッションを保存できませんでした。端末の空き容量を確認してください。"
         }
+    }
+}
+
+extension OperationBoardViewModel {
+    var currentRound: Round? {
+        session.currentRound
+    }
+
+    var currentRoundCSV: String? {
+        guard let currentRound else {
+            return nil
+        }
+
+        return roundExporter.exportCSV(session: session, round: currentRound)
+    }
+
+    var currentRoundPDFDocument: RoundPDFDocument? {
+        guard let currentRound else {
+            return nil
+        }
+
+        return RoundPDFDocument(
+            fileName: "\(safeFileName(session.name))-round-\(currentRound.number).pdf",
+            data: pdfExporter.exportPDF(session: session, round: currentRound)
+        )
+    }
+
+    var largeBoardDisplayModel: LargeBoardDisplayModel? {
+        guard let currentRound else {
+            return nil
+        }
+
+        let waitingNames = currentRound.waitingParticipants.map(\.displayName)
+        return LargeBoardDisplayModel(
+            sessionName: session.name,
+            roundTitle: "ラウンド\(currentRound.number)",
+            announcement: waitingNames.isEmpty ? "待機者はいません" : "待機 \(waitingNames.joined(separator: "、"))",
+            courts: currentRound.matches.map { match in
+                LargeBoardCourtDisplay(
+                    courtNumber: match.courtNumber,
+                    teamAPlayerNames: match.teamA.players.map(\.displayName),
+                    teamBPlayerNames: match.teamB.players.map(\.displayName)
+                )
+            },
+            waitingPlayerNames: waitingNames
+        )
+    }
+
+    var canGenerateRound: Bool {
+        session.participants.count(where: { $0.status.isAvailableForRound }) >= 4
+    }
+
+    var undoButtonTitle: String {
+        undoCount > 0 ? "1手戻す（\(undoCount)）" : "1手戻す"
+    }
+
+    var undoButtonAccessibilityLabel: String {
+        undoCount > 0 ? "直前の入れ替えを1手戻す。戻せる操作は\(undoCount)件です。" : "直前の入れ替えを1手戻す"
     }
 }
 
