@@ -2,7 +2,9 @@
 
 No pending updates at file creation time. Any failed field, label, item, status, evidence, or PR sync must be appended here.
 
-## Pending Project Update
+No active pending updates as of 2026-06-02 08:02 JST.
+
+## Resolved Pending Project Update
 
 - Timestamp: 2026-06-01 23:19 JST
 - Target project: kanban@pickle_ball_matching
@@ -12,7 +14,8 @@ No pending updates at file creation time. Any failed field, label, item, status,
 - New state: Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, Evidence Link `<PR URL>`
 - Reason not applied: Validation is complete, but PR has not yet been created in this checkpoint.
 - Command to apply later: `git push -u origin codex/sbi-56-round-timer`; then `gh pr create --base dev --head codex/sbi-56-round-timer`; then `gh project item-edit` for Status/Scrum Status/Evidence.
-- Related PR: pending
+- Resolution: Completed on 2026-06-02 08:02 JST. PR #57 was created, Evidence Link was set, and Status/Scrum Status moved to In Review.
+- Related PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/57
 - Related Issue: https://github.com/ka-bo-su/pickle_ball_matching/issues/56
 
 ## Pending Project Update Template

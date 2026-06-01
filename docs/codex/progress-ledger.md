@@ -5,10 +5,10 @@
 - Active PBI: #18 進行ボードと大画面表示
 - Active SBI: #56 進行ボードで試合開始と残り時間を扱えるようにする
 - Active Branch: codex/sbi-56-round-timer
-- Active PR: none
+- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/57
 - GitHub Project Item: `PVTI_lAHOBHYYMs4BZUKkzguYuXg`
-- Status: Local validation passed; ready to push and open PR
-- Next Action: push `codex/sbi-56-round-timer`, open PR, and move Issue #56 to In Review with PR evidence
+- Status: In Review
+- Next Action: wait for PR #57 CI, then squash merge to `dev` if it passes
 
 ## Completed
 
@@ -97,12 +97,13 @@
 | 2026-06-01 23:00 JST | Chore #54 merged | Squash merged PR #55 to `dev`; Issue #54 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/55 |
 | 2026-06-01 23:19 JST | SBI #56 local implementation | Added round start/end timestamps, remaining-time model, board controls, and timing tests | local branch `codex/sbi-56-round-timer` |
 | 2026-06-02 08:00 JST | SBI #56 local validation | Full iOS validation passed and Project Validation Status set to Passed | `scripts/codex/validate-ios.sh` |
+| 2026-06-02 08:02 JST | PR opened | Created PR #57 for Issue #56 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/57 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #56 `進行ボードで試合開始と残り時間を扱えるようにする` | `codex/sbi-56-round-timer` | none | validation passed; ready for PR | push branch, open PR, update Project evidence |
+| Issue #56 `進行ボードで試合開始と残り時間を扱えるようにする` | `codex/sbi-56-round-timer` | PR #57 | In Review | wait for CI, then squash merge |
 
 ## Blocked
 

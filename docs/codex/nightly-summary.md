@@ -3,18 +3,18 @@
 ## Result
 
 - Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31/#33/#35/#37/#39/#41/#43/#45/#47/#49/#51/#53/#55 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30/#32/#34/#36/#38/#40/#42/#44/#46/#48/#50/#52/#54 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, current-round CSV sharing, participant-facing large board display, editable session settings, participant skill editing, participant detail editing, roster reuse for new sessions, any-player current-round manual swap, multi-step undo history, current-round PDF sharing, current-round image sharing, session history/reopen, board current-state/next-action readability, GitHub Actions Node 20 deprecation fix, and a guarded GitHub REST push fallback script/runbook
-- Partially completed: Issue #56 round timer/start-end flow implemented and locally validated on `codex/sbi-56-round-timer`
+- Partially completed: Issue #56 round timer/start-end flow implemented, locally validated, and opened as PR #57
 - Blocked: none
 
 ## Time
 
 - Started: 2026-06-01 02:34 JST
-- Last checkpoint: 2026-06-02 08:00 JST
+- Last checkpoint: 2026-06-02 08:02 JST
 - Approximate duration: session-dependent
 
 ## PRs
 
-- Opened: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24, https://github.com/ka-bo-su/pickle_ball_matching/pull/26, https://github.com/ka-bo-su/pickle_ball_matching/pull/28, https://github.com/ka-bo-su/pickle_ball_matching/pull/31, https://github.com/ka-bo-su/pickle_ball_matching/pull/33, https://github.com/ka-bo-su/pickle_ball_matching/pull/35, https://github.com/ka-bo-su/pickle_ball_matching/pull/37, https://github.com/ka-bo-su/pickle_ball_matching/pull/39, https://github.com/ka-bo-su/pickle_ball_matching/pull/41, https://github.com/ka-bo-su/pickle_ball_matching/pull/43, https://github.com/ka-bo-su/pickle_ball_matching/pull/45, https://github.com/ka-bo-su/pickle_ball_matching/pull/47, https://github.com/ka-bo-su/pickle_ball_matching/pull/49, https://github.com/ka-bo-su/pickle_ball_matching/pull/51, https://github.com/ka-bo-su/pickle_ball_matching/pull/53, https://github.com/ka-bo-su/pickle_ball_matching/pull/55
+- Opened: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24, https://github.com/ka-bo-su/pickle_ball_matching/pull/26, https://github.com/ka-bo-su/pickle_ball_matching/pull/28, https://github.com/ka-bo-su/pickle_ball_matching/pull/31, https://github.com/ka-bo-su/pickle_ball_matching/pull/33, https://github.com/ka-bo-su/pickle_ball_matching/pull/35, https://github.com/ka-bo-su/pickle_ball_matching/pull/37, https://github.com/ka-bo-su/pickle_ball_matching/pull/39, https://github.com/ka-bo-su/pickle_ball_matching/pull/41, https://github.com/ka-bo-su/pickle_ball_matching/pull/43, https://github.com/ka-bo-su/pickle_ball_matching/pull/45, https://github.com/ka-bo-su/pickle_ball_matching/pull/47, https://github.com/ka-bo-su/pickle_ball_matching/pull/49, https://github.com/ka-bo-su/pickle_ball_matching/pull/51, https://github.com/ka-bo-su/pickle_ball_matching/pull/53, https://github.com/ka-bo-su/pickle_ball_matching/pull/55, https://github.com/ka-bo-su/pickle_ball_matching/pull/57
 - Merged: https://github.com/ka-bo-su/pickle_ball_matching/pull/8, https://github.com/ka-bo-su/pickle_ball_matching/pull/14, https://github.com/ka-bo-su/pickle_ball_matching/pull/15, https://github.com/ka-bo-su/pickle_ball_matching/pull/22, https://github.com/ka-bo-su/pickle_ball_matching/pull/24, https://github.com/ka-bo-su/pickle_ball_matching/pull/26, https://github.com/ka-bo-su/pickle_ball_matching/pull/28, https://github.com/ka-bo-su/pickle_ball_matching/pull/31, https://github.com/ka-bo-su/pickle_ball_matching/pull/33, https://github.com/ka-bo-su/pickle_ball_matching/pull/35, https://github.com/ka-bo-su/pickle_ball_matching/pull/37, https://github.com/ka-bo-su/pickle_ball_matching/pull/39, https://github.com/ka-bo-su/pickle_ball_matching/pull/41, https://github.com/ka-bo-su/pickle_ball_matching/pull/43, https://github.com/ka-bo-su/pickle_ball_matching/pull/45, https://github.com/ka-bo-su/pickle_ball_matching/pull/47, https://github.com/ka-bo-su/pickle_ball_matching/pull/49, https://github.com/ka-bo-su/pickle_ball_matching/pull/51, https://github.com/ka-bo-su/pickle_ball_matching/pull/53, https://github.com/ka-bo-su/pickle_ball_matching/pull/55
 - Closed: Issues #1-#7, #9-#13, #21, #23, #25, #27, #30, #32, #34, #36, #38, #40, #42, #44, #46, #48, #50, #52, #54
 
@@ -76,11 +76,11 @@
 - Issue #54 created in Japanese, added to Project, moved to In Progress, Validation Status set to Passed after local validation
 - Issue #54 moved to In Review with PR #55 Evidence Link
 - Issue #54 set Done after PR #55 merge
-- Issue #56 is In Progress in Project; Validation Status is Passed; PR evidence and In Review transition are pending push/PR
+- Issue #56 moved to In Review with PR #57 Evidence Link and Validation Status Passed
 
 ## Pending GitHub Project Updates
 
-- Issue #56: add PR evidence and move Status/Scrum Status to In Review after push/PR creation.
+- none
 
 ## iOS Validation
 
@@ -194,10 +194,10 @@ A  scripts/codex/validate-ios.sh
 - Done: Issue #50 session history/reopen
 - Done: Issue #52 board current-state and next-action readability
 - Done: Issue #54 GitHub Actions Node 20 deprecation warning
-- In progress: Issue #56 round start/end and remaining-time display, pending PR/CI
-- In review: none
+- In progress: none
+- In review: Issue #56 round start/end and remaining-time display, PR #57
 - Blocked: none
-- Next: push and publish Issue #56, then continue board timer polish or score/result capture
+- Next: wait for PR #57 CI, merge if passed, then continue board timer polish or score/result capture
 
 ## Architecture
 
@@ -223,4 +223,4 @@ A  scripts/codex/validate-ios.sh
 
 ## Next Recommended Codex Goal
 
-- Push Issue #56, create PR, sync Project, and merge if CI passes.
+- Watch PR #57 CI, merge if passed, then select the next highest-value MVP SBI.
