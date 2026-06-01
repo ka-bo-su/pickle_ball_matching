@@ -2353,3 +2353,96 @@ Low after merge. Normal `git push` succeeded for PR #43, so the REST fallback wa
 ### Follow-up
 
 Create/select SBI-017 for richer snapshot/undo history and continue the autonomous loop.
+
+## 2026-06-01 14:30 JST
+
+### Action
+
+Created and implemented Issue #44 for multi-step undo history.
+
+### Reason
+
+The product vision treats Snapshot/Undo as a core on-site safety feature. After PR #43 enabled arbitrary current-round swaps, the next reversible vertical slice was to let organizers undo multiple manual corrections one by one.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/OperationBoardView.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `Features/OperationBoard/Presentation/LargeBoardDisplayModel.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardManualSwapTests.swift`
+- Scrum/Codex ledger docs
+
+### Commands Run
+
+- `gh issue create ...` for Issue #44
+- `gh project item-add 3 --owner ka-bo-su --url https://github.com/ka-bo-su/pickle_ball_matching/issues/44`
+- `gh project item-edit ...` for Issue #44 In Progress metadata
+- `swiftformat --cache ignore .`
+- `swift test`
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+Issue #44 was added to Project `kanban@pickle_ball_matching` and set to Status `In progress`, Scrum Status `In Progress`, Backlog Level `SBI`, Priority `P1`, Role Owner `swift-developer`, Risk `medium`, Area `UI`, Parent PBI `#16 当日運営特化ダブルス組み合わせMVP`, and Validation Status `Passed`.
+
+### Architecture Decision
+
+Multi-step undo is implemented as a bounded in-memory stack in `OperationBoardViewModel`. It remains a Presentation concern for manual corrections and does not add Infrastructure or persistence coupling. New session starts, roster reuse starts, non-manual session edits, participant edits, and round generation clear the undo history to avoid reverting unrelated state.
+
+### Validation
+
+Full validation passed: `swift test`, SwiftLint, SwiftFormat lint, XcodeGen, `xcodebuild build`, and `xcodebuild test` on iPhone 16 Simulator. The Xcode test suite passed 10 core tests and 29 app tests with 0 lint violations.
+
+### Risk
+
+Medium. Undo history is intentionally not persisted yet, so it protects the active session runtime but does not survive app relaunch. Persistent operation history remains a follow-up SBI.
+
+### Follow-up
+
+Commit, open PR for Issue #44, update Project evidence to In Review, and merge to `dev` if CI passes.
+
+## 2026-06-01 14:31 JST
+
+### Action
+
+Pushed `codex/sbi-44-multi-undo`, opened PR #45 for Issue #44, and moved the GitHub Project item to In Review.
+
+### Reason
+
+SBI #44 passed local validation and is ready for CI-backed review and autonomous merge to `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git push -u origin codex/sbi-44-multi-undo`
+- `gh pr create ...`
+- `gh issue edit 44 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit ...` for Issue #44 In Review and Evidence Link
+
+### GitHub Project Updates
+
+Issue #44 set to Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, and Evidence Link PR #45.
+
+### Architecture Decision
+
+No new decision. The PR keeps undo history in Presentation/ViewModel and does not introduce persistent operation history yet.
+
+### Validation
+
+PR #45 will run GitHub Actions. Local validation already passed before PR creation.
+
+### Risk
+
+Medium. Runtime-only undo history is acceptable for the MVP slice; persistent history remains a follow-up.
+
+### Follow-up
+
+Wait for PR #45 CI, squash merge to `dev` if it passes, then set Issue #44 and Project item Done.

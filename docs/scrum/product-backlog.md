@@ -34,3 +34,4 @@ GitHub Project `kanban@pickle_ball_matching` is the source of truth. This file m
 | SBI-014 | SBI | 参加者の性別・年齢帯・メモを編集できるようにする | P1 | Done | PR #39, Issue #38 |
 | SBI-015 | SBI | 保存済み名簿から新規セッションを開始できるようにする | P1 | Done | PR #41, Issue #40 |
 | SBI-016 | SBI | 現在ラウンド内の任意プレイヤーを入れ替えられるようにする | P1 | Done | PR #43, Issue #42 |
+| SBI-017 | SBI | 複数手Undo履歴で手動修正を戻せるようにする | P1 | In Review | PR #45, Issue #44 |

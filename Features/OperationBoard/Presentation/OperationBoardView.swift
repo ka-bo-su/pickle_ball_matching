@@ -42,11 +42,11 @@ struct OperationBoardView: View {
             Button {
                 viewModel.undoLastChange()
             } label: {
-                Label("1手戻す", systemImage: "arrow.uturn.backward")
+                Label(viewModel.undoButtonTitle, systemImage: "arrow.uturn.backward")
                     .frame(maxWidth: .infinity, alignment: .center)
             }
             .disabled(!viewModel.canUndo)
-            .accessibilityLabel("直前の入れ替えを1手戻す")
+            .accessibilityLabel(viewModel.undoButtonAccessibilityLabel)
 
             NavigationLink {
                 LargeBoardView(viewModel: viewModel)

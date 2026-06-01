@@ -3,12 +3,12 @@
 ## Current
 
 - Active PBI: Issue #16
-- Active SBI: selecting next SBI
-- Active Branch: dev
-- Active PR: none
-- GitHub Project Item: none
-- Status: Ready for next work selection
-- Next Action: create/select SBI-017 for richer snapshot/undo history, then implement on a new `codex/*` branch
+- Active SBI: Issue #44
+- Active Branch: codex/sbi-44-multi-undo
+- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/45
+- GitHub Project Item: PVTI_lAHOBHYYMs4BZUKkzguVl3o
+- Status: In Review
+- Next Action: watch PR #45 CI, then squash merge to `dev` if it passes
 
 ## Completed
 
@@ -71,12 +71,15 @@
 | 2026-06-01 12:02 JST | SBI #42 local implementation | Generalized manual swap to any current-round participant and added ViewModel tests | `OperationBoardView`, `OperationBoardViewModel` |
 | 2026-06-01 12:04 JST | PR opened | Created PR #43 for SBI #42 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/43 |
 | 2026-06-01 14:19 JST | SBI #42 merged | Squash merged PR #43 to `dev`; Issue #42 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/43 |
+| 2026-06-01 14:24 JST | Next SBI selected | Created and selected Issue #44 for multi-step undo history | https://github.com/ka-bo-su/pickle_ball_matching/issues/44 |
+| 2026-06-01 14:29 JST | SBI #44 local implementation | Added bounded multi-step undo history, undo count UI, reset rules, and ViewModel tests | `OperationBoardViewModel`, `OperationBoardView` |
+| 2026-06-01 14:31 JST | PR opened | Created PR #45 for SBI #44 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/45 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| none | n/a | n/a | n/a | next SBI selection |
+| Issue #44 | codex/sbi-44-multi-undo | PR #45 | In Review | Wait for CI and merge if green |
 
 ## Blocked
 
@@ -133,3 +136,5 @@
 | 2026-06-01 11:49 JST | GitHub Actions `validate` | pass | PR #41 passed before squash merge |
 | 2026-06-01 12:02 JST | `scripts/codex/validate-ios.sh` | pass | SBI #42 full validation with 10 core tests and 27 app tests, 0 lint violations |
 | 2026-06-01 14:16 JST | GitHub Actions `validate` | pass | PR #43 passed before squash merge |
+| 2026-06-01 14:27 JST | `swift test` | pass | SBI #44 core tests, 10 tests |
+| 2026-06-01 14:29 JST | `scripts/codex/validate-ios.sh` | pass | SBI #44 full validation with 10 core tests and 29 app tests, 0 lint violations |
