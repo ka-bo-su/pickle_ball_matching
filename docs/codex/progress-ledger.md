@@ -5,10 +5,10 @@
 - Active PBI: Issue #16
 - Active SBI: Issue #36
 - Active Branch: codex/sbi-36-participant-skill-editing
-- Active PR: n/a
+- Active PR: PR #37
 - GitHub Project Item: Issue #36
-- Status: In Progress
-- Next Action: commit Issue #36, open PR, update Project evidence, and merge to `dev`
+- Status: In Review
+- Next Action: wait for PR #37 CI, then squash merge to `dev` if validation passes
 
 ## Completed
 
@@ -57,12 +57,13 @@
 | 2026-06-01 10:47 JST | SBI #34 merged | Squash merged PR #35 to `dev`; Issue #34 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/35 |
 | 2026-06-01 10:50 JST | Next SBI selected | Created and selected Issue #36 for participant skill level editing | https://github.com/ka-bo-su/pickle_ball_matching/issues/36 |
 | 2026-06-01 10:54 JST | SBI #36 local implementation | Added participant skill level menu, autosave ViewModel method, and tests | `OperationBoardView`, `OperationBoardViewModel` |
+| 2026-06-01 10:56 JST | PR opened | Created PR #37 for SBI #36 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/37 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #36 | codex/sbi-36-participant-skill-editing | pending | In Progress | PR and Project evidence update |
+| Issue #36 | codex/sbi-36-participant-skill-editing | PR #37 | In Review | Wait for CI, then merge to `dev` |
 
 ## Blocked
 

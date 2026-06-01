@@ -24,7 +24,7 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 | SBI-010 | 現在ラウンドをCSVで共有できるようにする | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #31, Issue #30 |
 | SBI-011 | 参加者向け大画面ボードを表示する | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #33, Issue #32 |
 | SBI-012 | セッション名と運営条件を編集できるようにする | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #35, Issue #34 |
-| SBI-013 | 参加者レベルを編集して組み合わせに反映する | In Progress | swift-developer | `scripts/codex/validate-ios.sh` passed locally | Issue #36 |
+| SBI-013 | 参加者レベルを編集して組み合わせに反映する | In Review | swift-developer | `scripts/codex/validate-ios.sh` passed locally | PR #37, Issue #36 |
 
 ## Plan
 
@@ -45,7 +45,7 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 15. Issue #30 merged in PR #31 and Project item set Done.
 16. Issue #32 merged in PR #33 and Project item set Done.
 17. Issue #34 merged in PR #35 and Project item set Done.
-18. Issue #36 selected and implemented locally; PR is next.
+18. Issue #36 implemented locally, PR #37 opened, and Project item moved to In Review.
 
 ## Next Ready Work
 

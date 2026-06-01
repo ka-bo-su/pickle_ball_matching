@@ -1797,3 +1797,48 @@ Low to medium. Extra participant-row control may need later UI tuning, but it is
 ### Follow-up
 
 Commit, open PR for Issue #36, update Project evidence to In Review, and merge to `dev` if CI passes.
+
+## 2026-06-01 10:56 JST
+
+### Action
+
+Pushed `codex/sbi-36-participant-skill-editing`, opened PR #37 for Issue #36, and moved the GitHub Project item to In Review.
+
+### Reason
+
+SBI #36 passed local validation and is ready for CI-backed review and autonomous merge to `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git push -u origin codex/sbi-36-participant-skill-editing`
+- GitHub connector create PR
+- `gh project item-edit ...` for Issue #36 In Review, Validation Passed, and Evidence Link
+
+### GitHub Project Updates
+
+Issue #36 set to Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, and Evidence Link PR #37.
+
+### Architecture Decision
+
+No new decision. The PR keeps participant skill edits in Presentation/ViewModel and uses existing Domain values.
+
+### Validation
+
+PR #37 will run GitHub Actions. Local validation already passed before PR creation.
+
+### Risk
+
+Medium. Participant row has multiple menus; later participant detail editing can reduce row density.
+
+### Follow-up
+
+Wait for PR #37 CI, squash merge to `dev` if it passes, then set Issue #36 and Project item Done.
