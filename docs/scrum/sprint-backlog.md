@@ -35,6 +35,7 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 | SBI-021 | 進行ボードの現在と次アクションを見やすくする | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #53, Issue #52 |
 | CHORE-007 | GitHub ActionsのNode 20 deprecation警告を解消する | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #55, Issue #54 |
 | SBI-022 | 進行ボードで試合開始と残り時間を扱えるようにする | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #57, Issue #56 |
+| SBI-023 | 同じペアの重複を減らして次ラウンドを生成する | In Progress | swift-developer | `swift test` passed; full validation pending | Issue #58 |
 
 ## Plan
 
@@ -66,9 +67,10 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 26. Issue #52 merged in PR #53 and Project item set Done.
 27. Issue #54 merged in PR #55 and Project item set Done.
 28. Issue #56 merged in PR #57 and Project item set Done.
+29. Issue #58 created and selected for repeated-pair avoidance.
 
 ## Next Ready Work
 
 | ID | Type | Status | Owner Role | Validation | Evidence |
 |---|---|---|---|---|---|
-| TBD | 次のMVP縦切りを選定する | Backlog | scrum-master | Project/Sprint Backlog review | pending |
+| SBI-023 | 同じペアの重複を減らして次ラウンドを生成する | In Progress | swift-developer | `scripts/codex/validate-ios.sh` | Issue #58 |

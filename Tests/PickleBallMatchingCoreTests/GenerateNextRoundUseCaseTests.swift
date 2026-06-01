@@ -89,6 +89,43 @@ final class GenerateNextRoundUseCaseTests: XCTestCase {
         }
     }
 
+    func testAvoidsRepeatedPairsWhenGeneratingNextRound() throws {
+        let useCase = GenerateNextRoundUseCase()
+        let firstSession = try useCase.execute(
+            session: Session(
+                name: "同ペア回避",
+                courtCount: 1,
+                participants: makeParticipants(count: 4)
+            )
+        )
+        let firstRound = try XCTUnwrap(firstSession.currentRound)
+
+        let secondSession = try useCase.execute(session: firstSession)
+        let secondRound = try XCTUnwrap(secondSession.currentRound)
+
+        XCTAssertTrue(teamPairs(in: firstRound).isDisjoint(with: teamPairs(in: secondRound)))
+    }
+
+    func testRepeatedPairAvoidanceCanBeDisabled() throws {
+        var ruleSet = SessionRuleSet.balancedPractice
+        ruleSet.avoidsRepeatedPairs = false
+        let useCase = GenerateNextRoundUseCase()
+        let firstSession = try useCase.execute(
+            session: Session(
+                name: "同ペア回避なし",
+                courtCount: 1,
+                participants: makeParticipants(count: 4),
+                ruleSet: ruleSet
+            )
+        )
+        let firstRound = try XCTUnwrap(firstSession.currentRound)
+
+        let secondSession = try useCase.execute(session: firstSession)
+        let secondRound = try XCTUnwrap(secondSession.currentRound)
+
+        XCTAssertEqual(teamPairs(in: firstRound), teamPairs(in: secondRound))
+    }
+
     private func makeParticipants(count: Int) -> [Participant] {
         (1 ... count).map { index in
             Participant(
@@ -97,6 +134,28 @@ final class GenerateNextRoundUseCaseTests: XCTestCase {
                 skillLevel: SkillLevel(rawValue: (index % 4) + 1) ?? .beginner
             )
         }
+    }
+
+    private func teamPairs(in round: Round) -> Set<TestPlayerPair> {
+        Set(round.matches.flatMap { match in
+            [
+                TestPlayerPair(match.teamA.players),
+                TestPlayerPair(match.teamB.players)
+            ]
+        })
+    }
+}
+
+private struct TestPlayerPair: Hashable {
+    private let first: UUID
+    private let second: UUID
+
+    init(_ players: [Participant]) {
+        let ids = players.map(\.id).sorted { lhs, rhs in
+            lhs.uuidString < rhs.uuidString
+        }
+        first = ids[0]
+        second = ids[1]
     }
 }
 
