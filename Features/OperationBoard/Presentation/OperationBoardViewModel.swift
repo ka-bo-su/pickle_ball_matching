@@ -101,6 +101,16 @@ final class OperationBoardViewModel: ObservableObject {
         saveSession()
     }
 
+    func startNewSessionKeepingRoster() {
+        var newSession = Session.emptyDaySession()
+        newSession.participants = session.participants.map(resetParticipantForNewSession)
+        session = newSession
+        undoSession = nil
+        canUndo = false
+        errorMessage = nil
+        saveSession()
+    }
+
     func addParticipant() {
         let name = newParticipantName.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !name.isEmpty else {
@@ -226,6 +236,16 @@ final class OperationBoardViewModel: ObservableObject {
     private func captureUndoSnapshot() {
         undoSession = session
         canUndo = true
+    }
+
+    private func resetParticipantForNewSession(_ participant: Participant) -> Participant {
+        var participant = participant
+        participant.status = .active
+        participant.playCount = 0
+        participant.waitingCount = 0
+        participant.consecutivePlayCount = 0
+        participant.consecutiveWaitCount = 0
+        return participant
     }
 
     private func saveSession() {

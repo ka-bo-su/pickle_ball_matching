@@ -44,12 +44,15 @@ struct SessionSettingsSection: View {
                 isPresented: $isShowingNewSessionConfirmation,
                 titleVisibility: .visible
             ) {
-                Button("新規セッションを開始", role: .destructive) {
+                Button("名簿を引き継いで開始") {
+                    viewModel.startNewSessionKeepingRoster()
+                }
+                Button("完全に空で開始", role: .destructive) {
                     viewModel.startNewSession()
                 }
                 Button("キャンセル", role: .cancel) {}
             } message: {
-                Text("現在の参加者とラウンドを空にして、今日の運営を最初から始めます。")
+                Text("前回の参加者名簿を残すか、参加者も含めて空にするか選べます。")
             }
         }
     }

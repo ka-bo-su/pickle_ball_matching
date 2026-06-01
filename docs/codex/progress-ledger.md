@@ -2,13 +2,13 @@
 
 ## Current
 
-- Active PBI: selecting next
-- Active SBI: selecting next
-- Active Branch: dev
+- Active PBI: Issue #17
+- Active SBI: Issue #40
+- Active Branch: codex/sbi-40-roster-reuse
 - Active PR: n/a
-- GitHub Project Item: n/a
-- Status: Ready for next SBI selection
-- Next Action: select the next highest-value MVP SBI from Sprint Backlog and GitHub Project
+- GitHub Project Item: PVTI_lAHOBHYYMs4BZUKkzguU-44
+- Status: Implemented locally; validated; preparing PR
+- Next Action: commit, push, open PR, and move Project item to In Review
 
 ## Completed
 
@@ -63,12 +63,14 @@
 | 2026-06-01 11:15 JST | SBI #38 local implementation | Added participant detail editor, participant list split, ViewModel update method, and autosave tests | `ParticipantDetailEditorView`, `ParticipantListSection`, `OperationBoardViewModel` |
 | 2026-06-01 11:17 JST | PR opened | Created PR #39 for SBI #38 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/39 |
 | 2026-06-01 11:26 JST | SBI #38 merged | Squash merged PR #39 to `dev`; Issue #38 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/39 |
+| 2026-06-01 11:34 JST | Next SBI selected | Created and selected Issue #40 for starting a new session while reusing the saved roster | https://github.com/ka-bo-su/pickle_ball_matching/issues/40 |
+| 2026-06-01 11:40 JST | SBI #40 local implementation | Added roster-carryover new-session action, reset logic, and ViewModel test | `SessionSettingsSection`, `OperationBoardViewModel` |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| none | n/a | n/a | n/a | n/a |
+| Issue #40 | codex/sbi-40-roster-reuse | n/a | Validated locally | Open PR and update Project evidence |
 
 ## Blocked
 
@@ -121,3 +123,4 @@
 | 2026-06-01 11:03 JST | GitHub Actions `validate` | pass | PR #37 passed before squash merge |
 | 2026-06-01 11:15 JST | `scripts/codex/validate-ios.sh` | pass | SBI #38 full validation with 10 core tests and 24 app tests, 0 lint violations |
 | 2026-06-01 11:25 JST | GitHub Actions `validate` | pass | PR #39 passed before squash merge |
+| 2026-06-01 11:40 JST | `scripts/codex/validate-ios.sh` | pass | SBI #40 full validation with 10 core tests and 25 app tests, 0 lint violations |
