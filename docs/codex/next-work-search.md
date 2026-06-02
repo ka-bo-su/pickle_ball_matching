@@ -8,7 +8,7 @@
 - Next selected work: Issue #66 `運営モードのプリセットをルール設定へ反映する`.
 - Reason: It makes `通常練習`, `初心者会`, `レベル均等`, and `交流重視` useful as organizer-friendly presets without forcing detailed manual rule toggles.
 - Human repair needed: none.
-- Pending updates: PR evidence for Issue #66 after PR creation.
+- Pending updates: none; PR #67 evidence was added after PR creation.
 
 ## 2026-06-02 08:46 JST
 

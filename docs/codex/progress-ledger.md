@@ -5,10 +5,10 @@
 - Active PBI: #16 当日運営特化ダブルス組み合わせMVP
 - Active SBI: #66 運営モードのプリセットをルール設定へ反映する
 - Active Branch: codex/sbi-66-mode-rule-presets
-- Active PR: none
+- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/67
 - GitHub Project Item: `PVTI_lAHOBHYYMs4BZUKkzgudEks`
-- Status: local implementation and validation passed; preparing commit/PR
-- Next Action: commit, push, create PR, and move Project item to In Review
+- Status: In Review
+- Next Action: wait for GitHub Actions, squash merge to `dev` if green, and close Issue #66
 
 ## Completed
 
@@ -115,12 +115,13 @@
 | 2026-06-02 14:48 JST | SBI #64 merged | Squash merged PR #65 to `dev`; Issue #64 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/65 |
 | 2026-06-02 14:51 JST | Next SBI selected | Created and selected Issue #66 for applying operation-mode rule presets | https://github.com/ka-bo-su/pickle_ball_matching/issues/66 |
 | 2026-06-02 14:59 JST | SBI #66 local implementation | Added Domain mode presets, rule-settings preset summary/reapply action, autosave wiring, and tests | local branch `codex/sbi-66-mode-rule-presets` |
+| 2026-06-02 15:01 JST | PR opened | Created PR #67 for Issue #66 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/67 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #66 `運営モードのプリセットをルール設定へ反映する` | `codex/sbi-66-mode-rule-presets` | none | Local validation passed | push branch and create PR |
+| Issue #66 `運営モードのプリセットをルール設定へ反映する` | `codex/sbi-66-mode-rule-presets` | PR #67 | In Review | wait for CI and merge if green |
 
 ## Blocked
 

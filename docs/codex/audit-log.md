@@ -4210,3 +4210,55 @@ Low-to-medium. Changing operation mode now intentionally resets detailed rule to
 ### Follow-up
 
 Commit, push, create PR, update Project Evidence Link, and move Issue #66 to In Review.
+
+## 2026-06-02 15:01 JST
+
+### Action
+
+Created PR #67 for Issue #66 and moved the GitHub Project item to In Review.
+
+### Reason
+
+Local implementation and full iOS validation passed, so the SBI is ready for autonomous PR review and CI validation before squash merge to `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/codex/next-work-search.md`
+- `docs/codex/audit-log.md`
+- `docs/codex/nightly-summary.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git add ...`
+- `git commit -m "feat(settings): apply operation mode rule presets"`
+- `git push -u origin codex/sbi-66-mode-rule-presets`
+- `gh pr create --base dev --head codex/sbi-66-mode-rule-presets ...`
+- `gh issue edit 66 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit ...` for Status `In review`
+- `gh project item-edit ...` for Scrum Status `In Review`
+- `gh project item-edit ...` for Evidence Link PR #67
+
+### GitHub Project Updates
+
+Issue #66 is now In Review, Validation Status Passed, and Evidence Link points to PR #67.
+
+### Architecture Decision
+
+No new architecture decision beyond the prior Domain preset placement.
+
+### Validation
+
+Local validation passed before PR creation. GitHub Actions is pending on PR #67.
+
+### Risk
+
+Low-to-medium until CI is green.
+
+### Follow-up
+
+Push this docs sync commit, watch PR #67 checks, squash merge to `dev` if green, close Issue #66, set Project item Done, then select the next SBI.
