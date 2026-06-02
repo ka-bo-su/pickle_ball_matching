@@ -17,7 +17,7 @@ struct OperationBoardView: View {
                 RoundTimingSection(viewModel: viewModel)
                 participantSection
                 actionSection
-                currentRoundSection
+                CurrentRoundSection(viewModel: viewModel)
             }
             .navigationTitle("当日運営ボード")
         }
@@ -182,101 +182,6 @@ struct OperationBoardView: View {
                 .foregroundStyle(.red)
                 .accessibilityLabel(errorMessage)
         }
-    }
-
-    @ViewBuilder
-    private var currentRoundSection: some View {
-        if let round = viewModel.currentRound {
-            Section("ラウンド\(round.number)") {
-                ForEach(round.matches) { match in
-                    matchRow(match)
-                }
-
-                if !round.waitingParticipants.isEmpty {
-                    VStack(alignment: .leading, spacing: 6) {
-                        Label("待機", systemImage: "person.2.slash")
-                            .font(.headline)
-                        Text(round.waitingParticipants.map(\.displayName).joined(separator: "、"))
-                            .font(.body)
-                    }
-                    .accessibilityElement(children: .combine)
-                    .accessibilityLabel("待機者 \(round.waitingParticipants.map(\.displayName).joined(separator: "、"))")
-                }
-            }
-        } else {
-            Section("進行ボード") {
-                ContentUnavailableView("まだラウンドがありません", systemImage: "list.bullet.rectangle")
-                    .accessibilityLabel("まだラウンドがありません")
-            }
-        }
-    }
-
-    private func matchRow(_ match: Match) -> some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Label("コート\(match.courtNumber)", systemImage: "sportscourt")
-                .font(.headline)
-            HStack(alignment: .top, spacing: 12) {
-                teamColumn(title: "A", players: match.teamA.players)
-                Text("vs")
-                    .font(.headline)
-                    .foregroundStyle(.secondary)
-                    .padding(.top, 8)
-                teamColumn(title: "B", players: match.teamB.players)
-            }
-        }
-        .accessibilityElement(children: .contain)
-        .accessibilityLabel(matchAccessibilityLabel(match))
-    }
-
-    private func teamColumn(title: String, players: [Participant]) -> some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text("チーム\(title)")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-            ForEach(players) { player in
-                playerRowForMatch(player)
-            }
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-    }
-
-    private func playerRowForMatch(_ player: Participant) -> some View {
-        HStack(spacing: 6) {
-            Text(player.displayName)
-                .font(.title3.weight(.semibold))
-                .lineLimit(1)
-                .minimumScaleFactor(0.75)
-
-            let swapCandidates = viewModel.swapCandidates(for: player.id)
-            if !swapCandidates.isEmpty {
-                Menu {
-                    ForEach(swapCandidates) { candidate in
-                        Button {
-                            viewModel.swapCurrentRoundParticipants(
-                                firstID: player.id,
-                                secondID: candidate.id
-                            )
-                        } label: {
-                            Label(
-                                "\(candidate.displayName)と入れ替え",
-                                systemImage: "arrow.left.arrow.right"
-                            )
-                        }
-                    }
-                } label: {
-                    Image(systemName: "arrow.left.arrow.right.circle")
-                        .imageScale(.medium)
-                }
-                .buttonStyle(.borderless)
-                .accessibilityLabel("\(player.displayName)をラウンド内の参加者と入れ替え")
-            }
-        }
-    }
-
-    private func matchAccessibilityLabel(_ match: Match) -> String {
-        let teamA = match.teamA.players.map(\.displayName).joined(separator: "、")
-        let teamB = match.teamB.players.map(\.displayName).joined(separator: "、")
-        return "コート\(match.courtNumber)、\(teamA) 対 \(teamB)"
     }
 }
 

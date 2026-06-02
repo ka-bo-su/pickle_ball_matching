@@ -77,19 +77,26 @@ public struct Match: Codable, Equatable, Identifiable, Sendable {
     public var teamA: DoublesTeam
     public var teamB: DoublesTeam
     public var status: MatchStatus
+    public var score: MatchScore?
 
     public init(
         id: UUID = UUID(),
         courtNumber: Int,
         teamA: DoublesTeam,
         teamB: DoublesTeam,
-        status: MatchStatus = .scheduled
+        status: MatchStatus = .scheduled,
+        score: MatchScore? = nil
     ) {
         self.id = id
         self.courtNumber = courtNumber
         self.teamA = teamA
         self.teamB = teamB
         self.status = status
+        self.score = score
+    }
+
+    public var winner: MatchWinner {
+        score?.winner ?? .notRecorded
     }
 }
 
@@ -118,6 +125,46 @@ public enum MatchStatus: String, Codable, Sendable {
             "進行中"
         case .finished:
             "終了"
+        }
+    }
+}
+
+public struct MatchScore: Codable, Equatable, Sendable {
+    public var teamAScore: Int
+    public var teamBScore: Int
+
+    public init(teamAScore: Int, teamBScore: Int) {
+        self.teamAScore = max(0, teamAScore)
+        self.teamBScore = max(0, teamBScore)
+    }
+
+    public var winner: MatchWinner {
+        if teamAScore > teamBScore {
+            return .teamA
+        }
+        if teamBScore > teamAScore {
+            return .teamB
+        }
+        return .draw
+    }
+}
+
+public enum MatchWinner: String, Codable, Sendable {
+    case notRecorded
+    case teamA
+    case teamB
+    case draw
+
+    public var displayName: String {
+        switch self {
+        case .notRecorded:
+            "未記録"
+        case .teamA:
+            "チームA勝利"
+        case .teamB:
+            "チームB勝利"
+        case .draw:
+            "引き分け"
         }
     }
 }

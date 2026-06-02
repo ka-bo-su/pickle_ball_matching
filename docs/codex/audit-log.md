@@ -3922,3 +3922,186 @@ Low after merge.
 ### Follow-up
 
 Select the next MVP SBI. Candidate areas are score/result capture, rule presets, or Pro boundary work.
+
+## 2026-06-02 09:12 JST
+
+### Action
+
+Created and locally implemented Issue #64 for current-round score and winner recording.
+
+### Reason
+
+The MVP flow needs a simple way for organizers to record round outcomes without leaving the progress board. This is a small reversible vertical slice: Domain stores a local score value, Presentation exposes Stepper controls, and ViewModel autosaves through the existing repository boundary.
+
+### Files Changed
+
+- `Sources/PickleBallMatchingCore/Domain/Round.swift`
+- `Features/OperationBoard/Presentation/CurrentRoundSection.swift`
+- `Features/OperationBoard/Presentation/OperationBoardMatchScoreActions.swift`
+- `Features/OperationBoard/Presentation/OperationBoardView.swift`
+- `Tests/PickleBallMatchingCoreTests/MatchScoreTests.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardMatchScoreTests.swift`
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `swiftformat --cache ignore .`
+- `swift test`
+- `scripts/codex/validate-ios.sh`
+- `gh project item-edit ... Validation Status Passed`
+
+### GitHub Project Updates
+
+Issue #64 is in Project `kanban@pickle_ball_matching` as an SBI. Validation Status was set to `Passed`; Status and Scrum Status remain `In Progress` until the PR is opened.
+
+### Architecture Decision
+
+Domain adds `MatchScore` and `MatchWinner` under `Round.swift`. Presentation score controls live in `CurrentRoundSection`, while mutation logic is isolated in `OperationBoardMatchScoreActions`; persistence remains behind `SessionRepository`.
+
+### Validation
+
+Full validation passed: `swift test` 29 core tests, SwiftLint 0 violations, SwiftFormat lint 0 files, XcodeGen generation, `xcodebuild build`, and `xcodebuild test` with 29 core tests and 47 app tests.
+
+### Risk
+
+Medium until PR CI passes. The JSON model adds an optional `score` field on `Match`; the optional field is intended to keep existing saved sessions decodable.
+
+### Follow-up
+
+Commit, push, open PR, move Issue #64 to In Review, and add PR evidence to the GitHub Project item.
+
+## 2026-06-02 09:16 JST
+
+### Action
+
+Opened PR #65 for Issue #64 and moved the GitHub Project item to In Review.
+
+### Reason
+
+The score/winner recording slice passed local validation and is ready for autonomous CI review before squash merge to `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git commit -m "feat(matches): record match scores"`
+- `git push -u origin codex/sbi-64-match-score-entry`
+- GitHub connector `_create_pull_request` for PR #65
+- `gh issue edit 64 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit ...` for Status `In review`, Scrum Status `In Review`, and Evidence Link PR #65
+
+### GitHub Project Updates
+
+Issue #64 set to Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, and Evidence Link `https://github.com/ka-bo-su/pickle_ball_matching/pull/65`.
+
+### Architecture Decision
+
+No additional architecture decision after PR creation. The implementation remains a Domain value-type addition plus Presentation/ViewModel score editing.
+
+### Validation
+
+Local validation passed before PR creation. GitHub Actions is running.
+
+### Risk
+
+Medium until PR #65 CI passes.
+
+### Follow-up
+
+Watch PR #65 CI, squash merge to `dev` if it passes, close Issue #64, and set the Project item Done.
+
+## 2026-06-02 09:18 JST
+
+### Action
+
+Recorded an execution-environment blocker for PR #65 CI confirmation and merge follow-up.
+
+### Reason
+
+`gh pr checks 65` and `gh run view 26790276942` were rejected by Codex escalation auto-review because the current execution usage limit is exhausted. The prior watch command only showed the check as pending.
+
+### Files Changed
+
+- `docs/codex/blockers.md`
+- `docs/codex/github-projects-pending-updates.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/audit-log.md`
+
+### Commands Run
+
+- `gh pr checks 65 --watch --interval 10`
+- `gh pr checks 65` rejected by execution usage limit
+- `gh run view 26790276942 --json status,conclusion,createdAt,updatedAt,jobs` rejected by execution usage limit
+
+### GitHub Project Updates
+
+No additional Project update was applied after the rejection. Issue #64 remains In Review with PR #65 evidence and Validation Status Passed.
+
+### Architecture Decision
+
+No architecture change.
+
+### Validation
+
+Local validation had already passed. CI result could not be confirmed in this execution window.
+
+### Risk
+
+Low product-code risk, medium process risk until CI is confirmed and PR #65 is merged.
+
+### Follow-up
+
+After quota reset, run PR #65 checks, squash merge if green, close Issue #64, and set the Project item Done.
+
+## 2026-06-02 14:38 JST
+
+### Action
+
+Resolved the PR #65 execution-environment blocker in local Codex docs.
+
+### Reason
+
+Execution resumed and `gh pr view 65` confirmed PR #65 remote CI had passed on the previously pushed head. The local branch still contained the prior blocker-record commit, so the blocker needed to be marked resolved before pushing docs.
+
+### Files Changed
+
+- `docs/codex/blockers.md`
+- `docs/codex/github-projects-pending-updates.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/audit-log.md`
+
+### Commands Run
+
+- `gh pr view 65 --json number,state,mergeable,headRefName,baseRefName,commits,statusCheckRollup,url`
+
+### GitHub Project Updates
+
+No Project field change in this checkpoint. Issue #64 remains In Review with PR #65 evidence.
+
+### Architecture Decision
+
+No architecture change.
+
+### Validation
+
+PR #65 remote CI had passed on the previously pushed head. A final recheck is required after pushing the blocker-resolution docs.
+
+### Risk
+
+Low. The change is documentation-only, but it will update the PR head and rerun CI.
+
+### Follow-up
+
+Push the docs resolution, recheck PR #65 CI, squash merge if green, and set Issue #64 / Project Done.
