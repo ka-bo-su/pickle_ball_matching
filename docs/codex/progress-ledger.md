@@ -7,8 +7,8 @@
 - Active Branch: codex/sbi-31-delete-saved-sessions
 - Active PR: none
 - GitHub Project Item: `PVTI_lAHOBHYYMs4BZUKkzgufzTw`
-- Status: Issue #74 selected and Project set to In Progress; rebase conflict resolution in progress
-- Next Action: resolve docs conflicts, validate, commit, push, create PR, and move Project to In Review
+- Status: Local implementation committed; SwiftLint/SwiftFormat/XcodeGen/xcodebuild-list partial validation passed, but full SwiftPM/Xcode simulator validation and publication are blocked by execution usage limit
+- Next Action: rerun full validation with required permissions, push, create PR, and move Project to In Review when execution quota resumes
 
 ## Completed
 
@@ -133,18 +133,19 @@
 | 2026-06-02 22:07 JST | SBI #72 merged | Squash merged PR #73 to `dev`; Issue #72 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/73 |
 | 2026-06-02 22:08 JST | Next SBI selected | Created and selected Issue #74 for saved-session deletion | https://github.com/ka-bo-su/pickle_ball_matching/issues/74 |
 | 2026-06-02 22:08 JST | SBI #74 rebase | Applied saved-session deletion branch onto `origin/dev`; docs conflict resolution in progress | local branch `codex/sbi-31-delete-saved-sessions` |
+| 2026-06-02 22:19 JST | SBI #74 local validation attempt | SwiftLint/SwiftFormat/XcodeGen/xcodebuild-list passed; `swift test` and simulator discovery blocked by sandbox, escalated rerun rejected by execution usage limit | `scripts/codex/validate-ios.sh` |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #74 保存済みセッションを削除できるようにする | codex/sbi-31-delete-saved-sessions | none | Rebase conflict resolution in progress; validation pending | validate and publish PR |
+| Issue #74 保存済みセッションを削除できるようにする | codex/sbi-31-delete-saved-sessions | none | Local commit ready; full validation/publish blocked by execution usage limit | retry validation and PR publication after quota resumes |
 
 ## Blocked
 
 | Item | Reason | Next | Project Status |
 |---|---|---|---|
-| None | No active blocker; #70/#72 pending syncs are resolved and #74 has a Project item | Continue validation and PR publication | #74 In Progress |
+| Issue #74 validation/publish | Non-escalated validation cannot write SwiftPM clang module cache or access CoreSimulator; escalated validation rejected by Codex execution usage limit | rerun validation, push, create PR, update Project In Review after quota resumes | #74 In Progress; pending update needed |
 
 ## Validation History
 
@@ -236,3 +237,4 @@
 | 2026-06-02 16:02 JST | `scripts/codex/validate-ios.sh` | pass | Issue #72: `swift test` 32 core tests, SwiftLint 0 violations, SwiftFormat 0 files, XcodeGen, xcodebuild build, xcodebuild test 32 core + 53 app tests |
 | 2026-06-02 21:51 JST | `scripts/codex/validate-ios.sh` | pass | Issue #72 PR branch after rebase: `swift test` 32 core tests, SwiftLint 0 violations, SwiftFormat 0 files, XcodeGen, xcodebuild build, xcodebuild test 32 core + 55 app tests |
 | 2026-06-02 22:07 JST | GitHub Actions `validate` | pass | PR #73 passed before squash merge |
+| 2026-06-02 22:19 JST | `scripts/codex/validate-ios.sh` | partial fail | Issue #74: `swift test` failed because sandbox cannot write `~/.cache/clang/ModuleCache`; SwiftLint/SwiftFormat/XcodeGen/xcodebuild-list passed; simulator discovery failed because CoreSimulatorService is unavailable in sandbox; escalated rerun rejected by execution usage limit |

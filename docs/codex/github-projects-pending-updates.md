@@ -2,7 +2,20 @@
 
 No pending updates at file creation time. Any failed field, label, item, status, evidence, or PR sync must be appended here.
 
-No active pending updates as of 2026-06-02 22:08 JST.
+Active pending update exists as of 2026-06-02 22:19 JST.
+
+## Pending Project Update
+
+- Timestamp: 2026-06-02 22:19 JST
+- Target project: kanban@pickle_ball_matching
+- Target item: Issue #74 / `PVTI_lAHOBHYYMs4BZUKkzgufzTw`
+- Intended action: First set Project Status/Scrum Status to Blocked to mirror Issue label `status:blocked`; after full validation passes, push branch `codex/sbi-31-delete-saved-sessions`, create PR to `dev`, set Issue label `status:in-review`, set Project Status `In review`, set Scrum Status `In Review`, set Validation Status `Passed`, and add PR URL to Evidence Link.
+- Previous state: Issue #74 Open, label `status:blocked`, Project Status `In progress`, Scrum Status `In Progress`, Validation Status `Not Run`, Evidence Link `https://github.com/ka-bo-su/pickle_ball_matching/issues/74`.
+- New state: Issue #74 Open, label `status:in-review`, Project Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, Evidence Link `<PR URL>`.
+- Reason not applied: Non-escalated validation failed due SwiftPM cache and CoreSimulator sandbox access; escalated validation rerun was rejected by Codex execution usage limit. Branch publication should wait for full validation.
+- Command to apply later: set Project Status/Scrum Status to Blocked if still blocked; then `scripts/codex/validate-ios.sh`; `git push -u origin codex/sbi-31-delete-saved-sessions`; create PR; `gh issue edit 74 --remove-label status:blocked --add-label status:in-review`; `gh project item-edit ... Status In review`; `gh project item-edit ... Scrum Status In Review`; `gh project item-edit ... Validation Status Passed`; `gh project item-edit ... Evidence Link <PR URL>`.
+- Related PR: pending
+- Related Issue: https://github.com/ka-bo-su/pickle_ball_matching/issues/74
 
 ## Resolved Pending Project Update
 

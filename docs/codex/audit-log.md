@@ -1,5 +1,60 @@
 # Codex Audit Log
 
+## 2026-06-02 22:19 JST
+
+### Action
+
+Attempted Issue #74 validation after rebase and recorded an execution-environment blocker.
+
+### Reason
+
+The saved-session deletion implementation is local and should not be published until the repository validation command passes. The normal sandbox cannot access SwiftPM clang module cache or CoreSimulator, and the required escalated rerun was rejected by Codex execution usage limit.
+
+### Files Changed
+
+- `docs/codex/audit-log.md`
+- `docs/codex/blockers.md`
+- `docs/codex/github-projects-pending-updates.md`
+- `docs/codex/ios-swift-validation.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/progress-ledger.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `scripts/codex/validate-ios.sh`
+- escalated `scripts/codex/validate-ios.sh` request
+- GitHub connector `_update_issue` to set Issue #74 label `status:blocked`
+
+### GitHub Project Updates
+
+Issue #74 label was updated to `status:blocked`. Project Status/Scrum Status still need Blocked field sync; pending In Review/Validation/Evidence update is recorded for the next execution window.
+
+### Architecture Decision
+
+No additional architecture decision. The implementation remains behind `SessionRepository` and avoids Presentation-to-Infrastructure coupling.
+
+### Validation
+
+Partial validation only:
+
+- `swift test`: failed due sandbox write denial for `~/.cache/clang/ModuleCache`.
+- SwiftLint: passed with 0 violations.
+- SwiftFormat lint: passed with 0 files requiring formatting.
+- XcodeGen: passed.
+- `xcodebuild -list`: passed despite CoreSimulatorService sandbox warnings.
+- Simulator discovery: failed due sandbox CoreSimulatorService access.
+- Escalated rerun: rejected by Codex execution usage limit.
+
+### Risk
+
+Medium until full validation runs. The code path is covered by new tests in the local branch, but those tests have not been executed successfully in this post-rebase environment.
+
+### Follow-up
+
+When execution quota resumes, rerun `scripts/codex/validate-ios.sh`, push `codex/sbi-31-delete-saved-sessions`, create PR, set Issue #74 to In Review, and update Project evidence.
+
 ## 2026-06-02 21:58 JST
 
 ### Action

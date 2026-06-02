@@ -8,7 +8,7 @@
 - Next selected work: Issue #74 `保存済みセッションを削除できるようにする`.
 - Reason: It is a small, local-first Persistence/Presentation slice that improves organizer control over local data without server, CloudKit, StoreKit, production, or secret risk.
 - Human repair needed: none.
-- Pending updates: PR evidence after Issue #74 publication.
+- Pending updates: rerun full validation, push branch, create PR, and add PR evidence after execution quota resumes.
 
 ## 2026-06-02 15:39 JST
 

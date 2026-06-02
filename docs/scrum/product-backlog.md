@@ -49,4 +49,4 @@ GitHub Project `kanban@pickle_ball_matching` is the source of truth. This file m
 | SBI-028 | SBI | ラウンド履歴で過去ラウンドとスコアを確認できるようにする | P1 | Done | PR #69, Issue #68 |
 | SBI-029 | SBI | 参加者名をまとめて貼り付けて追加できるようにする | P0 | Done | PR #71, Issue #70 |
 | SBI-030 | SBI | 大画面ボードに残り時間とラウンド状態を表示する | P1 | Done | PR #73, Issue #72 |
-| SBI-031 | SBI | 保存済みセッションを削除できるようにする | P1 | In Progress | Issue #74 |
+| SBI-031 | SBI | 保存済みセッションを削除できるようにする | P1 | Blocked | Issue #74; local branch ready, full validation/publish blocked by execution usage limit |

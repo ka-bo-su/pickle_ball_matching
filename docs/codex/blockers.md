@@ -1,5 +1,19 @@
 # Blockers
 
+## Blocker
+
+- Time: 2026-06-02 22:19 JST
+- Item: Issue #74 `保存済みセッションを削除できるようにする`
+- Type: execution-environment
+- Reason: Non-escalated `scripts/codex/validate-ios.sh` failed because SwiftPM could not write `~/.cache/clang/ModuleCache` and CoreSimulatorService was unavailable inside the sandbox. The required escalated rerun was rejected by Codex execution usage limit.
+- Impact: Saved-session deletion is implemented locally on `codex/sbi-31-delete-saved-sessions`, but full validation, push, PR creation, and Project In Review sync cannot complete in this execution window.
+- Attempted fixes: Ran the repository validation script normally; it passed SwiftLint, SwiftFormat lint, XcodeGen generation, and `xcodebuild -list`, then failed on sandbox-only SwiftPM/Simulator access. Escalated rerun was requested per policy and rejected by usage limit.
+- Why autonomous progress cannot continue for this item: Retrying through another execution path after usage-limit rejection would be an indirect workaround. Publishing without full validation would violate the repository DoD.
+- Safe next task selected: none requiring validation or GitHub publication; keep the local branch ready and record pending updates.
+- GitHub Project update: Issue #74 label changed to `status:blocked`; Project Status/Scrum Status still need Blocked field sync, pending update recorded in `docs/codex/github-projects-pending-updates.md`.
+- Pending update: rerun full validation, push branch, create PR, set Status/Scrum Status In Review, set Validation Status Passed, and add PR Evidence Link.
+- Human repair: none if Codex execution quota resumes; otherwise run the pending validation and publication commands manually.
+
 ## Resolved Blocker
 
 - Time: 2026-06-02 17:28 JST
