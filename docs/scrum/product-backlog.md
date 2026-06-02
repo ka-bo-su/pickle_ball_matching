@@ -43,4 +43,4 @@ GitHub Project `kanban@pickle_ball_matching` is the source of truth. This file m
 | SBI-022 | SBI | 進行ボードで試合開始と残り時間を扱えるようにする | P1 | Done | PR #57, Issue #56 |
 | SBI-023 | SBI | 同じペアの重複を減らして次ラウンドを生成する | P0 | Done | PR #59, Issue #58 |
 | SBI-024 | SBI | 同じ対戦相手の重複を減らして次ラウンドを生成する | P0 | Done | PR #61, Issue #60 |
-| SBI-025 | SBI | ルール設定を編集して組み合わせ生成に反映する | P1 | In Review | PR #63, Issue #62 |
+| SBI-025 | SBI | ルール設定を編集して組み合わせ生成に反映する | P1 | Done | PR #63, Issue #62 |

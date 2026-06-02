@@ -3872,3 +3872,53 @@ Medium until PR #63 CI passes.
 ### Follow-up
 
 Watch PR #63 CI, squash merge to `dev` if it passes, close Issue #62, and set the Project item Done.
+
+## 2026-06-02 08:58 JST
+
+### Action
+
+Merged PR #63, closed Issue #62, and set the GitHub Project item to Done.
+
+### Reason
+
+PR #63 passed local validation and GitHub Actions. Rule settings UI meets the Issue #62 acceptance criteria and is ready as a Done increment on `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/audit-log.md`
+
+### Commands Run
+
+- `gh pr checks 63 --watch --interval 10`
+- `gh pr merge 63 --squash --delete-branch ...`
+- `gh issue edit 62 --remove-label status:in-review --add-label status:done`
+- `gh project item-edit ...` for Status `Done`
+- `gh project item-edit ...` for Scrum Status `Done`
+- `gh issue comment 62 ...`
+- `gh issue close 62 --reason completed`
+
+### GitHub Project Updates
+
+Issue #62 set to Status `Done`, Scrum Status `Done`, Validation Status `Passed`, and Evidence Link PR #63. The issue is closed.
+
+### Architecture Decision
+
+No additional architecture change after PR merge. Rule settings remain Presentation/ViewModel scoped and persistence remains behind `SessionRepository`.
+
+### Validation
+
+GitHub Actions `validate` passed for PR #63 before merge.
+
+### Risk
+
+Low after merge.
+
+### Follow-up
+
+Select the next MVP SBI. Candidate areas are score/result capture, rule presets, or Pro boundary work.
