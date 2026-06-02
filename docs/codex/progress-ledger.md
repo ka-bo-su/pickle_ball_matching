@@ -5,10 +5,10 @@
 - Active PBI: #16 当日運営特化ダブルス組み合わせMVP
 - Active SBI: #70 参加者名をまとめて貼り付けて追加できるようにする
 - Active Branch: codex/sbi-70-bulk-participants
-- Active PR: none
+- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/71
 - GitHub Project Item: `PVTI_lAHOBHYYMs4BZUKkzgudQLk`
-- Status: In Progress; local implementation and validation completed
-- Next Action: commit, push, open PR, and update Project evidence for Issue #70
+- Status: In Review; PR #71 opened and Project evidence updated
+- Next Action: watch GitHub Actions, squash merge PR #71 when checks pass, then set Issue #70 Done
 
 ## Completed
 
@@ -123,12 +123,13 @@
 | 2026-06-02 15:28 JST | SBI #68 merged | Squash merged PR #69 to `dev`; Issue #68 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/69 |
 | 2026-06-02 15:39 JST | Next SBI selected | Created and selected Issue #70 for bulk participant entry | https://github.com/ka-bo-su/pickle_ball_matching/issues/70 |
 | 2026-06-02 15:39 JST | SBI #70 local implementation | Added multiline bulk participant input, duplicate filtering, autosave, accessibility labels, and tests | local branch `codex/sbi-70-bulk-participants` |
+| 2026-06-02 15:42 JST | PR opened | Created PR #71 for Issue #70 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/71 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #70 参加者名をまとめて貼り付けて追加できるようにする | codex/sbi-70-bulk-participants | none | Local validation passed | commit, push, open PR |
+| Issue #70 参加者名をまとめて貼り付けて追加できるようにする | codex/sbi-70-bulk-participants | PR #71 | In Review; local validation passed | watch CI, merge when passed |
 
 ## Blocked
 

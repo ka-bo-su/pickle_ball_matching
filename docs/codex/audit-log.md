@@ -50,7 +50,58 @@ Low. The parser trims names, accepts newline/comma/Japanese-comma/tab separators
 
 ### Follow-up
 
-Commit, push, open PR to `dev`, move Issue #70 to In Review, attach PR evidence, and continue the Scrum loop after merge.
+Watch GitHub Actions for PR #71, squash merge to `dev` when checks pass, set Issue #70 Done, and continue the Scrum loop.
+
+## 2026-06-02 15:42 JST
+
+### Action
+
+Created PR #71 for Issue #70 and synchronized GitHub Project evidence.
+
+### Reason
+
+The local increment passed validation and met the Definition of Done criteria that can be verified before CI. Moving it to In Review keeps the Project as the source of truth and makes the PR review/audit trail visible.
+
+### Files Changed
+
+- `docs/codex/audit-log.md`
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git add ...`
+- `git commit -m "feat(participants): add bulk participant entry"`
+- `git push -u origin codex/sbi-70-bulk-participants`
+- `gh pr create --base dev --head codex/sbi-70-bulk-participants ...`
+- `gh issue edit 70 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit ...`
+
+### GitHub Project Updates
+
+- Issue #70 Status set to `In review`.
+- Issue #70 Scrum Status set to `In Review`.
+- Issue #70 Evidence Link set to `https://github.com/ka-bo-su/pickle_ball_matching/pull/71`.
+
+### Architecture Decision
+
+No new architecture decision. The PR remains a Presentation-only slice.
+
+### Validation
+
+Local validation passed before PR creation. GitHub Actions validation is pending.
+
+### Risk
+
+Low. The PR targets `dev`; `main` remains untouched.
+
+### Follow-up
+
+Watch PR #71 checks, merge when clean, then close Issue #70 and update Project/docs to Done.
 
 ## 2026-06-01 02:34 JST
 

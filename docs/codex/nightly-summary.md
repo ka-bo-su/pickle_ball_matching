@@ -3,7 +3,7 @@
 ## Result
 
 - Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31/#33/#35/#37/#39/#41/#43/#45/#47/#49/#51/#53/#55/#57/#59/#61/#63/#65/#67/#69 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30/#32/#34/#36/#38/#40/#42/#44/#46/#48/#50/#52/#54/#56/#58/#60/#62/#64/#66/#68 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, current-round CSV sharing, participant-facing large board display, editable session settings, participant skill editing, participant detail editing, roster reuse for new sessions, any-player current-round manual swap, multi-step undo history, current-round PDF sharing, current-round image sharing, session history/reopen, board current-state/next-action readability, round timer/start-end flow, repeated-pair avoidance, repeated-opponent avoidance, rule settings UI, current-round score/winner recording, operation-mode rule presets, round history display, GitHub Actions Node 20 deprecation fix, and a guarded GitHub REST push fallback script/runbook
-- Partially completed: Issue #70 bulk participant entry implemented and locally validated; PR not opened yet.
+- Partially completed: Issue #70 bulk participant entry implemented, locally validated, and PR #71 opened; waiting for GitHub Actions before merge.
 - Blocked: none currently; the previous PR #65 CI confirmation blocker was resolved at 2026-06-02 14:38 JST.
 
 ## Time
@@ -102,6 +102,7 @@
 - Issue #68 moved to In Review with PR #69 Evidence Link.
 - Issue #68 set Done after PR #69 merge.
 - Issue #70 created in Japanese, added to Project, set In Progress, Validation Status set to Passed, and locally validated.
+- Issue #70 moved to In Review with PR #71 Evidence Link.
 
 ## Pending GitHub Project Updates
 
