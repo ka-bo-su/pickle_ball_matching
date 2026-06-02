@@ -1,8 +1,9 @@
 # Blockers
 
-## Blocker
+## Resolved Blocker
 
 - Time: 2026-06-02 09:18 JST
+- Resolved: 2026-06-02 14:38 JST
 - Item: PR #65 / Issue #64 `現在ラウンドのスコアと勝者を記録できるようにする`
 - Type: execution-environment
 - Reason: Codex escalation auto-review rejected `gh pr checks 65` and `gh run view 26790276942` because the current Codex execution usage limit is exhausted.
@@ -13,6 +14,7 @@
 - GitHub Project update: Issue #64 is already In Review with Evidence Link `https://github.com/ka-bo-su/pickle_ball_matching/pull/65` and Validation Status `Passed`.
 - Pending update: after execution quota resets, check PR #65 CI, squash merge if green, close Issue #64, and set Project item Done.
 - Human repair: wait for Codex execution quota reset or resume in an environment where escalated GitHub CLI commands are available.
+- Resolution: Execution resumed. PR #65 remote CI had passed on the previously pushed head; blocker-resolution docs were prepared before final merge follow-up.
 
 ## Resolved Blocker
 

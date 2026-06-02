@@ -2,9 +2,9 @@
 
 No pending updates at file creation time. Any failed field, label, item, status, evidence, or PR sync must be appended here.
 
-No active pending updates as of 2026-06-02 08:02 JST.
+No active pending updates as of 2026-06-02 14:38 JST.
 
-## Pending Project Update
+## Resolved Pending Project Update
 
 - Timestamp: 2026-06-02 09:18 JST
 - Target project: kanban@pickle_ball_matching
@@ -14,6 +14,7 @@ No active pending updates as of 2026-06-02 08:02 JST.
 - New state: Status `Done`, Scrum Status `Done`, Validation Status `Passed`, Evidence Link `https://github.com/ka-bo-su/pickle_ball_matching/pull/65`
 - Reason not applied: Codex escalation auto-review rejected PR check/status commands due to the current execution usage limit. Merge should wait for CI confirmation.
 - Command to apply later: `gh pr checks 65 --watch --interval 10`; if green, `gh pr merge 65 --squash --delete-branch`; then `gh issue edit 64 --remove-label status:in-review --add-label status:done`; then `gh project item-edit` for Status/Scrum Status Done; then `gh issue close 64 --reason completed`.
+- Resolution: Execution resumed on 2026-06-02 14:38 JST. PR #65 remote CI had passed on the previously pushed head; final merge and Done sync are continuing in the active run.
 - Related PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/65
 - Related Issue: https://github.com/ka-bo-su/pickle_ball_matching/issues/64
 

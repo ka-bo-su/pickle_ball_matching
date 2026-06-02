@@ -4063,3 +4063,45 @@ Low product-code risk, medium process risk until CI is confirmed and PR #65 is m
 ### Follow-up
 
 After quota reset, run PR #65 checks, squash merge if green, close Issue #64, and set the Project item Done.
+
+## 2026-06-02 14:38 JST
+
+### Action
+
+Resolved the PR #65 execution-environment blocker in local Codex docs.
+
+### Reason
+
+Execution resumed and `gh pr view 65` confirmed PR #65 remote CI had passed on the previously pushed head. The local branch still contained the prior blocker-record commit, so the blocker needed to be marked resolved before pushing docs.
+
+### Files Changed
+
+- `docs/codex/blockers.md`
+- `docs/codex/github-projects-pending-updates.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/audit-log.md`
+
+### Commands Run
+
+- `gh pr view 65 --json number,state,mergeable,headRefName,baseRefName,commits,statusCheckRollup,url`
+
+### GitHub Project Updates
+
+No Project field change in this checkpoint. Issue #64 remains In Review with PR #65 evidence.
+
+### Architecture Decision
+
+No architecture change.
+
+### Validation
+
+PR #65 remote CI had passed on the previously pushed head. A final recheck is required after pushing the blocker-resolution docs.
+
+### Risk
+
+Low. The change is documentation-only, but it will update the PR head and rerun CI.
+
+### Follow-up
+
+Push the docs resolution, recheck PR #65 CI, squash merge if green, and set Issue #64 / Project Done.
