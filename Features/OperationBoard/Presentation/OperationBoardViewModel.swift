@@ -279,14 +279,26 @@ extension OperationBoardViewModel {
     }
 
     var largeBoardDisplayModel: LargeBoardDisplayModel? {
+        largeBoardDisplayModel(now: Date())
+    }
+
+    func largeBoardDisplayModel(now: Date) -> LargeBoardDisplayModel? {
         guard let currentRound else {
             return nil
         }
 
         let waitingNames = currentRound.waitingParticipants.map(\.displayName)
+        let timing = OperationBoardRoundTimingModel(
+            round: currentRound,
+            durationMinutes: session.roundDurationMinutes,
+            now: now
+        )
         return LargeBoardDisplayModel(
             sessionName: session.name,
             roundTitle: "ラウンド\(currentRound.number)",
+            roundStatusTitle: timing.statusTitle,
+            remainingTimeText: timing.remainingTimeText,
+            timingDetailText: timing.detailText,
             announcement: waitingNames.isEmpty ? "待機者はいません" : "待機 \(waitingNames.joined(separator: "、"))",
             courts: currentRound.matches.map { match in
                 LargeBoardCourtDisplay(

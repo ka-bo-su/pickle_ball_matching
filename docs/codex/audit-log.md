@@ -1,5 +1,57 @@
 # Codex Audit Log
 
+## 2026-06-02 21:58 JST
+
+### Action
+
+Resolved the remaining GitHub synchronization gaps: Issue #70 was closed and set Done after PR #71 merge, and Issue #72 was published as PR #73.
+
+### Reason
+
+The previous checkpoint had local validation and merge evidence, but GitHub write commands were blocked by the Codex execution usage limit. Once writes were available, the autonomous loop needed to restore GitHub Project as the source of truth before selecting further work.
+
+### Files Changed
+
+- `docs/codex/audit-log.md`
+- `docs/codex/github-projects-pending-updates.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/progress-ledger.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `gh issue view 70 --json number,title,state,labels,projectItems,url`
+- `gh issue edit 70 --remove-label status:in-review --add-label status:done`
+- `gh project item-edit --id PVTI_lAHOBHYYMs4BZUKkzgudQLk ... Status Done`
+- `gh project item-edit --id PVTI_lAHOBHYYMs4BZUKkzgudQLk ... Scrum Status Done`
+- `gh issue close 70 --reason completed --comment ...`
+- `gh pr view codex/sbi-72-large-board-timer-pr --json ...`
+- `gh issue edit 72 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit --id PVTI_lAHOBHYYMs4BZUKkzgudWWs ...`
+
+### GitHub Project Updates
+
+- Issue #70 Project item `PVTI_lAHOBHYYMs4BZUKkzgudQLk` moved to Done.
+- Issue #72 Project item `PVTI_lAHOBHYYMs4BZUKkzgudWWs` moved to In Review.
+- Issue #72 Validation Status set to Passed.
+- Issue #72 Evidence Link set to `https://github.com/ka-bo-su/pickle_ball_matching/pull/73`.
+
+### Architecture Decision
+
+No new architecture decision. PR #73 remains a Presentation-only change and preserves the existing Domain/Application/Infrastructure boundaries.
+
+### Validation
+
+PR #73 uses the 2026-06-02 21:51 JST local validation result: `scripts/codex/validate-ios.sh` passed with 32 core tests, SwiftLint 0 violations, SwiftFormat lint 0 files, XcodeGen generation, `xcodebuild build`, and `xcodebuild test` with 32 core tests plus 55 app tests.
+
+### Risk
+
+Low. This checkpoint is primarily synchronization and PR metadata repair. The only code-bearing PR is already validated locally.
+
+### Follow-up
+
+Watch PR #73 GitHub Actions, squash merge to `dev` when clean, close Issue #72, then continue with the next safe SBI.
+
 ## 2026-06-02 15:39 JST
 
 ### Action
@@ -102,6 +154,108 @@ Low. The PR targets `dev`; `main` remains untouched.
 ### Follow-up
 
 Watch PR #71 checks, merge when clean, then close Issue #70 and update Project/docs to Done.
+
+## 2026-06-02 16:02 JST
+
+### Action
+
+Implemented Issue #72 locally, adding remaining-time and round-status information to the participant-facing large board.
+
+### Reason
+
+The MVP requires participants to understand current match progress from a large display. Showing only courts and waiters leaves "how much time is left?" as a question for the organizer, so the large board now displays status and remaining time directly.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/LargeBoardDisplayModel.swift`
+- `Features/OperationBoard/Presentation/LargeBoardView.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardLargeBoardDisplayTests.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+- `docs/codex/blockers.md`
+- `docs/codex/github-projects-pending-updates.md`
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/codex/next-work-search.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `gh issue create ... Issue #72`
+- `gh project item-add 3 --owner ka-bo-su --url https://github.com/ka-bo-su/pickle_ball_matching/issues/72`
+- `gh project item-edit ...`
+- `swift test`
+- `scripts/codex/validate-ios.sh`
+- `git stash push ...`
+- `gh pr merge 71 --squash --delete-branch ...`
+- `git stash pop`
+
+### GitHub Project Updates
+
+- Issue #72 was added to Project and set to In Progress before the execution usage limit blocked further GitHub writes.
+- Issue #72 Validation Status update to `Passed` is recorded as a pending Project update.
+- Issue #70 Done sync after PR #71 merge is recorded as a pending Project update.
+
+### Architecture Decision
+
+Kept the increment in Presentation only. `LargeBoardDisplayModel` now carries timing text derived from `OperationBoardRoundTimingModel`, and `LargeBoardView` uses `TimelineView` for periodic display refresh. No Domain, Repository, persistence, or external dependency changes were introduced.
+
+### Validation
+
+Passed `scripts/codex/validate-ios.sh`: `swift test` 32 core tests, SwiftLint 0 violations, SwiftFormat lint 0 files, XcodeGen generation, `xcodebuild build`, and `xcodebuild test` with 32 core tests plus 53 app tests.
+
+### Risk
+
+Low. The feature is display-only and does not mutate session state.
+
+### Follow-up
+
+Commit locally. When GitHub write access resumes, push the branch, create PR, set Issue #72 Project Validation Status to Passed, and move the item to In Review.
+
+## 2026-06-02 16:03 JST
+
+### Action
+
+Committed Issue #72 locally and attempted to push the branch.
+
+### Reason
+
+The local implementation passed validation and should be preserved as a small reversible commit even though GitHub publication is temporarily unavailable.
+
+### Files Changed
+
+- `docs/codex/audit-log.md`
+- `docs/codex/blockers.md`
+- `docs/codex/github-projects-pending-updates.md`
+- `docs/codex/progress-ledger.md`
+
+### Commands Run
+
+- `git add ...`
+- `git commit -m "feat(board): show large board timer status"`
+- `git push -u origin codex/sbi-72-large-board-timer`
+
+### GitHub Project Updates
+
+Not applied. Push/PR/Project updates are pending because GitHub write/network commands are blocked by the current Codex execution usage limit.
+
+### Architecture Decision
+
+No additional architecture decision.
+
+### Validation
+
+Validation passed before commit.
+
+### Risk
+
+Low. The validated local commit is isolated on `codex/sbi-72-large-board-timer`.
+
+### Follow-up
+
+After rebase validation, push branch head `2006616`, create PR, update Project Validation Status to Passed, and move Issue #72 to In Review.
 
 ## 2026-06-01 02:34 JST
 

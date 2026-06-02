@@ -2,13 +2,13 @@
 
 ## Current
 
-- Active PBI: #16 当日運営特化ダブルス組み合わせMVP
-- Active SBI: #70 参加者名をまとめて貼り付けて追加できるようにする
-- Active Branch: codex/sbi-70-bulk-participants
-- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/71
-- GitHub Project Item: `PVTI_lAHOBHYYMs4BZUKkzgudQLk`
-- Status: In Review; PR #71 opened and Project evidence updated
-- Next Action: watch GitHub Actions, squash merge PR #71 when checks pass, then set Issue #70 Done
+- Active PBI: #18 進行ボードと大画面表示
+- Active SBI: #72 大画面ボードに残り時間とラウンド状態を表示する
+- Active Branch: codex/sbi-72-large-board-timer-pr
+- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/73
+- GitHub Project Item: `PVTI_lAHOBHYYMs4BZUKkzgudWWs`
+- Status: PR #73 open; Issue/Project #72 synchronized to In Review with Validation Status Passed
+- Next Action: watch PR #73 GitHub Actions, squash merge to `dev` when clean, close Issue #72, then continue the next safe SBI
 
 ## Completed
 
@@ -124,18 +124,24 @@
 | 2026-06-02 15:39 JST | Next SBI selected | Created and selected Issue #70 for bulk participant entry | https://github.com/ka-bo-su/pickle_ball_matching/issues/70 |
 | 2026-06-02 15:39 JST | SBI #70 local implementation | Added multiline bulk participant input, duplicate filtering, autosave, accessibility labels, and tests | local branch `codex/sbi-70-bulk-participants` |
 | 2026-06-02 15:42 JST | PR opened | Created PR #71 for Issue #70 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/71 |
+| 2026-06-02 15:57 JST | PR #71 merged with pending Done sync | Squash merged PR #71 to `dev`; Issue/Project Done sync blocked by execution quota and recorded as pending | https://github.com/ka-bo-su/pickle_ball_matching/pull/71 |
+| 2026-06-02 15:58 JST | Next SBI selected | Created and selected Issue #72 for large-board remaining time and round status display | https://github.com/ka-bo-su/pickle_ball_matching/issues/72 |
+| 2026-06-02 16:02 JST | SBI #72 local implementation | Added large-board timing state/remaining-time display model, TimelineView refresh, accessibility labels, and dedicated tests | local branch `codex/sbi-72-large-board-timer` |
+| 2026-06-02 16:03 JST | SBI #72 local commit | Committed validated local implementation; push blocked by execution quota | `1fe7687` |
+| 2026-06-02 21:58 JST | Issue #70 Done sync | Closed Issue #70 and set Project Status/Scrum Status to Done after PR #71 merge | https://github.com/ka-bo-su/pickle_ball_matching/pull/71 |
+| 2026-06-02 21:58 JST | PR opened | Created PR #73 for Issue #72, fixed PR body, and moved Project item to In Review with validation evidence | https://github.com/ka-bo-su/pickle_ball_matching/pull/73 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #70 参加者名をまとめて貼り付けて追加できるようにする | codex/sbi-70-bulk-participants | PR #71 | In Review; local validation passed | watch CI, merge when passed |
+| Issue #72 大画面ボードに残り時間とラウンド状態を表示する | codex/sbi-72-large-board-timer-pr | PR #73 | In Review; local validation passed; GitHub Actions running | merge to `dev` when checks pass |
 
 ## Blocked
 
 | Item | Reason | Next | Project Status |
 |---|---|---|---|
-| none | n/a | n/a | n/a |
+| None | No active blocker after #70 Done sync and #72 PR/Project sync | Continue with PR #73 CI/merge, then next safe SBI | #72 In Review |
 
 ## Validation History
 
@@ -224,3 +230,5 @@
 | 2026-06-02 15:19 JST | `scripts/codex/validate-ios.sh` | pass | Issue #68: `swift test` 32 core tests, SwiftLint 0 violations, SwiftFormat 0 files, XcodeGen, xcodebuild build, xcodebuild test 32 core + 52 app tests |
 | 2026-06-02 15:27 JST | GitHub Actions `validate` | pass | PR #69 passed before squash merge |
 | 2026-06-02 15:39 JST | `scripts/codex/validate-ios.sh` | pass | Issue #70: `swift test` 32 core tests, SwiftLint 0 violations, SwiftFormat 0 files, XcodeGen, xcodebuild build, xcodebuild test 32 core + 54 app tests |
+| 2026-06-02 16:02 JST | `scripts/codex/validate-ios.sh` | pass | Issue #72: `swift test` 32 core tests, SwiftLint 0 violations, SwiftFormat 0 files, XcodeGen, xcodebuild build, xcodebuild test 32 core + 53 app tests |
+| 2026-06-02 21:51 JST | `scripts/codex/validate-ios.sh` | pass | Issue #72 PR branch after rebase: `swift test` 32 core tests, SwiftLint 0 violations, SwiftFormat 0 files, XcodeGen, xcodebuild build, xcodebuild test 32 core + 55 app tests |

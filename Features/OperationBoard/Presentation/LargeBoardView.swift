@@ -4,8 +4,8 @@ struct LargeBoardView: View {
     @ObservedObject var viewModel: OperationBoardViewModel
 
     var body: some View {
-        Group {
-            if let model = viewModel.largeBoardDisplayModel {
+        TimelineView(.periodic(from: .now, by: 1)) { context in
+            if let model = viewModel.largeBoardDisplayModel(now: context.date) {
                 board(model)
             } else {
                 ContentUnavailableView(
@@ -55,6 +55,7 @@ struct LargeBoardView: View {
                 .font(.largeTitle.weight(.bold))
                 .lineLimit(1)
                 .minimumScaleFactor(0.75)
+            timingStatus(model)
             Label(model.announcement, systemImage: "megaphone")
                 .font(.title3.weight(.semibold))
                 .foregroundStyle(.primary)
@@ -62,7 +63,34 @@ struct LargeBoardView: View {
                 .minimumScaleFactor(0.8)
         }
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(model.sessionName)、\(model.roundTitle)、\(model.announcement)")
+        .accessibilityLabel(
+            "\(model.sessionName)、\(model.roundTitle)、\(model.timingAccessibilityLabel)、\(model.announcement)"
+        )
+    }
+
+    private func timingStatus(_ model: LargeBoardDisplayModel) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(alignment: .firstTextBaseline, spacing: 16) {
+                Label(model.roundStatusTitle, systemImage: "timer")
+                    .font(.title2.weight(.bold))
+                Text(model.remainingTimeText)
+                    .font(.system(size: 48, weight: .heavy, design: .monospaced))
+                    .minimumScaleFactor(0.6)
+                    .accessibilityLabel("残り時間 \(model.remainingTimeText)")
+            }
+
+            Text(model.timingDetailText)
+                .font(.callout.weight(.semibold))
+                .foregroundStyle(.secondary)
+                .lineLimit(2)
+                .minimumScaleFactor(0.8)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(14)
+        .background(Color(.secondarySystemGroupedBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(model.timingAccessibilityLabel)
     }
 
     private func courtCard(_ court: LargeBoardCourtDisplay) -> some View {

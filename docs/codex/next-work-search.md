@@ -10,6 +10,16 @@
 - Human repair needed: none.
 - Pending updates: PR evidence after PR creation.
 
+## 2026-06-02 15:58 JST
+
+- Searched candidates: GitHub Project In Progress/Ready items, open PBIs #16-#20, PR #71 CI/merge status, participant-list conflict risk, large-board MVP gaps.
+- Referenced GitHub Project / Issues / docs: Issues #18, #70, #72, PR #71, `docs/scrum/sprint-backlog.md`, product vision "残り時間" and "大画面表示" requirements.
+- Findings: Issue #70 was merged through PR #71, but GitHub Done sync became blocked by Codex execution usage limit. The next safe work should avoid participant-list files touched by PR #71.
+- Next selected work: Issue #72 `大画面ボードに残り時間とラウンド状態を表示する`.
+- Reason: It advances PBI #18 and the MVP requirement that participants can understand current round progress from an iPad/large display, while touching display-model/view files mostly independent from #70.
+- Human repair needed: none for code; GitHub write access must resume to push/PR and apply pending Project updates.
+- Pending updates: Issue #70 Done sync; Issue #72 Validation Status/Evidence/PR updates.
+
 ## 2026-06-02 15:12 JST
 
 - Searched candidates: GitHub Project In Progress/Ready items, open PBIs #16-#20, Sprint Backlog after PR #67 merge, score/history gaps, session deletion/search, Pro boundary.
