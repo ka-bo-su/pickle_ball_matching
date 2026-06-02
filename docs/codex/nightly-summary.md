@@ -4,7 +4,7 @@
 
 - Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31/#33/#35/#37/#39/#41/#43/#45/#47/#49/#51/#53/#55/#57/#59/#61/#63 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30/#32/#34/#36/#38/#40/#42/#44/#46/#48/#50/#52/#54/#56/#58/#60/#62 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, current-round CSV sharing, participant-facing large board display, editable session settings, participant skill editing, participant detail editing, roster reuse for new sessions, any-player current-round manual swap, multi-step undo history, current-round PDF sharing, current-round image sharing, session history/reopen, board current-state/next-action readability, round timer/start-end flow, repeated-pair avoidance, repeated-opponent avoidance, rule settings UI, GitHub Actions Node 20 deprecation fix, and a guarded GitHub REST push fallback script/runbook
 - Partially completed: Issue #64 score/winner recording is open as PR #65; local validation passed and GitHub Actions is pending.
-- Blocked: none
+- Blocked: PR #65 CI confirmation and merge follow-up are blocked by the current Codex execution usage limit.
 
 ## Time
 
@@ -94,7 +94,7 @@
 
 ## Pending GitHub Project Updates
 
-- none
+- Issue #64 / PR #65: after CI passes, squash merge PR #65, close Issue #64, and set Project item Done.
 
 ## iOS Validation
 
@@ -214,8 +214,8 @@ A  scripts/codex/validate-ios.sh
 - Done: Issue #62 rule settings UI
 - Done: Issue #58 repeated-pair avoidance
 - Done: Issue #56 round start/end and remaining-time display
-- Blocked: none
-- Next: watch PR #65 CI, merge to `dev` if green, then select the next MVP SBI
+- Blocked: PR #65 CI/merge follow-up is waiting for Codex execution quota reset.
+- Next: after quota reset, watch PR #65 CI, merge to `dev` if green, then select the next MVP SBI
 
 ## Architecture
 

@@ -11,5 +11,5 @@
 - Project owner: `ka-bo-su`
 - Project number: `3`
 - Last successful validation: 2026-06-02 09:12 JST, `scripts/codex/validate-ios.sh` on Issue #64
-- Current blocker: none
-- Next action: watch PR #65 CI and squash merge to `dev` if green.
+- Current blocker: Codex execution usage limit blocked PR #65 CI status checks and merge follow-up.
+- Next action: after quota reset, run `gh pr checks 65 --watch --interval 10`; if green, squash merge PR #65 to `dev` and set Issue #64 / Project Done.

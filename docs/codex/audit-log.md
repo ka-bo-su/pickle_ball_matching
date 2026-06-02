@@ -4019,3 +4019,47 @@ Medium until PR #65 CI passes.
 ### Follow-up
 
 Watch PR #65 CI, squash merge to `dev` if it passes, close Issue #64, and set the Project item Done.
+
+## 2026-06-02 09:18 JST
+
+### Action
+
+Recorded an execution-environment blocker for PR #65 CI confirmation and merge follow-up.
+
+### Reason
+
+`gh pr checks 65` and `gh run view 26790276942` were rejected by Codex escalation auto-review because the current execution usage limit is exhausted. The prior watch command only showed the check as pending.
+
+### Files Changed
+
+- `docs/codex/blockers.md`
+- `docs/codex/github-projects-pending-updates.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/audit-log.md`
+
+### Commands Run
+
+- `gh pr checks 65 --watch --interval 10`
+- `gh pr checks 65` rejected by execution usage limit
+- `gh run view 26790276942 --json status,conclusion,createdAt,updatedAt,jobs` rejected by execution usage limit
+
+### GitHub Project Updates
+
+No additional Project update was applied after the rejection. Issue #64 remains In Review with PR #65 evidence and Validation Status Passed.
+
+### Architecture Decision
+
+No architecture change.
+
+### Validation
+
+Local validation had already passed. CI result could not be confirmed in this execution window.
+
+### Risk
+
+Low product-code risk, medium process risk until CI is confirmed and PR #65 is merged.
+
+### Follow-up
+
+After quota reset, run PR #65 checks, squash merge if green, close Issue #64, and set the Project item Done.
