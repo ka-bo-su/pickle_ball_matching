@@ -4105,3 +4105,54 @@ Low. The change is documentation-only, but it will update the PR head and rerun 
 ### Follow-up
 
 Push the docs resolution, recheck PR #65 CI, squash merge if green, and set Issue #64 / Project Done.
+
+## 2026-06-02 14:48 JST
+
+### Action
+
+Merged PR #65, closed Issue #64, and set the GitHub Project item to Done.
+
+### Reason
+
+PR #65 passed local validation and GitHub Actions `validate`. The score/winner recording slice meets the Issue #64 acceptance criteria and is ready as a Done increment on `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/codex/nightly-summary.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+- `docs/codex/audit-log.md`
+
+### Commands Run
+
+- `gh pr checks 65 --watch --interval 10`
+- `gh run view 26800772677 --json status,conclusion,jobs`
+- `gh pr merge 65 --squash --delete-branch ...`
+- `gh issue edit 64 --remove-label status:in-review --add-label status:done`
+- `gh project item-edit ...` for Status `Done`
+- `gh project item-edit ...` for Scrum Status `Done`
+- `gh issue comment 64 ...`
+- `gh issue close 64 --reason completed`
+
+### GitHub Project Updates
+
+Issue #64 set to Status `Done`, Scrum Status `Done`, Validation Status `Passed`, and Evidence Link PR #65. The issue is closed.
+
+### Architecture Decision
+
+No additional architecture change after PR merge. Score recording remains a Domain value-type addition with Presentation/ViewModel editing and repository-backed autosave.
+
+### Validation
+
+GitHub Actions `validate` passed for PR #65 before merge.
+
+### Risk
+
+Low after merge.
+
+### Follow-up
+
+Select the next MVP SBI. Candidate areas include rule presets, richer score/history display, session deletion/search, or Pro boundary work.

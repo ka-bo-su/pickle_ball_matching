@@ -3,12 +3,12 @@
 ## Current
 
 - Active PBI: #16 当日運営特化ダブルス組み合わせMVP
-- Active SBI: #64 現在ラウンドのスコアと勝者を記録できるようにする
-- Active Branch: codex/sbi-64-match-score-entry
-- Active PR: #65
-- GitHub Project Item: `PVTI_lAHOBHYYMs4BZUKkzgubtZw`
-- Status: In Review; GitHub Actions pending
-- Next Action: watch PR #65 CI and squash merge to `dev` if green
+- Active SBI: Selecting next SBI
+- Active Branch: dev
+- Active PR: none
+- GitHub Project Item: n/a
+- Status: Issue #64 Done; selecting next Scrum item
+- Next Action: search Project and Issues for the next safe MVP vertical slice
 
 ## Completed
 
@@ -112,12 +112,13 @@
 | 2026-06-02 09:05 JST | Next SBI selected | Created and selected Issue #64 for current-round score and winner recording | https://github.com/ka-bo-su/pickle_ball_matching/issues/64 |
 | 2026-06-02 09:12 JST | SBI #64 local implementation | Added match score domain value, board score controls, autosave action, and tests | `MatchScore`, `CurrentRoundSection`, `OperationBoardMatchScoreActions` |
 | 2026-06-02 09:16 JST | PR opened | Created PR #65 for Issue #64 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/65 |
+| 2026-06-02 14:48 JST | SBI #64 merged | Squash merged PR #65 to `dev`; Issue #64 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/65 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #64 | `codex/sbi-64-match-score-entry` | PR #65 | In Review | watch CI |
+| none | n/a | n/a | n/a | select next SBI |
 
 ## Blocked
 
@@ -204,3 +205,4 @@
 | 2026-06-02 08:46 JST | `scripts/codex/validate-ios.sh` | pass | Issue #62: `swift test` 24 core tests, SwiftLint 0 violations, SwiftFormat 0 files, XcodeGen, xcodebuild build, xcodebuild test 24 core + 45 app tests |
 | 2026-06-02 08:55 JST | GitHub Actions `validate` | pass | PR #63 passed before squash merge |
 | 2026-06-02 09:12 JST | `scripts/codex/validate-ios.sh` | pass | Issue #64: `swift test` 29 core tests, SwiftLint 0 violations, SwiftFormat 0 files, XcodeGen, xcodebuild build, xcodebuild test 29 core + 47 app tests |
+| 2026-06-02 14:47 JST | GitHub Actions `validate` | pass | PR #65 passed before squash merge |
