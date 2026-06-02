@@ -8,7 +8,7 @@
 - Next selected work: Issue #68 `ラウンド履歴で過去ラウンドとスコアを確認できるようにする`.
 - Reason: It is a non-destructive vertical slice that increases the value of score recording and session history without adding server, StoreKit, CloudKit, or destructive history deletion.
 - Human repair needed: none.
-- Pending updates: PR evidence for Issue #68 after PR creation.
+- Pending updates: none; PR #69 evidence was added after PR creation.
 
 ## 2026-06-02 14:51 JST
 

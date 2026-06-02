@@ -6,10 +6,10 @@
 - Current SBI: #68 ラウンド履歴で過去ラウンドとスコアを確認できるようにする
 - Active branch: codex/sbi-68-round-history
 - Active worktree: `/Users/kazuma/Documents/pickle_ball_matching`
-- Active PR: none
+- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/69
 - Active GitHub Project: `kanban@pickle_ball_matching`
 - Project owner: `ka-bo-su`
 - Project number: `3`
 - Last successful validation: 2026-06-02 15:19 JST, `scripts/codex/validate-ios.sh` on Issue #68 branch
 - Current blocker: none
-- Next action: commit Issue #68 changes, push branch, create PR, and update Project evidence.
+- Next action: watch GitHub Actions for PR #69, squash merge to `dev` if green, close Issue #68, and continue to the next SBI.

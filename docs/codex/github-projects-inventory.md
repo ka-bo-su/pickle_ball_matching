@@ -7,7 +7,7 @@
 - Resolved project number: 3
 - Resolved project url: https://github.com/users/ka-bo-su/projects/3
 - Linked repository: https://github.com/ka-bo-su/pickle_ball_matching
-- Last checked: 2026-06-02 15:17 JST
+- Last checked: 2026-06-02 15:21 JST
 
 ## Fields
 
@@ -56,5 +56,5 @@
 | Blocked | 0 |
 | Done | 35 |
 | Ready | 5 |
-| In Progress | 1 |
-| In Review | 0 |
+| In Progress | 0 |
+| In Review | 1 |

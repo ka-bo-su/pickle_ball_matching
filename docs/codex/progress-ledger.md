@@ -5,10 +5,10 @@
 - Active PBI: #16 当日運営特化ダブルス組み合わせMVP
 - Active SBI: #68 ラウンド履歴で過去ラウンドとスコアを確認できるようにする
 - Active Branch: codex/sbi-68-round-history
-- Active PR: none
+- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/69
 - GitHub Project Item: `PVTI_lAHOBHYYMs4BZUKkzgudKLA`
-- Status: local implementation and validation passed; preparing commit/PR
-- Next Action: commit, push, create PR, and move Project item to In Review
+- Status: In Review
+- Next Action: wait for GitHub Actions, squash merge to `dev` if green, and close Issue #68
 
 ## Completed
 
@@ -119,12 +119,13 @@
 | 2026-06-02 15:09 JST | SBI #66 merged | Squash merged PR #67 to `dev`; Issue #66 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/67 |
 | 2026-06-02 15:12 JST | Next SBI selected | Created and selected Issue #68 for round history and score review | https://github.com/ka-bo-su/pickle_ball_matching/issues/68 |
 | 2026-06-02 15:19 JST | SBI #68 local implementation | Added round history display model, read-only SwiftUI history section, and presentation tests | local branch `codex/sbi-68-round-history` |
+| 2026-06-02 15:21 JST | PR opened | Created PR #69 for Issue #68 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/69 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #68 `ラウンド履歴で過去ラウンドとスコアを確認できるようにする` | `codex/sbi-68-round-history` | none | Local validation passed | push branch and create PR |
+| Issue #68 `ラウンド履歴で過去ラウンドとスコアを確認できるようにする` | `codex/sbi-68-round-history` | PR #69 | In Review | wait for CI and merge if green |
 
 ## Blocked
 

@@ -4369,3 +4369,55 @@ Low. The slice is read-only UI over existing saved session state.
 ### Follow-up
 
 Commit, push, create PR, update Project Evidence Link, and move Issue #68 to In Review.
+
+## 2026-06-02 15:21 JST
+
+### Action
+
+Created PR #69 for Issue #68 and moved the GitHub Project item to In Review.
+
+### Reason
+
+Local implementation and full iOS validation passed, so the SBI is ready for autonomous PR review and CI validation before squash merge to `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/codex/next-work-search.md`
+- `docs/codex/audit-log.md`
+- `docs/codex/nightly-summary.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git add ...`
+- `git commit -m "feat(board): add round history display"`
+- `git push -u origin codex/sbi-68-round-history`
+- `gh pr create --base dev --head codex/sbi-68-round-history ...`
+- `gh issue edit 68 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit ...` for Status `In review`
+- `gh project item-edit ...` for Scrum Status `In Review`
+- `gh project item-edit ...` for Evidence Link PR #69
+
+### GitHub Project Updates
+
+Issue #68 is now In Review, Validation Status Passed, and Evidence Link points to PR #69.
+
+### Architecture Decision
+
+No new architecture decision beyond the prior read-only Presentation display model.
+
+### Validation
+
+Local validation passed before PR creation. GitHub Actions is pending on PR #69.
+
+### Risk
+
+Low until CI is green.
+
+### Follow-up
+
+Push this docs sync commit, watch PR #69 checks, squash merge to `dev` if green, close Issue #68, set Project item Done, then select the next SBI.
