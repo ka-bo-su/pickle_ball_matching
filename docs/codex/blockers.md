@@ -1,5 +1,19 @@
 # Blockers
 
+## Blocker
+
+- Time: 2026-06-02 15:57 JST
+- Item: Issue #70 Project/Issue Done sync after PR #71 merge
+- Type: execution-environment
+- Reason: Codex escalation auto-review rejected `gh issue edit`, `gh issue close`, and `gh project item-edit` because the current Codex execution usage limit is exhausted.
+- Impact: PR #71 was squash merged to `dev`, but GitHub Issue #70 and Project item remain In Review until the GitHub write commands can resume.
+- Attempted fixes: Confirmed PR #71 CI pass and mergeability, squash merged PR #71, then attempted Issue/Project Done sync. The GitHub write commands were rejected by the usage limit.
+- Why autonomous progress cannot continue for this item: Retrying the same GitHub writes through another network path after usage-limit rejection would be an indirect workaround. The item can be localized as a pending Project update.
+- Safe next task selected: Issue #72 `大画面ボードに残り時間とラウンド状態を表示する`.
+- GitHub Project update: Pending update recorded in `docs/codex/github-projects-pending-updates.md`.
+- Pending update: close Issue #70 and set Project Status/Scrum Status Done after execution quota resets.
+- Human repair: none required if Codex execution resumes with GitHub write access; otherwise run the commands in the pending update.
+
 ## Resolved Blocker
 
 - Time: 2026-06-02 09:18 JST

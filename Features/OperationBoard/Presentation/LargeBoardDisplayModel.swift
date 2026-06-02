@@ -1,6 +1,9 @@
 struct LargeBoardDisplayModel: Equatable {
     var sessionName: String
     var roundTitle: String
+    var roundStatusTitle: String
+    var remainingTimeText: String
+    var timingDetailText: String
     var announcement: String
     var courts: [LargeBoardCourtDisplay]
     var waitingPlayerNames: [String]
@@ -11,6 +14,10 @@ struct LargeBoardDisplayModel: Equatable {
 
     var waitingSummary: String {
         waitingPlayerNames.isEmpty ? "全員がコートに入っています" : waitingPlayerNames.joined(separator: "、")
+    }
+
+    var timingAccessibilityLabel: String {
+        "\(roundStatusTitle)、残り時間 \(remainingTimeText)、\(timingDetailText)"
     }
 }
 

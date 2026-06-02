@@ -3,13 +3,13 @@
 ## Result
 
 - Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31/#33/#35/#37/#39/#41/#43/#45/#47/#49/#51/#53/#55/#57/#59/#61/#63/#65/#67/#69 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30/#32/#34/#36/#38/#40/#42/#44/#46/#48/#50/#52/#54/#56/#58/#60/#62/#64/#66/#68 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, current-round CSV sharing, participant-facing large board display, editable session settings, participant skill editing, participant detail editing, roster reuse for new sessions, any-player current-round manual swap, multi-step undo history, current-round PDF sharing, current-round image sharing, session history/reopen, board current-state/next-action readability, round timer/start-end flow, repeated-pair avoidance, repeated-opponent avoidance, rule settings UI, current-round score/winner recording, operation-mode rule presets, round history display, GitHub Actions Node 20 deprecation fix, and a guarded GitHub REST push fallback script/runbook
-- Partially completed: Issue #70 bulk participant entry implemented, locally validated, and PR #71 opened; waiting for GitHub Actions before merge.
-- Blocked: none currently; the previous PR #65 CI confirmation blocker was resolved at 2026-06-02 14:38 JST.
+- Partially completed: Issue #72 large-board remaining time/status display implemented and locally validated; push/PR/Project In Review sync pending execution quota.
+- Blocked: Issue #70 Issue/Project Done sync and Issue #72 GitHub publication are blocked by Codex execution usage limit; local code/docs work continues.
 
 ## Time
 
 - Started: 2026-06-01 02:34 JST
-- Last checkpoint: 2026-06-02 15:39 JST
+- Last checkpoint: 2026-06-02 16:02 JST
 - Approximate duration: session-dependent
 
 ## PRs
@@ -103,16 +103,19 @@
 - Issue #68 set Done after PR #69 merge.
 - Issue #70 created in Japanese, added to Project, set In Progress, Validation Status set to Passed, and locally validated.
 - Issue #70 moved to In Review with PR #71 Evidence Link.
+- Issue #70 PR #71 passed GitHub Actions and was squash merged to `dev`; Issue/Project Done sync pending execution quota.
+- Issue #72 created in Japanese, added to Project, set In Progress, and locally validated; Validation Status/PR evidence pending execution quota.
 
 ## Pending GitHub Project Updates
 
-- none currently
+- Issue #70 Done sync after PR #71 merge.
+- Issue #72 Validation Status/Evidence/PR updates.
 
 ## iOS Validation
 
-- Build: passed locally for Issue #70 with `xcodebuild build`
-- Test: passed locally for Issue #70 with `swift test` and `xcodebuild test`
-- Lint: passed locally for Issue #70 with SwiftLint 0 violations and SwiftFormat lint 0 files
+- Build: passed locally for Issue #72 with `xcodebuild build`
+- Test: passed locally for Issue #72 with `swift test` and `xcodebuild test`
+- Lint: passed locally for Issue #72 with SwiftLint 0 violations and SwiftFormat lint 0 files
 - Simulator: iPhone 16 on iOS 18.2 available
 
 ## Files Changed
@@ -220,12 +223,10 @@ A  scripts/codex/validate-ios.sh
 - Done: Issue #50 session history/reopen
 - Done: Issue #52 board current-state and next-action readability
 - Done: Issue #54 GitHub Actions Node 20 deprecation warning
-- In progress: Issue #70 bulk participant entry for faster on-site roster setup
+- In review: Issue #70 bulk participant entry merged through PR #71; Done sync pending execution quota
+- In progress: Issue #72 large-board remaining time/status display, local validation passed
 - Done: Issue #66 operation-mode rule presets
 - Done: Issue #68 round history and score review
-- In progress: none
-- In review: none
-- In review: none
 - Done: Issue #60 repeated-opponent avoidance
 - Done: Issue #62 rule settings UI
 - Done: Issue #64 score/winner recording

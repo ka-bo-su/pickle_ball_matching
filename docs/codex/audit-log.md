@@ -103,6 +103,65 @@ Low. The PR targets `dev`; `main` remains untouched.
 
 Watch PR #71 checks, merge when clean, then close Issue #70 and update Project/docs to Done.
 
+## 2026-06-02 16:02 JST
+
+### Action
+
+Implemented Issue #72 locally, adding remaining-time and round-status information to the participant-facing large board.
+
+### Reason
+
+The MVP requires participants to understand current match progress from a large display. Showing only courts and waiters leaves "how much time is left?" as a question for the organizer, so the large board now displays status and remaining time directly.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/LargeBoardDisplayModel.swift`
+- `Features/OperationBoard/Presentation/LargeBoardView.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardLargeBoardDisplayTests.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+- `docs/codex/blockers.md`
+- `docs/codex/github-projects-pending-updates.md`
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/codex/next-work-search.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `gh issue create ... Issue #72`
+- `gh project item-add 3 --owner ka-bo-su --url https://github.com/ka-bo-su/pickle_ball_matching/issues/72`
+- `gh project item-edit ...`
+- `swift test`
+- `scripts/codex/validate-ios.sh`
+- `git stash push ...`
+- `gh pr merge 71 --squash --delete-branch ...`
+- `git stash pop`
+
+### GitHub Project Updates
+
+- Issue #72 was added to Project and set to In Progress before the execution usage limit blocked further GitHub writes.
+- Issue #72 Validation Status update to `Passed` is recorded as a pending Project update.
+- Issue #70 Done sync after PR #71 merge is recorded as a pending Project update.
+
+### Architecture Decision
+
+Kept the increment in Presentation only. `LargeBoardDisplayModel` now carries timing text derived from `OperationBoardRoundTimingModel`, and `LargeBoardView` uses `TimelineView` for periodic display refresh. No Domain, Repository, persistence, or external dependency changes were introduced.
+
+### Validation
+
+Passed `scripts/codex/validate-ios.sh`: `swift test` 32 core tests, SwiftLint 0 violations, SwiftFormat lint 0 files, XcodeGen generation, `xcodebuild build`, and `xcodebuild test` with 32 core tests plus 53 app tests.
+
+### Risk
+
+Low. The feature is display-only and does not mutate session state.
+
+### Follow-up
+
+Commit locally. When GitHub write access resumes, push the branch, create PR, set Issue #72 Project Validation Status to Passed, and move the item to In Review.
+
 ## 2026-06-01 02:34 JST
 
 ### Action

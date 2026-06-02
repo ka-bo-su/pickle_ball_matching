@@ -4,6 +4,32 @@ No pending updates at file creation time. Any failed field, label, item, status,
 
 No active pending updates as of 2026-06-02 14:38 JST.
 
+## Pending Project Update
+
+- Timestamp: 2026-06-02 15:57 JST
+- Target project: kanban@pickle_ball_matching
+- Target item: Issue #70 / `PVTI_lAHOBHYYMs4BZUKkzgudQLk`
+- Intended action: After PR #71 passed CI and was squash merged to `dev`, close Issue #70, set label `status:done`, set Project Status `Done`, set Scrum Status `Done`, keep Validation Status `Passed`, and record merge evidence.
+- Previous state: Issue #70 Open, label `status:in-review`, Project Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, Evidence Link `https://github.com/ka-bo-su/pickle_ball_matching/pull/71`.
+- New state: Issue #70 Closed, label `status:done`, Project Status `Done`, Scrum Status `Done`, Validation Status `Passed`, Evidence Link `https://github.com/ka-bo-su/pickle_ball_matching/pull/71`.
+- Reason not applied: Codex escalation auto-review rejected GitHub write commands because the current Codex execution usage limit is exhausted after PR #71 merge.
+- Command to apply later: `gh issue edit 70 --remove-label status:in-review --add-label status:done`; `gh issue close 70 --comment "<validation evidence>"`; `gh project item-edit --id PVTI_lAHOBHYYMs4BZUKkzgudQLk ... Status Done`; `gh project item-edit --id PVTI_lAHOBHYYMs4BZUKkzgudQLk ... Scrum Status Done`.
+- Related PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/71
+- Related Issue: https://github.com/ka-bo-su/pickle_ball_matching/issues/70
+
+## Pending Project Update
+
+- Timestamp: 2026-06-02 16:02 JST
+- Target project: kanban@pickle_ball_matching
+- Target item: Issue #72 / `PVTI_lAHOBHYYMs4BZUKkzgudWWs`
+- Intended action: Set Validation Status `Passed`, push branch `codex/sbi-72-large-board-timer`, create PR to `dev`, set Status `In review`, set Scrum Status `In Review`, and add PR URL to Evidence Link.
+- Previous state: Status `In progress`, Scrum Status `In Progress`, Validation Status `Not Run`, Evidence Link `local branch pending`.
+- New state: Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, Evidence Link `<PR URL>`.
+- Reason not applied: Codex escalation auto-review rejected GitHub write/network commands because the current Codex execution usage limit is exhausted.
+- Command to apply later: `git push -u origin codex/sbi-72-large-board-timer`; `gh project item-edit ... Validation Status Passed`; `gh pr create --base dev --head codex/sbi-72-large-board-timer`; `gh project item-edit ... Status In review`; `gh project item-edit ... Scrum Status In Review`; `gh project item-edit ... Evidence Link <PR URL>`.
+- Related PR: pending
+- Related Issue: https://github.com/ka-bo-su/pickle_ball_matching/issues/72
+
 ## Resolved Pending Project Update
 
 - Timestamp: 2026-06-02 09:18 JST
