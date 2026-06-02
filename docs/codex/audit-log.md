@@ -1,5 +1,57 @@
 # Codex Audit Log
 
+## 2026-06-02 21:58 JST
+
+### Action
+
+Resolved the remaining GitHub synchronization gaps: Issue #70 was closed and set Done after PR #71 merge, and Issue #72 was published as PR #73.
+
+### Reason
+
+The previous checkpoint had local validation and merge evidence, but GitHub write commands were blocked by the Codex execution usage limit. Once writes were available, the autonomous loop needed to restore GitHub Project as the source of truth before selecting further work.
+
+### Files Changed
+
+- `docs/codex/audit-log.md`
+- `docs/codex/github-projects-pending-updates.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/progress-ledger.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `gh issue view 70 --json number,title,state,labels,projectItems,url`
+- `gh issue edit 70 --remove-label status:in-review --add-label status:done`
+- `gh project item-edit --id PVTI_lAHOBHYYMs4BZUKkzgudQLk ... Status Done`
+- `gh project item-edit --id PVTI_lAHOBHYYMs4BZUKkzgudQLk ... Scrum Status Done`
+- `gh issue close 70 --reason completed --comment ...`
+- `gh pr view codex/sbi-72-large-board-timer-pr --json ...`
+- `gh issue edit 72 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit --id PVTI_lAHOBHYYMs4BZUKkzgudWWs ...`
+
+### GitHub Project Updates
+
+- Issue #70 Project item `PVTI_lAHOBHYYMs4BZUKkzgudQLk` moved to Done.
+- Issue #72 Project item `PVTI_lAHOBHYYMs4BZUKkzgudWWs` moved to In Review.
+- Issue #72 Validation Status set to Passed.
+- Issue #72 Evidence Link set to `https://github.com/ka-bo-su/pickle_ball_matching/pull/73`.
+
+### Architecture Decision
+
+No new architecture decision. PR #73 remains a Presentation-only change and preserves the existing Domain/Application/Infrastructure boundaries.
+
+### Validation
+
+PR #73 uses the 2026-06-02 21:51 JST local validation result: `scripts/codex/validate-ios.sh` passed with 32 core tests, SwiftLint 0 violations, SwiftFormat lint 0 files, XcodeGen generation, `xcodebuild build`, and `xcodebuild test` with 32 core tests plus 55 app tests.
+
+### Risk
+
+Low. This checkpoint is primarily synchronization and PR metadata repair. The only code-bearing PR is already validated locally.
+
+### Follow-up
+
+Watch PR #73 GitHub Actions, squash merge to `dev` when clean, close Issue #72, then continue with the next safe SBI.
+
 ## 2026-06-02 15:39 JST
 
 ### Action

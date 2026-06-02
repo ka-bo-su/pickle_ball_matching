@@ -5,10 +5,10 @@
 - Active PBI: #18 進行ボードと大画面表示
 - Active SBI: #72 大画面ボードに残り時間とラウンド状態を表示する
 - Active Branch: codex/sbi-72-large-board-timer-pr
-- Active PR: none
+- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/73
 - GitHub Project Item: `PVTI_lAHOBHYYMs4BZUKkzgudWWs`
-- Status: Rebased onto `origin/dev` and validated at `2006616`; ready for push/PR/Project sync
-- Next Action: push branch, create PR, update Project to In Review
+- Status: PR #73 open; Issue/Project #72 synchronized to In Review with Validation Status Passed
+- Next Action: watch PR #73 GitHub Actions, squash merge to `dev` when clean, close Issue #72, then continue the next safe SBI
 
 ## Completed
 
@@ -128,19 +128,20 @@
 | 2026-06-02 15:58 JST | Next SBI selected | Created and selected Issue #72 for large-board remaining time and round status display | https://github.com/ka-bo-su/pickle_ball_matching/issues/72 |
 | 2026-06-02 16:02 JST | SBI #72 local implementation | Added large-board timing state/remaining-time display model, TimelineView refresh, accessibility labels, and dedicated tests | local branch `codex/sbi-72-large-board-timer` |
 | 2026-06-02 16:03 JST | SBI #72 local commit | Committed validated local implementation; push blocked by execution quota | `1fe7687` |
+| 2026-06-02 21:58 JST | Issue #70 Done sync | Closed Issue #70 and set Project Status/Scrum Status to Done after PR #71 merge | https://github.com/ka-bo-su/pickle_ball_matching/pull/71 |
+| 2026-06-02 21:58 JST | PR opened | Created PR #73 for Issue #72, fixed PR body, and moved Project item to In Review with validation evidence | https://github.com/ka-bo-su/pickle_ball_matching/pull/73 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #72 大画面ボードに残り時間とラウンド状態を表示する | codex/sbi-72-large-board-timer | none | Local commit `1fe7687`; GitHub write/push pending quota | push/PR after quota reset |
+| Issue #72 大画面ボードに残り時間とラウンド状態を表示する | codex/sbi-72-large-board-timer-pr | PR #73 | In Review; local validation passed; GitHub Actions running | merge to `dev` when checks pass |
 
 ## Blocked
 
 | Item | Reason | Next | Project Status |
 |---|---|---|---|
-| Issue #70 Done sync | GitHub write commands rejected due Codex execution usage limit after PR #71 merge | Apply pending Issue/Project Done updates after quota reset | In Review until pending update applied |
-| Issue #72 push/PR sync | GitHub push rejected due Codex execution usage limit after local validation and commit | Push branch and create PR after quota reset | In Progress until pending update applied |
+| None | No active blocker after #70 Done sync and #72 PR/Project sync | Continue with PR #73 CI/merge, then next safe SBI | #72 In Review |
 
 ## Validation History
 

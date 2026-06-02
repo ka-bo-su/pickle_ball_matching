@@ -6,10 +6,10 @@
 - Current SBI: #72 大画面ボードに残り時間とラウンド状態を表示する
 - Active branch: codex/sbi-72-large-board-timer-pr
 - Active worktree: `/Users/kazuma/Documents/pickle_ball_matching`
-- Active PR: none
+- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/73
 - Active GitHub Project: `kanban@pickle_ball_matching`
 - Project owner: `ka-bo-su`
 - Project number: `3`
 - Last successful validation: 2026-06-02 21:51 JST, local `scripts/codex/validate-ios.sh` on rebased Issue #72 PR branch
-- Current blocker: none for Issue #72 publication
-- Next action: push branch `codex/sbi-72-large-board-timer-pr`, create PR, and apply pending Project updates.
+- Current blocker: none
+- Next action: watch PR #73 GitHub Actions, squash merge to `dev` when clean, close Issue #72, then rebase and publish the next safe SBI branch.
