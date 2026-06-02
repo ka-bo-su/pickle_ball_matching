@@ -47,3 +47,4 @@ GitHub Project `kanban@pickle_ball_matching` is the source of truth. This file m
 | SBI-026 | SBI | 現在ラウンドのスコアと勝者を記録できるようにする | P1 | Done | PR #65, Issue #64 |
 | SBI-027 | SBI | 運営モードのプリセットをルール設定へ反映する | P1 | Done | PR #67, Issue #66 |
 | SBI-028 | SBI | ラウンド履歴で過去ラウンドとスコアを確認できるようにする | P1 | Done | PR #69, Issue #68 |
+| SBI-029 | SBI | 参加者名をまとめて貼り付けて追加できるようにする | P0 | In Progress | Issue #70, local branch `codex/sbi-70-bulk-participants` |

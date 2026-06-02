@@ -4,6 +4,49 @@ import XCTest
 
 @MainActor
 final class OperationBoardParticipantEditingTests: XCTestCase {
+    func testAddBulkParticipantsAddsTrimmedUniqueNamesAndAutosavesOnce() {
+        let repository = SpySessionRepository()
+        let session = Session(
+            name: "テスト",
+            participants: [
+                Participant(displayName: "山田")
+            ]
+        )
+        let viewModel = OperationBoardViewModel(session: session, sessionRepository: repository)
+        viewModel.bulkParticipantNames = "  山田\n佐藤、鈴木,,佐藤\t田中  "
+
+        viewModel.addBulkParticipants()
+
+        XCTAssertEqual(
+            viewModel.session.participants.map(\.displayName),
+            ["山田", "佐藤", "鈴木", "田中"]
+        )
+        XCTAssertEqual(viewModel.bulkParticipantNames, "")
+        XCTAssertEqual(repository.savedSessions.count, 1)
+        XCTAssertEqual(
+            repository.savedSessions.last?.participants.map(\.displayName),
+            ["山田", "佐藤", "鈴木", "田中"]
+        )
+    }
+
+    func testAddBulkParticipantsSkipsSaveWhenNoNewNameExists() {
+        let repository = SpySessionRepository()
+        let session = Session(
+            name: "テスト",
+            participants: [
+                Participant(displayName: "山田")
+            ]
+        )
+        let viewModel = OperationBoardViewModel(session: session, sessionRepository: repository)
+        viewModel.bulkParticipantNames = "山田\n  \n、,"
+
+        viewModel.addBulkParticipants()
+
+        XCTAssertEqual(viewModel.session.participants.map(\.displayName), ["山田"])
+        XCTAssertEqual(viewModel.bulkParticipantNames, "山田\n  \n、,")
+        XCTAssertTrue(repository.savedSessions.isEmpty)
+    }
+
     func testUpdateParticipantSkillLevelChangesLevelAndAutosaves() throws {
         let repository = SpySessionRepository()
         let participantID = try XCTUnwrap(UUID(uuidString: "00000000-0000-0000-0000-000000000001"))
