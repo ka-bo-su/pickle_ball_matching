@@ -2,6 +2,7 @@ public protocol SessionRepository: Sendable {
     func loadLatestSession() throws -> Session?
     func loadSavedSessions() throws -> [Session]
     func save(_ session: Session) throws
+    func deleteSavedSession(id: Session.ID) throws
 }
 
 public extension SessionRepository {
@@ -11,4 +12,6 @@ public extension SessionRepository {
         }
         return [latestSession]
     }
+
+    func deleteSavedSession(id: Session.ID) throws {}
 }

@@ -50,7 +50,68 @@ Low. This checkpoint is primarily synchronization and PR metadata repair. The on
 
 ### Follow-up
 
-Watch PR #73 GitHub Actions, squash merge to `dev` when clean, close Issue #72, then continue with the next safe SBI.
+PR #73 GitHub Actions passed, PR #73 was squash merged to `dev`, Issue #72 was set Done, and the next safe SBI was selected as Issue #74.
+
+## 2026-06-02 22:08 JST
+
+### Action
+
+Selected Issue #74 and applied the saved-session deletion implementation while rebasing it onto `origin/dev`.
+
+### Reason
+
+Issue #72 reached Done, leaving the local-first save/restore PBI as the next useful work. Session history already supports reopen; deletion prevents obsolete sessions from cluttering day-of operation and keeps the organizer focused on current rosters.
+
+### Files Changed
+
+- `Sources/PickleBallMatchingCore/Application/SessionRepository.swift`
+- `Sources/PickleBallMatchingCore/Infrastructure/JSONSessionRepository.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `Features/OperationBoard/Presentation/SessionSettingsSection.swift`
+- `Tests/PickleBallMatchingCoreTests/JSONSessionRepositoryTests.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardSessionHistoryTests.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+- `docs/codex/audit-log.md`
+- `docs/codex/blockers.md`
+- `docs/codex/github-projects-pending-updates.md`
+- `docs/codex/next-work-search.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/progress-ledger.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `gh issue list --search "保存済み セッション 削除 repo:ka-bo-su/pickle_ball_matching" --json number,title,state,labels --limit 20`
+- GitHub connector `_create_issue` for Issue #74
+- `gh project item-add 3 --owner ka-bo-su --url https://github.com/ka-bo-su/pickle_ball_matching/issues/74`
+- `gh issue edit 74 --remove-label status:ready --add-label status:in-progress`
+- `gh project item-edit --id PVTI_lAHOBHYYMs4BZUKkzgufzTw ...`
+- `git switch codex/sbi-31-delete-saved-sessions`
+- `git rebase origin/dev`
+- `git rebase --skip` for already-merged Issue #72 commits
+
+### GitHub Project Updates
+
+- Issue #74 created in Japanese.
+- Issue #74 added to Project item `PVTI_lAHOBHYYMs4BZUKkzgufzTw`.
+- Issue #74 moved to In Progress with Backlog Level SBI, Priority P1, Role Owner swift-developer, Risk low, Area Infrastructure, Validation Status Not Run, Sprint, Parent PBI, Evidence Link, and Architecture Impact.
+
+### Architecture Decision
+
+Added `deleteSavedSession(id:)` to `SessionRepository` with a default no-op to avoid breaking existing test doubles, while `JSONSessionRepository` owns concrete local-file deletion. Presentation calls through the ViewModel; SwiftUI does not touch file paths or JSON infrastructure directly.
+
+### Validation
+
+Pending after rebase conflict resolution. Earlier stacked-branch validation passed before #72 was split; this PR still needs fresh validation on top of `origin/dev`.
+
+### Risk
+
+Low to medium. Deletion is destructive for history files, so the UI uses a confirmation dialog and the ViewModel refuses to delete the currently open session.
+
+### Follow-up
+
+Resolve rebase docs conflicts, validate, commit, push, create PR, move Issue #74 to In Review, and continue the Scrum loop.
 
 ## 2026-06-02 15:39 JST
 

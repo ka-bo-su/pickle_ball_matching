@@ -49,6 +49,50 @@ final class JSONSessionRepositoryTests: XCTestCase {
         XCTAssertEqual(try XCTUnwrap(repository.loadLatestSession()).id, newerSession.id)
     }
 
+    func testDeleteSavedSessionRemovesHistoryFileWithoutChangingLatestSession() throws {
+        let repository = JSONSessionRepository(directoryURL: directoryURL)
+        let olderSession = try makeSession(
+            id: XCTUnwrap(UUID(uuidString: "00000000-0000-0000-0000-000000000321")),
+            name: "削除する練習",
+            updatedAt: Date(timeIntervalSince1970: 1_717_171_200)
+        )
+        let newerSession = try makeSession(
+            id: XCTUnwrap(UUID(uuidString: "00000000-0000-0000-0000-000000000322")),
+            name: "残す練習",
+            updatedAt: Date(timeIntervalSince1970: 1_717_257_600)
+        )
+        try repository.save(olderSession)
+        try repository.save(newerSession)
+
+        try repository.deleteSavedSession(id: olderSession.id)
+
+        let sessions = try repository.loadSavedSessions()
+        XCTAssertEqual(sessions.map(\.id), [newerSession.id])
+        XCTAssertEqual(try XCTUnwrap(repository.loadLatestSession()).id, newerSession.id)
+    }
+
+    func testDeleteSavedSessionRemovesLatestWhenTargetIsLatestSession() throws {
+        let repository = JSONSessionRepository(directoryURL: directoryURL)
+        let olderSession = try makeSession(
+            id: XCTUnwrap(UUID(uuidString: "00000000-0000-0000-0000-000000000331")),
+            name: "残る履歴",
+            updatedAt: Date(timeIntervalSince1970: 1_717_171_200)
+        )
+        let newerSession = try makeSession(
+            id: XCTUnwrap(UUID(uuidString: "00000000-0000-0000-0000-000000000332")),
+            name: "削除する最新",
+            updatedAt: Date(timeIntervalSince1970: 1_717_257_600)
+        )
+        try repository.save(olderSession)
+        try repository.save(newerSession)
+
+        try repository.deleteSavedSession(id: newerSession.id)
+
+        let sessions = try repository.loadSavedSessions()
+        XCTAssertEqual(sessions.map(\.id), [olderSession.id])
+        XCTAssertNil(try repository.loadLatestSession())
+    }
+
     func testLoadLatestSessionReturnsNilWhenFileDoesNotExist() throws {
         let repository = JSONSessionRepository(directoryURL: directoryURL)
 

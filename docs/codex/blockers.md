@@ -1,8 +1,25 @@
 # Blockers
 
-## Blocker
+## Resolved Blocker
+
+- Time: 2026-06-02 17:28 JST
+- Resolved: 2026-06-02 22:08 JST
+- Item: SBI-031 GitHub Issue/Project creation and full validation
+- Type: execution-environment
+- Reason: `swift test` failed inside the sandbox because SwiftPM could not write `~/.cache/clang/ModuleCache`; the required escalated rerun was rejected because the current Codex execution usage limit is exhausted. GitHub Issue/Project creation would hit the same escalation/network constraint.
+- Impact: Saved-session deletion is locally implemented and lint/format checked, but full `swift test`, xcodebuild validation, GitHub Issue creation, Project item creation, push, and PR cannot be completed until execution quota resumes.
+- Attempted fixes: Ran `swift test` non-escalated, reran with escalation per sandbox policy, then ran safer local checks: SwiftLint, SwiftFormat lint, and `git diff --check`.
+- Why autonomous progress cannot continue for this item: Retrying the same validation or GitHub writes through another path after usage-limit rejection would be an indirect workaround. The code can be committed locally and queued for full validation/publication.
+- Safe next task selected: commit local SBI-031 and wait for GitHub/validation quota to resume before publishing; avoid additional stacked feature work unless it is small and local-only.
+- GitHub Project update: pending update recorded in `docs/codex/github-projects-pending-updates.md`.
+- Pending update: create Japanese Issue/Project item for `[SBI] 保存済みセッションを削除できるようにする`, run full validation, then push/create PR.
+- Human repair: none required if Codex execution resumes; otherwise run the pending `gh` and validation commands manually.
+- Resolution: Execution resumed. Issue #74 was created in Japanese, added to Project item `PVTI_lAHOBHYYMs4BZUKkzgufzTw`, and moved to In Progress. Fresh validation remains part of active Issue #74 work, not an environment blocker.
+
+## Resolved Blocker
 
 - Time: 2026-06-02 15:57 JST
+- Resolved: 2026-06-02 21:58 JST
 - Item: Issue #70 Project/Issue Done sync after PR #71 merge
 - Type: execution-environment
 - Reason: Codex escalation auto-review rejected `gh issue edit`, `gh issue close`, and `gh project item-edit` because the current Codex execution usage limit is exhausted.
@@ -13,10 +30,12 @@
 - GitHub Project update: Pending update recorded in `docs/codex/github-projects-pending-updates.md`.
 - Pending update: close Issue #70 and set Project Status/Scrum Status Done after execution quota resets.
 - Human repair: none required if Codex execution resumes with GitHub write access; otherwise run the commands in the pending update.
+- Resolution: Issue #70 was closed with `status:done`, and Project Status/Scrum Status were set to Done.
 
-## Blocker
+## Resolved Blocker
 
 - Time: 2026-06-02 16:03 JST
+- Resolved: 2026-06-02 22:07 JST
 - Item: Issue #72 push/PR/Project sync
 - Type: execution-environment
 - Reason: Non-escalated `git push -u origin codex/sbi-72-large-board-timer` failed because the sandbox could not resolve `github.com`; escalated push was rejected because the current Codex execution usage limit is exhausted.
@@ -27,6 +46,7 @@
 - GitHub Project update: pending update recorded in `docs/codex/github-projects-pending-updates.md`.
 - Pending update: push branch, create PR, set Validation Status Passed, set Status/Scrum Status In Review, add Evidence Link.
 - Human repair: none required if Codex execution resumes with GitHub write access; otherwise run the commands in the pending update.
+- Resolution: PR #73 was created, passed GitHub Actions, squash merged to `dev`, Issue #72 was closed, and Project Status/Scrum Status were set to Done.
 
 ## Resolved Blocker
 

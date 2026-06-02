@@ -2,13 +2,13 @@
 
 ## Current
 
-- Active PBI: #18 進行ボードと大画面表示
-- Active SBI: #72 大画面ボードに残り時間とラウンド状態を表示する
-- Active Branch: codex/sbi-72-large-board-timer-pr
-- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/73
-- GitHub Project Item: `PVTI_lAHOBHYYMs4BZUKkzgudWWs`
-- Status: PR #73 open; Issue/Project #72 synchronized to In Review with Validation Status Passed
-- Next Action: watch PR #73 GitHub Actions, squash merge to `dev` when clean, close Issue #72, then continue the next safe SBI
+- Active PBI: #17 ローカルファースト保存・復元
+- Active SBI: #74 保存済みセッションを削除できるようにする
+- Active Branch: codex/sbi-31-delete-saved-sessions
+- Active PR: none
+- GitHub Project Item: `PVTI_lAHOBHYYMs4BZUKkzgufzTw`
+- Status: Issue #74 selected and Project set to In Progress; rebase conflict resolution in progress
+- Next Action: resolve docs conflicts, validate, commit, push, create PR, and move Project to In Review
 
 ## Completed
 
@@ -130,18 +130,21 @@
 | 2026-06-02 16:03 JST | SBI #72 local commit | Committed validated local implementation; push blocked by execution quota | `1fe7687` |
 | 2026-06-02 21:58 JST | Issue #70 Done sync | Closed Issue #70 and set Project Status/Scrum Status to Done after PR #71 merge | https://github.com/ka-bo-su/pickle_ball_matching/pull/71 |
 | 2026-06-02 21:58 JST | PR opened | Created PR #73 for Issue #72, fixed PR body, and moved Project item to In Review with validation evidence | https://github.com/ka-bo-su/pickle_ball_matching/pull/73 |
+| 2026-06-02 22:07 JST | SBI #72 merged | Squash merged PR #73 to `dev`; Issue #72 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/73 |
+| 2026-06-02 22:08 JST | Next SBI selected | Created and selected Issue #74 for saved-session deletion | https://github.com/ka-bo-su/pickle_ball_matching/issues/74 |
+| 2026-06-02 22:08 JST | SBI #74 rebase | Applied saved-session deletion branch onto `origin/dev`; docs conflict resolution in progress | local branch `codex/sbi-31-delete-saved-sessions` |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #72 大画面ボードに残り時間とラウンド状態を表示する | codex/sbi-72-large-board-timer-pr | PR #73 | In Review; local validation passed; GitHub Actions running | merge to `dev` when checks pass |
+| Issue #74 保存済みセッションを削除できるようにする | codex/sbi-31-delete-saved-sessions | none | Rebase conflict resolution in progress; validation pending | validate and publish PR |
 
 ## Blocked
 
 | Item | Reason | Next | Project Status |
 |---|---|---|---|
-| None | No active blocker after #70 Done sync and #72 PR/Project sync | Continue with PR #73 CI/merge, then next safe SBI | #72 In Review |
+| None | No active blocker; #70/#72 pending syncs are resolved and #74 has a Project item | Continue validation and PR publication | #74 In Progress |
 
 ## Validation History
 
@@ -232,3 +235,4 @@
 | 2026-06-02 15:39 JST | `scripts/codex/validate-ios.sh` | pass | Issue #70: `swift test` 32 core tests, SwiftLint 0 violations, SwiftFormat 0 files, XcodeGen, xcodebuild build, xcodebuild test 32 core + 54 app tests |
 | 2026-06-02 16:02 JST | `scripts/codex/validate-ios.sh` | pass | Issue #72: `swift test` 32 core tests, SwiftLint 0 violations, SwiftFormat 0 files, XcodeGen, xcodebuild build, xcodebuild test 32 core + 53 app tests |
 | 2026-06-02 21:51 JST | `scripts/codex/validate-ios.sh` | pass | Issue #72 PR branch after rebase: `swift test` 32 core tests, SwiftLint 0 violations, SwiftFormat 0 files, XcodeGen, xcodebuild build, xcodebuild test 32 core + 55 app tests |
+| 2026-06-02 22:07 JST | GitHub Actions `validate` | pass | PR #73 passed before squash merge |

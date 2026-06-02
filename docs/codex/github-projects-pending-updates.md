@@ -2,7 +2,21 @@
 
 No pending updates at file creation time. Any failed field, label, item, status, evidence, or PR sync must be appended here.
 
-No active pending updates as of 2026-06-02 21:58 JST.
+No active pending updates as of 2026-06-02 22:08 JST.
+
+## Resolved Pending Project Update
+
+- Timestamp: 2026-06-02 17:28 JST
+- Target project: kanban@pickle_ball_matching
+- Target item: new SBI Issue, proposed title `[SBI] 保存済みセッションを削除できるようにする`
+- Intended action: Create a Japanese GitHub Issue for SBI-031, add it to Project, set Backlog Level `SBI`, Status `In progress`, Scrum Status `In Progress`, Sprint `Sprint 2026-06 MVP`, Priority `P1`, Role Owner `swift-developer`, Area `Infrastructure` or `iOS`, Risk `low`, Validation Status `Not Run` initially, then update evidence after PR creation.
+- Previous state: No GitHub Issue/Project item exists; SBI-031 is local-only.
+- New state: GitHub Issue and Project item exist and mirror local docs.
+- Reason not applied: GitHub write commands require network/escalation, and the current Codex execution usage limit rejected escalated commands.
+- Command to apply later: `gh issue create --title "[SBI] 保存済みセッションを削除できるようにする" --label type:sbi --label status:in-progress --label area:infrastructure --label area:ios --label risk:low --body-file <Japanese body>`; `gh project item-add 3 --owner ka-bo-su --url <issue-url>`; `gh project item-edit ...`.
+- Related PR: pending
+- Related Issue: https://github.com/ka-bo-su/pickle_ball_matching/issues/74
+- Resolution: Completed on 2026-06-02 22:08 JST. Issue #74 was created in Japanese, added to Project item `PVTI_lAHOBHYYMs4BZUKkzgufzTw`, and moved to In Progress with required planning fields.
 
 ## Resolved Pending Project Update
 
@@ -30,7 +44,7 @@ No active pending updates as of 2026-06-02 21:58 JST.
 - Command to apply later: `git push -u origin codex/sbi-72-large-board-timer-pr`; `gh project item-edit ... Validation Status Passed`; `gh pr create --base dev --head codex/sbi-72-large-board-timer-pr`; `gh project item-edit ... Status In review`; `gh project item-edit ... Scrum Status In Review`; `gh project item-edit ... Evidence Link <PR URL>`.
 - Related PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/73
 - Related Issue: https://github.com/ka-bo-su/pickle_ball_matching/issues/72
-- Resolution: Completed on 2026-06-02 21:58 JST. Branch `codex/sbi-72-large-board-timer-pr` was pushed, PR #73 was opened to `dev`, and Project Status/Scrum Status/Validation Status/Evidence Link were synchronized.
+- Resolution: Completed on 2026-06-02 22:07 JST. Branch `codex/sbi-72-large-board-timer-pr` was pushed, PR #73 was opened to `dev`, GitHub Actions passed, PR #73 was squash merged, Issue #72 was closed, and Project Status/Scrum Status were set to Done.
 
 ## Resolved Pending Project Update
 

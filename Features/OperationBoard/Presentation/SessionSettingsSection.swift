@@ -4,6 +4,7 @@ import SwiftUI
 struct SessionSettingsSection: View {
     @ObservedObject var viewModel: OperationBoardViewModel
     @State private var isShowingNewSessionConfirmation = false
+    @State private var deletionCandidateID: Session.ID?
 
     var body: some View {
         Section("セッション") {
@@ -33,11 +34,26 @@ struct SessionSettingsSection: View {
 
                 if !viewModel.savedSessionsForReopen.isEmpty {
                     Menu {
-                        ForEach(viewModel.savedSessionsForReopen) { savedSession in
-                            Button {
-                                viewModel.reopenSession(sessionID: savedSession.id)
-                            } label: {
-                                Text(viewModel.savedSessionTitle(savedSession))
+                        Section("再開") {
+                            ForEach(viewModel.savedSessionsForReopen) { savedSession in
+                                Button {
+                                    viewModel.reopenSession(sessionID: savedSession.id)
+                                } label: {
+                                    Text(viewModel.savedSessionTitle(savedSession))
+                                }
+                            }
+                        }
+
+                        Section("削除") {
+                            ForEach(viewModel.savedSessionsForReopen) { savedSession in
+                                Button(role: .destructive) {
+                                    deletionCandidateID = savedSession.id
+                                } label: {
+                                    Label(
+                                        viewModel.savedSessionTitle(savedSession),
+                                        systemImage: "trash"
+                                    )
+                                }
                             }
                         }
                     } label: {
@@ -70,6 +86,23 @@ struct SessionSettingsSection: View {
             } message: {
                 Text("前回の参加者名簿を残すか、参加者も含めて空にするか選べます。")
             }
+            .confirmationDialog(
+                "保存済みセッションを削除しますか？",
+                isPresented: deletionConfirmationBinding,
+                titleVisibility: .visible
+            ) {
+                Button("削除", role: .destructive) {
+                    if let deletionCandidateID {
+                        viewModel.deleteSavedSession(sessionID: deletionCandidateID)
+                    }
+                    deletionCandidateID = nil
+                }
+                Button("キャンセル", role: .cancel) {
+                    deletionCandidateID = nil
+                }
+            } message: {
+                Text("現在のセッションは削除されません。削除した履歴は過去セッション一覧から非表示になります。")
+            }
         }
     }
 
@@ -98,6 +131,17 @@ struct SessionSettingsSection: View {
         Binding(
             get: { viewModel.session.mode },
             set: { viewModel.updateOperationMode($0) }
+        )
+    }
+
+    private var deletionConfirmationBinding: Binding<Bool> {
+        Binding(
+            get: { deletionCandidateID != nil },
+            set: { isPresented in
+                if !isPresented {
+                    deletionCandidateID = nil
+                }
+            }
         )
     }
 }

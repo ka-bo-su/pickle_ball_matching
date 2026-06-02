@@ -1,5 +1,15 @@
 # Next Work Search
 
+## 2026-06-02 22:08 JST
+
+- Searched candidates: GitHub Project In Progress/Ready items, merged PR #73, open PBIs #16-#20, local-first save/restore gaps, session history clutter risk.
+- Referenced GitHub Project / Issues / docs: Issues #17, #72, #74, PR #73, `docs/scrum/sprint-backlog.md`, product vision "保存・復元" and "過去セッション" requirements.
+- Findings: Issue #72 was merged and Done. The highest-value next small slice is saved-session deletion because session history can already be reopened but cannot be cleaned up.
+- Next selected work: Issue #74 `保存済みセッションを削除できるようにする`.
+- Reason: It is a small, local-first Persistence/Presentation slice that improves organizer control over local data without server, CloudKit, StoreKit, production, or secret risk.
+- Human repair needed: none.
+- Pending updates: PR evidence after Issue #74 publication.
+
 ## 2026-06-02 15:39 JST
 
 - Searched candidates: GitHub Project In Progress/Ready items, open PBIs #16-#20, Sprint Backlog after PR #69 merge, participant input bottlenecks, session setup speed, remaining MVP north-star gaps.
@@ -9,6 +19,16 @@
 - Reason: It is a small, reversible Presentation/ViewModel slice that reduces setup time without touching server, CloudKit, StoreKit, secrets, or destructive data changes.
 - Human repair needed: none.
 - Pending updates: PR evidence after PR creation.
+
+## 2026-06-02 17:28 JST
+
+- Searched candidates: GitHub Project In Progress/Ready items, current local blockers, open PBIs #16-#20, session history gaps, Pro boundary, large-board follow-ups.
+- Referenced GitHub Project / Issues / docs: Issues #17, #18, #70, #72, PR #71, `docs/scrum/sprint-backlog.md`, product vision "保存・復元" and "過去セッション" requirements.
+- Findings: Issue #72 is locally implemented but cannot be rebased/pushed while Codex execution quota rejects escalated Git operations. The next useful local work should avoid #72 large-board files where possible and strengthen local-first session management.
+- Next selected work: SBI-031 `保存済みセッションを削除できるようにする`.
+- Reason: Saved-session history already supports reopen, but organizers cannot remove test or obsolete sessions. Deletion reduces wrong-session confusion during day-of operation and fits PBI #17 without server, CloudKit, StoreKit, or production risk.
+- Human repair needed: none for code; GitHub write access must resume to create the Issue/Project item, split/publish the branch, and run full test validation.
+- Pending updates: Issue #70 Done sync; Issue #72 Validation/PR updates; SBI-031 GitHub Issue/Project creation.
 
 ## 2026-06-02 15:58 JST
 

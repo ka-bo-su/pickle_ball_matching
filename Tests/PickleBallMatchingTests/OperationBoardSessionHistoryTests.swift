@@ -35,6 +35,37 @@ final class OperationBoardSessionHistoryTests: XCTestCase {
         XCTAssertFalse(viewModel.canUndo)
     }
 
+    func testDeleteSavedSessionRemovesOnlyHistoricalSession() {
+        let currentSession = makeSession(idSuffix: 511, name: "今日の練習", updatedAt: 1_717_257_600)
+        let previousSession = makeSession(idSuffix: 512, name: "先週の練習", updatedAt: 1_717_171_200)
+        let repository = SpySessionRepository(
+            restoredSession: currentSession,
+            storedSessions: [currentSession, previousSession]
+        )
+        let viewModel = OperationBoardViewModel(sessionRepository: repository)
+
+        viewModel.deleteSavedSession(sessionID: previousSession.id)
+
+        XCTAssertEqual(viewModel.session.id, currentSession.id)
+        XCTAssertEqual(viewModel.savedSessions.map(\.id), [currentSession.id])
+        XCTAssertEqual(repository.deletedSessionIDs, [previousSession.id])
+        XCTAssertNil(viewModel.errorMessage)
+    }
+
+    func testDeleteSavedSessionIgnoresCurrentSession() {
+        let currentSession = makeSession(idSuffix: 521, name: "今日の練習", updatedAt: 1_717_257_600)
+        let repository = SpySessionRepository(
+            restoredSession: currentSession,
+            storedSessions: [currentSession]
+        )
+        let viewModel = OperationBoardViewModel(sessionRepository: repository)
+
+        viewModel.deleteSavedSession(sessionID: currentSession.id)
+
+        XCTAssertEqual(viewModel.savedSessions.map(\.id), [currentSession.id])
+        XCTAssertTrue(repository.deletedSessionIDs.isEmpty)
+    }
+
     private func makeSession(idSuffix: Int, name: String, updatedAt: TimeInterval) -> Session {
         Session(
             id: UUID(uuidString: String(format: "00000000-0000-0000-0000-%012d", idSuffix))!,
