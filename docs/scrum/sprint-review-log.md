@@ -17,3 +17,12 @@
 - Product Backlog adaptation: Issue #25 was created and selected after JSON persistence because day-of status changes are needed before manual swap/undo.
 - Merge result: PR #22 and PR #24 squash merged to `dev`; Issues #21 and #23 closed; Issue #25 is implemented locally and pending PR.
 - Risks: participant status UX needs human-visible review for one-hand operation; manual swap/undo remains the next gap for on-court correction.
+
+## 2026-06-02 MVP Slice Review
+
+- Increment: Operation modes now apply organizer-facing rule presets, and the rule settings screen explains/reapplies the active preset.
+- Evidence: PR #67, Issue #66, `OperationMode.defaultRuleSet`, `RuleSettingsSection`, `OperationBoardModeSettingsTests`, `OperationModeRulePresetTests`.
+- Validation: `scripts/codex/validate-ios.sh` passed locally, including `swift test`, SwiftLint 0 violations, SwiftFormat lint, XcodeGen generation, `xcodebuild build`, and `xcodebuild test`; GitHub Actions `validate` passed before merge.
+- Product Backlog adaptation: Issue #66 was selected after score recording because editable rules existed but operation modes were not yet useful as presets for organizers.
+- Merge result: PR #67 squash merged to `dev`; Issue #66 closed; Project item Done.
+- Risks: preset values should be reviewed against real court operation feedback, especially whether `交流重視` should keep level balancing disabled.

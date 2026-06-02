@@ -3,12 +3,12 @@
 ## Current
 
 - Active PBI: #16 当日運営特化ダブルス組み合わせMVP
-- Active SBI: #66 運営モードのプリセットをルール設定へ反映する
-- Active Branch: codex/sbi-66-mode-rule-presets
-- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/67
-- GitHub Project Item: `PVTI_lAHOBHYYMs4BZUKkzgudEks`
-- Status: In Review
-- Next Action: wait for GitHub Actions, squash merge to `dev` if green, and close Issue #66
+- Active SBI: Selecting next SBI
+- Active Branch: dev
+- Active PR: none
+- GitHub Project Item: n/a
+- Status: Issue #66 Done; selecting next Scrum item
+- Next Action: search Project and Issues for the next safe MVP vertical slice
 
 ## Completed
 
@@ -116,12 +116,13 @@
 | 2026-06-02 14:51 JST | Next SBI selected | Created and selected Issue #66 for applying operation-mode rule presets | https://github.com/ka-bo-su/pickle_ball_matching/issues/66 |
 | 2026-06-02 14:59 JST | SBI #66 local implementation | Added Domain mode presets, rule-settings preset summary/reapply action, autosave wiring, and tests | local branch `codex/sbi-66-mode-rule-presets` |
 | 2026-06-02 15:01 JST | PR opened | Created PR #67 for Issue #66 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/67 |
+| 2026-06-02 15:09 JST | SBI #66 merged | Squash merged PR #67 to `dev`; Issue #66 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/67 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #66 `運営モードのプリセットをルール設定へ反映する` | `codex/sbi-66-mode-rule-presets` | PR #67 | In Review | wait for CI and merge if green |
+| none | n/a | n/a | n/a | select next SBI |
 
 ## Blocked
 
@@ -211,3 +212,4 @@
 | 2026-06-02 14:47 JST | GitHub Actions `validate` | pass | PR #65 passed before squash merge |
 | 2026-06-02 14:59 JST | `swift test` | pass | Issue #66: 32 core tests, including operation-mode rule presets |
 | 2026-06-02 14:59 JST | `scripts/codex/validate-ios.sh` | pass | Issue #66: `swift test` 32 core tests, SwiftLint 0 violations, SwiftFormat 0 files, XcodeGen, xcodebuild build, xcodebuild test 32 core + 50 app tests |
+| 2026-06-02 15:08 JST | GitHub Actions `validate` | pass | PR #67 passed before squash merge |

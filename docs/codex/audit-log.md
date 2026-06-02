@@ -4262,3 +4262,56 @@ Low-to-medium until CI is green.
 ### Follow-up
 
 Push this docs sync commit, watch PR #67 checks, squash merge to `dev` if green, close Issue #66, set Project item Done, then select the next SBI.
+
+## 2026-06-02 15:09 JST
+
+### Action
+
+Merged PR #67, closed Issue #66, and set the GitHub Project item to Done.
+
+### Reason
+
+PR #67 passed local validation and GitHub Actions `validate`. The operation-mode preset slice meets the Issue #66 acceptance criteria and is ready as a Done increment on `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/codex/nightly-summary.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+- `docs/scrum/sprint-review-log.md`
+- `docs/codex/audit-log.md`
+
+### Commands Run
+
+- `gh pr checks 67 --watch --interval 10`
+- `gh pr merge 67 --squash --delete-branch ...`
+- `gh pr view 67 --json number,state,mergedAt,mergeCommit,url,baseRefName,headRefName`
+- `gh issue view 66 --json number,state,labels,url`
+- `gh issue edit 66 --remove-label status:in-review --add-label status:done`
+- `gh project item-edit ...` for Status `Done`
+- `gh project item-edit ...` for Scrum Status `Done`
+- `gh issue comment 66 ...`
+- `gh issue close 66 --reason completed`
+
+### GitHub Project Updates
+
+Issue #66 set to Status `Done`, Scrum Status `Done`, Validation Status `Passed`, and Evidence Link PR #67. The issue is closed.
+
+### Architecture Decision
+
+No additional architecture change after PR merge. Mode presets remain Domain-owned and Presentation applies them through the existing ViewModel and repository boundary.
+
+### Validation
+
+GitHub Actions `validate` passed for PR #67 before merge.
+
+### Risk
+
+Low after merge.
+
+### Follow-up
+
+Select the next MVP SBI. Candidate areas include session deletion/search, Pro boundary, richer score/history display, or participant/round validation polish.
