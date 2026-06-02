@@ -1,5 +1,15 @@
 # Next Work Search
 
+## 2026-06-02 15:12 JST
+
+- Searched candidates: GitHub Project In Progress/Ready items, open PBIs #16-#20, Sprint Backlog after PR #67 merge, score/history gaps, session deletion/search, Pro boundary.
+- Referenced GitHub Project / Issues / docs: Issues #16-#20, #66, #68, `docs/scrum/sprint-backlog.md`, product vision session history and progress-board requirements.
+- Findings: No open Ready SBI remained after Issue #66. The app can record scores, but organizers cannot yet review prior rounds and recorded results from the board.
+- Next selected work: Issue #68 `ラウンド履歴で過去ラウンドとスコアを確認できるようにする`.
+- Reason: It is a non-destructive vertical slice that increases the value of score recording and session history without adding server, StoreKit, CloudKit, or destructive history deletion.
+- Human repair needed: none.
+- Pending updates: PR evidence for Issue #68 after PR creation.
+
 ## 2026-06-02 14:51 JST
 
 - Searched candidates: GitHub Project In Progress/Ready items, open PBIs #16-#20, Sprint Backlog after PR #65 merge, remaining MVP setup and rule-setting gaps.

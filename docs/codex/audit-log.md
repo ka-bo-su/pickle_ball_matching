@@ -4315,3 +4315,57 @@ Low after merge.
 ### Follow-up
 
 Select the next MVP SBI. Candidate areas include session deletion/search, Pro boundary, richer score/history display, or participant/round validation polish.
+
+## 2026-06-02 15:19 JST
+
+### Action
+
+Selected and implemented Issue #68 `ラウンド履歴で過去ラウンドとスコアを確認できるようにする`.
+
+### Reason
+
+After Issue #66 was merged, no Ready SBI remained in the Project. Score recording exists, but organizers need a non-destructive way to review prior rounds, waiters, and recorded scores from the board.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/RoundHistoryDisplayModel.swift`
+- `Features/OperationBoard/Presentation/RoundHistorySection.swift`
+- `Features/OperationBoard/Presentation/OperationBoardView.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardRoundHistoryTests.swift`
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/codex/next-work-search.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+- `docs/codex/audit-log.md`
+
+### Commands Run
+
+- `gh issue create ...` for Issue #68
+- `gh project item-add ...` for Issue #68
+- `gh project item-edit ...` for Issue #68 fields
+- `swiftformat --cache ignore .`
+- `swift test`
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+Issue #68 was created, added to `kanban@pickle_ball_matching`, set to In Progress, and Validation Status was set to Passed after local validation. PR evidence is pending until PR creation.
+
+### Architecture Decision
+
+Round history is implemented as a Presentation display model reading existing Domain values from `Session.rounds`. No Infrastructure dependency or mutation path was added.
+
+### Validation
+
+`scripts/codex/validate-ios.sh` passed. It ran `swift test`, SwiftLint, SwiftFormat lint, XcodeGen, `xcodebuild build`, and `xcodebuild test`. Xcode app tests now include `OperationBoardRoundHistoryTests`.
+
+### Risk
+
+Low. The slice is read-only UI over existing saved session state.
+
+### Follow-up
+
+Commit, push, create PR, update Project Evidence Link, and move Issue #68 to In Review.
