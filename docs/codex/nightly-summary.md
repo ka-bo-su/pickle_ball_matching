@@ -3,13 +3,13 @@
 ## Result
 
 - Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31/#33/#35/#37/#39/#41/#43/#45/#47/#49/#51/#53/#55/#57/#59/#61/#63/#65 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30/#32/#34/#36/#38/#40/#42/#44/#46/#48/#50/#52/#54/#56/#58/#60/#62/#64 close, Project Done sync, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, current-round CSV sharing, participant-facing large board display, editable session settings, participant skill editing, participant detail editing, roster reuse for new sessions, any-player current-round manual swap, multi-step undo history, current-round PDF sharing, current-round image sharing, session history/reopen, board current-state/next-action readability, round timer/start-end flow, repeated-pair avoidance, repeated-opponent avoidance, rule settings UI, current-round score/winner recording, GitHub Actions Node 20 deprecation fix, and a guarded GitHub REST push fallback script/runbook
-- Partially completed: none
+- Partially completed: Issue #66 `運営モードのプリセットをルール設定へ反映する` is implemented and locally validated; PR creation and merge are next.
 - Blocked: none currently; the previous PR #65 CI confirmation blocker was resolved at 2026-06-02 14:38 JST.
 
 ## Time
 
 - Started: 2026-06-01 02:34 JST
-- Last checkpoint: 2026-06-02 14:48 JST
+- Last checkpoint: 2026-06-02 14:59 JST
 - Approximate duration: session-dependent
 
 ## PRs
@@ -93,6 +93,7 @@
 - Issue #64 created in Japanese, added to Project, set In Progress, and Validation Status Passed after local validation
 - Issue #64 moved to In Review with PR #65 Evidence Link
 - Issue #64 set Done after PR #65 merge
+- Issue #66 created in Japanese, added to Project, set In Progress, Validation Status set to Passed, and locally validated.
 
 ## Pending GitHub Project Updates
 
@@ -100,9 +101,9 @@
 
 ## iOS Validation
 
-- Build: passed locally for Issue #64 with `xcodebuild build`
-- Test: passed locally for Issue #64 with `swift test` and `xcodebuild test`
-- Lint: passed locally for Issue #64 with SwiftLint 0 violations and SwiftFormat lint 0 files
+- Build: passed locally for Issue #66 with `xcodebuild build`
+- Test: passed locally for Issue #66 with `swift test` and `xcodebuild test`
+- Lint: passed locally for Issue #66 with SwiftLint 0 violations and SwiftFormat lint 0 files
 - Simulator: iPhone 16 on iOS 18.2 available
 
 ## Files Changed
@@ -210,7 +211,7 @@ A  scripts/codex/validate-ios.sh
 - Done: Issue #50 session history/reopen
 - Done: Issue #52 board current-state and next-action readability
 - Done: Issue #54 GitHub Actions Node 20 deprecation warning
-- In progress: none
+- In progress: Issue #66 operation-mode rule presets
 - In review: none
 - Done: Issue #60 repeated-opponent avoidance
 - Done: Issue #62 rule settings UI

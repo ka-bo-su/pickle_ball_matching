@@ -62,6 +62,32 @@ public enum OperationMode: String, CaseIterable, Codable, Sendable {
             "交流重視"
         }
     }
+
+    public var defaultRuleSet: SessionRuleSet {
+        switch self {
+        case .normalPractice:
+            .normalPractice
+        case .beginnerSession:
+            .beginnerSession
+        case .levelBalanced:
+            .levelBalanced
+        case .socialMix:
+            .socialMix
+        }
+    }
+
+    public var presetDescription: String {
+        switch self {
+        case .normalPractice:
+            "待機公平性、同じペア回避、同じ相手回避、レベル差抑制をバランスよく使います。"
+        case .beginnerSession:
+            "初心者保護とレベル差抑制を強め、体験会で一方的な組み合わせになりにくくします。"
+        case .levelBalanced:
+            "チーム間のレベル差を抑えることを重視し、実力差の納得感を優先します。"
+        case .socialMix:
+            "レベル差よりも、同じ人と組む・当たる偏りを減らして交流しやすくします。"
+        }
+    }
 }
 
 public struct SessionRuleSet: Codable, Equatable, Sendable {
@@ -88,7 +114,43 @@ public struct SessionRuleSet: Codable, Equatable, Sendable {
         self.protectsBeginners = protectsBeginners
     }
 
-    public static let balancedPractice = SessionRuleSet()
+    public static let normalPractice = SessionRuleSet(
+        balancesWaitingCount: true,
+        avoidsConsecutiveWaiting: true,
+        avoidsRepeatedPairs: true,
+        avoidsRepeatedOpponents: true,
+        reducesLevelGap: true,
+        protectsBeginners: false
+    )
+
+    public static let beginnerSession = SessionRuleSet(
+        balancesWaitingCount: true,
+        avoidsConsecutiveWaiting: true,
+        avoidsRepeatedPairs: true,
+        avoidsRepeatedOpponents: true,
+        reducesLevelGap: true,
+        protectsBeginners: true
+    )
+
+    public static let levelBalanced = SessionRuleSet(
+        balancesWaitingCount: true,
+        avoidsConsecutiveWaiting: true,
+        avoidsRepeatedPairs: true,
+        avoidsRepeatedOpponents: true,
+        reducesLevelGap: true,
+        protectsBeginners: false
+    )
+
+    public static let socialMix = SessionRuleSet(
+        balancesWaitingCount: true,
+        avoidsConsecutiveWaiting: true,
+        avoidsRepeatedPairs: true,
+        avoidsRepeatedOpponents: true,
+        reducesLevelGap: false,
+        protectsBeginners: false
+    )
+
+    public static let balancedPractice = beginnerSession
 
     private enum CodingKeys: String, CodingKey {
         case balancesWaitingCount

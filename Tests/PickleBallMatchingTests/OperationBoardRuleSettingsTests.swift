@@ -29,6 +29,40 @@ final class OperationBoardRuleSettingsTests: XCTestCase {
 
         XCTAssertTrue(repository.savedSessions.isEmpty)
     }
+
+    func testReapplyCurrentModeRulePresetRestoresPresetAndAutosaves() {
+        let repository = RuleSettingsSpySessionRepository()
+        let customRuleSet = SessionRuleSet(reducesLevelGap: true)
+        let viewModel = OperationBoardViewModel(
+            session: Session(
+                name: "テスト",
+                mode: .socialMix,
+                ruleSet: customRuleSet
+            ),
+            sessionRepository: repository
+        )
+
+        viewModel.reapplyCurrentModeRulePreset()
+
+        XCTAssertEqual(viewModel.session.ruleSet, OperationMode.socialMix.defaultRuleSet)
+        XCTAssertEqual(repository.savedSessions.last?.ruleSet, OperationMode.socialMix.defaultRuleSet)
+    }
+
+    func testReapplyCurrentModeRulePresetSkipsSaveWhenPresetIsAlreadyApplied() {
+        let repository = RuleSettingsSpySessionRepository()
+        let viewModel = OperationBoardViewModel(
+            session: Session(
+                name: "テスト",
+                mode: .beginnerSession,
+                ruleSet: OperationMode.beginnerSession.defaultRuleSet
+            ),
+            sessionRepository: repository
+        )
+
+        viewModel.reapplyCurrentModeRulePreset()
+
+        XCTAssertTrue(repository.savedSessions.isEmpty)
+    }
 }
 
 final class RuleSettingsSpySessionRepository: SessionRepository, @unchecked Sendable {
