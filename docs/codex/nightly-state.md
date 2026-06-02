@@ -12,4 +12,4 @@
 - Project number: `3`
 - Last successful validation: 2026-06-02 16:02 JST, local `scripts/codex/validate-ios.sh` on Issue #72 branch
 - Current blocker: GitHub write/push operations blocked by Codex execution usage limit; local code/docs work continues.
-- Next action: commit Issue #72 locally, keep GitHub updates pending, and resume push/PR/Project sync when GitHub write access is available.
+- Next action: push local commit `1fe7687`, create PR, and apply pending Project updates when GitHub write access is available.

@@ -14,6 +14,20 @@
 - Pending update: close Issue #70 and set Project Status/Scrum Status Done after execution quota resets.
 - Human repair: none required if Codex execution resumes with GitHub write access; otherwise run the commands in the pending update.
 
+## Blocker
+
+- Time: 2026-06-02 16:03 JST
+- Item: Issue #72 push/PR/Project sync
+- Type: execution-environment
+- Reason: Non-escalated `git push -u origin codex/sbi-72-large-board-timer` failed because the sandbox could not resolve `github.com`; escalated push was rejected because the current Codex execution usage limit is exhausted.
+- Impact: Issue #72 is locally implemented, validated, and committed as `1fe7687`, but the branch is not pushed and no PR exists yet.
+- Attempted fixes: Ran full local validation successfully, committed locally, tried normal push, then tried escalated push per sandbox rules.
+- Why autonomous progress cannot continue for this item: Retrying through REST or another network path after usage-limit rejection would be an indirect workaround. The work is localized and can resume after quota resets.
+- Safe next task selected: none requiring GitHub write; continue only local docs/code work if useful.
+- GitHub Project update: pending update recorded in `docs/codex/github-projects-pending-updates.md`.
+- Pending update: push branch, create PR, set Validation Status Passed, set Status/Scrum Status In Review, add Evidence Link.
+- Human repair: none required if Codex execution resumes with GitHub write access; otherwise run the commands in the pending update.
+
 ## Resolved Blocker
 
 - Time: 2026-06-02 09:18 JST

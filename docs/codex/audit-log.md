@@ -162,6 +162,49 @@ Low. The feature is display-only and does not mutate session state.
 
 Commit locally. When GitHub write access resumes, push the branch, create PR, set Issue #72 Project Validation Status to Passed, and move the item to In Review.
 
+## 2026-06-02 16:03 JST
+
+### Action
+
+Committed Issue #72 locally and attempted to push the branch.
+
+### Reason
+
+The local implementation passed validation and should be preserved as a small reversible commit even though GitHub publication is temporarily unavailable.
+
+### Files Changed
+
+- `docs/codex/audit-log.md`
+- `docs/codex/blockers.md`
+- `docs/codex/github-projects-pending-updates.md`
+- `docs/codex/progress-ledger.md`
+
+### Commands Run
+
+- `git add ...`
+- `git commit -m "feat(board): show large board timer status"`
+- `git push -u origin codex/sbi-72-large-board-timer`
+
+### GitHub Project Updates
+
+Not applied. Push/PR/Project updates are pending because GitHub write/network commands are blocked by the current Codex execution usage limit.
+
+### Architecture Decision
+
+No additional architecture decision.
+
+### Validation
+
+Validation passed before commit.
+
+### Risk
+
+Low. The validated local commit is isolated on `codex/sbi-72-large-board-timer`.
+
+### Follow-up
+
+After execution quota resets, push local commit `1fe7687`, create PR, update Project Validation Status to Passed, and move Issue #72 to In Review.
+
 ## 2026-06-01 02:34 JST
 
 ### Action

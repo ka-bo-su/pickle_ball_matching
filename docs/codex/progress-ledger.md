@@ -7,8 +7,8 @@
 - Active Branch: codex/sbi-72-large-board-timer
 - Active PR: none
 - GitHub Project Item: `PVTI_lAHOBHYYMs4BZUKkzgudWWs`
-- Status: Local implementation and validation completed; GitHub write/push pending execution quota
-- Next Action: commit locally, then push/create PR/update Project when GitHub write access resumes
+- Status: Local implementation validated and committed as `1fe7687`; GitHub push/PR/Project sync pending execution quota
+- Next Action: push/create PR/update Project when GitHub write access resumes
 
 ## Completed
 
@@ -127,18 +127,20 @@
 | 2026-06-02 15:57 JST | PR #71 merged with pending Done sync | Squash merged PR #71 to `dev`; Issue/Project Done sync blocked by execution quota and recorded as pending | https://github.com/ka-bo-su/pickle_ball_matching/pull/71 |
 | 2026-06-02 15:58 JST | Next SBI selected | Created and selected Issue #72 for large-board remaining time and round status display | https://github.com/ka-bo-su/pickle_ball_matching/issues/72 |
 | 2026-06-02 16:02 JST | SBI #72 local implementation | Added large-board timing state/remaining-time display model, TimelineView refresh, accessibility labels, and dedicated tests | local branch `codex/sbi-72-large-board-timer` |
+| 2026-06-02 16:03 JST | SBI #72 local commit | Committed validated local implementation; push blocked by execution quota | `1fe7687` |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #72 大画面ボードに残り時間とラウンド状態を表示する | codex/sbi-72-large-board-timer | none | Local validation passed; GitHub write/push pending quota | commit locally, push/PR after quota reset |
+| Issue #72 大画面ボードに残り時間とラウンド状態を表示する | codex/sbi-72-large-board-timer | none | Local commit `1fe7687`; GitHub write/push pending quota | push/PR after quota reset |
 
 ## Blocked
 
 | Item | Reason | Next | Project Status |
 |---|---|---|---|
 | Issue #70 Done sync | GitHub write commands rejected due Codex execution usage limit after PR #71 merge | Apply pending Issue/Project Done updates after quota reset | In Review until pending update applied |
+| Issue #72 push/PR sync | GitHub push rejected due Codex execution usage limit after local validation and commit | Push branch and create PR after quota reset | In Progress until pending update applied |
 
 ## Validation History
 
