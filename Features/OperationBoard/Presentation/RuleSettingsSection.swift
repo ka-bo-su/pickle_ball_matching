@@ -6,6 +6,8 @@ struct RuleSettingsSection: View {
 
     var body: some View {
         Section("ルール設定") {
+            presetSummary
+
             ruleToggle(
                 title: "待機回数をそろえる",
                 detail: "休みが偏らないように、待機回数が少ない人を優先して休ませます。",
@@ -48,6 +50,31 @@ struct RuleSettingsSection: View {
                 keyPath: \.protectsBeginners
             )
         }
+    }
+
+    private var presetSummary: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Label("現在のプリセット: \(viewModel.session.mode.displayName)", systemImage: "slider.horizontal.3")
+                .font(.subheadline.weight(.semibold))
+
+            Text(viewModel.session.mode.presetDescription)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+
+            Button {
+                viewModel.reapplyCurrentModeRulePreset()
+            } label: {
+                Label("プリセットを再適用", systemImage: "arrow.clockwise")
+            }
+            .buttonStyle(.borderless)
+            .disabled(viewModel.session.ruleSet == viewModel.session.mode.defaultRuleSet)
+            .accessibilityLabel("\(viewModel.session.mode.displayName)のルールプリセットを再適用")
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(
+            "現在のプリセット \(viewModel.session.mode.displayName)。\(viewModel.session.mode.presetDescription)"
+        )
     }
 
     private func ruleToggle(

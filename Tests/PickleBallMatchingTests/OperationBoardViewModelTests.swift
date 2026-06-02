@@ -98,19 +98,6 @@ final class OperationBoardViewModelTests: XCTestCase {
         XCTAssertEqual(repository.savedSessions.last?.roundDurationMinutes, 15)
     }
 
-    func testUpdateOperationModeAutosaves() {
-        let repository = SpySessionRepository()
-        let viewModel = OperationBoardViewModel(
-            session: Session(name: "テスト", mode: .normalPractice),
-            sessionRepository: repository
-        )
-
-        viewModel.updateOperationMode(.beginnerSession)
-
-        XCTAssertEqual(viewModel.session.mode, .beginnerSession)
-        XCTAssertEqual(repository.savedSessions.last?.mode, .beginnerSession)
-    }
-
     func testStartNewSessionClearsParticipantsRoundsAndAutosaves() {
         let repository = SpySessionRepository()
         let viewModel = OperationBoardViewModel(

@@ -1,5 +1,15 @@
 # Next Work Search
 
+## 2026-06-02 14:51 JST
+
+- Searched candidates: GitHub Project In Progress/Ready items, open PBIs #16-#20, Sprint Backlog after PR #65 merge, remaining MVP setup and rule-setting gaps.
+- Referenced GitHub Project / Issues / docs: Issues #16-#20, #64, #66, `docs/scrum/sprint-backlog.md`, product vision operation-mode and rule-setting requirements.
+- Findings: No open Ready SBI remained after Issue #64 was merged. The app has editable rules and operation modes, but changing the operation mode does not yet apply a clear rule preset.
+- Next selected work: Issue #66 `運営モードのプリセットをルール設定へ反映する`.
+- Reason: It makes `通常練習`, `初心者会`, `レベル均等`, and `交流重視` useful as organizer-friendly presets without forcing detailed manual rule toggles.
+- Human repair needed: none.
+- Pending updates: none; PR #67 evidence was added after PR creation.
+
 ## 2026-06-02 08:46 JST
 
 - Searched candidates: GitHub Project In Progress/Ready items, open GitHub Issues, Sprint Backlog, MVP fairness-rule gaps after PR #61.

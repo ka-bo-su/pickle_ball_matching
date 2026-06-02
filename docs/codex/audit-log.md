@@ -4156,3 +4156,109 @@ Low after merge.
 ### Follow-up
 
 Select the next MVP SBI. Candidate areas include rule presets, richer score/history display, session deletion/search, or Pro boundary work.
+
+## 2026-06-02 14:57 JST
+
+### Action
+
+Selected and implemented Issue #66 `運営モードのプリセットをルール設定へ反映する`.
+
+### Reason
+
+After Issue #64 was merged, no Ready SBI remained in the Project. The next high-value MVP slice was to make operation modes actionable by mapping each mode to a Domain `SessionRuleSet` preset and exposing the current preset in the rule settings UI.
+
+### Files Changed
+
+- `Sources/PickleBallMatchingCore/Domain/Session.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `Features/OperationBoard/Presentation/OperationBoardRuleSettings.swift`
+- `Features/OperationBoard/Presentation/RuleSettingsSection.swift`
+- `Tests/PickleBallMatchingCoreTests/OperationModeRulePresetTests.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardModeSettingsTests.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardRuleSettingsTests.swift`
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/codex/next-work-search.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `swiftformat --cache ignore .`
+- `swift test` failed once due sandbox cache permissions
+- `swift test` with escalation
+- `scripts/codex/validate-ios.sh` with escalation
+
+### GitHub Project Updates
+
+Issue #66 was created, added to `kanban@pickle_ball_matching`, set to In Progress before implementation, and Validation Status was set to Passed after local validation. PR evidence is pending until PR creation.
+
+### Architecture Decision
+
+Mode-specific rule defaults live in Domain as `OperationMode.defaultRuleSet`; Presentation applies presets through `OperationBoardViewModel` and persists via the existing `SessionRepository` boundary. No View calls Infrastructure directly.
+
+### Validation
+
+`scripts/codex/validate-ios.sh` passed. It ran `swift test`, SwiftLint, SwiftFormat lint, XcodeGen, `xcodebuild build`, and `xcodebuild test`. SwiftLint reported 0 violations after splitting the new mode-setting tests into a focused test file.
+
+### Risk
+
+Low-to-medium. Changing operation mode now intentionally resets detailed rule toggles to the selected preset; the UI includes a visible preset summary and a reapply action.
+
+### Follow-up
+
+Commit, push, create PR, update Project Evidence Link, and move Issue #66 to In Review.
+
+## 2026-06-02 15:01 JST
+
+### Action
+
+Created PR #67 for Issue #66 and moved the GitHub Project item to In Review.
+
+### Reason
+
+Local implementation and full iOS validation passed, so the SBI is ready for autonomous PR review and CI validation before squash merge to `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/codex/next-work-search.md`
+- `docs/codex/audit-log.md`
+- `docs/codex/nightly-summary.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git add ...`
+- `git commit -m "feat(settings): apply operation mode rule presets"`
+- `git push -u origin codex/sbi-66-mode-rule-presets`
+- `gh pr create --base dev --head codex/sbi-66-mode-rule-presets ...`
+- `gh issue edit 66 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit ...` for Status `In review`
+- `gh project item-edit ...` for Scrum Status `In Review`
+- `gh project item-edit ...` for Evidence Link PR #67
+
+### GitHub Project Updates
+
+Issue #66 is now In Review, Validation Status Passed, and Evidence Link points to PR #67.
+
+### Architecture Decision
+
+No new architecture decision beyond the prior Domain preset placement.
+
+### Validation
+
+Local validation passed before PR creation. GitHub Actions is pending on PR #67.
+
+### Risk
+
+Low-to-medium until CI is green.
+
+### Follow-up
+
+Push this docs sync commit, watch PR #67 checks, squash merge to `dev` if green, close Issue #66, set Project item Done, then select the next SBI.

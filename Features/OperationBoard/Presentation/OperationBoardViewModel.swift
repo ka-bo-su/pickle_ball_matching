@@ -63,7 +63,12 @@ final class OperationBoardViewModel: ObservableObject {
     }
 
     func updateOperationMode(_ mode: OperationMode) {
+        guard session.mode != mode else {
+            return
+        }
+
         session.mode = mode
+        session.ruleSet = mode.defaultRuleSet
         session.updatedAt = Date()
         errorMessage = nil
         clearUndoHistory()
@@ -347,7 +352,8 @@ extension Session {
             name: "今日のピックルボール",
             courtCount: 2,
             roundDurationMinutes: 12,
-            mode: .normalPractice
+            mode: .normalPractice,
+            ruleSet: OperationMode.normalPractice.defaultRuleSet
         )
     }
 }
