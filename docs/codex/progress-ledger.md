@@ -5,10 +5,10 @@
 - Active PBI: #16 当日運営特化ダブルス組み合わせMVP
 - Active SBI: #64 現在ラウンドのスコアと勝者を記録できるようにする
 - Active Branch: codex/sbi-64-match-score-entry
-- Active PR: none
+- Active PR: #65
 - GitHub Project Item: `PVTI_lAHOBHYYMs4BZUKkzgubtZw`
-- Status: Issue #64 implemented locally and validation passed
-- Next Action: commit, push, open PR, and move Project item to In Review
+- Status: In Review; GitHub Actions pending
+- Next Action: watch PR #65 CI and squash merge to `dev` if green
 
 ## Completed
 
@@ -111,12 +111,13 @@
 | 2026-06-02 08:58 JST | SBI #62 merged | Squash merged PR #63 to `dev`; Issue #62 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/63 |
 | 2026-06-02 09:05 JST | Next SBI selected | Created and selected Issue #64 for current-round score and winner recording | https://github.com/ka-bo-su/pickle_ball_matching/issues/64 |
 | 2026-06-02 09:12 JST | SBI #64 local implementation | Added match score domain value, board score controls, autosave action, and tests | `MatchScore`, `CurrentRoundSection`, `OperationBoardMatchScoreActions` |
+| 2026-06-02 09:16 JST | PR opened | Created PR #65 for Issue #64 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/65 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #64 | `codex/sbi-64-match-score-entry` | none | local validation passed | commit, push, open PR |
+| Issue #64 | `codex/sbi-64-match-score-entry` | PR #65 | In Review | watch CI |
 
 ## Blocked
 

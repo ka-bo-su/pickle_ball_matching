@@ -3973,3 +3973,49 @@ Medium until PR CI passes. The JSON model adds an optional `score` field on `Mat
 ### Follow-up
 
 Commit, push, open PR, move Issue #64 to In Review, and add PR evidence to the GitHub Project item.
+
+## 2026-06-02 09:16 JST
+
+### Action
+
+Opened PR #65 for Issue #64 and moved the GitHub Project item to In Review.
+
+### Reason
+
+The score/winner recording slice passed local validation and is ready for autonomous CI review before squash merge to `dev`.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git commit -m "feat(matches): record match scores"`
+- `git push -u origin codex/sbi-64-match-score-entry`
+- GitHub connector `_create_pull_request` for PR #65
+- `gh issue edit 64 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit ...` for Status `In review`, Scrum Status `In Review`, and Evidence Link PR #65
+
+### GitHub Project Updates
+
+Issue #64 set to Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, and Evidence Link `https://github.com/ka-bo-su/pickle_ball_matching/pull/65`.
+
+### Architecture Decision
+
+No additional architecture decision after PR creation. The implementation remains a Domain value-type addition plus Presentation/ViewModel score editing.
+
+### Validation
+
+Local validation passed before PR creation. GitHub Actions is running.
+
+### Risk
+
+Medium until PR #65 CI passes.
+
+### Follow-up
+
+Watch PR #65 CI, squash merge to `dev` if it passes, close Issue #64, and set the Project item Done.
