@@ -321,6 +321,10 @@ extension OperationBoardViewModel {
         )
     }
 
+    var roundHistoryDisplayModel: RoundHistoryDisplayModel {
+        RoundHistoryDisplayModel(session: session)
+    }
+
     var canGenerateRound: Bool {
         session.participants.count(where: { $0.status.isAvailableForRound }) >= 4
     }

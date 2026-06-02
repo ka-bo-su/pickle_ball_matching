@@ -18,6 +18,7 @@ struct OperationBoardView: View {
                 participantSection
                 actionSection
                 CurrentRoundSection(viewModel: viewModel)
+                RoundHistorySection(viewModel: viewModel)
             }
             .navigationTitle("当日運営ボード")
         }

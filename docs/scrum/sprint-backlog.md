@@ -40,6 +40,7 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 | SBI-025 | ルール設定を編集して組み合わせ生成に反映する | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #63, Issue #62 |
 | SBI-026 | 現在ラウンドのスコアと勝者を記録できるようにする | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #65, Issue #64 |
 | SBI-027 | 運営モードのプリセットをルール設定へ反映する | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #67, Issue #66 |
+| SBI-028 | ラウンド履歴で過去ラウンドとスコアを確認できるようにする | In Review | swift-developer | `scripts/codex/validate-ios.sh` | PR #69, Issue #68 |
 
 ## Plan
 
@@ -76,9 +77,10 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 31. Issue #62 merged in PR #63 and Project item set Done.
 32. Issue #64 merged in PR #65 and Project item set Done.
 33. Issue #66 merged in PR #67 and Project item set Done.
+34. Issue #68 implemented locally, validated, and opened as PR #69.
 
 ## Next Ready Work
 
 | ID | Type | Status | Owner Role | Validation | Evidence |
 |---|---|---|---|---|---|
-| TBD | 次のMVP縦切りSBIを選定する | Ready | scrum-master | DoR check | Project / Issues |
+| SBI-028 | ラウンド履歴で過去ラウンドとスコアを確認できるようにする | In Review | swift-developer | `scripts/codex/validate-ios.sh` passed | PR #69, Issue #68 |
