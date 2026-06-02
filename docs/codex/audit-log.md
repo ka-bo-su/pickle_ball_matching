@@ -3922,3 +3922,54 @@ Low after merge.
 ### Follow-up
 
 Select the next MVP SBI. Candidate areas are score/result capture, rule presets, or Pro boundary work.
+
+## 2026-06-02 09:12 JST
+
+### Action
+
+Created and locally implemented Issue #64 for current-round score and winner recording.
+
+### Reason
+
+The MVP flow needs a simple way for organizers to record round outcomes without leaving the progress board. This is a small reversible vertical slice: Domain stores a local score value, Presentation exposes Stepper controls, and ViewModel autosaves through the existing repository boundary.
+
+### Files Changed
+
+- `Sources/PickleBallMatchingCore/Domain/Round.swift`
+- `Features/OperationBoard/Presentation/CurrentRoundSection.swift`
+- `Features/OperationBoard/Presentation/OperationBoardMatchScoreActions.swift`
+- `Features/OperationBoard/Presentation/OperationBoardView.swift`
+- `Tests/PickleBallMatchingCoreTests/MatchScoreTests.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardMatchScoreTests.swift`
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `swiftformat --cache ignore .`
+- `swift test`
+- `scripts/codex/validate-ios.sh`
+- `gh project item-edit ... Validation Status Passed`
+
+### GitHub Project Updates
+
+Issue #64 is in Project `kanban@pickle_ball_matching` as an SBI. Validation Status was set to `Passed`; Status and Scrum Status remain `In Progress` until the PR is opened.
+
+### Architecture Decision
+
+Domain adds `MatchScore` and `MatchWinner` under `Round.swift`. Presentation score controls live in `CurrentRoundSection`, while mutation logic is isolated in `OperationBoardMatchScoreActions`; persistence remains behind `SessionRepository`.
+
+### Validation
+
+Full validation passed: `swift test` 29 core tests, SwiftLint 0 violations, SwiftFormat lint 0 files, XcodeGen generation, `xcodebuild build`, and `xcodebuild test` with 29 core tests and 47 app tests.
+
+### Risk
+
+Medium until PR CI passes. The JSON model adds an optional `score` field on `Match`; the optional field is intended to keep existing saved sessions decodable.
+
+### Follow-up
+
+Commit, push, open PR, move Issue #64 to In Review, and add PR evidence to the GitHub Project item.
