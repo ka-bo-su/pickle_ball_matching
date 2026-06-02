@@ -26,3 +26,12 @@
 - Product Backlog adaptation: Issue #66 was selected after score recording because editable rules existed but operation modes were not yet useful as presets for organizers.
 - Merge result: PR #67 squash merged to `dev`; Issue #66 closed; Project item Done.
 - Risks: preset values should be reviewed against real court operation feedback, especially whether `交流重視` should keep level balancing disabled.
+
+## 2026-06-02 Round History Review
+
+- Increment: The operation board now includes a read-only round history showing previous rounds, courts, teams, waiters, scores, and match results.
+- Evidence: PR #69, Issue #68, `RoundHistoryDisplayModel`, `RoundHistorySection`, `OperationBoardRoundHistoryTests`.
+- Validation: `scripts/codex/validate-ios.sh` passed locally, including `swift test`, SwiftLint 0 violations, SwiftFormat lint, XcodeGen generation, `xcodebuild build`, and `xcodebuild test`; GitHub Actions `validate` passed before merge.
+- Product Backlog adaptation: Issue #68 was selected after score recording and mode presets because recorded scores need a visible history surface before more destructive session-history management.
+- Merge result: PR #69 squash merged to `dev`; Issue #68 closed; Project item Done.
+- Risks: the operation board is getting denser; future history improvements may need a dedicated session-history screen.

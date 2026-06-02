@@ -3,12 +3,12 @@
 ## Current
 
 - Active PBI: #16 当日運営特化ダブルス組み合わせMVP
-- Active SBI: #68 ラウンド履歴で過去ラウンドとスコアを確認できるようにする
-- Active Branch: codex/sbi-68-round-history
-- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/69
-- GitHub Project Item: `PVTI_lAHOBHYYMs4BZUKkzgudKLA`
-- Status: In Review
-- Next Action: wait for GitHub Actions, squash merge to `dev` if green, and close Issue #68
+- Active SBI: Selecting next SBI
+- Active Branch: dev
+- Active PR: none
+- GitHub Project Item: n/a
+- Status: Issue #68 Done; selecting next Scrum item
+- Next Action: search Project and Issues for the next safe MVP vertical slice
 
 ## Completed
 
@@ -120,12 +120,13 @@
 | 2026-06-02 15:12 JST | Next SBI selected | Created and selected Issue #68 for round history and score review | https://github.com/ka-bo-su/pickle_ball_matching/issues/68 |
 | 2026-06-02 15:19 JST | SBI #68 local implementation | Added round history display model, read-only SwiftUI history section, and presentation tests | local branch `codex/sbi-68-round-history` |
 | 2026-06-02 15:21 JST | PR opened | Created PR #69 for Issue #68 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/69 |
+| 2026-06-02 15:28 JST | SBI #68 merged | Squash merged PR #69 to `dev`; Issue #68 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/69 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #68 `ラウンド履歴で過去ラウンドとスコアを確認できるようにする` | `codex/sbi-68-round-history` | PR #69 | In Review | wait for CI and merge if green |
+| none | n/a | n/a | n/a | select next SBI |
 
 ## Blocked
 
@@ -218,3 +219,4 @@
 | 2026-06-02 15:08 JST | GitHub Actions `validate` | pass | PR #67 passed before squash merge |
 | 2026-06-02 15:16 JST | `swift test` | pass | Issue #68: 32 core tests |
 | 2026-06-02 15:19 JST | `scripts/codex/validate-ios.sh` | pass | Issue #68: `swift test` 32 core tests, SwiftLint 0 violations, SwiftFormat 0 files, XcodeGen, xcodebuild build, xcodebuild test 32 core + 52 app tests |
+| 2026-06-02 15:27 JST | GitHub Actions `validate` | pass | PR #69 passed before squash merge |
