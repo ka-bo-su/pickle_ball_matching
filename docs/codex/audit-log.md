@@ -1,5 +1,108 @@
 # Codex Audit Log
 
+## 2026-06-02 15:39 JST
+
+### Action
+
+Selected and locally implemented Issue #70, adding bulk participant name entry to the operation board.
+
+### Reason
+
+The north star requires an organizer to create the first doubles round within 3 minutes. One-by-one name entry is slower than pasting names from LINE, notes, or an existing roster, so this small Presentation/ViewModel slice reduces setup friction without introducing server, CloudKit, StoreKit, or destructive data operations.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/OperationBoardParticipantInput.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `Features/OperationBoard/Presentation/ParticipantListSection.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardParticipantEditingTests.swift`
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/codex/next-work-search.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `gh issue view 70 --json number,title,state,labels,url,projectItems`
+- `scripts/codex/validate-ios.sh`
+- `swiftformat --cache ignore .`
+- `gh project item-edit --id PVTI_lAHOBHYYMs4BZUKkzgudQLk ... Validation Status Passed`
+
+### GitHub Project Updates
+
+- Issue #70 Project item `PVTI_lAHOBHYYMs4BZUKkzgudQLk` remained `In progress`.
+- Validation Status was updated to `Passed`.
+
+### Architecture Decision
+
+Kept the change in Presentation/ViewModel only. Bulk parsing and add actions were moved to `OperationBoardParticipantInput.swift` so `OperationBoardViewModel.swift` stays below SwiftLint file/type length limits. The feature creates Domain `Participant` values and persists through the existing session repository boundary.
+
+### Validation
+
+Passed `scripts/codex/validate-ios.sh`: `swift test` 32 core tests, SwiftLint 0 violations, SwiftFormat lint 0 files, XcodeGen generation, `xcodebuild build`, and `xcodebuild test` with 32 core tests plus 54 app tests.
+
+### Risk
+
+Low. The parser trims names, accepts newline/comma/Japanese-comma/tab separators, ignores blanks, and skips duplicate names already present in the session or repeated in the pasted input.
+
+### Follow-up
+
+Watch GitHub Actions for PR #71, squash merge to `dev` when checks pass, set Issue #70 Done, and continue the Scrum loop.
+
+## 2026-06-02 15:42 JST
+
+### Action
+
+Created PR #71 for Issue #70 and synchronized GitHub Project evidence.
+
+### Reason
+
+The local increment passed validation and met the Definition of Done criteria that can be verified before CI. Moving it to In Review keeps the Project as the source of truth and makes the PR review/audit trail visible.
+
+### Files Changed
+
+- `docs/codex/audit-log.md`
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-inventory.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git add ...`
+- `git commit -m "feat(participants): add bulk participant entry"`
+- `git push -u origin codex/sbi-70-bulk-participants`
+- `gh pr create --base dev --head codex/sbi-70-bulk-participants ...`
+- `gh issue edit 70 --remove-label status:in-progress --add-label status:in-review`
+- `gh project item-edit ...`
+
+### GitHub Project Updates
+
+- Issue #70 Status set to `In review`.
+- Issue #70 Scrum Status set to `In Review`.
+- Issue #70 Evidence Link set to `https://github.com/ka-bo-su/pickle_ball_matching/pull/71`.
+
+### Architecture Decision
+
+No new architecture decision. The PR remains a Presentation-only slice.
+
+### Validation
+
+Local validation passed before PR creation. GitHub Actions validation is pending.
+
+### Risk
+
+Low. The PR targets `dev`; `main` remains untouched.
+
+### Follow-up
+
+Watch PR #71 checks, merge when clean, then close Issue #70 and update Project/docs to Done.
+
 ## 2026-06-01 02:34 JST
 
 ### Action

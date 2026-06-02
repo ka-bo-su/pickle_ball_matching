@@ -41,6 +41,7 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 | SBI-026 | 現在ラウンドのスコアと勝者を記録できるようにする | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #65, Issue #64 |
 | SBI-027 | 運営モードのプリセットをルール設定へ反映する | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #67, Issue #66 |
 | SBI-028 | ラウンド履歴で過去ラウンドとスコアを確認できるようにする | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #69, Issue #68 |
+| SBI-029 | 参加者名をまとめて貼り付けて追加できるようにする | In Review | swift-developer | `scripts/codex/validate-ios.sh` passed locally | PR #71, Issue #70 |
 
 ## Plan
 
@@ -78,6 +79,7 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 32. Issue #64 merged in PR #65 and Project item set Done.
 33. Issue #66 merged in PR #67 and Project item set Done.
 34. Issue #68 merged in PR #69 and Project item set Done.
+35. Issue #70 selected, locally implemented, validated, and PR #71 opened.
 
 ## Next Ready Work
 

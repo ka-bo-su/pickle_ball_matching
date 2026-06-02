@@ -4,10 +4,12 @@ import SwiftUI
 struct ParticipantListSection: View {
     @ObservedObject var viewModel: OperationBoardViewModel
     @State private var selectedParticipant: Participant?
+    @State private var isShowingBulkAdd = false
 
     var body: some View {
         Section("参加者") {
             addParticipantRow
+            bulkAddParticipantRow
 
             ForEach(viewModel.session.participants) { participant in
                 participantRow(participant)
@@ -39,6 +41,28 @@ struct ParticipantListSection: View {
             }
             .buttonStyle(.borderless)
             .accessibilityLabel("参加者を追加")
+        }
+    }
+
+    private var bulkAddParticipantRow: some View {
+        DisclosureGroup(isExpanded: $isShowingBulkAdd) {
+            VStack(alignment: .leading, spacing: 8) {
+                TextField("参加者名簿", text: $viewModel.bulkParticipantNames, axis: .vertical)
+                    .textInputAutocapitalization(.never)
+                    .lineLimit(3 ... 6)
+                    .accessibilityLabel("まとめて追加する参加者名簿")
+
+                Button {
+                    viewModel.addBulkParticipants()
+                } label: {
+                    Label(viewModel.bulkAddButtonTitle, systemImage: "text.badge.plus")
+                }
+                .buttonStyle(.borderless)
+                .disabled(!viewModel.canAddBulkParticipants)
+                .accessibilityLabel(viewModel.bulkAddButtonTitle)
+            }
+        } label: {
+            Label("まとめて追加", systemImage: "text.badge.plus")
         }
     }
 

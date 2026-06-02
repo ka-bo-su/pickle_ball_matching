@@ -3,12 +3,12 @@
 ## Current
 
 - Active PBI: #16 当日運営特化ダブルス組み合わせMVP
-- Active SBI: Selecting next SBI
-- Active Branch: dev
-- Active PR: none
-- GitHub Project Item: n/a
-- Status: Issue #68 Done; selecting next Scrum item
-- Next Action: search Project and Issues for the next safe MVP vertical slice
+- Active SBI: #70 参加者名をまとめて貼り付けて追加できるようにする
+- Active Branch: codex/sbi-70-bulk-participants
+- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/71
+- GitHub Project Item: `PVTI_lAHOBHYYMs4BZUKkzgudQLk`
+- Status: In Review; PR #71 opened and Project evidence updated
+- Next Action: watch GitHub Actions, squash merge PR #71 when checks pass, then set Issue #70 Done
 
 ## Completed
 
@@ -121,12 +121,15 @@
 | 2026-06-02 15:19 JST | SBI #68 local implementation | Added round history display model, read-only SwiftUI history section, and presentation tests | local branch `codex/sbi-68-round-history` |
 | 2026-06-02 15:21 JST | PR opened | Created PR #69 for Issue #68 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/69 |
 | 2026-06-02 15:28 JST | SBI #68 merged | Squash merged PR #69 to `dev`; Issue #68 closed and Project item set Done | https://github.com/ka-bo-su/pickle_ball_matching/pull/69 |
+| 2026-06-02 15:39 JST | Next SBI selected | Created and selected Issue #70 for bulk participant entry | https://github.com/ka-bo-su/pickle_ball_matching/issues/70 |
+| 2026-06-02 15:39 JST | SBI #70 local implementation | Added multiline bulk participant input, duplicate filtering, autosave, accessibility labels, and tests | local branch `codex/sbi-70-bulk-participants` |
+| 2026-06-02 15:42 JST | PR opened | Created PR #71 for Issue #70 and moved Project item to In Review | https://github.com/ka-bo-su/pickle_ball_matching/pull/71 |
 
 ## In Progress
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| none | n/a | n/a | n/a | select next SBI |
+| Issue #70 参加者名をまとめて貼り付けて追加できるようにする | codex/sbi-70-bulk-participants | PR #71 | In Review; local validation passed | watch CI, merge when passed |
 
 ## Blocked
 
@@ -220,3 +223,4 @@
 | 2026-06-02 15:16 JST | `swift test` | pass | Issue #68: 32 core tests |
 | 2026-06-02 15:19 JST | `scripts/codex/validate-ios.sh` | pass | Issue #68: `swift test` 32 core tests, SwiftLint 0 violations, SwiftFormat 0 files, XcodeGen, xcodebuild build, xcodebuild test 32 core + 52 app tests |
 | 2026-06-02 15:27 JST | GitHub Actions `validate` | pass | PR #69 passed before squash merge |
+| 2026-06-02 15:39 JST | `scripts/codex/validate-ios.sh` | pass | Issue #70: `swift test` 32 core tests, SwiftLint 0 violations, SwiftFormat 0 files, XcodeGen, xcodebuild build, xcodebuild test 32 core + 54 app tests |

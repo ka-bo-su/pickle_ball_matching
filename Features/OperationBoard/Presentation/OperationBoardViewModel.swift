@@ -5,6 +5,7 @@ import PickleBallMatchingCore
 final class OperationBoardViewModel: ObservableObject {
     @Published var session: Session
     @Published var newParticipantName = ""
+    @Published var bulkParticipantNames = ""
     @Published private(set) var errorMessage: String?
     @Published private(set) var canUndo = false
     @Published private(set) var undoCount = 0
@@ -99,25 +100,6 @@ final class OperationBoardViewModel: ObservableObject {
         session = savedSession
         clearUndoHistory()
         errorMessage = nil
-        saveSession()
-    }
-
-    func addParticipant() {
-        let name = newParticipantName.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !name.isEmpty else {
-            return
-        }
-
-        session.participants.append(
-            Participant(
-                displayName: name,
-                skillLevel: defaultSkillLevel(for: session.participants.count)
-            )
-        )
-        newParticipantName = ""
-        session.updatedAt = Date()
-        errorMessage = nil
-        clearUndoHistory()
         saveSession()
     }
 
@@ -289,10 +271,6 @@ final class OperationBoardViewModel: ObservableObject {
             lhs.updatedAt > rhs.updatedAt
         }
     }
-}
-
-private func defaultSkillLevel(for index: Int) -> SkillLevel {
-    SkillLevel(rawValue: (index % SkillLevel.allCases.count) + 1) ?? .beginner
 }
 
 extension OperationBoardViewModel {

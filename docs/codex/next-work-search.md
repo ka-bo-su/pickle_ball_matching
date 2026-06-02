@@ -1,5 +1,15 @@
 # Next Work Search
 
+## 2026-06-02 15:39 JST
+
+- Searched candidates: GitHub Project In Progress/Ready items, open PBIs #16-#20, Sprint Backlog after PR #69 merge, participant input bottlenecks, session setup speed, remaining MVP north-star gaps.
+- Referenced GitHub Project / Issues / docs: Issues #16-#20, #68, #70, `docs/scrum/sprint-backlog.md`, product vision "開始3分以内に最初の組み合わせ" requirement.
+- Findings: No open Ready SBI remained after Issue #68. The app can add participants one by one, but real organizers often paste names from LINE, notes, or a roster; one-by-one entry slows the north-star flow.
+- Next selected work: Issue #70 `参加者名をまとめて貼り付けて追加できるようにする`.
+- Reason: It is a small, reversible Presentation/ViewModel slice that reduces setup time without touching server, CloudKit, StoreKit, secrets, or destructive data changes.
+- Human repair needed: none.
+- Pending updates: PR evidence after PR creation.
+
 ## 2026-06-02 15:12 JST
 
 - Searched candidates: GitHub Project In Progress/Ready items, open PBIs #16-#20, Sprint Backlog after PR #67 merge, score/history gaps, session deletion/search, Pro boundary.
