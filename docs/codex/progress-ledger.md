@@ -4,11 +4,11 @@
 
 - Active PBI: #18 進行ボードと大画面表示
 - Active SBI: #72 大画面ボードに残り時間とラウンド状態を表示する
-- Active Branch: codex/sbi-72-large-board-timer
+- Active Branch: codex/sbi-72-large-board-timer-pr
 - Active PR: none
 - GitHub Project Item: `PVTI_lAHOBHYYMs4BZUKkzgudWWs`
-- Status: Local implementation validated and committed as `1fe7687`; GitHub push/PR/Project sync pending execution quota
-- Next Action: push/create PR/update Project when GitHub write access resumes
+- Status: Rebased onto `origin/dev` and validated at `2006616`; ready for push/PR/Project sync
+- Next Action: push branch, create PR, update Project to In Review
 
 ## Completed
 
@@ -230,3 +230,4 @@
 | 2026-06-02 15:27 JST | GitHub Actions `validate` | pass | PR #69 passed before squash merge |
 | 2026-06-02 15:39 JST | `scripts/codex/validate-ios.sh` | pass | Issue #70: `swift test` 32 core tests, SwiftLint 0 violations, SwiftFormat 0 files, XcodeGen, xcodebuild build, xcodebuild test 32 core + 54 app tests |
 | 2026-06-02 16:02 JST | `scripts/codex/validate-ios.sh` | pass | Issue #72: `swift test` 32 core tests, SwiftLint 0 violations, SwiftFormat 0 files, XcodeGen, xcodebuild build, xcodebuild test 32 core + 53 app tests |
+| 2026-06-02 21:51 JST | `scripts/codex/validate-ios.sh` | pass | Issue #72 PR branch after rebase: `swift test` 32 core tests, SwiftLint 0 violations, SwiftFormat 0 files, XcodeGen, xcodebuild build, xcodebuild test 32 core + 55 app tests |

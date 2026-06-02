@@ -203,7 +203,7 @@ Low. The validated local commit is isolated on `codex/sbi-72-large-board-timer`.
 
 ### Follow-up
 
-After execution quota resets, push local commit `1fe7687`, create PR, update Project Validation Status to Passed, and move Issue #72 to In Review.
+After rebase validation, push branch head `2006616`, create PR, update Project Validation Status to Passed, and move Issue #72 to In Review.
 
 ## 2026-06-01 02:34 JST
 
