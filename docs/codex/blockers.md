@@ -2,7 +2,22 @@
 
 ## Blocker
 
+- Time: 2026-06-04 21:03 JST
+- Item: Issue #74 `保存済みセッションを削除できるようにする` and participant-add UX fix
+- Type: GitHub authentication
+- Reason: Full local validation now passes, but `gh` returns `HTTP 401: Requires authentication`, so branch publication, PR creation, and GitHub Project field sync cannot be completed from this session.
+- Impact: The local branch is ready to publish, but GitHub Project remains behind local validation evidence.
+- Attempted fixes: Confirmed the prior validation blocker is resolved by running escalated `scripts/codex/validate-ios.sh`; confirmed earlier `gh issue view` and `gh pr list` returned HTTP 401.
+- Why autonomous progress cannot continue for this item: Project/PR sync is required by the repository DoD, and GitHub CLI authentication is unavailable.
+- Safe next task selected: keep local fix committed and pending; do not start additional stacked feature work until the publish path is healthy.
+- GitHub Project update: pending update recorded in `docs/codex/github-projects-pending-updates.md`.
+- Pending update: push branch, create PR, set Issue #74 In Review, set Validation Status Passed, and add PR evidence after GitHub authentication is restored.
+- Human repair: run `gh auth login` or `gh auth refresh -s project` in this environment.
+
+## Resolved Blocker
+
 - Time: 2026-06-02 22:19 JST
+- Resolved: 2026-06-04 21:03 JST
 - Item: Issue #74 `保存済みセッションを削除できるようにする`
 - Type: execution-environment
 - Reason: Non-escalated `scripts/codex/validate-ios.sh` failed because SwiftPM could not write `~/.cache/clang/ModuleCache` and CoreSimulatorService was unavailable inside the sandbox. The required escalated rerun was rejected by Codex execution usage limit.
@@ -13,6 +28,7 @@
 - GitHub Project update: Issue #74 label changed to `status:blocked`; Project Status/Scrum Status still need Blocked field sync, pending update recorded in `docs/codex/github-projects-pending-updates.md`.
 - Pending update: rerun full validation, push branch, create PR, set Status/Scrum Status In Review, set Validation Status Passed, and add PR Evidence Link.
 - Human repair: none if Codex execution quota resumes; otherwise run the pending validation and publication commands manually.
+- Resolution: Escalated `scripts/codex/validate-ios.sh` passed on 2026-06-04 21:03 JST. Remaining blocker is GitHub authentication, tracked separately above.
 
 ## Resolved Blocker
 

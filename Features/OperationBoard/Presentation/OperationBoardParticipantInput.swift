@@ -11,6 +11,10 @@ extension OperationBoardViewModel {
         !bulkParticipantNamesToAdd.isEmpty
     }
 
+    var canAddParticipant: Bool {
+        !newParticipantName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+
     var bulkAddButtonTitle: String {
         let count = bulkParticipantNamesToAdd.count
         return count > 0 ? "\(count)人を追加" : "まとめて追加"

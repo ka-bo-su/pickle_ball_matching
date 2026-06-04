@@ -7,13 +7,14 @@
 - Active Branch: codex/sbi-31-delete-saved-sessions
 - Active PR: none
 - GitHub Project Item: `PVTI_lAHOBHYYMs4BZUKkzgufzTw`
-- Status: Local implementation committed; SwiftLint/SwiftFormat/XcodeGen/xcodebuild-list partial validation passed, but full SwiftPM/Xcode simulator validation and publication are blocked by execution usage limit
-- Next Action: rerun full validation with required permissions, push, create PR, and move Project to In Review when execution quota resumes
+- Status: Saved-session deletion and participant-add UX fix are locally implemented; full local validation passed; GitHub publication and Project sync are blocked by `gh` authentication returning HTTP 401
+- Next Action: restore GitHub authentication, push branch, create PR, and move Project to In Review with validation evidence
 
 ## Completed
 
 | Time | Item | Result | Evidence |
 |---|---|---|---|
+| 2026-06-04 21:03 JST | Participant add UX fix | Added Return-key submit, clearer full-width add button, non-blank enabled state, and ViewModel test | local branch `codex/sbi-31-delete-saved-sessions` |
 | 2026-06-01 02:34 JST | Project resolution | Resolved `kanban@pickle_ball_matching` as `ka-bo-su` project 3 | `gh project list --owner ka-bo-su --format json` |
 | 2026-06-01 02:40 JST | GitHub labels and fields | Required labels and Project fields created or confirmed | `gh label create/edit`, `gh project field-create`, `gh project field-list` |
 | 2026-06-01 02:43 JST | Initial backlog | Created Japanese GitHub Issues #1-#7 and added them to Project | Issues #1-#7 |
@@ -139,13 +140,14 @@
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #74 保存済みセッションを削除できるようにする | codex/sbi-31-delete-saved-sessions | none | Local commit ready; full validation/publish blocked by execution usage limit | retry validation and PR publication after quota resumes |
+| Issue #74 保存済みセッションを削除できるようにする | codex/sbi-31-delete-saved-sessions | none | Full local validation passed; GitHub publication blocked by `gh` HTTP 401 | push and create PR after GitHub auth restores |
+| Participant add UX fix | codex/sbi-31-delete-saved-sessions | none | Full local validation passed; not yet published | include in next PR or split after GitHub auth restores |
 
 ## Blocked
 
 | Item | Reason | Next | Project Status |
 |---|---|---|---|
-| Issue #74 validation/publish | Non-escalated validation cannot write SwiftPM clang module cache or access CoreSimulator; escalated validation rejected by Codex execution usage limit | rerun validation, push, create PR, update Project In Review after quota resumes | #74 In Progress; pending update needed |
+| Issue #74 publication / Project sync | `gh` currently returns HTTP 401 and cannot read/update GitHub Issues/PRs/Project | restore GitHub authentication, push, create PR, update Project In Review | #74 In Progress; pending update needed |
 
 ## Validation History
 
@@ -238,3 +240,4 @@
 | 2026-06-02 21:51 JST | `scripts/codex/validate-ios.sh` | pass | Issue #72 PR branch after rebase: `swift test` 32 core tests, SwiftLint 0 violations, SwiftFormat 0 files, XcodeGen, xcodebuild build, xcodebuild test 32 core + 55 app tests |
 | 2026-06-02 22:07 JST | GitHub Actions `validate` | pass | PR #73 passed before squash merge |
 | 2026-06-02 22:19 JST | `scripts/codex/validate-ios.sh` | partial fail | Issue #74: `swift test` failed because sandbox cannot write `~/.cache/clang/ModuleCache`; SwiftLint/SwiftFormat/XcodeGen/xcodebuild-list passed; simulator discovery failed because CoreSimulatorService is unavailable in sandbox; escalated rerun rejected by execution usage limit |
+| 2026-06-04 21:03 JST | `scripts/codex/validate-ios.sh` | pass | Issue #74 plus participant-add UX fix: SwiftPM tests, SwiftLint, SwiftFormat, XcodeGen, `xcodebuild build`, and `xcodebuild test` passed |

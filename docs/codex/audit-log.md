@@ -1,5 +1,54 @@
 # Codex Audit Log
 
+## 2026-06-04 21:03 JST
+
+### Action
+
+Fixed the participant single-add input flow after the organizer-facing UI made participant addition feel unavailable.
+
+### Reason
+
+The current row only exposed a small horizontal add button and did not support keyboard submit. For court-side use, the organizer needs a clear enabled action after entering a name, plus a Return-key path that adds the participant without hunting for a small control.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/OperationBoardParticipantInput.swift`
+- `Features/OperationBoard/Presentation/ParticipantListSection.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+
+### Commands Run
+
+- `swiftformat --swiftversion 6.0 --cache ignore --lint Features/OperationBoard/Presentation/OperationBoardParticipantInput.swift Features/OperationBoard/Presentation/ParticipantListSection.swift Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+- `swiftlint lint --no-cache Features/OperationBoard/Presentation/OperationBoardParticipantInput.swift Features/OperationBoard/Presentation/ParticipantListSection.swift Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+- `swift test`
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+No GitHub Project write was applied in this checkpoint because `gh` currently returns `HTTP 401: Requires authentication`. The fix is local and should be included in the next PR for the active branch, or mirrored into a follow-up Bug item if the branch is split.
+
+### Architecture Decision
+
+No architecture boundary change. The fix stays in Presentation/ViewModel input state and does not introduce Infrastructure coupling.
+
+### Validation
+
+Passed:
+
+- SwiftFormat lint: 0 files require formatting.
+- SwiftLint: 0 violations.
+- `swift test`: 34 core tests passed.
+- `scripts/codex/validate-ios.sh`: SwiftPM tests, SwiftLint, SwiftFormat, XcodeGen, `xcodebuild build`, and `xcodebuild test` passed.
+- `xcodebuild test`: 34 core tests and 58 app tests passed.
+
+### Risk
+
+Low. The change only clarifies the participant add interaction and adds a non-blank input guard used by the button disabled state.
+
+### Follow-up
+
+Push the active branch and create a PR once GitHub authentication is restored. Include this fix in the PR summary and Project evidence.
+
 ## 2026-06-02 22:19 JST
 
 ### Action

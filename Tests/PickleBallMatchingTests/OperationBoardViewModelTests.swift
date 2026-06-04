@@ -14,6 +14,16 @@ final class OperationBoardViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.newParticipantName, "")
     }
 
+    func testCanAddParticipantRequiresNonBlankName() {
+        let viewModel = OperationBoardViewModel(session: Session(name: "テスト", participants: []))
+
+        viewModel.newParticipantName = "   "
+        XCTAssertFalse(viewModel.canAddParticipant)
+
+        viewModel.newParticipantName = "山田"
+        XCTAssertTrue(viewModel.canAddParticipant)
+    }
+
     func testGenerateNextRoundUpdatesCurrentRoundAndWaiters() {
         let session = Session(
             name: "テスト",
