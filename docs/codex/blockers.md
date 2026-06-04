@@ -5,13 +5,13 @@
 - Time: 2026-06-04 21:03 JST
 - Item: Issue #74 `保存済みセッションを削除できるようにする` and participant-add UX fix
 - Type: GitHub authentication
-- Reason: Full local validation now passes, but `gh` returns `HTTP 401: Requires authentication`, so branch publication, PR creation, and GitHub Project field sync cannot be completed from this session.
-- Impact: The local branch is ready to publish, but GitHub Project remains behind local validation evidence.
-- Attempted fixes: Confirmed the prior validation blocker is resolved by running escalated `scripts/codex/validate-ios.sh`; confirmed earlier `gh issue view` and `gh pr list` returned HTTP 401.
-- Why autonomous progress cannot continue for this item: Project/PR sync is required by the repository DoD, and GitHub CLI authentication is unavailable.
+- Reason: Full local validation now passes and PR #75 exists, but `gh` returns `HTTP 401: Requires authentication` for GraphQL calls, so CI check inspection and GitHub Project field sync cannot be completed from this session.
+- Impact: PR #75 is open with local validation evidence, but GitHub Actions status and Project fields remain pending.
+- Attempted fixes: Confirmed the prior validation blocker is resolved by running escalated `scripts/codex/validate-ios.sh`; pushed the branch; created PR #75 through the GitHub connector; retried `gh pr checks 75` and received HTTP 401.
+- Why autonomous progress cannot continue for this item: CI confirmation and Project sync are required before squash merge, and GitHub CLI authentication is unavailable for those operations.
 - Safe next task selected: keep local fix committed and pending; do not start additional stacked feature work until the publish path is healthy.
 - GitHub Project update: pending update recorded in `docs/codex/github-projects-pending-updates.md`.
-- Pending update: push branch, create PR, set Issue #74 In Review, set Validation Status Passed, and add PR evidence after GitHub authentication is restored.
+- Pending update: check PR #75 CI, set Issue #74 In Review, set Validation Status Passed, add PR evidence, and squash merge if CI is green after GitHub authentication is restored.
 - Human repair: run `gh auth login` or `gh auth refresh -s project` in this environment.
 
 ## Resolved Blocker

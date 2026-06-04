@@ -9,25 +9,25 @@ Active pending update exists as of 2026-06-02 22:19 JST.
 - Timestamp: 2026-06-02 22:19 JST
 - Target project: kanban@pickle_ball_matching
 - Target item: Issue #74 / `PVTI_lAHOBHYYMs4BZUKkzgufzTw`
-- Intended action: Push branch `codex/sbi-31-delete-saved-sessions`, create PR to `dev`, set Issue label `status:in-review`, set Project Status `In review`, set Scrum Status `In Review`, set Validation Status `Passed`, and add PR URL to Evidence Link.
+- Intended action: Check PR #75 CI, set Issue label `status:in-review`, set Project Status `In review`, set Scrum Status `In Review`, set Validation Status `Passed`, and add PR #75 URL to Evidence Link.
 - Previous state: Issue #74 Open, label `status:blocked`, Project Status `In progress`, Scrum Status `In Progress`, Validation Status `Not Run`, Evidence Link `https://github.com/ka-bo-su/pickle_ball_matching/issues/74`.
-- New state: Issue #74 Open, label `status:in-review`, Project Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, Evidence Link `<PR URL>`.
-- Reason not applied: Full local validation passed on 2026-06-04 21:03 JST, but `gh` currently returns `HTTP 401: Requires authentication`, so PR creation and Project field sync cannot be completed from this session.
-- Command to apply later: `git push -u origin codex/sbi-31-delete-saved-sessions`; create PR; `gh issue edit 74 --remove-label status:blocked --add-label status:in-review`; `gh project item-edit ... Status In review`; `gh project item-edit ... Scrum Status In Review`; `gh project item-edit ... Validation Status Passed`; `gh project item-edit ... Evidence Link <PR URL>`.
-- Related PR: pending
+- New state: Issue #74 Open, label `status:in-review`, Project Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, Evidence Link `https://github.com/ka-bo-su/pickle_ball_matching/pull/75`.
+- Reason not applied: Full local validation passed and PR #75 was created, but `gh pr checks` / GraphQL currently returns `HTTP 401: Requires authentication`, so CI confirmation and Project field sync cannot be completed from this session.
+- Command to apply later: `gh pr checks 75 --watch`; `gh issue edit 74 --remove-label status:blocked --add-label status:in-review`; `gh project item-edit ... Status In review`; `gh project item-edit ... Scrum Status In Review`; `gh project item-edit ... Validation Status Passed`; `gh project item-edit ... Evidence Link https://github.com/ka-bo-su/pickle_ball_matching/pull/75`.
+- Related PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/75
 - Related Issue: https://github.com/ka-bo-su/pickle_ball_matching/issues/74
 
 ## Pending Project Update
 
 - Timestamp: 2026-06-04 21:03 JST
 - Target project: kanban@pickle_ball_matching
-- Target item: follow-up Bug or the Issue #74 PR body
-- Intended action: Record the participant-add UX fix in GitHub so the reason for the local change is traceable. Preferred: create a Japanese Bug item `[Bug] 参加者追加の操作が分かりづらく追加できない` and link it to the same PR; fallback: describe it as an included fix in the Issue #74 PR body.
+- Target item: PR #75 body or follow-up Bug
+- Intended action: Record the participant-add UX fix in GitHub so the reason for the local change is traceable. PR #75 body already includes it; optional follow-up is creating a Japanese Bug item `[Bug] 参加者追加の操作が分かりづらく追加できない` if stricter issue traceability is desired.
 - Previous state: No dedicated GitHub issue exists for the participant-add UX report.
-- New state: A Japanese issue or PR evidence records the fix, validation, and affected files.
-- Reason not applied: `gh` currently returns `HTTP 401: Requires authentication`.
-- Command to apply later: restore GitHub authentication, then create/link the Bug item or include the fix in the next PR body.
-- Related PR: pending
+- New state: PR #75 records the fix, validation, and affected files. Optional Bug issue remains pending.
+- Reason not applied: PR evidence is complete; optional Bug issue cannot be created because `gh` currently returns `HTTP 401: Requires authentication`.
+- Command to apply later: restore GitHub authentication, then optionally create/link the Bug item.
+- Related PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/75
 - Related Issue: pending
 
 ## Resolved Pending Project Update

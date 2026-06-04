@@ -22,10 +22,15 @@ The current row only exposed a small horizontal add button and did not support k
 - `swiftlint lint --no-cache Features/OperationBoard/Presentation/OperationBoardParticipantInput.swift Features/OperationBoard/Presentation/ParticipantListSection.swift Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
 - `swift test`
 - `scripts/codex/validate-ios.sh`
+- `git push -u origin codex/sbi-31-delete-saved-sessions`
+- GitHub connector `_create_pull_request`
+- `gh pr checks 75 --json name,state,link,workflow,bucket`
 
 ### GitHub Project Updates
 
-No GitHub Project write was applied in this checkpoint because `gh` currently returns `HTTP 401: Requires authentication`. The fix is local and should be included in the next PR for the active branch, or mirrored into a follow-up Bug item if the branch is split.
+PR #75 was created: https://github.com/ka-bo-su/pickle_ball_matching/pull/75
+
+No GitHub Project field write was applied in this checkpoint because `gh` currently returns `HTTP 401: Requires authentication` for GraphQL reads/writes. The PR body records Issue #74 and the participant-add fix; Project Evidence Link and status remain pending.
 
 ### Architecture Decision
 
@@ -47,7 +52,7 @@ Low. The change only clarifies the participant add interaction and adds a non-bl
 
 ### Follow-up
 
-Push the active branch and create a PR once GitHub authentication is restored. Include this fix in the PR summary and Project evidence.
+Restore GitHub authentication, check PR #75 CI, sync Issue #74 / Project fields to In Review with Validation Status Passed, and squash merge if CI is green.
 
 ## 2026-06-02 22:19 JST
 

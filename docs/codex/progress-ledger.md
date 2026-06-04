@@ -5,15 +5,16 @@
 - Active PBI: #17 ローカルファースト保存・復元
 - Active SBI: #74 保存済みセッションを削除できるようにする
 - Active Branch: codex/sbi-31-delete-saved-sessions
-- Active PR: none
+- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/75
 - GitHub Project Item: `PVTI_lAHOBHYYMs4BZUKkzgufzTw`
-- Status: Saved-session deletion and participant-add UX fix are locally implemented; full local validation passed; GitHub publication and Project sync are blocked by `gh` authentication returning HTTP 401
-- Next Action: restore GitHub authentication, push branch, create PR, and move Project to In Review with validation evidence
+- Status: PR #75 opened; full local validation passed; GitHub Actions/Project status checks are pending because `gh` GraphQL calls return HTTP 401
+- Next Action: restore GitHub authentication, check PR #75 CI, move Project to In Review with validation evidence, then squash merge if CI is green
 
 ## Completed
 
 | Time | Item | Result | Evidence |
 |---|---|---|---|
+| 2026-06-04 21:05 JST | PR opened | Created PR #75 for saved-session deletion and participant-add UX fix | https://github.com/ka-bo-su/pickle_ball_matching/pull/75 |
 | 2026-06-04 21:03 JST | Participant add UX fix | Added Return-key submit, clearer full-width add button, non-blank enabled state, and ViewModel test | local branch `codex/sbi-31-delete-saved-sessions` |
 | 2026-06-01 02:34 JST | Project resolution | Resolved `kanban@pickle_ball_matching` as `ka-bo-su` project 3 | `gh project list --owner ka-bo-su --format json` |
 | 2026-06-01 02:40 JST | GitHub labels and fields | Required labels and Project fields created or confirmed | `gh label create/edit`, `gh project field-create`, `gh project field-list` |
@@ -140,14 +141,14 @@
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #74 保存済みセッションを削除できるようにする | codex/sbi-31-delete-saved-sessions | none | Full local validation passed; GitHub publication blocked by `gh` HTTP 401 | push and create PR after GitHub auth restores |
-| Participant add UX fix | codex/sbi-31-delete-saved-sessions | none | Full local validation passed; not yet published | include in next PR or split after GitHub auth restores |
+| Issue #74 保存済みセッションを削除できるようにする | codex/sbi-31-delete-saved-sessions | PR #75 | Full local validation passed; CI/Project sync pending because `gh` GraphQL returns HTTP 401 | check CI and merge after GitHub auth restores |
+| Participant add UX fix | codex/sbi-31-delete-saved-sessions | PR #75 | Full local validation passed; published in PR #75 | verify on device/simulator |
 
 ## Blocked
 
 | Item | Reason | Next | Project Status |
 |---|---|---|---|
-| Issue #74 publication / Project sync | `gh` currently returns HTTP 401 and cannot read/update GitHub Issues/PRs/Project | restore GitHub authentication, push, create PR, update Project In Review | #74 In Progress; pending update needed |
+| Issue #74 CI / Project sync | `gh` currently returns HTTP 401 and cannot read PR checks or update Issues/Project | restore GitHub authentication, check PR #75 CI, update Project In Review, merge if green | #74 In Progress; pending update needed |
 
 ## Validation History
 
