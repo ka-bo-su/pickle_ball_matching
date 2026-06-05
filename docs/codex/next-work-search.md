@@ -1,5 +1,15 @@
 # Next Work Search
 
+## 2026-06-05 15:52 JST
+
+- Searched candidates: PR #83 merge state, open PBI state, Sprint Backlog after Issue #82, participant-add friction, duplicate participant-name behavior.
+- Referenced GitHub Project / Issues / docs: Issues #16-#20, #82, #84, PR #83, `docs/scrum/sprint-backlog.md`, product vision "開始3分以内に最初の組み合わせ" and participant-management requirements.
+- Findings: PR #83 passed GitHub Actions and was merged. The next small setup-quality gap is that single participant addition can still duplicate an existing display name, while bulk addition already filters duplicates.
+- Next selected work: Issue #84 `参加者追加時に重複名を検出して案内する`.
+- Reason: It is a small Presentation/ViewModel slice that reduces accidental duplicate registration before first-round generation, without touching StoreKit, CloudKit, server, secret, production, or round-generation internals.
+- Human repair needed: Codex execution usage must reset before full validation/publish can continue. `gh auth login` or `gh auth refresh -s project` is still needed only for Project field sync.
+- Pending updates: set Issue #82 Project fields Done; add Issue #84 to Project and mark Blocked/In Progress depending on validation state after resume.
+
 ## 2026-06-05 15:37 JST
 
 - Searched candidates: PR #81 merge state, open PBI state, Sprint Backlog after Issue #80, first-run setup friction, participant list empty-state behavior.

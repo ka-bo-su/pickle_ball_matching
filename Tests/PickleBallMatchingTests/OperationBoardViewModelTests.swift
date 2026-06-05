@@ -24,6 +24,45 @@ final class OperationBoardViewModelTests: XCTestCase {
         XCTAssertTrue(viewModel.canAddParticipant)
     }
 
+    func testCanAddParticipantRejectsDuplicateName() {
+        let viewModel = OperationBoardViewModel(
+            session: Session(
+                name: "テスト",
+                participants: [
+                    Participant(displayName: "山田")
+                ]
+            )
+        )
+
+        viewModel.newParticipantName = "  山田  "
+
+        XCTAssertFalse(viewModel.canAddParticipant)
+        XCTAssertEqual(
+            viewModel.participantNameInputWarning,
+            "同じ名前の参加者がいます。名字やメモを足して区別してください。"
+        )
+    }
+
+    func testAddParticipantDoesNotAppendDuplicateName() {
+        let repository = SpySessionRepository()
+        let viewModel = OperationBoardViewModel(
+            session: Session(
+                name: "テスト",
+                participants: [
+                    Participant(displayName: "Yamada")
+                ]
+            ),
+            sessionRepository: repository
+        )
+        viewModel.newParticipantName = " yamada "
+
+        viewModel.addParticipant()
+
+        XCTAssertEqual(viewModel.session.participants.map(\.displayName), ["Yamada"])
+        XCTAssertNil(viewModel.errorMessage)
+        XCTAssertTrue(repository.savedSessions.isEmpty)
+    }
+
     func testGenerateNextRoundUpdatesCurrentRoundAndWaiters() {
         let session = Session(
             name: "テスト",

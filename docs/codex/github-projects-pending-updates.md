@@ -6,6 +6,32 @@ Active pending update exists as of 2026-06-02 22:19 JST.
 
 ## Pending Project Update
 
+- Timestamp: 2026-06-05 15:54 JST
+- Target project: kanban@pickle_ball_matching
+- Target item: Issue #84
+- Intended action: Add Issue #84 to Project, set Backlog Level `SBI`, Status `Blocked`, Scrum Status `Blocked`, Sprint `Sprint 2026-06 MVP`, Priority `P1`, Role Owner `swift-developer`, Area `Presentation`, Risk `low`, Validation Status `Blocked`, and Evidence Link to local branch `codex/sbi-84-duplicate-participant-guide` until full validation/publish resumes.
+- Previous state: Issue #84 exists with labels `type:sbi`, `status:ready`, `area:ui`, `area:ios`, `risk:low`, and `arch:presentation`; Project field sync not applied.
+- New state: Project item should mirror Issue #84 as a locally blocked SBI due Codex execution usage limit.
+- Reason not applied: `gh auth status` reports an invalid token; full validation/publish is also blocked by Codex execution usage limit.
+- Command to apply later: `gh project item-add 3 --owner ka-bo-su --url https://github.com/ka-bo-su/pickle_ball_matching/issues/84`; then `gh project item-edit ...` for fields listed above.
+- Related PR: pending
+- Related Issue: https://github.com/ka-bo-su/pickle_ball_matching/issues/84
+
+## Pending Project Update
+
+- Timestamp: 2026-06-05 15:51 JST
+- Target project: kanban@pickle_ball_matching
+- Target item: Issue #82
+- Intended action: Set Project Status `Done`, Scrum Status `Done`, Validation Status `Passed`, and Evidence Link `https://github.com/ka-bo-su/pickle_ball_matching/pull/83` after PR #83 squash merge.
+- Previous state: Issue #82 was open / In Review in local docs before PR #83 merge.
+- New state: Issue #82 is closed with `status:done`; Project fields should be Done with PR #83 evidence.
+- Reason not applied: `gh auth status` reports an invalid token; GitHub connector closed the Issue but cannot edit Project fields.
+- Command to apply later: `gh project item-edit ... Status Done`; `gh project item-edit ... Scrum Status Done`; `gh project item-edit ... Validation Status Passed`; `gh project item-edit ... Evidence Link https://github.com/ka-bo-su/pickle_ball_matching/pull/83`.
+- Related PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/83
+- Related Issue: https://github.com/ka-bo-su/pickle_ball_matching/issues/82
+
+## Pending Project Update
+
 - Timestamp: 2026-06-05 15:42 JST
 - Target project: kanban@pickle_ball_matching
 - Target item: Issue #82

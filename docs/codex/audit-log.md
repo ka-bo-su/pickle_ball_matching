@@ -1,5 +1,65 @@
 # Codex Audit Log
 
+## 2026-06-05 15:54 JST
+
+### Action
+
+Merged PR #83, closed Issue #82, created Issue #84, and implemented duplicate participant-name guidance.
+
+### Reason
+
+Issue #82 completed the first-run empty-state guide. The next Scrum-safe increment is reducing accidental duplicate participant registration during fast setup, because duplicate names can distort waiting counts and pairing fairness before the first round is generated.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/OperationBoardParticipantInput.swift`
+- `Features/OperationBoard/Presentation/ParticipantListSection.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+
+### Commands Run
+
+- GitHub connector `_merge_pull_request` for PR #83
+- GitHub connector `_update_issue` to close Issue #82 with `status:done`
+- GitHub connector `_create_issue` for Issue #84
+- `git fetch origin`
+- `git switch dev`
+- `git merge --ff-only origin/dev`
+- `git switch -c codex/sbi-84-duplicate-participant-guide`
+- `swiftformat --swiftversion 6.0 --cache ignore ...`
+- `xcodebuild test -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16' -only-testing:PickleBallMatchingTests/OperationBoardViewModelTests`
+- `swiftlint lint --no-cache ...`
+- `swiftformat --swiftversion 6.0 --cache ignore --lint ...`
+- `git diff --check`
+
+### GitHub Project Updates
+
+Issue #82 Project Done sync and Issue #84 Project item sync are pending because `gh auth status` reports an invalid token and the GitHub connector does not expose Project field edits.
+
+### Architecture Decision
+
+No new ADR. The duplicate-name guide is Presentation-only and reuses existing participant display names without changing Domain/Application/Infrastructure dependencies.
+
+### Validation
+
+Passed:
+
+- Targeted Xcode test: `OperationBoardViewModelTests` 25 tests.
+- Targeted SwiftLint on changed files completed with two non-fatal existing type-body-length warnings.
+- Targeted SwiftFormat lint on changed files passed.
+- `git diff --check` passed.
+
+Blocked:
+
+- Full `scripts/codex/validate-ios.sh` escalation was rejected by Codex usage limit. This is recorded as a local validation blocker for Issue #84; the item should not be merged until full validation or CI passes.
+
+### Risk
+
+Low. The change prevents duplicate single-name additions and shows a Japanese warning without changing round generation or persistence contracts.
+
+### Follow-up
+
+Commit and push if local Git operations remain available; otherwise resume after execution usage resets, run full validation, create PR, and update Issue #84 evidence.
+
 ## 2026-06-05 15:46 JST
 
 ### Action

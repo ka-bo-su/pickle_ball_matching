@@ -92,6 +92,13 @@ struct ParticipantListSection: View {
                     viewModel.addParticipant()
                 }
                 .accessibilityLabel("参加者名入力")
+            if let warning = viewModel.participantNameInputWarning {
+                Label(warning, systemImage: "exclamationmark.circle")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .accessibilityLabel(warning)
+            }
             Button {
                 viewModel.addParticipant()
             } label: {

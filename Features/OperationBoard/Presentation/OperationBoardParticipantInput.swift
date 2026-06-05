@@ -12,7 +12,17 @@ extension OperationBoardViewModel {
     }
 
     var canAddParticipant: Bool {
-        !newParticipantName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        let name = newParticipantName.trimmingCharacters(in: .whitespacesAndNewlines)
+        return !name.isEmpty && !hasParticipant(named: name)
+    }
+
+    var participantNameInputWarning: String? {
+        let name = newParticipantName.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !name.isEmpty, hasParticipant(named: name) else {
+            return nil
+        }
+
+        return "同じ名前の参加者がいます。名字やメモを足して区別してください。"
     }
 
     var bulkAddButtonTitle: String {
@@ -23,6 +33,9 @@ extension OperationBoardViewModel {
     func addParticipant() {
         let name = newParticipantName.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !name.isEmpty else {
+            return
+        }
+        guard !hasParticipant(named: name) else {
             return
         }
 
@@ -78,6 +91,11 @@ extension OperationBoardViewModel {
 
     private func normalizedParticipantName(_ name: String) -> String {
         name.trimmingCharacters(in: .whitespacesAndNewlines).localizedLowercase
+    }
+
+    private func hasParticipant(named name: String) -> Bool {
+        let key = normalizedParticipantName(name)
+        return session.participants.contains { normalizedParticipantName($0.displayName) == key }
     }
 
     private func defaultSkillLevel(for index: Int) -> SkillLevel {

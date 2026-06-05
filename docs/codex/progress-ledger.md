@@ -3,17 +3,20 @@
 ## Current
 
 - Active PBI: #16 当日運営特化ダブルス組み合わせMVP
-- Active SBI: #82 初回利用時に参加者追加とラウンド生成の空状態ガイドを表示する
-- Active Branch: codex/sbi-82-empty-state-guide
-- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/83
+- Active SBI: #84 参加者追加時に重複名を検出して案内する
+- Active Branch: codex/sbi-84-duplicate-participant-guide
+- Active PR: pending
 - GitHub Project Item: pending; `gh` authentication is invalid
-- Status: PR opened; local full validation passed
-- Next Action: verify PR #83 CI and merge if green
+- Status: targeted implementation validation passed; full validation blocked by Codex usage limit
+- Next Action: rerun `scripts/codex/validate-ios.sh` after usage reset, then commit/push/create PR
 
 ## Completed
 
 | Time | Item | Result | Evidence |
 |---|---|---|---|
+| 2026-06-05 15:54 JST | Issue #84 targeted validation | Implemented duplicate participant-name guidance; targeted Xcode test/lint/format passed; full validation blocked by usage limit | local branch `codex/sbi-84-duplicate-participant-guide` |
+| 2026-06-05 15:52 JST | Next SBI selected | Created Issue #84 for duplicate participant-name detection | https://github.com/ka-bo-su/pickle_ball_matching/issues/84 |
+| 2026-06-05 15:51 JST | SBI #82 merged | PR #83 passed GitHub Actions, squash merged to `dev`, and Issue #82 was closed with `status:done` | https://github.com/ka-bo-su/pickle_ball_matching/pull/83 |
 | 2026-06-05 15:46 JST | PR opened | Created PR #83 for Issue #82 and updated Issue #82 to `status:in-review` | https://github.com/ka-bo-su/pickle_ball_matching/pull/83 |
 | 2026-06-05 15:42 JST | Issue #82 local validation | Added participant setup guide, 0-participant board summary, and tests; full validation passed | `scripts/codex/validate-ios.sh` |
 | 2026-06-05 15:37 JST | Next SBI selected | Created Issue #82 for first-run participant setup and empty-state guidance | https://github.com/ka-bo-su/pickle_ball_matching/issues/82 |
@@ -156,19 +159,22 @@
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #82 初回利用時に参加者追加とラウンド生成の空状態ガイドを表示する | codex/sbi-82-empty-state-guide | https://github.com/ka-bo-su/pickle_ball_matching/pull/83 | In Review | verify CI and merge if green |
+| Issue #84 参加者追加時に重複名を検出して案内する | codex/sbi-84-duplicate-participant-guide | pending | Full validation blocked | rerun full validation after usage reset |
 
 ## Blocked
 
 | Item | Reason | Next | Project Status |
 |---|---|---|---|
-| Project field sync for Issues #74, #76, #78, #80, and #82 | `gh auth status` reports invalid token; connector can update Issues/PRs but not GitHub Project fields | restore GitHub authentication, set merged items Done, add/update #82 Project item | pending update recorded |
+| Project field sync for Issues #74, #76, #78, #80, #82, and #84 | `gh auth status` reports invalid token; connector can update Issues/PRs but not GitHub Project fields | restore GitHub authentication, set merged items Done, add/update #84 Project item | pending update recorded |
+| Issue #84 validation/publication | Codex execution usage limit rejected escalated full validation | wait for execution usage reset, rerun `scripts/codex/validate-ios.sh`, commit/push/create PR | pending update recorded |
 
 ## Validation History
 
 | Time | Command | Result | Notes |
 |---|---|---|---|
 | 2026-06-05 15:42 JST | `scripts/codex/validate-ios.sh` | pass | Issue #82: `swift test` 34 core tests, SwiftLint non-fatal existing warning, SwiftFormat clean, XcodeGen, `xcodebuild build`, and `xcodebuild test` 34 core + 68 app tests |
+| 2026-06-05 15:54 JST | targeted `xcodebuild test` | pass | Issue #84: `OperationBoardViewModelTests` 25 tests passed |
+| 2026-06-05 15:54 JST | `scripts/codex/validate-ios.sh` | blocked | Escalation rejected by Codex usage limit; targeted lint/format/diff checks passed |
 | 2026-06-05 15:40 JST | targeted `xcodebuild test` | pass | Issue #82: 9 selected app tests passed |
 | 2026-06-01 02:34 JST | environment probes | partial pass | Xcode/Swift/Project access available |
 | 2026-06-01 02:55 JST | `scripts/codex/preflight.sh` | pass | Tuist missing only; optional |
