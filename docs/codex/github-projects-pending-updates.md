@@ -6,6 +6,32 @@ Active pending update exists as of 2026-06-02 22:19 JST.
 
 ## Pending Project Update
 
+- Timestamp: 2026-06-05 14:53 JST
+- Target project: kanban@pickle_ball_matching
+- Target item: Issue #74 / `PVTI_lAHOBHYYMs4BZUKkzgufzTw`
+- Intended action: Set Project Status `Done`, Scrum Status `Done`, Validation Status `Passed`, and Evidence Link `https://github.com/ka-bo-su/pickle_ball_matching/pull/75`.
+- Previous state: Issue #74 was previously Open with label `status:blocked`; Project fields were not updated because `gh` authentication was invalid.
+- New state: Issue #74 Closed, label `status:done`, Project Status `Done`, Scrum Status `Done`, Validation Status `Passed`, Evidence Link PR #75.
+- Reason not applied: GitHub connector closed Issue #74, but Project field editing still requires `gh project item-edit` or GraphQL access; `gh auth status` reports an invalid token.
+- Command to apply later: `gh project item-edit --id PVTI_lAHOBHYYMs4BZUKkzgufzTw ... Status Done`; `gh project item-edit ... Scrum Status Done`; `gh project item-edit ... Validation Status Passed`; `gh project item-edit ... Evidence Link https://github.com/ka-bo-su/pickle_ball_matching/pull/75`.
+- Related PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/75
+- Related Issue: https://github.com/ka-bo-su/pickle_ball_matching/issues/74
+
+## Pending Project Update
+
+- Timestamp: 2026-06-05 14:54 JST
+- Target project: kanban@pickle_ball_matching
+- Target item: Issue #76 `参加者の削除と出欠切替を分かりやすくする`
+- Intended action: Add Issue #76 to Project, set Backlog Level `SBI`, Status `In progress`, Scrum Status `In Progress`, Sprint `Sprint 2026-06 MVP`, Priority `P1`, Role Owner `swift-developer`, Area `UI`, Risk `low`, Validation Status `Passed`, and Evidence Link after PR creation.
+- Previous state: Issue #76 exists with `status:in-progress`; no Project item confirmed.
+- New state: Issue #76 Project item exists and mirrors the active Sprint Backlog.
+- Reason not applied: Project item add/edit requires `gh` Project/GraphQL authentication; `gh auth status` reports an invalid token.
+- Command to apply later: `gh project item-add 3 --owner ka-bo-su --url https://github.com/ka-bo-su/pickle_ball_matching/issues/76`; then set required fields with `gh project item-edit`.
+- Related PR: pending
+- Related Issue: https://github.com/ka-bo-su/pickle_ball_matching/issues/76
+
+## Resolved Pending Project Update
+
 - Timestamp: 2026-06-02 22:19 JST
 - Target project: kanban@pickle_ball_matching
 - Target item: Issue #74 / `PVTI_lAHOBHYYMs4BZUKkzgufzTw`
@@ -16,6 +42,7 @@ Active pending update exists as of 2026-06-02 22:19 JST.
 - Command to apply later: `gh pr checks 75 --watch`; `gh issue edit 74 --remove-label status:blocked --add-label status:in-review`; `gh project item-edit ... Status In review`; `gh project item-edit ... Scrum Status In Review`; `gh project item-edit ... Validation Status Passed`; `gh project item-edit ... Evidence Link https://github.com/ka-bo-su/pickle_ball_matching/pull/75`.
 - Related PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/75
 - Related Issue: https://github.com/ka-bo-su/pickle_ball_matching/issues/74
+- Resolution: Public REST confirmed PR #75 CI success, GitHub connector squash merged PR #75, and GitHub connector closed Issue #74 with `status:done`. Project field Done sync remains as the 2026-06-05 pending update above.
 
 ## Pending Project Update
 

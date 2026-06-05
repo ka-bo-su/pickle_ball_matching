@@ -1,5 +1,15 @@
 # Next Work Search
 
+## 2026-06-05 14:54 JST
+
+- Searched candidates: GitHub Project/Issue state via public REST, open PBIs #16-#20, completed PR #75, participant-management friction reported during hands-on testing, Sprint Backlog after #74.
+- Referenced GitHub Project / Issues / docs: Issues #16-#20, #74, #76, PR #75, `docs/scrum/sprint-backlog.md`, product vision "開始3分以内に最初の組み合わせ" requirement.
+- Findings: PR #75 was merged and Issue #74 closed. Open items are currently PBI-level; no ready SBI remained. The most valuable next small slice is making participant cleanup and attendance toggling discoverable.
+- Next selected work: Issue #76 `参加者の削除と出欠切替を分かりやすくする`.
+- Reason: It directly improves the first-run organizer workflow after participant addition was confusing, and remains a small Presentation/ViewModel slice without server, CloudKit, StoreKit, secret, or production risk.
+- Human repair needed: `gh auth login` or `gh auth refresh -s project` is needed only for Project field sync.
+- Pending updates: add Issue #76 to Project and set #74 Project fields Done when `gh` authentication is restored.
+
 ## 2026-06-02 22:08 JST
 
 - Searched candidates: GitHub Project In Progress/Ready items, merged PR #73, open PBIs #16-#20, local-first save/restore gaps, session history clutter risk.
