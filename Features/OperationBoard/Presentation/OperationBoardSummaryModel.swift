@@ -64,6 +64,19 @@ extension OperationBoardViewModel {
                 )
             }
 
+            if registeredCount == 0 {
+                return OperationBoardSummaryModel(
+                    statusTitle: "今日の参加者を登録します",
+                    statusDetail: "最初のラウンド生成には参加可能な人が4人必要です",
+                    participantSummary: participantSummary,
+                    courtSummary: courtSummary,
+                    waitingSummary: "まだ待機者はありません",
+                    proPlanNotice: proPlanNotice,
+                    nextActionTitle: "次の操作",
+                    nextActionDetail: "参加者欄で名前を追加します。4人以上になると次ラウンド生成を押せます。"
+                )
+            }
+
             let missingCount = max(0, 4 - availableCount)
             return OperationBoardSummaryModel(
                 statusTitle: "参加者を準備中",

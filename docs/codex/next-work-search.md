@@ -1,5 +1,15 @@
 # Next Work Search
 
+## 2026-06-05 15:37 JST
+
+- Searched candidates: PR #81 merge state, open PBI state, Sprint Backlog after Issue #80, first-run setup friction, participant list empty-state behavior.
+- Referenced GitHub Project / Issues / docs: Issues #16-#20, #80, #82, PR #81, `docs/scrum/sprint-backlog.md`, product vision "開始3分以内に最初の組み合わせ" and "初回利用者が説明なしでセッション開始まで進める" requirements.
+- Findings: PR #81 was merged and Issue #80 closed. The board can summarize participant status, but an empty first-run participant list still needs a clear local guide that tells organizers to add names and reach four available players.
+- Next selected work: Issue #82 `初回利用時に参加者追加とラウンド生成の空状態ガイドを表示する`.
+- Reason: It is a small Presentation-only slice that improves the north-star setup flow without touching persistence, round generation, StoreKit, CloudKit, server, secret, or production paths.
+- Human repair needed: `gh auth login` or `gh auth refresh -s project` is needed only for Project field sync.
+- Pending updates: set Issue #80 Project fields Done; add Issue #82 to Project and set In Progress/In Review when `gh` authentication is restored.
+
 ## 2026-06-05 15:24 JST
 
 - Searched candidates: PR #79 merge state, open PBI state, Sprint Backlog after Issue #78, participant list UI after explicit delete/attendance controls.
