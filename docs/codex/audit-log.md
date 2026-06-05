@@ -1,5 +1,52 @@
 # Codex Audit Log
 
+## 2026-06-05 15:46 JST
+
+### Action
+
+Committed Issue #82 implementation, pushed branch `codex/sbi-82-empty-state-guide`, created PR #83, and moved Issue #82 to `status:in-review`.
+
+### Reason
+
+The implementation passed targeted and full local iOS validation. PR #83 now provides the reviewable increment and evidence link for the first-run participant setup guide.
+
+### Files Changed
+
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/github-projects-pending-updates.md`
+- `docs/scrum/sprint-backlog.md`
+- `docs/codex/audit-log.md`
+
+### Commands Run
+
+- `git add ...`
+- `git diff --cached --check`
+- `git commit -m "feat(board): guide first participant setup" ...`
+- `git push -u origin codex/sbi-82-empty-state-guide`
+- GitHub connector `_create_pull_request` for PR #83
+- GitHub connector `_update_issue` for Issue #82
+
+### GitHub Project Updates
+
+Project item add/In Review field sync for Issue #82 remains pending because `gh auth status` reports an invalid token.
+
+### Architecture Decision
+
+No additional architecture decision after PR creation.
+
+### Validation
+
+PR #83 was created from commit `a4f09bc`, which had already passed local full validation.
+
+### Risk
+
+Low. The PR is a Presentation-only guidance change with tests.
+
+### Follow-up
+
+Check PR #83 CI and merge if green. If GitHub Actions remains pending after an extended period, use release-reviewer judgment with local validation evidence and record the decision.
+
 ## 2026-06-05 15:42 JST
 
 ### Action

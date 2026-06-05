@@ -5,15 +5,16 @@
 - Active PBI: #16 当日運営特化ダブルス組み合わせMVP
 - Active SBI: #82 初回利用時に参加者追加とラウンド生成の空状態ガイドを表示する
 - Active Branch: codex/sbi-82-empty-state-guide
-- Active PR: pending
+- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/83
 - GitHub Project Item: pending; `gh` authentication is invalid
-- Status: local implementation and full validation passed
-- Next Action: commit, push, create PR, and update Issue #82 to In Review
+- Status: PR opened; local full validation passed
+- Next Action: verify PR #83 CI and merge if green
 
 ## Completed
 
 | Time | Item | Result | Evidence |
 |---|---|---|---|
+| 2026-06-05 15:46 JST | PR opened | Created PR #83 for Issue #82 and updated Issue #82 to `status:in-review` | https://github.com/ka-bo-su/pickle_ball_matching/pull/83 |
 | 2026-06-05 15:42 JST | Issue #82 local validation | Added participant setup guide, 0-participant board summary, and tests; full validation passed | `scripts/codex/validate-ios.sh` |
 | 2026-06-05 15:37 JST | Next SBI selected | Created Issue #82 for first-run participant setup and empty-state guidance | https://github.com/ka-bo-su/pickle_ball_matching/issues/82 |
 | 2026-06-05 15:34 JST | SBI #80 merged | PR #81 squash merged to `dev` based on local full validation after GitHub Actions stayed pending; Issue #80 was closed with `status:done` | https://github.com/ka-bo-su/pickle_ball_matching/pull/81 |
@@ -155,7 +156,7 @@
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #82 初回利用時に参加者追加とラウンド生成の空状態ガイドを表示する | codex/sbi-82-empty-state-guide | pending | Full local validation passed | create PR and update evidence |
+| Issue #82 初回利用時に参加者追加とラウンド生成の空状態ガイドを表示する | codex/sbi-82-empty-state-guide | https://github.com/ka-bo-su/pickle_ball_matching/pull/83 | In Review | verify CI and merge if green |
 
 ## Blocked
 
