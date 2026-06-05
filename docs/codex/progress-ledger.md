@@ -3,8 +3,8 @@
 ## Current
 
 - Active PBI: #16 当日運営特化ダブルス組み合わせMVP
-- Active SBI: #76 参加者の削除と出欠切替を分かりやすくする
-- Active Branch: codex/sbi-76-participant-actions
+- Active SBI: #78 ラウンド生成前の準備ガイドと無料版目安を表示する
+- Active Branch: codex/sbi-78-pre-round-readiness
 - Active PR: none
 - GitHub Project Item: pending; `gh` authentication is invalid
 - Status: Local implementation complete and full validation passed; PR/Project sync pending
@@ -14,6 +14,9 @@
 
 | Time | Item | Result | Evidence |
 |---|---|---|---|
+| 2026-06-05 15:10 JST | Issue #78 local validation | Added pre-round playable-court/waiter guidance and free-plan notice; full validation passed | `scripts/codex/validate-ios.sh` |
+| 2026-06-05 15:04 JST | SBI #76 merged | PR #77 passed GitHub Actions, squash merged to `dev`, and Issue #76 was closed with `status:done` | https://github.com/ka-bo-su/pickle_ball_matching/pull/77 |
+| 2026-06-05 15:05 JST | Next SBI selected | Created Issue #78 for pre-round readiness guidance and free-plan notice | https://github.com/ka-bo-su/pickle_ball_matching/issues/78 |
 | 2026-06-05 14:57 JST | Issue #76 local validation | Added explicit participant delete/attendance actions and passed full validation | `scripts/codex/validate-ios.sh` |
 | 2026-06-05 14:53 JST | SBI #74 merged | PR #75 passed GitHub Actions, squash merged to `dev`, and Issue #74 was closed with `status:done` | https://github.com/ka-bo-su/pickle_ball_matching/pull/75 |
 | 2026-06-05 14:54 JST | Next SBI selected | Created Issue #76 for explicit participant delete and attendance toggle actions | https://github.com/ka-bo-su/pickle_ball_matching/issues/76 |

@@ -1,5 +1,66 @@
 # Codex Audit Log
 
+## 2026-06-05 15:10 JST
+
+### Action
+
+Merged PR #77, closed Issue #76, created Issue #78, and implemented pre-round readiness guidance plus a free-plan notice.
+
+### Reason
+
+PR #77 passed local validation and GitHub Actions, so release-reviewer merged it to `dev` and closed Issue #76. The next Scrum-safe increment under PBI #16 is helping organizers understand whether the first round can be generated before they press the button: playable courts, expected waiters, and free-plan guideposts reduce setup confusion without introducing StoreKit or server dependencies.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/OperationBoardSummaryModel.swift`
+- `Features/OperationBoard/Presentation/OperationBoardView.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardSummaryModelTests.swift`
+- `docs/codex/audit-log.md`
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `curl` GitHub REST reads for PR #77 check runs and Jobs
+- GitHub connector `_merge_pull_request` for PR #77
+- GitHub connector `_update_issue` to close Issue #76 with `status:done`
+- GitHub connector `_create_issue` for Issue #78
+- `git fetch origin`
+- `git switch dev`
+- `git merge --ff-only origin/dev`
+- `git switch -c codex/sbi-78-pre-round-readiness`
+- `swiftformat --swiftversion 6.0 --cache ignore --lint ...`
+- `swiftlint lint --no-cache ...`
+- `xcodebuild test -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16' -only-testing:PickleBallMatchingTests/OperationBoardSummaryModelTests`
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+Issue #76 Project Done sync and Issue #78 Project item creation are pending because `gh auth status` reports an invalid token and the connector does not expose Project field edits.
+
+### Architecture Decision
+
+No new ADR. The free-plan guidance is a Presentation-only notice; StoreKit, entitlement state, and Pro unlock behavior remain out of scope for this SBI.
+
+### Validation
+
+Passed:
+
+- Targeted SwiftFormat lint on changed Swift files.
+- Targeted SwiftLint on changed Swift files.
+- Targeted Xcode test: `OperationBoardSummaryModelTests` 5 tests.
+- Full `scripts/codex/validate-ios.sh`: `swift test` 34 core tests, SwiftLint 0 violations, SwiftFormat lint clean, XcodeGen generation, `xcodebuild build`, and `xcodebuild test` 34 core tests + 62 app tests.
+- GitHub Actions `validate` passed for PR #77 before merge.
+
+### Risk
+
+Low. The change is Presentation-only, does not alter the round-generation algorithm, and keeps Pro handling informational rather than enforcing paid state.
+
+### Follow-up
+
+Push Issue #78 branch, create PR, then verify GitHub Actions and merge if green. Restore `gh` authentication to sync Project fields.
+
 ## 2026-06-05 14:57 JST
 
 ### Action

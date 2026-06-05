@@ -2,21 +2,21 @@
 
 ## Result
 
-- Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31/#33/#35/#37/#39/#41/#43/#45/#47/#49/#51/#53/#55/#57/#59/#61/#63/#65/#67/#69/#71/#73/#75 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30/#32/#34/#36/#38/#40/#42/#44/#46/#48/#50/#52/#54/#56/#58/#60/#62/#64/#66/#68/#70/#72/#74 close, Project Done sync where `gh` was available, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, current-round CSV/PDF/image sharing, participant-facing large board display, editable session settings, participant profile editing, roster reuse, any-player swap, multi-step undo, session history/reopen/delete, board readability, timer/start-end flow, repeated-pair/opponent avoidance, rule settings, score/winner recording, operation-mode presets, round history, bulk participant entry, large-board timer/status display, participant add UX improvement, GitHub Actions Node 20 deprecation fix, and a guarded GitHub REST push fallback script/runbook
-- Partially completed: Issue #76 participant delete and attendance toggle actions are implemented locally and fully validated; PR publication is pending.
-- Blocked: GitHub Project field sync for Issues #74 and #76 is blocked because `gh` reports an invalid token. Code, Issue, PR, and merge operations can continue through git/public REST/GitHub connector.
+- Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31/#33/#35/#37/#39/#41/#43/#45/#47/#49/#51/#53/#55/#57/#59/#61/#63/#65/#67/#69/#71/#73/#75/#77 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30/#32/#34/#36/#38/#40/#42/#44/#46/#48/#50/#52/#54/#56/#58/#60/#62/#64/#66/#68/#70/#72/#74/#76 close, Project Done sync where `gh` was available, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, current-round CSV/PDF/image sharing, participant-facing large board display, editable session settings, participant profile editing, roster reuse, any-player swap, multi-step undo, session history/reopen/delete, board readability, timer/start-end flow, repeated-pair/opponent avoidance, rule settings, score/winner recording, operation-mode presets, round history, bulk participant entry, large-board timer/status display, participant add UX improvement, participant delete/attendance actions, GitHub Actions Node 20 deprecation fix, and a guarded GitHub REST push fallback script/runbook
+- Partially completed: Issue #78 pre-round readiness guidance and free-plan notice are implemented locally and fully validated; PR publication is pending.
+- Blocked: GitHub Project field sync for Issues #74, #76, and #78 is blocked because `gh` reports an invalid token. Code, Issue, PR, and merge operations can continue through git/public REST/GitHub connector.
 
 ## Time
 
 - Started: 2026-06-01 02:34 JST
-- Last checkpoint: 2026-06-05 14:57 JST
+- Last checkpoint: 2026-06-05 15:10 JST
 - Approximate duration: session-dependent
 
 ## PRs
 
-- Opened: PRs #8, #14, #15, #22, #24, #26, #28, #31, #33, #35, #37, #39, #41, #43, #45, #47, #49, #51, #53, #55, #57, #59, #61, #63, #65, #67, #69, #71, #73, #75
-- Merged: PRs #8, #14, #15, #22, #24, #26, #28, #31, #33, #35, #37, #39, #41, #43, #45, #47, #49, #51, #53, #55, #57, #59, #61, #63, #65, #67, #69, #71, #73, #75
-- Closed: Issues #1-#7, #9-#13, #21, #23, #25, #27, #30, #32, #34, #36, #38, #40, #42, #44, #46, #48, #50, #52, #54, #56, #58, #60, #62, #64, #66, #68, #70, #72, #74
+- Opened: PRs #8, #14, #15, #22, #24, #26, #28, #31, #33, #35, #37, #39, #41, #43, #45, #47, #49, #51, #53, #55, #57, #59, #61, #63, #65, #67, #69, #71, #73, #75, #77
+- Merged: PRs #8, #14, #15, #22, #24, #26, #28, #31, #33, #35, #37, #39, #41, #43, #45, #47, #49, #51, #53, #55, #57, #59, #61, #63, #65, #67, #69, #71, #73, #75, #77
+- Closed: Issues #1-#7, #9-#13, #21, #23, #25, #27, #30, #32, #34, #36, #38, #40, #42, #44, #46, #48, #50, #52, #54, #56, #58, #60, #62, #64, #66, #68, #70, #72, #74, #76
 
 ## Commits
 
