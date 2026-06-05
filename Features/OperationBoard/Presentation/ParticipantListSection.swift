@@ -5,6 +5,7 @@ struct ParticipantListSection: View {
     @ObservedObject var viewModel: OperationBoardViewModel
     @State private var selectedParticipant: Participant?
     @State private var isShowingBulkAdd = false
+    @State private var deletionCandidate: Participant?
 
     var body: some View {
         Section("参加者") {
@@ -26,6 +27,21 @@ struct ParticipantListSection: View {
                     memo: memo
                 )
             }
+        }
+        .confirmationDialog(
+            "参加者を削除しますか？",
+            isPresented: deletionConfirmationBinding,
+            presenting: deletionCandidate
+        ) { participant in
+            Button("削除", role: .destructive) {
+                viewModel.removeParticipant(participantID: participant.id)
+                deletionCandidate = nil
+            }
+            Button("キャンセル", role: .cancel) {
+                deletionCandidate = nil
+            }
+        } message: { participant in
+            Text("\(participant.displayName)を今日の参加者一覧から削除します。過去ラウンド履歴は残ります。")
         }
     }
 
@@ -77,8 +93,10 @@ struct ParticipantListSection: View {
             participantSummary(participant)
             Spacer()
             editButton(for: participant)
+            attendanceToggleButton(for: participant)
             skillLevelMenu(for: participant)
             statusMenu(for: participant)
+            deleteButton(for: participant)
             Text("待機 \(participant.waitingCount)")
                 .font(.caption.monospacedDigit())
                 .foregroundStyle(.secondary)
@@ -113,6 +131,17 @@ struct ParticipantListSection: View {
         }
         .buttonStyle(.borderless)
         .accessibilityLabel("\(participant.displayName)の詳細を編集")
+    }
+
+    private func attendanceToggleButton(for participant: Participant) -> some View {
+        Button {
+            viewModel.toggleParticipantAttendance(participantID: participant.id)
+        } label: {
+            Image(systemName: attendanceToggleSystemImage(for: participant))
+                .imageScale(.large)
+        }
+        .buttonStyle(.borderless)
+        .accessibilityLabel(attendanceToggleAccessibilityLabel(for: participant))
     }
 
     private func skillLevelMenu(for participant: Participant) -> some View {
@@ -156,6 +185,44 @@ struct ParticipantListSection: View {
             .font(.caption)
         }
         .accessibilityLabel("\(participant.displayName)の状態 \(participant.status.displayName)。変更")
+    }
+
+    private func deleteButton(for participant: Participant) -> some View {
+        Button(role: .destructive) {
+            deletionCandidate = participant
+        } label: {
+            Image(systemName: "trash.circle")
+                .imageScale(.large)
+        }
+        .buttonStyle(.borderless)
+        .accessibilityLabel("\(participant.displayName)を削除")
+    }
+
+    private var deletionConfirmationBinding: Binding<Bool> {
+        Binding(
+            get: { deletionCandidate != nil },
+            set: { isPresented in
+                if !isPresented {
+                    deletionCandidate = nil
+                }
+            }
+        )
+    }
+
+    private func attendanceToggleSystemImage(for participant: Participant) -> String {
+        if participant.status.isAvailableForRound {
+            return "person.crop.circle.badge.xmark"
+        }
+
+        return "person.crop.circle.badge.checkmark"
+    }
+
+    private func attendanceToggleAccessibilityLabel(for participant: Participant) -> String {
+        if participant.status.isAvailableForRound {
+            return "\(participant.displayName)を欠席にする"
+        }
+
+        return "\(participant.displayName)を参加中に戻す"
     }
 
     private func participantAccessibilityLabel(_ participant: Participant) -> String {

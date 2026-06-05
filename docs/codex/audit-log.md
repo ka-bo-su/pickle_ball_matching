@@ -1,5 +1,71 @@
 # Codex Audit Log
 
+## 2026-06-05 14:57 JST
+
+### Action
+
+Merged PR #75, closed Issue #74, created Issue #76, and implemented explicit participant delete / attendance actions.
+
+### Reason
+
+PR #75 had passed local validation and GitHub Actions. The next Scrum-safe increment was improving the participant management flow after the user-facing participant-add friction: organizers need visible ways to mark someone absent or remove an incorrect participant without relying on hidden swipe gestures or nested status menus.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/OperationBoardParticipantActions.swift`
+- `Features/OperationBoard/Presentation/ParticipantListSection.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+- `docs/codex/audit-log.md`
+- `docs/codex/blockers.md`
+- `docs/codex/github-projects-pending-updates.md`
+- `docs/codex/next-work-search.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/progress-ledger.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `curl` GitHub REST reads for PR #75, check runs, and Issue #74
+- GitHub connector `_merge_pull_request` for PR #75
+- GitHub connector `_update_issue` to close Issue #74 with `status:done`
+- GitHub connector `_create_issue` for Issue #76
+- `git fetch origin`
+- `git switch dev`
+- `git merge --ff-only origin/dev`
+- `git switch -c codex/sbi-76-participant-actions`
+- `swiftformat --swiftversion 6.0 --cache ignore --lint ...`
+- `swiftlint lint --no-cache ...`
+- `swift test`
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+Issue #74 Project Done sync and Issue #76 Project item creation are pending because `gh auth status` reports an invalid token and the connector does not expose Project field edits.
+
+### Architecture Decision
+
+No new architecture decision. Participant actions remain in Presentation/ViewModel state and reuse the existing session persistence boundary.
+
+### Validation
+
+Passed:
+
+- `swift test`: 34 core tests.
+- SwiftLint: 0 violations.
+- SwiftFormat lint: 0 files requiring formatting.
+- XcodeGen generation.
+- `xcodebuild build`.
+- `xcodebuild test`: 34 core tests and 60 app tests.
+- GitHub Actions `validate` passed for PR #75 before merge.
+
+### Risk
+
+Low. The Issue #76 change is UI/ViewModel-only and covered by autosave tests for delete and attendance toggle.
+
+### Follow-up
+
+Push Issue #76 branch, create PR, then verify GitHub Actions and merge if green. Restore `gh` authentication to sync Project fields.
+
 ## 2026-06-04 21:03 JST
 
 ### Action

@@ -2,18 +2,21 @@
 
 ## Current
 
-- Active PBI: #17 ローカルファースト保存・復元
-- Active SBI: #74 保存済みセッションを削除できるようにする
-- Active Branch: codex/sbi-31-delete-saved-sessions
-- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/75
-- GitHub Project Item: `PVTI_lAHOBHYYMs4BZUKkzgufzTw`
-- Status: PR #75 opened; full local validation passed; GitHub Actions/Project status checks are pending because `gh` GraphQL calls return HTTP 401
-- Next Action: restore GitHub authentication, check PR #75 CI, move Project to In Review with validation evidence, then squash merge if CI is green
+- Active PBI: #16 当日運営特化ダブルス組み合わせMVP
+- Active SBI: #76 参加者の削除と出欠切替を分かりやすくする
+- Active Branch: codex/sbi-76-participant-actions
+- Active PR: none
+- GitHub Project Item: pending; `gh` authentication is invalid
+- Status: Local implementation complete and full validation passed; PR/Project sync pending
+- Next Action: commit, push, create PR, then verify CI and merge if green
 
 ## Completed
 
 | Time | Item | Result | Evidence |
 |---|---|---|---|
+| 2026-06-05 14:57 JST | Issue #76 local validation | Added explicit participant delete/attendance actions and passed full validation | `scripts/codex/validate-ios.sh` |
+| 2026-06-05 14:53 JST | SBI #74 merged | PR #75 passed GitHub Actions, squash merged to `dev`, and Issue #74 was closed with `status:done` | https://github.com/ka-bo-su/pickle_ball_matching/pull/75 |
+| 2026-06-05 14:54 JST | Next SBI selected | Created Issue #76 for explicit participant delete and attendance toggle actions | https://github.com/ka-bo-su/pickle_ball_matching/issues/76 |
 | 2026-06-04 21:05 JST | PR opened | Created PR #75 for saved-session deletion and participant-add UX fix | https://github.com/ka-bo-su/pickle_ball_matching/pull/75 |
 | 2026-06-04 21:03 JST | Participant add UX fix | Added Return-key submit, clearer full-width add button, non-blank enabled state, and ViewModel test | local branch `codex/sbi-31-delete-saved-sessions` |
 | 2026-06-01 02:34 JST | Project resolution | Resolved `kanban@pickle_ball_matching` as `ka-bo-su` project 3 | `gh project list --owner ka-bo-su --format json` |
@@ -141,14 +144,13 @@
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #74 保存済みセッションを削除できるようにする | codex/sbi-31-delete-saved-sessions | PR #75 | Full local validation passed; CI/Project sync pending because `gh` GraphQL returns HTTP 401 | check CI and merge after GitHub auth restores |
-| Participant add UX fix | codex/sbi-31-delete-saved-sessions | PR #75 | Full local validation passed; published in PR #75 | verify on device/simulator |
+| Issue #76 参加者の削除と出欠切替を分かりやすくする | codex/sbi-76-participant-actions | none | Full local validation passed | create PR and update evidence |
 
 ## Blocked
 
 | Item | Reason | Next | Project Status |
 |---|---|---|---|
-| Issue #74 CI / Project sync | `gh` currently returns HTTP 401 and cannot read PR checks or update Issues/Project | restore GitHub authentication, check PR #75 CI, update Project In Review, merge if green | #74 In Progress; pending update needed |
+| Project field sync for Issues #74 and #76 | `gh auth status` reports invalid token; connector can update Issues/PRs but not GitHub Project fields | restore GitHub authentication, set #74 Project Done, add/update #76 Project item | pending update recorded |
 
 ## Validation History
 
@@ -242,3 +244,4 @@
 | 2026-06-02 22:07 JST | GitHub Actions `validate` | pass | PR #73 passed before squash merge |
 | 2026-06-02 22:19 JST | `scripts/codex/validate-ios.sh` | partial fail | Issue #74: `swift test` failed because sandbox cannot write `~/.cache/clang/ModuleCache`; SwiftLint/SwiftFormat/XcodeGen/xcodebuild-list passed; simulator discovery failed because CoreSimulatorService is unavailable in sandbox; escalated rerun rejected by execution usage limit |
 | 2026-06-04 21:03 JST | `scripts/codex/validate-ios.sh` | pass | Issue #74 plus participant-add UX fix: SwiftPM tests, SwiftLint, SwiftFormat, XcodeGen, `xcodebuild build`, and `xcodebuild test` passed |
+| 2026-06-05 14:57 JST | `scripts/codex/validate-ios.sh` | pass | Issue #76: SwiftPM tests, SwiftLint, SwiftFormat, XcodeGen, `xcodebuild build`, and `xcodebuild test` passed; 34 core tests and 60 app tests passed |

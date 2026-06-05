@@ -2,7 +2,22 @@
 
 ## Blocker
 
+- Time: 2026-06-05 14:53 JST
+- Item: GitHub Project field sync for Issues #74 and #76
+- Type: GitHub CLI authentication
+- Reason: `gh auth status` reports the default token is invalid. The GitHub connector can create/update Issues and merge PRs, but does not expose GitHub Project item field editing.
+- Impact: PR #75 was merged and Issue #74 was closed, and Issue #76 was created, but Project `kanban@pickle_ball_matching` fields still need Done/In Progress/Evidence sync.
+- Attempted fixes: Used public REST to read PR/check status, GitHub connector to merge PR #75, and GitHub connector to close Issue #74. `gh` GraphQL operations still fail with HTTP 401.
+- Why autonomous progress cannot continue for this item: Project field writes require authenticated `gh project item-edit` or equivalent GraphQL access not currently available.
+- Safe next task selected: Issue #76 implementation can proceed because Issue creation and branch workflow are available through connector/git.
+- GitHub Project update: pending updates recorded in `docs/codex/github-projects-pending-updates.md`.
+- Pending update: set Issue #74 Project Status/Scrum Status Done, Validation Status Passed, Evidence Link PR #75; add Issue #76 to Project and set In Progress.
+- Human repair: run `gh auth login` or `gh auth refresh -s project`.
+
+## Resolved Blocker
+
 - Time: 2026-06-04 21:03 JST
+- Resolved: 2026-06-05 14:53 JST
 - Item: Issue #74 `保存済みセッションを削除できるようにする` and participant-add UX fix
 - Type: GitHub authentication
 - Reason: Full local validation now passes and PR #75 exists, but `gh` returns `HTTP 401: Requires authentication` for GraphQL calls, so CI check inspection and GitHub Project field sync cannot be completed from this session.
@@ -13,6 +28,7 @@
 - GitHub Project update: pending update recorded in `docs/codex/github-projects-pending-updates.md`.
 - Pending update: check PR #75 CI, set Issue #74 In Review, set Validation Status Passed, add PR evidence, and squash merge if CI is green after GitHub authentication is restored.
 - Human repair: run `gh auth login` or `gh auth refresh -s project` in this environment.
+- Resolution: Public REST confirmed PR #75 was clean and GitHub Actions `validate` succeeded. GitHub connector squash merged PR #75, and connector update closed Issue #74 with `status:done`. Project field sync remains blocked separately.
 
 ## Resolved Blocker
 

@@ -145,6 +145,47 @@ final class OperationBoardViewModelTests: XCTestCase {
         XCTAssertEqual(repository.savedSessions.last?.participants.first?.status, .wantsBreak)
     }
 
+    func testToggleParticipantAttendanceSwitchesBetweenAbsentAndActiveAndAutosaves() throws {
+        let repository = SpySessionRepository()
+        let participantID = try XCTUnwrap(UUID(uuidString: "00000000-0000-0000-0000-000000000001"))
+        let session = Session(
+            name: "テスト",
+            participants: [
+                Participant(id: participantID, displayName: "山田", status: .active)
+            ]
+        )
+        let viewModel = OperationBoardViewModel(session: session, sessionRepository: repository)
+
+        viewModel.toggleParticipantAttendance(participantID: participantID)
+
+        XCTAssertEqual(viewModel.session.participants.first?.status, .absent)
+        XCTAssertEqual(repository.savedSessions.last?.participants.first?.status, .absent)
+
+        viewModel.toggleParticipantAttendance(participantID: participantID)
+
+        XCTAssertEqual(viewModel.session.participants.first?.status, .active)
+        XCTAssertEqual(repository.savedSessions.last?.participants.first?.status, .active)
+    }
+
+    func testRemoveParticipantRemovesFromRosterAndAutosaves() throws {
+        let repository = SpySessionRepository()
+        let participantID = try XCTUnwrap(UUID(uuidString: "00000000-0000-0000-0000-000000000001"))
+        let session = Session(
+            name: "テスト",
+            participants: [
+                Participant(id: participantID, displayName: "山田"),
+                Participant(displayName: "佐藤")
+            ]
+        )
+        let viewModel = OperationBoardViewModel(session: session, sessionRepository: repository)
+
+        viewModel.removeParticipant(participantID: participantID)
+
+        XCTAssertEqual(viewModel.session.participants.map(\.displayName), ["佐藤"])
+        XCTAssertEqual(repository.savedSessions.last?.participants.map(\.displayName), ["佐藤"])
+        XCTAssertNil(viewModel.errorMessage)
+    }
+
     func testGenerateNextRoundExcludesUnavailableStatuses() {
         var participants = makeParticipants(count: 6)
         participants[0].status = .wantsBreak
