@@ -1,5 +1,68 @@
 # Codex Audit Log
 
+## 2026-06-05 15:26 JST
+
+### Action
+
+Squash merged PR #79, closed Issue #78, created Issue #80, implemented participant status summary in the participant list, and opened PR #81.
+
+### Reason
+
+PR #79 was mergeable and had passed the identical local full validation, but GitHub Actions stayed in the same `Validate iOS project` step for an extended period. Because the diff was low-risk Presentation/docs work and the autonomous loop should not stop on one pending external check, release-reviewer merged PR #79 with the CI-pending decision recorded. The next Scrum-safe increment is showing participant status totals where organizers perform participant edits, so the result of attendance/status changes is immediately visible.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/ParticipantStatusSummaryModel.swift`
+- `Features/OperationBoard/Presentation/ParticipantListSection.swift`
+- `Tests/PickleBallMatchingTests/ParticipantStatusSummaryModelTests.swift`
+- `docs/codex/audit-log.md`
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `curl` GitHub REST reads for PR #79 check runs and jobs
+- GitHub connector `_merge_pull_request` for PR #79
+- GitHub connector `_update_issue` to close Issue #78 with `status:done`
+- GitHub connector `_create_issue` for Issue #80
+- `git fetch origin`
+- `git switch dev`
+- `git merge --ff-only origin/dev`
+- `git switch -c codex/sbi-80-participant-status-summary`
+- `swiftformat --swiftversion 6.0 --cache ignore --lint ...`
+- `swiftlint lint --no-cache ...`
+- `xcodegen generate`
+- `xcodebuild test -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16' -only-testing:PickleBallMatchingTests/ParticipantStatusSummaryModelTests`
+- `scripts/codex/validate-ios.sh`
+- `git push -u origin codex/sbi-80-participant-status-summary`
+- GitHub connector `_create_pull_request` for PR #81
+
+### GitHub Project Updates
+
+Issue #78 Project Done sync and Issue #80 Project item/In Review sync are pending because `gh auth status` reports an invalid token and the connector does not expose Project field edits.
+
+### Architecture Decision
+
+No new ADR. The status summary is Presentation-only and derives from existing `ParticipantStatus` values without adding Domain/Application/Infrastructure dependencies.
+
+### Validation
+
+Passed:
+
+- Targeted SwiftFormat lint on changed Swift files.
+- Targeted SwiftLint on changed Swift files.
+- Targeted Xcode test: `ParticipantStatusSummaryModelTests` 2 tests.
+- Full `scripts/codex/validate-ios.sh`: `swift test` 34 core tests, SwiftLint 0 violations across 61 files, SwiftFormat lint clean, XcodeGen generation, `xcodebuild build`, and `xcodebuild test` 34 core tests + 64 app tests.
+
+### Risk
+
+Low. The change adds a read-only participant list summary and does not modify participant mutation, persistence, or round-generation behavior.
+
+### Follow-up
+
+Verify PR #81 GitHub Actions and merge if green. Restore `gh` authentication to sync Project fields.
+
 ## 2026-06-05 15:10 JST
 
 ### Action
