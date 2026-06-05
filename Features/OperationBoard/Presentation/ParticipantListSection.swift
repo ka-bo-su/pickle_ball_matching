@@ -9,6 +9,7 @@ struct ParticipantListSection: View {
 
     var body: some View {
         Section("参加者") {
+            participantStatusSummary
             addParticipantRow
             bulkAddParticipantRow
 
@@ -43,6 +44,20 @@ struct ParticipantListSection: View {
         } message: { participant in
             Text("\(participant.displayName)を今日の参加者一覧から削除します。過去ラウンド履歴は残ります。")
         }
+    }
+
+    private var participantStatusSummary: some View {
+        let summary = ParticipantStatusSummaryModel(participants: viewModel.session.participants)
+        return VStack(alignment: .leading, spacing: 4) {
+            Label(summary.headline, systemImage: "person.3.sequence")
+                .font(.subheadline.weight(.semibold))
+            Text(summary.detail)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(summary.accessibilityLabel)
     }
 
     private var addParticipantRow: some View {

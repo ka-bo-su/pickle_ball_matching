@@ -1,5 +1,15 @@
 # Next Work Search
 
+## 2026-06-05 15:24 JST
+
+- Searched candidates: PR #79 merge state, open PBI state, Sprint Backlog after Issue #78, participant list UI after explicit delete/attendance controls.
+- Referenced GitHub Project / Issues / docs: Issues #16-#20, #78, #80, PR #79, `docs/scrum/sprint-backlog.md`, product vision participant-management and "3分以内に最初の組み合わせ" requirements.
+- Findings: PR #79 was merged and Issue #78 closed. The participant list now supports add/delete/status operations, but organizers still need a compact status-count confirmation inside the same section.
+- Next selected work: Issue #80 `参加者一覧に出席状態の内訳を表示する`.
+- Reason: It is a small Presentation/ViewModel slice that makes attendance/status edits immediately auditable before generating a round, without touching persistence, StoreKit, CloudKit, server, secret, or production paths.
+- Human repair needed: `gh auth login` or `gh auth refresh -s project` is needed only for Project field sync.
+- Pending updates: set Issue #78 Project fields Done; add Issue #80 to Project and set In Progress when `gh` authentication is restored.
+
 ## 2026-06-05 15:05 JST
 
 - Searched candidates: GitHub open SBI/PBI state via public REST, Sprint Backlog after PR #77 merge, PBI #16 north-star requirement, current board summary behavior.

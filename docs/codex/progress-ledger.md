@@ -3,17 +3,20 @@
 ## Current
 
 - Active PBI: #16 当日運営特化ダブルス組み合わせMVP
-- Active SBI: #78 ラウンド生成前の準備ガイドと無料版目安を表示する
-- Active Branch: codex/sbi-78-pre-round-readiness
-- Active PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/79
+- Active SBI: #80 参加者一覧に出席状態の内訳を表示する
+- Active Branch: codex/sbi-80-participant-status-summary
+- Active PR: none
 - GitHub Project Item: pending; `gh` authentication is invalid
-- Status: PR opened; local full validation passed; GitHub Actions pending
-- Next Action: verify PR #79 CI and merge if green
+- Status: Local implementation complete and full validation passed; PR/Project sync pending
+- Next Action: commit, push, create PR, then verify CI and merge if green
 
 ## Completed
 
 | Time | Item | Result | Evidence |
 |---|---|---|---|
+| 2026-06-05 15:22 JST | SBI #78 merged | PR #79 squash merged to `dev` based on local full validation after GitHub Actions stayed pending; Issue #78 was closed with `status:done` | https://github.com/ka-bo-su/pickle_ball_matching/pull/79 |
+| 2026-06-05 15:24 JST | Next SBI selected | Created Issue #80 for participant status summary in the participant list | https://github.com/ka-bo-su/pickle_ball_matching/issues/80 |
+| 2026-06-05 15:26 JST | Issue #80 local validation | Added participant status summary model, list summary UI, and tests; full validation passed | `scripts/codex/validate-ios.sh` |
 | 2026-06-05 15:10 JST | Issue #78 local validation | Added pre-round playable-court/waiter guidance and free-plan notice; full validation passed | `scripts/codex/validate-ios.sh` |
 | 2026-06-05 15:13 JST | PR opened | Created PR #79 for Issue #78 | https://github.com/ka-bo-su/pickle_ball_matching/pull/79 |
 | 2026-06-05 15:04 JST | SBI #76 merged | PR #77 passed GitHub Actions, squash merged to `dev`, and Issue #76 was closed with `status:done` | https://github.com/ka-bo-su/pickle_ball_matching/pull/77 |
