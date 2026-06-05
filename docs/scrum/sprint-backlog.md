@@ -45,7 +45,7 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 | SBI-030 | 大画面ボードに残り時間とラウンド状態を表示する | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #73, Issue #72 |
 | SBI-031 | 保存済みセッションを削除できるようにする | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #75, Issue #74 |
 | SBI-032 | 参加者の削除と出欠切替を分かりやすくする | Done | swift-developer | `scripts/codex/validate-ios.sh`, GitHub Actions | PR #77, Issue #76 |
-| SBI-033 | ラウンド生成前の準備ガイドと無料版目安を表示する | In Progress | swift-developer | `scripts/codex/validate-ios.sh` passed locally | Issue #78, branch `codex/sbi-78-pre-round-readiness` |
+| SBI-033 | ラウンド生成前の準備ガイドと無料版目安を表示する | In Review | swift-developer | `scripts/codex/validate-ios.sh` passed locally | PR #79, Issue #78 |
 
 ## Plan
 
@@ -88,7 +88,7 @@ Create the first inspectable autonomous Codex iOS development increment: Codex o
 37. Issue #74 selected, added to Project, and moved to In Progress.
 38. Issue #74 merged in PR #75 and Issue #74 closed with `status:done`; Project field Done sync pending `gh` authentication repair.
 39. Issue #76 merged in PR #77 and Issue #76 closed with `status:done`; Project field Done sync pending `gh` authentication repair.
-40. Issue #78 selected and local implementation validated; Project item add pending `gh` authentication repair.
+40. Issue #78 selected, local implementation validated, and PR #79 opened; Project item add/In Review sync pending `gh` authentication repair.
 
 ## Next Ready Work
 

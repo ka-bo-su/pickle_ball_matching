@@ -4,7 +4,7 @@
 
 ### Action
 
-Merged PR #77, closed Issue #76, created Issue #78, and implemented pre-round readiness guidance plus a free-plan notice.
+Merged PR #77, closed Issue #76, created Issue #78, implemented pre-round readiness guidance plus a free-plan notice, and opened PR #79.
 
 ### Reason
 
@@ -34,10 +34,12 @@ PR #77 passed local validation and GitHub Actions, so release-reviewer merged it
 - `swiftlint lint --no-cache ...`
 - `xcodebuild test -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16' -only-testing:PickleBallMatchingTests/OperationBoardSummaryModelTests`
 - `scripts/codex/validate-ios.sh`
+- `git push -u origin codex/sbi-78-pre-round-readiness`
+- GitHub connector `_create_pull_request` for PR #79
 
 ### GitHub Project Updates
 
-Issue #76 Project Done sync and Issue #78 Project item creation are pending because `gh auth status` reports an invalid token and the connector does not expose Project field edits.
+Issue #76 Project Done sync and Issue #78 Project item/In Review sync are pending because `gh auth status` reports an invalid token and the connector does not expose Project field edits.
 
 ### Architecture Decision
 
@@ -59,7 +61,7 @@ Low. The change is Presentation-only, does not alter the round-generation algori
 
 ### Follow-up
 
-Push Issue #78 branch, create PR, then verify GitHub Actions and merge if green. Restore `gh` authentication to sync Project fields.
+Verify PR #79 GitHub Actions and merge if green. Restore `gh` authentication to sync Project fields.
 
 ## 2026-06-05 14:57 JST
 
