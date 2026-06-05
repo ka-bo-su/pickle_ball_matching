@@ -1,5 +1,114 @@
 # Codex Audit Log
 
+## 2026-06-04 21:03 JST
+
+### Action
+
+Fixed the participant single-add input flow after the organizer-facing UI made participant addition feel unavailable.
+
+### Reason
+
+The current row only exposed a small horizontal add button and did not support keyboard submit. For court-side use, the organizer needs a clear enabled action after entering a name, plus a Return-key path that adds the participant without hunting for a small control.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/OperationBoardParticipantInput.swift`
+- `Features/OperationBoard/Presentation/ParticipantListSection.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+
+### Commands Run
+
+- `swiftformat --swiftversion 6.0 --cache ignore --lint Features/OperationBoard/Presentation/OperationBoardParticipantInput.swift Features/OperationBoard/Presentation/ParticipantListSection.swift Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+- `swiftlint lint --no-cache Features/OperationBoard/Presentation/OperationBoardParticipantInput.swift Features/OperationBoard/Presentation/ParticipantListSection.swift Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+- `swift test`
+- `scripts/codex/validate-ios.sh`
+- `git push -u origin codex/sbi-31-delete-saved-sessions`
+- GitHub connector `_create_pull_request`
+- `gh pr checks 75 --json name,state,link,workflow,bucket`
+
+### GitHub Project Updates
+
+PR #75 was created: https://github.com/ka-bo-su/pickle_ball_matching/pull/75
+
+No GitHub Project field write was applied in this checkpoint because `gh` currently returns `HTTP 401: Requires authentication` for GraphQL reads/writes. The PR body records Issue #74 and the participant-add fix; Project Evidence Link and status remain pending.
+
+### Architecture Decision
+
+No architecture boundary change. The fix stays in Presentation/ViewModel input state and does not introduce Infrastructure coupling.
+
+### Validation
+
+Passed:
+
+- SwiftFormat lint: 0 files require formatting.
+- SwiftLint: 0 violations.
+- `swift test`: 34 core tests passed.
+- `scripts/codex/validate-ios.sh`: SwiftPM tests, SwiftLint, SwiftFormat, XcodeGen, `xcodebuild build`, and `xcodebuild test` passed.
+- `xcodebuild test`: 34 core tests and 58 app tests passed.
+
+### Risk
+
+Low. The change only clarifies the participant add interaction and adds a non-blank input guard used by the button disabled state.
+
+### Follow-up
+
+Restore GitHub authentication, check PR #75 CI, sync Issue #74 / Project fields to In Review with Validation Status Passed, and squash merge if CI is green.
+
+## 2026-06-02 22:19 JST
+
+### Action
+
+Attempted Issue #74 validation after rebase and recorded an execution-environment blocker.
+
+### Reason
+
+The saved-session deletion implementation is local and should not be published until the repository validation command passes. The normal sandbox cannot access SwiftPM clang module cache or CoreSimulator, and the required escalated rerun was rejected by Codex execution usage limit.
+
+### Files Changed
+
+- `docs/codex/audit-log.md`
+- `docs/codex/blockers.md`
+- `docs/codex/github-projects-pending-updates.md`
+- `docs/codex/ios-swift-validation.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/progress-ledger.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `scripts/codex/validate-ios.sh`
+- escalated `scripts/codex/validate-ios.sh` request
+- GitHub connector `_update_issue` to set Issue #74 label `status:blocked`
+
+### GitHub Project Updates
+
+Issue #74 label was updated to `status:blocked`. Project Status/Scrum Status still need Blocked field sync; pending In Review/Validation/Evidence update is recorded for the next execution window.
+
+### Architecture Decision
+
+No additional architecture decision. The implementation remains behind `SessionRepository` and avoids Presentation-to-Infrastructure coupling.
+
+### Validation
+
+Partial validation only:
+
+- `swift test`: failed due sandbox write denial for `~/.cache/clang/ModuleCache`.
+- SwiftLint: passed with 0 violations.
+- SwiftFormat lint: passed with 0 files requiring formatting.
+- XcodeGen: passed.
+- `xcodebuild -list`: passed despite CoreSimulatorService sandbox warnings.
+- Simulator discovery: failed due sandbox CoreSimulatorService access.
+- Escalated rerun: rejected by Codex execution usage limit.
+
+### Risk
+
+Medium until full validation runs. The code path is covered by new tests in the local branch, but those tests have not been executed successfully in this post-rebase environment.
+
+### Follow-up
+
+When execution quota resumes, rerun `scripts/codex/validate-ios.sh`, push `codex/sbi-31-delete-saved-sessions`, create PR, set Issue #74 to In Review, and update Project evidence.
+
 ## 2026-06-02 21:58 JST
 
 ### Action
@@ -50,7 +159,68 @@ Low. This checkpoint is primarily synchronization and PR metadata repair. The on
 
 ### Follow-up
 
-Watch PR #73 GitHub Actions, squash merge to `dev` when clean, close Issue #72, then continue with the next safe SBI.
+PR #73 GitHub Actions passed, PR #73 was squash merged to `dev`, Issue #72 was set Done, and the next safe SBI was selected as Issue #74.
+
+## 2026-06-02 22:08 JST
+
+### Action
+
+Selected Issue #74 and applied the saved-session deletion implementation while rebasing it onto `origin/dev`.
+
+### Reason
+
+Issue #72 reached Done, leaving the local-first save/restore PBI as the next useful work. Session history already supports reopen; deletion prevents obsolete sessions from cluttering day-of operation and keeps the organizer focused on current rosters.
+
+### Files Changed
+
+- `Sources/PickleBallMatchingCore/Application/SessionRepository.swift`
+- `Sources/PickleBallMatchingCore/Infrastructure/JSONSessionRepository.swift`
+- `Features/OperationBoard/Presentation/OperationBoardViewModel.swift`
+- `Features/OperationBoard/Presentation/SessionSettingsSection.swift`
+- `Tests/PickleBallMatchingCoreTests/JSONSessionRepositoryTests.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardSessionHistoryTests.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardViewModelTests.swift`
+- `docs/codex/audit-log.md`
+- `docs/codex/blockers.md`
+- `docs/codex/github-projects-pending-updates.md`
+- `docs/codex/next-work-search.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/progress-ledger.md`
+- `docs/scrum/product-backlog.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `gh issue list --search "保存済み セッション 削除 repo:ka-bo-su/pickle_ball_matching" --json number,title,state,labels --limit 20`
+- GitHub connector `_create_issue` for Issue #74
+- `gh project item-add 3 --owner ka-bo-su --url https://github.com/ka-bo-su/pickle_ball_matching/issues/74`
+- `gh issue edit 74 --remove-label status:ready --add-label status:in-progress`
+- `gh project item-edit --id PVTI_lAHOBHYYMs4BZUKkzgufzTw ...`
+- `git switch codex/sbi-31-delete-saved-sessions`
+- `git rebase origin/dev`
+- `git rebase --skip` for already-merged Issue #72 commits
+
+### GitHub Project Updates
+
+- Issue #74 created in Japanese.
+- Issue #74 added to Project item `PVTI_lAHOBHYYMs4BZUKkzgufzTw`.
+- Issue #74 moved to In Progress with Backlog Level SBI, Priority P1, Role Owner swift-developer, Risk low, Area Infrastructure, Validation Status Not Run, Sprint, Parent PBI, Evidence Link, and Architecture Impact.
+
+### Architecture Decision
+
+Added `deleteSavedSession(id:)` to `SessionRepository` with a default no-op to avoid breaking existing test doubles, while `JSONSessionRepository` owns concrete local-file deletion. Presentation calls through the ViewModel; SwiftUI does not touch file paths or JSON infrastructure directly.
+
+### Validation
+
+Pending after rebase conflict resolution. Earlier stacked-branch validation passed before #72 was split; this PR still needs fresh validation on top of `origin/dev`.
+
+### Risk
+
+Low to medium. Deletion is destructive for history files, so the UI uses a confirmation dialog and the ViewModel refuses to delete the currently open session.
+
+### Follow-up
+
+Resolve rebase docs conflicts, validate, commit, push, create PR, move Issue #74 to In Review, and continue the Scrum loop.
 
 ## 2026-06-02 15:39 JST
 

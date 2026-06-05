@@ -2,7 +2,47 @@
 
 No pending updates at file creation time. Any failed field, label, item, status, evidence, or PR sync must be appended here.
 
-No active pending updates as of 2026-06-02 21:58 JST.
+Active pending update exists as of 2026-06-02 22:19 JST.
+
+## Pending Project Update
+
+- Timestamp: 2026-06-02 22:19 JST
+- Target project: kanban@pickle_ball_matching
+- Target item: Issue #74 / `PVTI_lAHOBHYYMs4BZUKkzgufzTw`
+- Intended action: Check PR #75 CI, set Issue label `status:in-review`, set Project Status `In review`, set Scrum Status `In Review`, set Validation Status `Passed`, and add PR #75 URL to Evidence Link.
+- Previous state: Issue #74 Open, label `status:blocked`, Project Status `In progress`, Scrum Status `In Progress`, Validation Status `Not Run`, Evidence Link `https://github.com/ka-bo-su/pickle_ball_matching/issues/74`.
+- New state: Issue #74 Open, label `status:in-review`, Project Status `In review`, Scrum Status `In Review`, Validation Status `Passed`, Evidence Link `https://github.com/ka-bo-su/pickle_ball_matching/pull/75`.
+- Reason not applied: Full local validation passed and PR #75 was created, but `gh pr checks` / GraphQL currently returns `HTTP 401: Requires authentication`, so CI confirmation and Project field sync cannot be completed from this session.
+- Command to apply later: `gh pr checks 75 --watch`; `gh issue edit 74 --remove-label status:blocked --add-label status:in-review`; `gh project item-edit ... Status In review`; `gh project item-edit ... Scrum Status In Review`; `gh project item-edit ... Validation Status Passed`; `gh project item-edit ... Evidence Link https://github.com/ka-bo-su/pickle_ball_matching/pull/75`.
+- Related PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/75
+- Related Issue: https://github.com/ka-bo-su/pickle_ball_matching/issues/74
+
+## Pending Project Update
+
+- Timestamp: 2026-06-04 21:03 JST
+- Target project: kanban@pickle_ball_matching
+- Target item: PR #75 body or follow-up Bug
+- Intended action: Record the participant-add UX fix in GitHub so the reason for the local change is traceable. PR #75 body already includes it; optional follow-up is creating a Japanese Bug item `[Bug] 参加者追加の操作が分かりづらく追加できない` if stricter issue traceability is desired.
+- Previous state: No dedicated GitHub issue exists for the participant-add UX report.
+- New state: PR #75 records the fix, validation, and affected files. Optional Bug issue remains pending.
+- Reason not applied: PR evidence is complete; optional Bug issue cannot be created because `gh` currently returns `HTTP 401: Requires authentication`.
+- Command to apply later: restore GitHub authentication, then optionally create/link the Bug item.
+- Related PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/75
+- Related Issue: pending
+
+## Resolved Pending Project Update
+
+- Timestamp: 2026-06-02 17:28 JST
+- Target project: kanban@pickle_ball_matching
+- Target item: new SBI Issue, proposed title `[SBI] 保存済みセッションを削除できるようにする`
+- Intended action: Create a Japanese GitHub Issue for SBI-031, add it to Project, set Backlog Level `SBI`, Status `In progress`, Scrum Status `In Progress`, Sprint `Sprint 2026-06 MVP`, Priority `P1`, Role Owner `swift-developer`, Area `Infrastructure` or `iOS`, Risk `low`, Validation Status `Not Run` initially, then update evidence after PR creation.
+- Previous state: No GitHub Issue/Project item exists; SBI-031 is local-only.
+- New state: GitHub Issue and Project item exist and mirror local docs.
+- Reason not applied: GitHub write commands require network/escalation, and the current Codex execution usage limit rejected escalated commands.
+- Command to apply later: `gh issue create --title "[SBI] 保存済みセッションを削除できるようにする" --label type:sbi --label status:in-progress --label area:infrastructure --label area:ios --label risk:low --body-file <Japanese body>`; `gh project item-add 3 --owner ka-bo-su --url <issue-url>`; `gh project item-edit ...`.
+- Related PR: pending
+- Related Issue: https://github.com/ka-bo-su/pickle_ball_matching/issues/74
+- Resolution: Completed on 2026-06-02 22:08 JST. Issue #74 was created in Japanese, added to Project item `PVTI_lAHOBHYYMs4BZUKkzgufzTw`, and moved to In Progress with required planning fields.
 
 ## Resolved Pending Project Update
 
@@ -30,7 +70,7 @@ No active pending updates as of 2026-06-02 21:58 JST.
 - Command to apply later: `git push -u origin codex/sbi-72-large-board-timer-pr`; `gh project item-edit ... Validation Status Passed`; `gh pr create --base dev --head codex/sbi-72-large-board-timer-pr`; `gh project item-edit ... Status In review`; `gh project item-edit ... Scrum Status In Review`; `gh project item-edit ... Evidence Link <PR URL>`.
 - Related PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/73
 - Related Issue: https://github.com/ka-bo-su/pickle_ball_matching/issues/72
-- Resolution: Completed on 2026-06-02 21:58 JST. Branch `codex/sbi-72-large-board-timer-pr` was pushed, PR #73 was opened to `dev`, and Project Status/Scrum Status/Validation Status/Evidence Link were synchronized.
+- Resolution: Completed on 2026-06-02 22:07 JST. Branch `codex/sbi-72-large-board-timer-pr` was pushed, PR #73 was opened to `dev`, GitHub Actions passed, PR #73 was squash merged, Issue #72 was closed, and Project Status/Scrum Status were set to Done.
 
 ## Resolved Pending Project Update
 

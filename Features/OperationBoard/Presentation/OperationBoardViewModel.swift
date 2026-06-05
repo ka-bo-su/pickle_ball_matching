@@ -331,6 +331,20 @@ extension OperationBoardViewModel {
         savedSessions.filter { $0.id != session.id }
     }
 
+    func deleteSavedSession(sessionID: Session.ID) {
+        guard sessionID != session.id else {
+            return
+        }
+
+        do {
+            try sessionRepository?.deleteSavedSession(id: sessionID)
+            savedSessions.removeAll { $0.id == sessionID }
+            errorMessage = nil
+        } catch {
+            errorMessage = "保存済みセッションを削除できませんでした。ファイルの権限や空き容量を確認してください。"
+        }
+    }
+
     func savedSessionTitle(_ savedSession: Session) -> String {
         "\(savedSession.name)（\(savedSession.participants.count)人・\(savedSession.rounds.count)R）"
     }

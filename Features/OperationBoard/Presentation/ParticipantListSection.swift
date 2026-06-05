@@ -30,17 +30,23 @@ struct ParticipantListSection: View {
     }
 
     private var addParticipantRow: some View {
-        HStack {
+        VStack(alignment: .leading, spacing: 8) {
             TextField("参加者名", text: $viewModel.newParticipantName)
                 .textInputAutocapitalization(.never)
+                .submitLabel(.done)
+                .onSubmit {
+                    viewModel.addParticipant()
+                }
                 .accessibilityLabel("参加者名入力")
             Button {
                 viewModel.addParticipant()
             } label: {
-                Label("追加", systemImage: "plus.circle.fill")
+                Label("参加者を追加", systemImage: "plus.circle.fill")
+                    .frame(maxWidth: .infinity, alignment: .center)
             }
-            .buttonStyle(.borderless)
+            .disabled(!viewModel.canAddParticipant)
             .accessibilityLabel("参加者を追加")
+            .accessibilityHint("入力した名前を今日の参加者一覧に追加します")
         }
     }
 

@@ -70,3 +70,23 @@ Issue #56 local code could not complete validation in the current Codex executio
 - `swift test`: non-escalated attempts failed because SwiftPM/Xcode sandbox/cache access is unavailable in the current sandbox.
 
 This was an execution-environment blocker, not a code failure. It was resolved on 2026-06-02 after execution quota reset; Issue #56 full validation passed.
+
+## Current Validation Blocker
+
+Issue #74 local code could not complete full validation in the current Codex execution window on 2026-06-02 22:19 JST:
+
+- `swift test`: failed inside the sandbox because SwiftPM could not write `~/.cache/clang/ModuleCache`.
+- `swiftlint --no-cache`: passed with 0 violations.
+- `swiftformat --cache ignore --lint .`: passed with 0 files requiring formatting.
+- `xcodegen generate`: passed.
+- `xcodebuild -list`: passed, but emitted sandbox-related CoreSimulatorService warnings.
+- Simulator discovery: failed because CoreSimulatorService is unavailable inside the sandbox.
+- Escalated `scripts/codex/validate-ios.sh`: rejected by Codex execution usage limit.
+
+This is recorded as an execution-environment blocker, not an observed code failure. When execution quota resumes, rerun:
+
+```bash
+scripts/codex/validate-ios.sh
+```
+
+If validation passes, publish `codex/sbi-31-delete-saved-sessions` and move Issue #74 to In Review.

@@ -14,6 +14,16 @@ final class OperationBoardViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.newParticipantName, "")
     }
 
+    func testCanAddParticipantRequiresNonBlankName() {
+        let viewModel = OperationBoardViewModel(session: Session(name: "テスト", participants: []))
+
+        viewModel.newParticipantName = "   "
+        XCTAssertFalse(viewModel.canAddParticipant)
+
+        viewModel.newParticipantName = "山田"
+        XCTAssertTrue(viewModel.canAddParticipant)
+    }
+
     func testGenerateNextRoundUpdatesCurrentRoundAndWaiters() {
         let session = Session(
             name: "テスト",
@@ -273,9 +283,10 @@ private extension Round {
 
 final class SpySessionRepository: SessionRepository, @unchecked Sendable {
     private let restoredSession: Session?
-    private let storedSessions: [Session]
+    private var storedSessions: [Session]
     private let loadError: Error?
     var savedSessions: [Session] = []
+    var deletedSessionIDs: [Session.ID] = []
 
     init(restoredSession: Session? = nil, storedSessions: [Session] = [], loadError: Error? = nil) {
         self.restoredSession = restoredSession
@@ -299,5 +310,10 @@ final class SpySessionRepository: SessionRepository, @unchecked Sendable {
 
     func save(_ session: Session) throws {
         savedSessions.append(session)
+    }
+
+    func deleteSavedSession(id: Session.ID) throws {
+        deletedSessionIDs.append(id)
+        storedSessions.removeAll { $0.id == id }
     }
 }

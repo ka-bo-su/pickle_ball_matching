@@ -65,6 +65,26 @@ public struct JSONSessionRepository: SessionRepository {
         }
     }
 
+    public func deleteSavedSession(id: Session.ID) throws {
+        do {
+            let historyFileURL = historyFileURL(for: id)
+            if FileManager.default.fileExists(atPath: historyFileURL.path) {
+                try FileManager.default.removeItem(at: historyFileURL)
+            }
+
+            let latestSessionID = try loadLatestSession()?.id
+            if latestSessionID == id {
+                if FileManager.default.fileExists(atPath: fileURL.path) {
+                    try FileManager.default.removeItem(at: fileURL)
+                }
+            }
+        } catch let error as SessionPersistenceError {
+            throw error
+        } catch {
+            throw SessionPersistenceError.deleteFailed(error.localizedDescription)
+        }
+    }
+
     private func decodeSession(at fileURL: URL) throws -> Session {
         do {
             let data = try Data(contentsOf: fileURL)
@@ -77,7 +97,11 @@ public struct JSONSessionRepository: SessionRepository {
     }
 
     private func historyFileURL(for session: Session) -> URL {
-        historyDirectoryURL.appendingPathComponent("\(session.id.uuidString).json")
+        historyFileURL(for: session.id)
+    }
+
+    private func historyFileURL(for sessionID: Session.ID) -> URL {
+        historyDirectoryURL.appendingPathComponent("\(sessionID.uuidString).json")
     }
 
     private static var encoder: JSONEncoder {
@@ -99,6 +123,7 @@ public enum SessionPersistenceError: LocalizedError, Equatable, Sendable {
     case writeFailed(String)
     case decodingFailed(String)
     case encodingFailed(String)
+    case deleteFailed(String)
 
     public var errorDescription: String? {
         switch self {
@@ -110,6 +135,8 @@ public enum SessionPersistenceError: LocalizedError, Equatable, Sendable {
             "保存済みセッションの形式が壊れています。"
         case .encodingFailed:
             "セッションを保存形式に変換できませんでした。"
+        case .deleteFailed:
+            "保存済みセッションを削除できませんでした。"
         }
     }
 }
