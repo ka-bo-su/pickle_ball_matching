@@ -4,7 +4,7 @@
 
 ### Action
 
-Squash merged PR #79, closed Issue #78, created Issue #80, and implemented participant status summary in the participant list.
+Squash merged PR #79, closed Issue #78, created Issue #80, implemented participant status summary in the participant list, and opened PR #81.
 
 ### Reason
 
@@ -35,10 +35,12 @@ PR #79 was mergeable and had passed the identical local full validation, but Git
 - `xcodegen generate`
 - `xcodebuild test -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16' -only-testing:PickleBallMatchingTests/ParticipantStatusSummaryModelTests`
 - `scripts/codex/validate-ios.sh`
+- `git push -u origin codex/sbi-80-participant-status-summary`
+- GitHub connector `_create_pull_request` for PR #81
 
 ### GitHub Project Updates
 
-Issue #78 Project Done sync and Issue #80 Project item creation are pending because `gh auth status` reports an invalid token and the connector does not expose Project field edits.
+Issue #78 Project Done sync and Issue #80 Project item/In Review sync are pending because `gh auth status` reports an invalid token and the connector does not expose Project field edits.
 
 ### Architecture Decision
 
@@ -59,7 +61,7 @@ Low. The change adds a read-only participant list summary and does not modify pa
 
 ### Follow-up
 
-Push Issue #80 branch, create PR, then verify GitHub Actions and merge if green. Restore `gh` authentication to sync Project fields.
+Verify PR #81 GitHub Actions and merge if green. Restore `gh` authentication to sync Project fields.
 
 ## 2026-06-05 15:10 JST
 

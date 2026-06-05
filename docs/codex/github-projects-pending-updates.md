@@ -49,12 +49,12 @@ Active pending update exists as of 2026-06-02 22:19 JST.
 - Timestamp: 2026-06-05 15:24 JST
 - Target project: kanban@pickle_ball_matching
 - Target item: Issue #80 `参加者一覧に出席状態の内訳を表示する`
-- Intended action: Add Issue #80 to Project, set Backlog Level `SBI`, Status `In progress`, Scrum Status `In Progress`, Sprint `Sprint 2026-06 MVP`, Priority `P1`, Role Owner `swift-developer`, Area `UI`, Risk `low`, Validation Status `Passed`, and Evidence Link after PR creation.
+- Intended action: Add Issue #80 to Project, set Backlog Level `SBI`, Status `In review`, Scrum Status `In Review`, Sprint `Sprint 2026-06 MVP`, Priority `P1`, Role Owner `swift-developer`, Area `UI`, Risk `low`, Validation Status `Passed`, and Evidence Link `https://github.com/ka-bo-su/pickle_ball_matching/pull/81`.
 - Previous state: Issue #80 exists with `status:in-progress`; no Project item confirmed.
-- New state: Issue #80 Project item exists and mirrors the active Sprint Backlog.
+- New state: Issue #80 Project item exists and mirrors the active Sprint Backlog with PR #81 evidence.
 - Reason not applied: Project item add/edit requires `gh` Project/GraphQL authentication; `gh auth status` reports an invalid token.
-- Command to apply later: `gh project item-add 3 --owner ka-bo-su --url https://github.com/ka-bo-su/pickle_ball_matching/issues/80`; then set required fields with `gh project item-edit`.
-- Related PR: pending
+- Command to apply later: `gh project item-add 3 --owner ka-bo-su --url https://github.com/ka-bo-su/pickle_ball_matching/issues/80`; then set required fields with `gh project item-edit`, including Evidence Link `https://github.com/ka-bo-su/pickle_ball_matching/pull/81`.
+- Related PR: https://github.com/ka-bo-su/pickle_ball_matching/pull/81
 - Related Issue: https://github.com/ka-bo-su/pickle_ball_matching/issues/80
 
 ## Pending Project Update
