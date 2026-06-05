@@ -53,6 +53,13 @@ struct OperationBoardView: View {
                     summaryLine(title: "待機", value: summary.waitingSummary, systemImage: "person.2.slash")
                 }
 
+                if let proPlanNotice = summary.proPlanNotice {
+                    Label(proPlanNotice, systemImage: "star.circle")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+
                 Divider()
 
                 VStack(alignment: .leading, spacing: 4) {

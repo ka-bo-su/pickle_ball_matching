@@ -3,15 +3,15 @@
 ## Blocker
 
 - Time: 2026-06-05 14:53 JST
-- Item: GitHub Project field sync for Issues #74 and #76
+- Item: GitHub Project field sync for Issues #74, #76, and #78
 - Type: GitHub CLI authentication
 - Reason: `gh auth status` reports the default token is invalid. The GitHub connector can create/update Issues and merge PRs, but does not expose GitHub Project item field editing.
-- Impact: PR #75 was merged and Issue #74 was closed, and Issue #76 was created, but Project `kanban@pickle_ball_matching` fields still need Done/In Progress/Evidence sync.
+- Impact: PR #75/#77 were merged and Issues #74/#76 were closed, and Issue #78 was created, but Project `kanban@pickle_ball_matching` fields still need Done/In Progress/Evidence sync.
 - Attempted fixes: Used public REST to read PR/check status, GitHub connector to merge PR #75, and GitHub connector to close Issue #74. `gh` GraphQL operations still fail with HTTP 401.
 - Why autonomous progress cannot continue for this item: Project field writes require authenticated `gh project item-edit` or equivalent GraphQL access not currently available.
-- Safe next task selected: Issue #76 implementation can proceed because Issue creation and branch workflow are available through connector/git.
+- Safe next task selected: Issue #78 implementation can proceed because Issue creation and branch workflow are available through connector/git.
 - GitHub Project update: pending updates recorded in `docs/codex/github-projects-pending-updates.md`.
-- Pending update: set Issue #74 Project Status/Scrum Status Done, Validation Status Passed, Evidence Link PR #75; add Issue #76 to Project and set In Progress.
+- Pending update: set Issue #74 and #76 Project Status/Scrum Status Done, Validation Status Passed, Evidence Link PR #75/#77; add Issue #78 to Project and set In Progress.
 - Human repair: run `gh auth login` or `gh auth refresh -s project`.
 
 ## Resolved Blocker

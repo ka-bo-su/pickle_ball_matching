@@ -1,5 +1,15 @@
 # Next Work Search
 
+## 2026-06-05 15:05 JST
+
+- Searched candidates: GitHub open SBI/PBI state via public REST, Sprint Backlog after PR #77 merge, PBI #16 north-star requirement, current board summary behavior.
+- Referenced GitHub Project / Issues / docs: Issues #16-#20, #76, #78, PR #77, `docs/scrum/sprint-backlog.md`, product vision "開始3分以内に最初の組み合わせ" and Pro boundary requirements.
+- Findings: PR #77 was merged and Issue #76 closed. No ready SBI remained besides newly selected work; PBI #16/#20 still need better pre-generation clarity and Pro boundary guidance.
+- Next selected work: Issue #78 `ラウンド生成前の準備ガイドと無料版目安を表示する`.
+- Reason: It is a small Presentation/ViewModel slice that helps organizers understand playable courts, expected waiters, and free-plan guideposts before generating a round, without StoreKit, CloudKit, server, secret, or production risk.
+- Human repair needed: `gh auth login` or `gh auth refresh -s project` is needed only for Project field sync.
+- Pending updates: set Issue #76 Project fields Done; add Issue #78 to Project and set In Progress when `gh` authentication is restored.
+
 ## 2026-06-05 14:54 JST
 
 - Searched candidates: GitHub Project/Issue state via public REST, open PBIs #16-#20, completed PR #75, participant-management friction reported during hands-on testing, Sprint Backlog after #74.
