@@ -4,6 +4,20 @@ import XCTest
 
 @MainActor
 final class OperationBoardSummaryModelTests: XCTestCase {
+    func testGuidesNameEntryWhenNoParticipantsAreRegistered() {
+        let session = Session(name: "テスト", courtCount: 1, participants: [])
+        let viewModel = OperationBoardViewModel(session: session)
+
+        let summary = viewModel.boardSummaryModel
+
+        XCTAssertEqual(summary.statusTitle, "今日の参加者を登録します")
+        XCTAssertEqual(summary.statusDetail, "最初のラウンド生成には参加可能な人が4人必要です")
+        XCTAssertEqual(summary.participantSummary, "参加可能 0人 / 登録 0人")
+        XCTAssertEqual(summary.waitingSummary, "まだ待機者はありません")
+        XCTAssertTrue(summary.nextActionDetail.contains("参加者欄で名前を追加"))
+        XCTAssertTrue(summary.accessibilityLabel.contains("今日の参加者"))
+    }
+
     func testPromptsParticipantSetupWhenParticipantsAreInsufficient() {
         let session = Session(name: "テスト", courtCount: 2, participants: makeParticipants(count: 3))
         let viewModel = OperationBoardViewModel(session: session)

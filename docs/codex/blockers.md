@@ -3,15 +3,15 @@
 ## Blocker
 
 - Time: 2026-06-05 14:53 JST
-- Item: GitHub Project field sync for Issues #74, #76, #78, and #80
+- Item: GitHub Project field sync for Issues #74, #76, #78, #80, and #82
 - Type: GitHub CLI authentication
 - Reason: `gh auth status` reports the default token is invalid. The GitHub connector can create/update Issues and merge PRs, but does not expose GitHub Project item field editing.
-- Impact: PR #75/#77/#79 were merged and Issues #74/#76/#78 were closed, and Issue #80 was created, but Project `kanban@pickle_ball_matching` fields still need Done/In Progress/Evidence sync.
+- Impact: PR #75/#77/#79/#81 were merged and Issues #74/#76/#78/#80 were closed, and Issue #82 was created, but Project `kanban@pickle_ball_matching` fields still need Done/In Progress/In Review/Evidence sync.
 - Attempted fixes: Used public REST to read PR/check status, GitHub connector to merge PR #75, and GitHub connector to close Issue #74. `gh` GraphQL operations still fail with HTTP 401.
 - Why autonomous progress cannot continue for this item: Project field writes require authenticated `gh project item-edit` or equivalent GraphQL access not currently available.
-- Safe next task selected: Issue #80 implementation can proceed because Issue creation and branch workflow are available through connector/git.
+- Safe next task selected: Issue #82 implementation and PR workflow can proceed because Issue creation and branch workflow are available through connector/git.
 - GitHub Project update: pending updates recorded in `docs/codex/github-projects-pending-updates.md`.
-- Pending update: set Issue #74, #76, and #78 Project Status/Scrum Status Done, Validation Status Passed, Evidence Link PR #75/#77/#79; add Issue #80 to Project and set In Progress.
+- Pending update: set Issue #74, #76, #78, and #80 Project Status/Scrum Status Done, Validation Status Passed, Evidence Link PR #75/#77/#79/#81; add Issue #82 to Project and set In Progress/In Review with PR evidence after PR creation.
 - Human repair: run `gh auth login` or `gh auth refresh -s project`.
 
 ## Resolved Blocker

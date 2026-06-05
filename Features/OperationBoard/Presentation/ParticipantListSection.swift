@@ -10,6 +10,7 @@ struct ParticipantListSection: View {
     var body: some View {
         Section("参加者") {
             participantStatusSummary
+            participantSetupGuide
             addParticipantRow
             bulkAddParticipantRow
 
@@ -58,6 +59,28 @@ struct ParticipantListSection: View {
         }
         .accessibilityElement(children: .combine)
         .accessibilityLabel(summary.accessibilityLabel)
+    }
+
+    private var participantSetupGuide: some View {
+        let guide = ParticipantSetupGuideModel(
+            participants: viewModel.session.participants,
+            courtCount: viewModel.session.courtCount
+        )
+        return Label {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(guide.title)
+                    .font(.subheadline.weight(.semibold))
+                Text(guide.detail)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        } icon: {
+            Image(systemName: guide.systemImage)
+                .foregroundStyle(.secondary)
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(guide.accessibilityLabel)
     }
 
     private var addParticipantRow: some View {

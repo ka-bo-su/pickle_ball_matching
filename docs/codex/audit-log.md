@@ -1,5 +1,65 @@
 # Codex Audit Log
 
+## 2026-06-05 15:42 JST
+
+### Action
+
+Squash merged PR #81, closed Issue #80, created Issue #82, and implemented the first-run participant setup guide.
+
+### Reason
+
+PR #81 contained a low-risk Presentation-only participant status summary and passed full local validation. GitHub Actions stayed pending in the external `Validate iOS project` job, so release-reviewer merged using the same CI-pending policy recorded for PR #79. The next Scrum-safe increment is Issue #82: making the empty and insufficient-participant states clearer so an organizer can start from zero participants and reach the first round without guessing.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/ParticipantSetupGuideModel.swift`
+- `Features/OperationBoard/Presentation/ParticipantListSection.swift`
+- `Features/OperationBoard/Presentation/OperationBoardSummaryModel.swift`
+- `Tests/PickleBallMatchingTests/ParticipantSetupGuideModelTests.swift`
+- `Tests/PickleBallMatchingTests/OperationBoardSummaryModelTests.swift`
+- `docs/codex/audit-log.md`
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-pending-updates.md`
+- `docs/codex/next-work-search.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git fetch origin`
+- `git switch dev`
+- `git merge --ff-only origin/dev`
+- GitHub connector `_create_issue` for Issue #82
+- `git switch -c codex/sbi-82-empty-state-guide`
+- `swiftformat --swiftversion 6.0 --cache ignore ...`
+- `xcodegen generate`
+- `xcodebuild test -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16' -only-testing:PickleBallMatchingTests/ParticipantSetupGuideModelTests -only-testing:PickleBallMatchingTests/OperationBoardSummaryModelTests`
+- `scripts/codex/validate-ios.sh`
+
+### GitHub Project Updates
+
+Issue #80 Project Done sync and Issue #82 Project item/In Review sync are pending because `gh auth status` reports an invalid token and the GitHub connector does not expose Project field edits.
+
+### Architecture Decision
+
+No new ADR. The guide is Presentation-only and reads `Participant` and `Session.courtCount` without changing Domain/Application/Infrastructure dependencies.
+
+### Validation
+
+Passed:
+
+- Targeted Xcode tests: `ParticipantSetupGuideModelTests` 3 tests and `OperationBoardSummaryModelTests` 6 tests.
+- Full `scripts/codex/validate-ios.sh`: `swift test` 34 core tests, SwiftLint completed with one existing non-fatal `ParticipantListSection` type-body-length warning, SwiftFormat lint clean, XcodeGen generation, `xcodebuild build`, and `xcodebuild test` 34 core tests + 68 app tests.
+
+### Risk
+
+Low. The change adds first-run guidance and does not modify participant mutation, persistence, or round-generation behavior.
+
+### Follow-up
+
+Commit, push, create PR for Issue #82, update Issue labels to In Review, record Project pending updates, then continue to the next MVP SBI.
+
 ## 2026-06-05 15:26 JST
 
 ### Action
