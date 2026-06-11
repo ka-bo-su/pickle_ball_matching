@@ -11,9 +11,9 @@ Active pending update exists as of 2026-06-02 22:19 JST.
 - Target item: new Japanese Issue `[SBI] お年寄りでも使いやすい進行ボードUIにする`
 - Intended action: Create the Issue, add it to Project 3, set Backlog Level `SBI`, Status `In review`, Scrum Status `In Review`, Sprint `Sprint 2026-06 MVP`, Priority `P1`, Role Owner `swift-developer`, Area `UI`, Risk `medium`, Architecture Impact `Presentation only`, Validation Status `Passed with hosted-app-test risk`, and Evidence Link to the PR once created.
 - Previous state: User requested UI usability improvements; no GitHub Issue/Project item could be created in this session.
-- New state: Local branch `codex/sbi-85-accessible-modern-ui` contains the implementation and local validation evidence.
+- New state: Remote branch `codex/sbi-85-accessible-modern-ui` contains commit `8701a9c` with implementation and local validation evidence.
 - Reason not applied: `gh` authentication is invalid and the GitHub connector returned `Provided authentication token is expired`.
-- Command to apply later: restore auth, then `gh issue create --title "[SBI] お年寄りでも使いやすい進行ボードUIにする" --label type:sbi --label status:in-review --label area:ui --label risk:medium --body-file <Japanese body>`; add to Project 3; set required fields; create PR from `codex/sbi-85-accessible-modern-ui` to `dev`; set Evidence Link.
+- Command to apply later: restore auth, then `gh issue create --title "[SBI] お年寄りでも使いやすい進行ボードUIにする" --label type:sbi --label status:in-review --label area:ui --label risk:medium --body-file <Japanese body>`; add to Project 3; set required fields; create PR from `codex/sbi-85-accessible-modern-ui` to `dev` or visit `https://github.com/ka-bo-su/pickle_ball_matching/pull/new/codex/sbi-85-accessible-modern-ui`; set Evidence Link.
 - Related PR: pending
 - Related Issue: pending
 

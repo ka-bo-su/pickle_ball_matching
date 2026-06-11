@@ -61,7 +61,49 @@ Medium-low. The change is UI-only but affects the primary Operation Board workfl
 
 ### Follow-up
 
-Restore GitHub authentication, create Japanese Issue `[SBI] お年寄りでも使いやすい進行ボードUIにする`, push branch, create PR, add Project evidence, then run/observe CI.
+Restore GitHub authentication, create Japanese Issue `[SBI] お年寄りでも使いやすい進行ボードUIにする`, create PR from the pushed branch, add Project evidence, then run/observe CI.
+
+## 2026-06-11 22:40 JST
+
+### Action
+
+Committed and pushed local #85 UI branch.
+
+### Reason
+
+The validated implementation should be available remotely even though PR/Project creation is blocked by expired GitHub API authentication.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/*`
+- `docs/codex/*`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `git add ...`
+- `git commit -m "feat(board): improve accessible operation UI"`
+- `git push -u origin codex/sbi-85-accessible-modern-ui`
+
+### GitHub Project Updates
+
+Branch push succeeded. GitHub Issue/PR/Project updates remain pending because `gh` authentication is invalid and the GitHub connector token is expired.
+
+### Architecture Decision
+
+No additional architecture change. Commit `8701a9c` contains the Presentation-only UI split.
+
+### Validation
+
+Validation completed before commit: SwiftPM tests, SwiftLint, SwiftFormat lint, Xcode build, and Xcode Core tests passed.
+
+### Risk
+
+Low for remote branch publication. PR review/CI remains pending.
+
+### Follow-up
+
+Create PR manually or after GitHub authentication is restored: `https://github.com/ka-bo-su/pickle_ball_matching/pull/new/codex/sbi-85-accessible-modern-ui`.
 
 ## 2026-06-05 15:54 JST
 

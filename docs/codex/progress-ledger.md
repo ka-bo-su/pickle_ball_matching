@@ -7,8 +7,8 @@
 - Active Branch: codex/sbi-85-accessible-modern-ui
 - Active PR: pending
 - GitHub Project Item: pending; `gh` authentication is invalid and GitHub connector token is expired
-- Status: local implementation validated; PR/Project sync pending
-- Next Action: commit, push branch, restore GitHub auth, create Japanese Issue/PR, and move Project item to In Review
+- Status: local implementation validated and branch pushed; PR/Project sync pending
+- Next Action: restore GitHub auth, create Japanese Issue/PR, and move Project item to In Review
 
 ## Completed
 
@@ -162,7 +162,7 @@
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
 | Issue #84 参加者追加時に重複名を検出して案内する | codex/sbi-84-duplicate-participant-guide | pending | Full validation passed; GitHub connector token expired during PR creation | restore GitHub auth and create PR |
-| Local #85 お年寄りでも使いやすい進行ボードUIにする | codex/sbi-85-accessible-modern-ui | pending | Local implementation validated; stacked on #84 branch | commit, push, create Japanese Issue/PR after auth repair |
+| Local #85 お年寄りでも使いやすい進行ボードUIにする | codex/sbi-85-accessible-modern-ui | pending | Local implementation validated and branch pushed; stacked on #84 branch | create Japanese Issue/PR after auth repair |
 
 ## Blocked
 

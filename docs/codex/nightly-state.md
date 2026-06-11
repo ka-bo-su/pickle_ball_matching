@@ -12,4 +12,4 @@
 - Project number: `3`
 - Last successful validation: 2026-06-11 22:39 JST, local #85 `swift test`, SwiftLint, SwiftFormat lint, XcodeGen, Xcode build, and Xcode Core tests passed.
 - Current blocker: GitHub Issue/PR/Project sync is blocked because `gh` token is invalid and the GitHub connector token is expired; local code/docs and git commits can continue.
-- Next action: commit and push local #85 branch, then restore GitHub authentication to create Japanese Issue/PR and Project evidence for #84/#85.
+- Next action: restore GitHub authentication to create Japanese Issue/PR and Project evidence for #84/#85. Remote branch for #85 is already pushed.
