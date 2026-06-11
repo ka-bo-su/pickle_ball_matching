@@ -1,18 +1,20 @@
 # Blockers
 
-## Blocker
+## Resolved Blocker
 
 - Time: 2026-06-05 15:54 JST
+- Resolved: 2026-06-11 22:26 JST
 - Item: Issue #84 full repository validation and publication
 - Type: Codex execution usage limit
 - Reason: Escalated `scripts/codex/validate-ios.sh` was rejected by the Codex execution usage limit. The agent must not attempt to achieve the same full-validation outcome through an indirect workaround.
-- Impact: Issue #84 duplicate-name guidance is implemented locally and targeted tests/lint/format passed, but full standard validation, commit/push/PR, and Project evidence sync are not yet complete.
+- Impact: Issue #84 duplicate-name guidance was implemented locally and targeted tests/lint/format passed, but full standard validation, commit/push/PR, and Project evidence sync were not complete until execution usage reset.
 - Attempted fixes: Ran targeted `xcodebuild test` successfully, then requested the standard full validation script with escalation. After rejection, ran only materially safer local checks: targeted SwiftLint, SwiftFormat lint, and `git diff --check`.
-- Why autonomous progress cannot continue for this item: This item should not be merged without full validation or CI. The execution usage limit blocks the required validation/publish path in this checkpoint.
-- Safe next task selected: none requiring validation or GitHub publication in this checkpoint.
+- Why autonomous progress cannot continue for this item: This item should not be merged without full validation or CI. The execution usage limit blocked the required validation/publish path in that checkpoint.
+- Safe next task selected: Resume Issue #84 publication after validation.
 - GitHub Project update: pending updates recorded in `docs/codex/github-projects-pending-updates.md`.
-- Pending update: run `scripts/codex/validate-ios.sh`, commit, push branch `codex/sbi-84-duplicate-participant-guide`, create PR, set Issue #84 In Review with evidence, then merge after CI/full validation.
-- Human repair: wait for Codex execution usage reset, or resume in an environment with available execution budget.
+- Pending update: create PR, set Issue #84 In Review with evidence, then merge after CI.
+- Human repair: none for validation. GitHub Project field sync still needs `gh auth login` or `gh auth refresh -s project`.
+- Resolution: `scripts/codex/validate-ios.sh` passed on 2026-06-11 22:26 JST: `swift test`, SwiftLint, SwiftFormat lint, XcodeGen, `xcodebuild build`, and `xcodebuild test` all completed successfully.
 
 ## Blocker
 

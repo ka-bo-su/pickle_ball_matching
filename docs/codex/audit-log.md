@@ -48,9 +48,9 @@ Passed:
 - Targeted SwiftFormat lint on changed files passed.
 - `git diff --check` passed.
 
-Blocked:
+Resolved:
 
-- Full `scripts/codex/validate-ios.sh` escalation was rejected by Codex usage limit. This is recorded as a local validation blocker for Issue #84; the item should not be merged until full validation or CI passes.
+- Full `scripts/codex/validate-ios.sh` passed on 2026-06-11 22:26 JST after execution usage reset.
 
 ### Risk
 
@@ -58,7 +58,7 @@ Low. The change prevents duplicate single-name additions and shows a Japanese wa
 
 ### Follow-up
 
-Commit and push if local Git operations remain available; otherwise resume after execution usage resets, run full validation, create PR, and update Issue #84 evidence.
+Create PR for Issue #84, move Issue #84 to In Review, and update Project pending evidence.
 
 ## 2026-06-05 15:46 JST
 

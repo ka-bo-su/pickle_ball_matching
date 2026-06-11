@@ -3,13 +3,13 @@
 ## Result
 
 - Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31/#33/#35/#37/#39/#41/#43/#45/#47/#49/#51/#53/#55/#57/#59/#61/#63/#65/#67/#69/#71/#73/#75/#77/#79/#81/#83 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30/#32/#34/#36/#38/#40/#42/#44/#46/#48/#50/#52/#54/#56/#58/#60/#62/#64/#66/#68/#70/#72/#74/#76/#78/#80/#82 close, Project Done sync where `gh` was available, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, current-round CSV/PDF/image sharing, participant-facing large board display, editable session settings, participant profile editing, roster reuse, any-player swap, multi-step undo, session history/reopen/delete, board readability, timer/start-end flow, repeated-pair/opponent avoidance, rule settings, score/winner recording, operation-mode presets, round history, bulk participant entry, large-board timer/status display, participant add UX improvement, participant delete/attendance actions, pre-round readiness/free-plan guidance, participant status summary, first-run participant setup guide, GitHub Actions Node 20 deprecation fix, and a guarded GitHub REST push fallback script/runbook
-- Partially completed: Issue #84 duplicate participant-name guidance is implemented locally and targeted tests/lint/format passed.
-- Blocked: Issue #84 full validation/publish is blocked by Codex execution usage limit. GitHub Project field sync for Issues #74, #76, #78, #80, #82, and #84 is blocked because `gh` reports an invalid token.
+- Partially completed: Issue #84 duplicate participant-name guidance is implemented and full local validation passed; PR creation is pending.
+- Blocked: GitHub Project field sync for Issues #74, #76, #78, #80, #82, and #84 is blocked because `gh` reports an invalid token.
 
 ## Time
 
 - Started: 2026-06-01 02:34 JST
-- Last checkpoint: 2026-06-05 15:54 JST
+- Last checkpoint: 2026-06-11 22:26 JST
 - Approximate duration: session-dependent
 
 ## PRs

@@ -7,13 +7,14 @@
 - Active Branch: codex/sbi-84-duplicate-participant-guide
 - Active PR: pending
 - GitHub Project Item: pending; `gh` authentication is invalid
-- Status: targeted implementation validation passed; full validation blocked by Codex usage limit
-- Next Action: rerun `scripts/codex/validate-ios.sh` after usage reset, then commit/push/create PR
+- Status: full validation passed; PR creation pending
+- Next Action: create PR and move Issue #84 to In Review
 
 ## Completed
 
 | Time | Item | Result | Evidence |
 |---|---|---|---|
+| 2026-06-11 22:26 JST | Issue #84 full validation | `scripts/codex/validate-ios.sh` passed after usage reset | local branch `codex/sbi-84-duplicate-participant-guide` |
 | 2026-06-05 15:54 JST | Issue #84 targeted validation | Implemented duplicate participant-name guidance; targeted Xcode test/lint/format passed; full validation blocked by usage limit | local branch `codex/sbi-84-duplicate-participant-guide` |
 | 2026-06-05 15:52 JST | Next SBI selected | Created Issue #84 for duplicate participant-name detection | https://github.com/ka-bo-su/pickle_ball_matching/issues/84 |
 | 2026-06-05 15:51 JST | SBI #82 merged | PR #83 passed GitHub Actions, squash merged to `dev`, and Issue #82 was closed with `status:done` | https://github.com/ka-bo-su/pickle_ball_matching/pull/83 |
@@ -159,20 +160,20 @@
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #84 参加者追加時に重複名を検出して案内する | codex/sbi-84-duplicate-participant-guide | pending | Full validation blocked | rerun full validation after usage reset |
+| Issue #84 参加者追加時に重複名を検出して案内する | codex/sbi-84-duplicate-participant-guide | pending | Full validation passed | create PR |
 
 ## Blocked
 
 | Item | Reason | Next | Project Status |
 |---|---|---|---|
 | Project field sync for Issues #74, #76, #78, #80, #82, and #84 | `gh auth status` reports invalid token; connector can update Issues/PRs but not GitHub Project fields | restore GitHub authentication, set merged items Done, add/update #84 Project item | pending update recorded |
-| Issue #84 validation/publication | Codex execution usage limit rejected escalated full validation | wait for execution usage reset, rerun `scripts/codex/validate-ios.sh`, commit/push/create PR | pending update recorded |
 
 ## Validation History
 
 | Time | Command | Result | Notes |
 |---|---|---|---|
 | 2026-06-05 15:42 JST | `scripts/codex/validate-ios.sh` | pass | Issue #82: `swift test` 34 core tests, SwiftLint non-fatal existing warning, SwiftFormat clean, XcodeGen, `xcodebuild build`, and `xcodebuild test` 34 core + 68 app tests |
+| 2026-06-11 22:26 JST | `scripts/codex/validate-ios.sh` | pass | Issue #84: `swift test` 34 core tests, SwiftLint non-fatal type-body warnings, SwiftFormat clean, XcodeGen, `xcodebuild build`, and `xcodebuild test` 34 core + 70 app tests |
 | 2026-06-05 15:54 JST | targeted `xcodebuild test` | pass | Issue #84: `OperationBoardViewModelTests` 25 tests passed |
 | 2026-06-05 15:54 JST | `scripts/codex/validate-ios.sh` | blocked | Escalation rejected by Codex usage limit; targeted lint/format/diff checks passed |
 | 2026-06-05 15:40 JST | targeted `xcodebuild test` | pass | Issue #82: 9 selected app tests passed |

@@ -10,6 +10,6 @@
 - Active GitHub Project: `kanban@pickle_ball_matching`
 - Project owner: `ka-bo-su`
 - Project number: `3`
-- Last successful validation: 2026-06-05 15:54 JST, targeted `xcodebuild test` for Issue #84. Last full validation: 2026-06-05 15:42 JST on Issue #82 branch.
-- Current blocker: Issue #84 full validation/publish is blocked by Codex execution usage limit; GitHub Project field sync is also blocked because `gh` token is invalid.
-- Next action: after usage reset, rerun `scripts/codex/validate-ios.sh`, commit/push Issue #84, create PR, and keep Project pending updates until `gh` authentication is restored.
+- Last successful validation: 2026-06-11 22:26 JST, local `scripts/codex/validate-ios.sh` on Issue #84 branch.
+- Current blocker: GitHub Project field sync is blocked because `gh` token is invalid; code/PR work can continue through git and GitHub connector.
+- Next action: create PR for Issue #84, move Issue #84 to In Review, then continue to the accessibility/modern UI SBI.
