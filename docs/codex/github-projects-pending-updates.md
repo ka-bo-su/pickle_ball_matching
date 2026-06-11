@@ -6,6 +6,32 @@ Active pending update exists as of 2026-06-02 22:19 JST.
 
 ## Pending Project Update
 
+- Timestamp: 2026-06-11 22:39 JST
+- Target project: kanban@pickle_ball_matching
+- Target item: new Japanese Issue `[SBI] お年寄りでも使いやすい進行ボードUIにする`
+- Intended action: Create the Issue, add it to Project 3, set Backlog Level `SBI`, Status `In review`, Scrum Status `In Review`, Sprint `Sprint 2026-06 MVP`, Priority `P1`, Role Owner `swift-developer`, Area `UI`, Risk `medium`, Architecture Impact `Presentation only`, Validation Status `Passed with hosted-app-test risk`, and Evidence Link to the PR once created.
+- Previous state: User requested UI usability improvements; no GitHub Issue/Project item could be created in this session.
+- New state: Local branch `codex/sbi-85-accessible-modern-ui` contains the implementation and local validation evidence.
+- Reason not applied: `gh` authentication is invalid and the GitHub connector returned `Provided authentication token is expired`.
+- Command to apply later: restore auth, then `gh issue create --title "[SBI] お年寄りでも使いやすい進行ボードUIにする" --label type:sbi --label status:in-review --label area:ui --label risk:medium --body-file <Japanese body>`; add to Project 3; set required fields; create PR from `codex/sbi-85-accessible-modern-ui` to `dev`; set Evidence Link.
+- Related PR: pending
+- Related Issue: pending
+
+## Pending Project Update
+
+- Timestamp: 2026-06-11 22:27 JST
+- Target project: kanban@pickle_ball_matching
+- Target item: Issue #84 `参加者追加時に重複名を検出して案内する`
+- Intended action: Create PR from `codex/sbi-84-duplicate-participant-guide` to `dev`, move Issue #84 to In Review, set Project Status/Scrum Status `In Review`, Validation Status `Passed`, and Evidence Link to the PR.
+- Previous state: Issue #84 implemented locally and full validation passed.
+- New state: Branch pushed; PR creation and Project sync still pending.
+- Reason not applied: GitHub connector token expired while creating the PR; `gh` authentication is invalid.
+- Command to apply later: restore GitHub auth, create PR from `codex/sbi-84-duplicate-participant-guide` to `dev`, then update Issue/Project fields.
+- Related PR: pending
+- Related Issue: https://github.com/ka-bo-su/pickle_ball_matching/issues/84
+
+## Pending Project Update
+
 - Timestamp: 2026-06-05 15:54 JST
 - Target project: kanban@pickle_ball_matching
 - Target item: Issue #84

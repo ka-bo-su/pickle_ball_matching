@@ -18,10 +18,24 @@
 
 ## Blocker
 
+- Time: 2026-06-11 22:39 JST
+- Item: GitHub Issue/PR/Project sync for Issue #84 and local #85
+- Type: GitHub authentication
+- Reason: `gh` authentication is invalid and GitHub connector write attempts return `Provided authentication token is expired`.
+- Impact: Local branches can be committed and pushed with git, but Japanese Issue creation, PR creation, Issue label updates, and Project field updates cannot be completed from this session.
+- Attempted fixes: Tried GitHub connector PR creation for Issue #84 after full validation; it failed with an expired token. Project field sync was already blocked by invalid `gh` authentication.
+- Why autonomous progress cannot continue for this item: GitHub source-of-truth updates require authenticated GitHub write access. Continuing code/docs work is safe, but Project/Issue/PR state cannot be made accurate until authentication is restored.
+- Safe next task selected: Keep #85 local implementation validated, commit and push the branch, and record pending updates.
+- GitHub Project update: pending updates recorded in `docs/codex/github-projects-pending-updates.md`.
+- Pending update: create PR for #84; create Japanese Issue and PR for #85; set Project fields/evidence for both items.
+- Human repair: sign in to the GitHub connector again and run `gh auth login` or `gh auth refresh -s project`.
+
+## Blocker
+
 - Time: 2026-06-05 14:53 JST
 - Item: GitHub Project field sync for Issues #74, #76, #78, #80, and #82
 - Type: GitHub CLI authentication
-- Reason: `gh auth status` reports the default token is invalid. The GitHub connector can create/update Issues and merge PRs, but does not expose GitHub Project item field editing.
+- Reason: `gh auth status` reports the default token is invalid. As of 2026-06-11, the GitHub connector token is also expired for Issue/PR writes.
 - Impact: PR #75/#77/#79/#81 were merged and Issues #74/#76/#78/#80 were closed, and Issue #82 was created, but Project `kanban@pickle_ball_matching` fields still need Done/In Progress/In Review/Evidence sync.
 - Attempted fixes: Used public REST to read PR/check status, GitHub connector to merge PR #75, and GitHub connector to close Issue #74. `gh` GraphQL operations still fail with HTTP 401.
 - Why autonomous progress cannot continue for this item: Project field writes require authenticated `gh project item-edit` or equivalent GraphQL access not currently available.

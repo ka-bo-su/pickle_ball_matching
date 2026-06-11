@@ -3,6 +3,12 @@ import SwiftUI
 
 struct OperationBoardView: View {
     @StateObject private var viewModel: OperationBoardViewModel
+    @AppStorage("operationBoardShowsSessionSettings") private var showsSessionSettings = false
+    @AppStorage("operationBoardShowsRuleSettings") private var showsRuleSettings = false
+    @AppStorage("operationBoardShowsTimerControls") private var showsTimerControls = true
+    @AppStorage("operationBoardShowsScoreControls") private var showsScoreControls = false
+    @AppStorage("operationBoardShowsShareOptions") private var showsShareOptions = false
+    @AppStorage("operationBoardShowsRoundHistory") private var showsRoundHistory = false
 
     init(viewModel: OperationBoardViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -11,16 +17,41 @@ struct OperationBoardView: View {
     var body: some View {
         NavigationStack {
             List {
-                sessionSection
-                ruleSettingsSection
                 boardSummarySection
-                RoundTimingSection(viewModel: viewModel)
-                participantSection
                 actionSection
-                CurrentRoundSection(viewModel: viewModel)
-                RoundHistorySection(viewModel: viewModel)
+                CurrentRoundSection(viewModel: viewModel, showsScoreControls: showsScoreControls)
+                participantSection
+                OperationBoardDisplayOptionsSection(
+                    showsTimerControls: $showsTimerControls,
+                    showsScoreControls: $showsScoreControls,
+                    showsSessionSettings: $showsSessionSettings,
+                    showsRuleSettings: $showsRuleSettings,
+                    showsShareOptions: $showsShareOptions,
+                    showsRoundHistory: $showsRoundHistory
+                )
+
+                if showsTimerControls {
+                    RoundTimingSection(viewModel: viewModel)
+                }
+
+                if showsSessionSettings {
+                    sessionSection
+                }
+
+                if showsRuleSettings {
+                    ruleSettingsSection
+                }
+
+                if showsShareOptions {
+                    OperationBoardShareSection(viewModel: viewModel)
+                }
+
+                if showsRoundHistory {
+                    RoundHistorySection(viewModel: viewModel)
+                }
             }
-            .navigationTitle("当日運営ボード")
+            .listStyle(.insetGrouped)
+            .navigationTitle("運営ボード")
         }
     }
 
@@ -37,68 +68,17 @@ struct OperationBoardView: View {
     }
 
     private var boardSummarySection: some View {
-        let summary = viewModel.boardSummaryModel
-        return Section("現在状態") {
-            VStack(alignment: .leading, spacing: 12) {
-                Label(summary.statusTitle, systemImage: "rectangle.and.text.magnifyingglass")
-                    .font(.headline)
-
-                Text(summary.statusDetail)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-
-                VStack(alignment: .leading, spacing: 8) {
-                    summaryLine(title: "参加者", value: summary.participantSummary, systemImage: "person.3")
-                    summaryLine(title: "コート", value: summary.courtSummary, systemImage: "sportscourt")
-                    summaryLine(title: "待機", value: summary.waitingSummary, systemImage: "person.2.slash")
-                }
-
-                if let proPlanNotice = summary.proPlanNotice {
-                    Label(proPlanNotice, systemImage: "star.circle")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
-
-                Divider()
-
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(summary.nextActionTitle)
-                        .font(.subheadline.weight(.semibold))
-                    Text(summary.nextActionDetail)
-                        .font(.body)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
-            }
-            .padding(.vertical, 4)
-            .accessibilityElement(children: .combine)
-            .accessibilityLabel(summary.accessibilityLabel)
-        }
+        OperationBoardSummarySection(summary: viewModel.boardSummaryModel)
     }
 
     private var actionSection: some View {
-        Section {
+        Section("よく使う操作") {
             generateRoundButton
-            undoButton
+            if viewModel.canUndo {
+                undoButton
+            }
             largeBoardLink
-            csvShareButton
-            pdfShareButton
-            imageShareButton
             errorMessageView
-        }
-    }
-
-    private func summaryLine(title: String, value: String, systemImage: String) -> some View {
-        HStack(alignment: .firstTextBaseline, spacing: 8) {
-            Label(title, systemImage: systemImage)
-                .font(.caption.weight(.semibold))
-                .foregroundStyle(.secondary)
-                .frame(width: 72, alignment: .leading)
-
-            Text(value)
-                .font(.subheadline)
-                .foregroundStyle(.primary)
-                .fixedSize(horizontal: false, vertical: true)
         }
     }
 
@@ -106,11 +86,16 @@ struct OperationBoardView: View {
         Button {
             viewModel.generateNextRound()
         } label: {
-            Label("次ラウンド生成", systemImage: "shuffle")
+            Label("次ラウンドを作る", systemImage: "shuffle")
+                .font(.title3.weight(.bold))
+                .padding(.vertical, 10)
                 .frame(maxWidth: .infinity, alignment: .center)
         }
+        .buttonStyle(.borderedProminent)
+        .controlSize(.large)
         .disabled(!viewModel.canGenerateRound)
         .accessibilityLabel("次ラウンドを生成")
+        .accessibilityHint("参加者、待機者、コート数に合わせて次の組み合わせを作ります")
     }
 
     private var undoButton: some View {
@@ -118,8 +103,12 @@ struct OperationBoardView: View {
             viewModel.undoLastChange()
         } label: {
             Label(viewModel.undoButtonTitle, systemImage: "arrow.uturn.backward")
+                .font(.body.weight(.semibold))
+                .padding(.vertical, 6)
                 .frame(maxWidth: .infinity, alignment: .center)
         }
+        .buttonStyle(.bordered)
+        .controlSize(.large)
         .disabled(!viewModel.canUndo)
         .accessibilityLabel(viewModel.undoButtonAccessibilityLabel)
     }
@@ -129,58 +118,11 @@ struct OperationBoardView: View {
             LargeBoardView(viewModel: viewModel)
         } label: {
             Label("大画面表示", systemImage: "display")
+                .font(.body.weight(.semibold))
+                .padding(.vertical, 6)
                 .frame(maxWidth: .infinity, alignment: .center)
         }
         .accessibilityLabel("参加者向け大画面ボードを表示")
-    }
-
-    @ViewBuilder
-    private var csvShareButton: some View {
-        if let csvText = viewModel.currentRoundCSV {
-            ShareLink(
-                item: csvText,
-                subject: Text("\(viewModel.session.name) ラウンドCSV"),
-                message: Text("現在ラウンドの組み合わせCSVです。")
-            ) {
-                Label("CSV共有", systemImage: "square.and.arrow.up")
-                    .frame(maxWidth: .infinity, alignment: .center)
-            }
-            .accessibilityLabel("現在ラウンドをCSVで共有")
-        }
-    }
-
-    @ViewBuilder
-    private var pdfShareButton: some View {
-        if let pdfDocument = viewModel.currentRoundPDFDocument {
-            ShareLink(
-                item: pdfDocument,
-                preview: SharePreview(
-                    pdfDocument.fileName,
-                    image: Image(systemName: "doc.richtext")
-                )
-            ) {
-                Label("PDF共有", systemImage: "doc.richtext")
-                    .frame(maxWidth: .infinity, alignment: .center)
-            }
-            .accessibilityLabel("現在ラウンドをPDFで共有")
-        }
-    }
-
-    @ViewBuilder
-    private var imageShareButton: some View {
-        if let imageDocument = viewModel.currentRoundImageDocument {
-            ShareLink(
-                item: imageDocument,
-                preview: SharePreview(
-                    imageDocument.fileName,
-                    image: Image(systemName: "photo")
-                )
-            ) {
-                Label("画像共有", systemImage: "photo")
-                    .frame(maxWidth: .infinity, alignment: .center)
-            }
-            .accessibilityLabel("現在ラウンドを画像で共有")
-        }
     }
 
     @ViewBuilder

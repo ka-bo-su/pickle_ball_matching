@@ -3,13 +3,13 @@
 ## Result
 
 - Completed: Codex docs/config/subagents/runbooks, GitHub templates, Project labels/fields/issues, SwiftPM core bootstrap, XcodeGen SwiftUI app shell, validation scripts, PR #8/#14/#15/#22/#24/#26/#28/#31/#33/#35/#37/#39/#41/#43/#45/#47/#49/#51/#53/#55/#57/#59/#61/#63/#65/#67/#69/#71/#73/#75/#77/#79/#81/#83 squash merges to `dev`, Issues #1-#7/#9-#13/#21/#23/#25/#27/#30/#32/#34/#36/#38/#40/#42/#44/#46/#48/#50/#52/#54/#56/#58/#60/#62/#64/#66/#68/#70/#72/#74/#76/#78/#80/#82 close, Project Done sync where `gh` was available, MVP PBI Issues #16-#20 creation, first operation board slice, local JSON persistence, participant status changes, manual waiter swap/one-step undo, current-round CSV/PDF/image sharing, participant-facing large board display, editable session settings, participant profile editing, roster reuse, any-player swap, multi-step undo, session history/reopen/delete, board readability, timer/start-end flow, repeated-pair/opponent avoidance, rule settings, score/winner recording, operation-mode presets, round history, bulk participant entry, large-board timer/status display, participant add UX improvement, participant delete/attendance actions, pre-round readiness/free-plan guidance, participant status summary, first-run participant setup guide, GitHub Actions Node 20 deprecation fix, and a guarded GitHub REST push fallback script/runbook
-- Partially completed: Issue #84 duplicate participant-name guidance is implemented and full local validation passed; PR creation is pending.
-- Blocked: GitHub Project field sync for Issues #74, #76, #78, #80, #82, and #84 is blocked because `gh` reports an invalid token.
+- Partially completed: Issue #84 duplicate participant-name guidance is implemented and full local validation passed; PR creation is pending. Local #85 elderly-friendly modern Operation Board UI is implemented and locally validated; Japanese Issue/PR/Project sync is pending.
+- Blocked: GitHub Project/Issue/PR sync for Issues #74, #76, #78, #80, #82, #84, and local #85 is blocked because `gh` reports an invalid token and the GitHub connector token is expired.
 
 ## Time
 
 - Started: 2026-06-01 02:34 JST
-- Last checkpoint: 2026-06-11 22:26 JST
+- Last checkpoint: 2026-06-11 22:39 JST
 - Approximate duration: session-dependent
 
 ## PRs
@@ -109,14 +109,16 @@
 
 ## Pending GitHub Project Updates
 
-- Issue #74 In Review / Validation Status / Evidence Link after full validation and PR creation.
+- Issue #84 PR creation, In Review state, Validation Status, and Evidence Link.
+- Local #85 Japanese Issue creation, Project item creation, PR creation, In Review state, Validation Status, and Evidence Link.
+- Project field Done/In Review sync for older items where `gh` authentication failed.
 
 ## iOS Validation
 
-- Build: Issue #74 `xcodebuild -list` passed; simulator build/test blocked by sandbox CoreSimulator access and escalation usage limit
-- Test: Issue #74 `swift test` failed due sandbox clang module cache write denial; escalated rerun rejected by usage limit
-- Lint: Issue #74 SwiftLint and SwiftFormat lint passed
-- Simulator: iPhone 16 on iOS 18.2 available
+- Build: Local #85 `xcodebuild build` passed on iPhone 16 simulator.
+- Test: Local #85 `swift test` passed 34 core tests; `xcodebuild test -only-testing:PickleBallMatchingCoreTests` passed 34 Xcode core tests.
+- Lint: Local #85 SwiftLint passed with one existing non-serious test type-body warning; SwiftFormat lint passed.
+- Simulator: Full hosted app `xcodebuild test` compiled and ran the core bundle, then host app launch hung/failed with `NSMachErrorDomain Code=-308`; rerun after Simulator restart.
 
 ## Files Changed
 

@@ -37,20 +37,21 @@ xcodebuild test -scheme PickleBallMatching -destination 'platform=iOS Simulator,
 
 ## Latest Validation
 
-Last checked: 2026-06-02 08:00 JST
+Last checked: 2026-06-11 22:39 JST
 
 | Command | Result | Notes |
 |---|---|---|
 | `scripts/codex/preflight.sh` | passed | Tuist missing only; optional |
-| `swift test` | passed | 10 core tests, 0 failures; local linker warning for missing Homebrew GMP search path is non-blocking |
-| `swiftlint --no-cache` | passed | 0 violations in 25 files |
-| `swiftformat --cache ignore --lint .` | passed | 0 of 25 Swift files require formatting; rules loaded from `.swiftformat` |
+| `swift test` | passed | 34 core tests, 0 failures; local linker warning for missing Homebrew GMP search path is non-blocking |
+| `swiftlint --no-cache` | passed | 1 non-serious existing test type-body warning in 67 files |
+| `swiftformat --swiftversion 6.0 --cache ignore --lint .` | passed | 0 of 67 Swift files require formatting; rules loaded from `.swiftformat` |
 | `xcodegen generate` | passed | generated `PickleBallMatching.xcodeproj` locally; ignored by git |
 | `xcodebuild -list -project PickleBallMatching.xcodeproj` | passed | schemes: `PickleBallMatching`, `PickleBallMatchingCore` |
-| `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'` | passed | initial generated Info.plist issue fixed in `project.yml` |
-| `xcodebuild test -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'` | passed | 10 core tests plus 27 app tests passed |
+| `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'` | passed | SwiftUI app target builds on iPhone 16 simulator |
+| `xcodebuild test -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16' -only-testing:PickleBallMatchingCoreTests` | passed | 34 Xcode core tests passed |
+| full `xcodebuild test -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16'` | partial | Core bundle passed, then hosted app test launch hung/failed with Simulator `NSMachErrorDomain Code=-308`; rerun after Simulator restart |
 
-Full validation script result: `scripts/codex/validate-ios.sh` passed on `codex/sbi-56-round-timer` at 2026-06-02 08:00 JST.
+Latest UI validation result: local #85 passed SwiftPM tests, lint/format, XcodeGen, Xcode build, and Xcode Core tests. Full hosted app tests should be rerun after Simulator restart because the host app launch failed independently of compilation.
 
 `scripts/codex/validate-ios.sh` uses `iPhone 16` when available and falls back to the first available iPhone Simulator on CI runners. If no iPhone Simulator exists, validation fails instead of silently skipping the Xcode build/test path.
 

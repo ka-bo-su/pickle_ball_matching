@@ -1,5 +1,68 @@
 # Codex Audit Log
 
+## 2026-06-11 22:39 JST
+
+### Action
+
+Implemented local SBI #85 equivalent: elderly-friendly and modern Operation Board UI.
+
+### Reason
+
+The user reported the UI is hard to use. The app's MVP north star requires an organizer to understand and operate the board quickly, including older organizers. Always-visible settings, rule controls, score controls, sharing, and history were creating unnecessary visual load.
+
+### Files Changed
+
+- `Features/OperationBoard/Presentation/OperationBoardView.swift`
+- `Features/OperationBoard/Presentation/CurrentRoundSection.swift`
+- `Features/OperationBoard/Presentation/ParticipantListSection.swift`
+- `Features/OperationBoard/Presentation/ParticipantRowView.swift`
+- `Features/OperationBoard/Presentation/OperationBoardSummarySection.swift`
+- `Features/OperationBoard/Presentation/OperationBoardDisplayOptionsSection.swift`
+- `Features/OperationBoard/Presentation/OperationBoardShareSection.swift`
+- `docs/codex/audit-log.md`
+- `docs/codex/progress-ledger.md`
+- `docs/codex/nightly-state.md`
+- `docs/codex/nightly-summary.md`
+- `docs/codex/github-projects-pending-updates.md`
+- `docs/codex/blockers.md`
+- `docs/codex/ios-swift-validation.md`
+- `docs/scrum/sprint-backlog.md`
+
+### Commands Run
+
+- `swiftformat --swiftversion 6.0 --cache ignore ...`
+- `swiftlint --no-cache`
+- `swift test`
+- `xcodegen generate`
+- `xcodebuild build -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16' | xcbeautify`
+- `xcodebuild test -project PickleBallMatching.xcodeproj -scheme PickleBallMatching -destination 'platform=iOS Simulator,name=iPhone 16' -only-testing:PickleBallMatchingCoreTests | xcbeautify`
+
+### GitHub Project Updates
+
+Could not create/update the GitHub Issue, PR, or Project item because the GitHub CLI token is invalid and the GitHub connector token is expired. Pending updates were recorded for `kanban@pickle_ball_matching`.
+
+### Architecture Decision
+
+Presentation-only change. Split large SwiftUI sections into smaller views to keep UI concerns localized and avoid adding Domain/Application dependencies. No Clean Architecture boundary changes.
+
+### Validation
+
+- `swift test`: passed, 34 core tests.
+- `swiftlint --no-cache`: passed with one existing non-serious `OperationBoardViewModelTests` type body length warning.
+- `swiftformat --swiftversion 6.0 --cache ignore --lint .`: passed.
+- `xcodegen generate`: passed.
+- `xcodebuild build`: passed for iPhone 16 simulator.
+- `xcodebuild test -only-testing:PickleBallMatchingCoreTests`: passed, 34 Xcode core tests.
+- Full hosted app `xcodebuild test` compiled and ran the core test bundle, then the Simulator host app launch hung/failed with `NSMachErrorDomain Code=-308`; recorded as environment validation risk, not a code compile failure.
+
+### Risk
+
+Medium-low. The change is UI-only but affects the primary Operation Board workflow. Main risk is visual layout on small devices and Dynamic Type; mitigated with larger text, `ViewThatFits`, hidden advanced sections, and successful Xcode build.
+
+### Follow-up
+
+Restore GitHub authentication, create Japanese Issue `[SBI] お年寄りでも使いやすい進行ボードUIにする`, push branch, create PR, add Project evidence, then run/observe CI.
+
 ## 2026-06-05 15:54 JST
 
 ### Action

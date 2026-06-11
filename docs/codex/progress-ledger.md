@@ -3,17 +3,18 @@
 ## Current
 
 - Active PBI: #16 当日運営特化ダブルス組み合わせMVP
-- Active SBI: #84 参加者追加時に重複名を検出して案内する
-- Active Branch: codex/sbi-84-duplicate-participant-guide
+- Active SBI: local #85 お年寄りでも使いやすい進行ボードUIにする
+- Active Branch: codex/sbi-85-accessible-modern-ui
 - Active PR: pending
-- GitHub Project Item: pending; `gh` authentication is invalid
-- Status: full validation passed; PR creation pending
-- Next Action: create PR and move Issue #84 to In Review
+- GitHub Project Item: pending; `gh` authentication is invalid and GitHub connector token is expired
+- Status: local implementation validated; PR/Project sync pending
+- Next Action: commit, push branch, restore GitHub auth, create Japanese Issue/PR, and move Project item to In Review
 
 ## Completed
 
 | Time | Item | Result | Evidence |
 |---|---|---|---|
+| 2026-06-11 22:39 JST | Local #85 accessible modern Operation Board UI | Implemented larger primary actions, display toggles for advanced information, readable participant rows, hidden score/share/history controls, and split SwiftUI sections | local branch `codex/sbi-85-accessible-modern-ui` |
 | 2026-06-11 22:26 JST | Issue #84 full validation | `scripts/codex/validate-ios.sh` passed after usage reset | local branch `codex/sbi-84-duplicate-participant-guide` |
 | 2026-06-05 15:54 JST | Issue #84 targeted validation | Implemented duplicate participant-name guidance; targeted Xcode test/lint/format passed; full validation blocked by usage limit | local branch `codex/sbi-84-duplicate-participant-guide` |
 | 2026-06-05 15:52 JST | Next SBI selected | Created Issue #84 for duplicate participant-name detection | https://github.com/ka-bo-su/pickle_ball_matching/issues/84 |
@@ -160,7 +161,8 @@
 
 | Item | Branch | PR | Status | Next |
 |---|---|---|---|---|
-| Issue #84 参加者追加時に重複名を検出して案内する | codex/sbi-84-duplicate-participant-guide | pending | Full validation passed | create PR |
+| Issue #84 参加者追加時に重複名を検出して案内する | codex/sbi-84-duplicate-participant-guide | pending | Full validation passed; GitHub connector token expired during PR creation | restore GitHub auth and create PR |
+| Local #85 お年寄りでも使いやすい進行ボードUIにする | codex/sbi-85-accessible-modern-ui | pending | Local implementation validated; stacked on #84 branch | commit, push, create Japanese Issue/PR after auth repair |
 
 ## Blocked
 
@@ -172,6 +174,12 @@
 
 | Time | Command | Result | Notes |
 |---|---|---|---|
+| 2026-06-11 22:39 JST | `swift test` | pass | Local #85: 34 core tests passed |
+| 2026-06-11 22:39 JST | `swiftlint --no-cache` | pass | Local #85: one existing non-serious `OperationBoardViewModelTests` type body length warning; UI type length warnings removed by view extraction |
+| 2026-06-11 22:39 JST | `swiftformat --swiftversion 6.0 --cache ignore --lint .` | pass | Local #85: 0 of 67 files require formatting |
+| 2026-06-11 22:39 JST | `xcodebuild build` | pass | Local #85: iPhone 16 simulator build succeeded |
+| 2026-06-11 22:39 JST | `xcodebuild test -only-testing:PickleBallMatchingCoreTests` | pass | Local #85: 34 Xcode core tests passed |
+| 2026-06-11 22:35 JST | full `xcodebuild test` | partial | Local #85: core bundle passed, then hosted app test launch hung/failed with Simulator `NSMachErrorDomain Code=-308`; record as environment risk |
 | 2026-06-05 15:42 JST | `scripts/codex/validate-ios.sh` | pass | Issue #82: `swift test` 34 core tests, SwiftLint non-fatal existing warning, SwiftFormat clean, XcodeGen, `xcodebuild build`, and `xcodebuild test` 34 core + 68 app tests |
 | 2026-06-11 22:26 JST | `scripts/codex/validate-ios.sh` | pass | Issue #84: `swift test` 34 core tests, SwiftLint non-fatal type-body warnings, SwiftFormat clean, XcodeGen, `xcodebuild build`, and `xcodebuild test` 34 core + 70 app tests |
 | 2026-06-05 15:54 JST | targeted `xcodebuild test` | pass | Issue #84: `OperationBoardViewModelTests` 25 tests passed |

@@ -3,6 +3,12 @@ import SwiftUI
 
 struct CurrentRoundSection: View {
     @ObservedObject var viewModel: OperationBoardViewModel
+    let showsScoreControls: Bool
+
+    init(viewModel: OperationBoardViewModel, showsScoreControls: Bool = true) {
+        self.viewModel = viewModel
+        self.showsScoreControls = showsScoreControls
+    }
 
     var body: some View {
         if let round = viewModel.currentRound {
@@ -28,10 +34,12 @@ struct CurrentRoundSection: View {
             if !round.waitingParticipants.isEmpty {
                 VStack(alignment: .leading, spacing: 6) {
                     Label("待機", systemImage: "person.2.slash")
-                        .font(.headline)
+                        .font(.title3.weight(.bold))
                     Text(waitingNames)
-                        .font(.body)
+                        .font(.title3.weight(.semibold))
+                        .fixedSize(horizontal: false, vertical: true)
                 }
+                .padding(.vertical, 8)
                 .accessibilityElement(children: .combine)
                 .accessibilityLabel("待機者 \(waitingNames)")
             }
@@ -39,28 +47,45 @@ struct CurrentRoundSection: View {
     }
 
     private func matchRow(_ match: Match) -> some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 14) {
             Label("コート\(match.courtNumber)", systemImage: "sportscourt")
-                .font(.headline)
-            HStack(alignment: .top, spacing: 12) {
-                teamColumn(title: "A", players: match.teamA.players)
-                Text("vs")
-                    .font(.headline)
-                    .foregroundStyle(.secondary)
-                    .padding(.top, 8)
-                teamColumn(title: "B", players: match.teamB.players)
+                .font(.title2.weight(.bold))
+
+            ViewThatFits(in: .horizontal) {
+                HStack(alignment: .top, spacing: 16) {
+                    teamColumn(title: "A", players: match.teamA.players)
+                    versusLabel
+                    teamColumn(title: "B", players: match.teamB.players)
+                }
+
+                VStack(alignment: .leading, spacing: 12) {
+                    teamColumn(title: "A", players: match.teamA.players)
+                    versusLabel
+                    teamColumn(title: "B", players: match.teamB.players)
+                }
             }
 
-            scoreControls(for: match)
+            if showsScoreControls {
+                scoreControls(for: match)
+            }
         }
+        .padding(.vertical, 10)
         .accessibilityElement(children: .contain)
         .accessibilityLabel(matchAccessibilityLabel(match))
     }
 
+    private var versusLabel: some View {
+        Text("vs")
+            .font(.headline)
+            .foregroundStyle(.secondary)
+            .padding(.top, 8)
+            .accessibilityHidden(true)
+    }
+
     private func teamColumn(title: String, players: [Participant]) -> some View {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading, spacing: 6) {
             Text("チーム\(title)")
-                .font(.caption)
+                .font(.callout.weight(.semibold))
                 .foregroundStyle(.secondary)
             ForEach(players) { player in
                 playerRowForMatch(player)
@@ -73,8 +98,8 @@ struct CurrentRoundSection: View {
         HStack(spacing: 6) {
             Text(player.displayName)
                 .font(.title3.weight(.semibold))
-                .lineLimit(1)
-                .minimumScaleFactor(0.75)
+                .lineLimit(2)
+                .minimumScaleFactor(0.8)
 
             playerSwapMenu(player)
         }
@@ -100,8 +125,8 @@ struct CurrentRoundSection: View {
                     }
                 }
             } label: {
-                Image(systemName: "arrow.left.arrow.right.circle")
-                    .imageScale(.medium)
+                Label("入替", systemImage: "arrow.left.arrow.right.circle")
+                    .font(.callout.weight(.semibold))
             }
             .buttonStyle(.borderless)
             .accessibilityLabel("\(player.displayName)をラウンド内の参加者と入れ替え")
@@ -121,7 +146,7 @@ struct CurrentRoundSection: View {
 
         return VStack(alignment: .leading, spacing: 8) {
             Text("スコア")
-                .font(.caption.weight(.semibold))
+                .font(.callout.weight(.semibold))
                 .foregroundStyle(.secondary)
 
             Stepper(value: teamAScoreBinding(for: match.id), in: 0 ... 99) {
