@@ -3,6 +3,7 @@ import SwiftUI
 
 struct OperationBoardView: View {
     @StateObject private var viewModel: OperationBoardViewModel
+    @State private var isShowingNextRoundConfirmation = false
 
     init(viewModel: OperationBoardViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -104,13 +105,29 @@ struct OperationBoardView: View {
 
     private var generateRoundButton: some View {
         Button {
-            viewModel.generateNextRound()
+            if viewModel.isCurrentRoundInProgress {
+                isShowingNextRoundConfirmation = true
+            } else {
+                viewModel.generateNextRound()
+            }
         } label: {
             Label("次ラウンド生成", systemImage: "shuffle")
                 .frame(maxWidth: .infinity, alignment: .center)
         }
         .disabled(!viewModel.canGenerateRound)
         .accessibilityLabel("次ラウンドを生成")
+        .confirmationDialog(
+            "現在のラウンドを終了して次へ進みますか？",
+            isPresented: $isShowingNextRoundConfirmation,
+            titleVisibility: .visible
+        ) {
+            Button("終了して次ラウンドへ") {
+                viewModel.generateNextRound()
+            }
+            Button("キャンセル", role: .cancel) {}
+        } message: {
+            Text("進行中のラウンドがあります。終了して新しいラウンドを生成します。")
+        }
     }
 
     private var undoButton: some View {

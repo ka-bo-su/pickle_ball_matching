@@ -17,10 +17,14 @@ struct ParticipantListSection: View {
             ForEach(viewModel.session.participants) { participant in
                 participantRow(participant)
             }
-            .onDelete(perform: viewModel.removeParticipants)
         }
         .sheet(item: $selectedParticipant) { participant in
-            ParticipantDetailEditorView(participant: participant) { id, name, gender, ageGroup, memo in
+            ParticipantDetailEditorView(
+                participant: participant,
+                existingNames: viewModel.session.participants
+                    .filter { $0.id != participant.id }
+                    .map(\.displayName)
+            ) { id, name, gender, ageGroup, memo in
                 viewModel.updateParticipantDetails(
                     participantID: id,
                     displayName: name,

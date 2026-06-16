@@ -80,7 +80,7 @@ extension OperationBoardViewModel {
         name.trimmingCharacters(in: .whitespacesAndNewlines).localizedLowercase
     }
 
-    private func defaultSkillLevel(for index: Int) -> SkillLevel {
-        SkillLevel(rawValue: (index % SkillLevel.allCases.count) + 1) ?? .beginner
+    private func defaultSkillLevel(for _: Int) -> SkillLevel {
+        .beginner
     }
 }

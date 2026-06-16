@@ -319,6 +319,11 @@ extension OperationBoardViewModel {
         session.participants.count(where: { $0.status.isAvailableForRound }) >= 4
     }
 
+    var isCurrentRoundInProgress: Bool {
+        guard let round = currentRound else { return false }
+        return round.startedAt != nil && round.finishedAt == nil
+    }
+
     var undoButtonTitle: String {
         undoCount > 0 ? "1手戻す（\(undoCount)）" : "1手戻す"
     }

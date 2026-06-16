@@ -3,6 +3,7 @@ import SwiftUI
 
 struct ParticipantDetailEditorView: View {
     let participant: Participant
+    let existingNames: [String]
     let onSave: (Participant.ID, String, Gender, AgeGroup, String) -> Void
 
     @Environment(\.dismiss) private var dismiss
@@ -13,9 +14,11 @@ struct ParticipantDetailEditorView: View {
 
     init(
         participant: Participant,
+        existingNames: [String] = [],
         onSave: @escaping (Participant.ID, String, Gender, AgeGroup, String) -> Void
     ) {
         self.participant = participant
+        self.existingNames = existingNames
         self.onSave = onSave
         _displayName = State(initialValue: participant.displayName)
         _gender = State(initialValue: participant.gender ?? .notSpecified)
@@ -30,6 +33,15 @@ struct ParticipantDetailEditorView: View {
                     TextField("表示名", text: $displayName)
                         .textInputAutocapitalization(.never)
                         .accessibilityLabel("表示名")
+
+                    if isDuplicateName {
+                        Label(
+                            "同じ名前の参加者がいます。名字やメモを足して区別してください。",
+                            systemImage: "exclamationmark.circle"
+                        )
+                        .font(.caption)
+                        .foregroundStyle(.orange)
+                    }
 
                     Picker("性別", selection: $gender) {
                         ForEach(Gender.allCases, id: \.self) { gender in
@@ -67,9 +79,22 @@ struct ParticipantDetailEditorView: View {
                         onSave(participant.id, displayName, gender, ageGroup, memo)
                         dismiss()
                     }
-                    .disabled(displayName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    .disabled(displayName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || isDuplicateName)
                 }
             }
+        }
+    }
+
+    private var isDuplicateName: Bool {
+        let trimmed = displayName
+            .trimmingCharacters(in: .whitespacesAndNewlines).localizedLowercase
+        guard !trimmed.isEmpty else { return false }
+        let originalName = participant.displayName
+            .trimmingCharacters(in: .whitespacesAndNewlines).localizedLowercase
+        guard trimmed != originalName else { return false }
+        return existingNames.contains {
+            $0.trimmingCharacters(in: .whitespacesAndNewlines)
+                .localizedLowercase == trimmed
         }
     }
 }
