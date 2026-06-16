@@ -119,25 +119,27 @@ struct CurrentRoundSection: View {
     private func scoreControls(for match: Match) -> some View {
         let score = viewModel.score(for: match.id)
 
-        return VStack(alignment: .leading, spacing: 8) {
-            Text("スコア")
+        return DisclosureGroup {
+            VStack(alignment: .leading, spacing: 8) {
+                Stepper(value: teamAScoreBinding(for: match.id), in: 0 ... 99) {
+                    Label("チームA \(score.teamAScore)", systemImage: "a.circle")
+                }
+                .accessibilityLabel("チームAのスコア \(score.teamAScore)")
+
+                Stepper(value: teamBScoreBinding(for: match.id), in: 0 ... 99) {
+                    Label("チームB \(score.teamBScore)", systemImage: "b.circle")
+                }
+                .accessibilityLabel("チームBのスコア \(score.teamBScore)")
+
+                Label(viewModel.winnerText(for: match.id), systemImage: "flag.checkered")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .accessibilityLabel("試合結果 \(viewModel.winnerText(for: match.id))")
+            }
+        } label: {
+            Label("スコア", systemImage: "number.circle")
                 .font(.caption.weight(.semibold))
                 .foregroundStyle(.secondary)
-
-            Stepper(value: teamAScoreBinding(for: match.id), in: 0 ... 99) {
-                Label("チームA \(score.teamAScore)", systemImage: "a.circle")
-            }
-            .accessibilityLabel("チームAのスコア \(score.teamAScore)")
-
-            Stepper(value: teamBScoreBinding(for: match.id), in: 0 ... 99) {
-                Label("チームB \(score.teamBScore)", systemImage: "b.circle")
-            }
-            .accessibilityLabel("チームBのスコア \(score.teamBScore)")
-
-            Label(viewModel.winnerText(for: match.id), systemImage: "flag.checkered")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-                .accessibilityLabel("試合結果 \(viewModel.winnerText(for: match.id))")
         }
     }
 
