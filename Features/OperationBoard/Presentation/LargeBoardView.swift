@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct LargeBoardView: View {
     @ObservedObject var viewModel: OperationBoardViewModel
@@ -18,6 +19,12 @@ struct LargeBoardView: View {
         }
         .navigationTitle("大画面ボード")
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            UIApplication.shared.isIdleTimerDisabled = true
+        }
+        .onDisappear {
+            UIApplication.shared.isIdleTimerDisabled = false
+        }
     }
 
     private func board(_ model: LargeBoardDisplayModel) -> some View {
@@ -73,24 +80,36 @@ struct LargeBoardView: View {
             HStack(alignment: .firstTextBaseline, spacing: 16) {
                 Label(model.roundStatusTitle, systemImage: "timer")
                     .font(.title2.weight(.bold))
+                    .foregroundStyle(model.isTimeUp ? .white : .primary)
                 Text(model.remainingTimeText)
                     .font(.system(size: 48, weight: .heavy, design: .monospaced))
+                    .foregroundStyle(model.isTimeUp ? .white : .primary)
                     .minimumScaleFactor(0.6)
                     .accessibilityLabel("残り時間 \(model.remainingTimeText)")
             }
 
             Text(model.timingDetailText)
                 .font(.callout.weight(.semibold))
-                .foregroundStyle(.secondary)
+                .foregroundStyle(model.isTimeUp ? .white.opacity(0.9) : .secondary)
                 .lineLimit(2)
                 .minimumScaleFactor(0.8)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(14)
-        .background(Color(.secondarySystemGroupedBackground))
+        .background(timingBackgroundColor(model))
         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
         .accessibilityElement(children: .combine)
         .accessibilityLabel(model.timingAccessibilityLabel)
+    }
+
+    private func timingBackgroundColor(_ model: LargeBoardDisplayModel) -> Color {
+        if model.isTimeUp {
+            return .orange
+        }
+        if model.isFinished {
+            return Color(.tertiarySystemGroupedBackground)
+        }
+        return Color(.secondarySystemGroupedBackground)
     }
 
     private func courtCard(_ court: LargeBoardCourtDisplay) -> some View {
