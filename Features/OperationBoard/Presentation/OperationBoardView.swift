@@ -12,16 +12,18 @@ struct OperationBoardView: View {
     var body: some View {
         NavigationStack {
             List {
-                sessionSection
-                ruleSettingsSection
                 boardSummarySection
-                RoundTimingSection(viewModel: viewModel)
-                participantSection
                 actionSection
                 CurrentRoundSection(viewModel: viewModel)
+                RoundTimingSection(viewModel: viewModel)
+                participantSection
+                sessionSection
+                ruleSettingsSection
+                shareSection
                 RoundHistorySection(viewModel: viewModel)
             }
-            .navigationTitle("当日運営ボード")
+            .listStyle(.insetGrouped)
+            .navigationTitle("運営ボード")
         }
     }
 
@@ -78,14 +80,24 @@ struct OperationBoardView: View {
     }
 
     private var actionSection: some View {
-        Section {
+        Section("よく使う操作") {
             generateRoundButton
-            undoButton
+            if viewModel.canUndo {
+                undoButton
+            }
             largeBoardLink
-            csvShareButton
-            pdfShareButton
-            imageShareButton
             errorMessageView
+        }
+    }
+
+    @ViewBuilder
+    private var shareSection: some View {
+        if viewModel.currentRound != nil {
+            Section("共有") {
+                csvShareButton
+                pdfShareButton
+                imageShareButton
+            }
         }
     }
 
@@ -111,11 +123,16 @@ struct OperationBoardView: View {
                 viewModel.generateNextRound()
             }
         } label: {
-            Label("次ラウンド生成", systemImage: "shuffle")
+            Label("次ラウンドを作る", systemImage: "shuffle")
+                .font(.body.weight(.bold))
+                .padding(.vertical, 6)
                 .frame(maxWidth: .infinity, alignment: .center)
         }
+        .buttonStyle(.borderedProminent)
+        .controlSize(.large)
         .disabled(!viewModel.canGenerateRound)
         .accessibilityLabel("次ラウンドを生成")
+        .accessibilityHint("参加者とコート数に合わせて次の組み合わせを作ります")
         .confirmationDialog(
             "現在のラウンドを終了して次へ進みますか？",
             isPresented: $isShowingNextRoundConfirmation,
