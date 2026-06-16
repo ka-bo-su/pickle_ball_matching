@@ -15,6 +15,16 @@ extension OperationBoardViewModel {
         !newParticipantName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 
+    var participantNameInputWarning: String? {
+        let trimmed = newParticipantName.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return nil }
+        let key = normalizedParticipantName(trimmed)
+        let isDuplicate = session.participants.contains {
+            normalizedParticipantName($0.displayName) == key
+        }
+        return isDuplicate ? "同じ名前の参加者がすでにいます" : nil
+    }
+
     var bulkAddButtonTitle: String {
         let count = bulkParticipantNamesToAdd.count
         return count > 0 ? "\(count)人を追加" : "まとめて追加"
