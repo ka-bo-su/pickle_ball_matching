@@ -96,6 +96,13 @@ struct ParticipantListSection: View {
                     viewModel.addParticipant()
                 }
                 .accessibilityLabel("参加者名入力")
+            if let warning = viewModel.participantNameInputWarning {
+                Label(warning, systemImage: "exclamationmark.circle")
+                    .font(.caption)
+                    .foregroundStyle(.orange)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .accessibilityLabel(warning)
+            }
             Button {
                 viewModel.addParticipant()
             } label: {
@@ -131,28 +138,43 @@ struct ParticipantListSection: View {
     }
 
     private func participantRow(_ participant: Participant) -> some View {
-        HStack {
+        HStack(spacing: 12) {
             participantSummary(participant)
             Spacer()
-            editButton(for: participant)
             attendanceToggleButton(for: participant)
-            skillLevelMenu(for: participant)
-            statusMenu(for: participant)
-            deleteButton(for: participant)
-            Text("待機 \(participant.waitingCount)")
-                .font(.caption.monospacedDigit())
-                .foregroundStyle(.secondary)
-                .accessibilityLabel("待機回数 \(participant.waitingCount)回")
+            participantMoreMenu(for: participant)
         }
+        .padding(.vertical, 4)
     }
 
     private func participantSummary(_ participant: Participant) -> some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text(participant.displayName)
-                .font(.body)
-            Text("\(participant.skillLevel.displayName)・\(participant.status.displayName)")
+            HStack(spacing: 6) {
+                Text(participant.displayName)
+                    .font(.body.weight(.semibold))
+                    .lineLimit(1)
+                Text("待機\(participant.waitingCount)")
+                    .font(.caption.monospacedDigit())
+                    .foregroundStyle(.secondary)
+                    .padding(.horizontal, 6)
+                    .padding(.vertical, 2)
+                    .background(.secondary.opacity(0.12), in: Capsule())
+            }
+            HStack(spacing: 4) {
+                Image(
+                    systemName: participant.status.isAvailableForRound
+                        ? "checkmark.circle.fill" : "pause.circle.fill"
+                )
+                .foregroundStyle(
+                    participant.status.isAvailableForRound ? .green : .secondary
+                )
+                .imageScale(.small)
+                Text(
+                    "\(participant.skillLevel.displayName)・\(participant.status.displayName)"
+                )
                 .font(.caption)
                 .foregroundStyle(.secondary)
+            }
             if !participantDetailSummary(participant).isEmpty {
                 Text(participantDetailSummary(participant))
                     .font(.caption2)
@@ -164,80 +186,77 @@ struct ParticipantListSection: View {
         .accessibilityLabel(participantAccessibilityLabel(participant))
     }
 
-    private func editButton(for participant: Participant) -> some View {
-        Button {
-            selectedParticipant = participant
-        } label: {
-            Image(systemName: "pencil.circle")
-                .imageScale(.large)
-        }
-        .buttonStyle(.borderless)
-        .accessibilityLabel("\(participant.displayName)の詳細を編集")
-    }
-
     private func attendanceToggleButton(for participant: Participant) -> some View {
         Button {
             viewModel.toggleParticipantAttendance(participantID: participant.id)
         } label: {
-            Image(systemName: attendanceToggleSystemImage(for: participant))
-                .imageScale(.large)
+            Label(
+                attendanceToggleTitle(for: participant),
+                systemImage: attendanceToggleSystemImage(for: participant)
+            )
+            .font(.caption.weight(.semibold))
         }
-        .buttonStyle(.borderless)
+        .buttonStyle(.bordered)
+        .controlSize(.small)
+        .tint(participant.status.isAvailableForRound ? .red : .green)
         .accessibilityLabel(attendanceToggleAccessibilityLabel(for: participant))
     }
 
-    private func skillLevelMenu(for participant: Participant) -> some View {
+    private func participantMoreMenu(for participant: Participant) -> some View {
         Menu {
-            ForEach(SkillLevel.allCases, id: \.self) { skillLevel in
-                Button {
-                    viewModel.updateParticipantSkillLevel(
-                        participantID: participant.id,
-                        skillLevel: skillLevel
-                    )
-                } label: {
-                    Label(
-                        skillLevel.displayName,
-                        systemImage: skillLevel == participant.skillLevel ? "checkmark" : "circle"
-                    )
+            Button {
+                selectedParticipant = participant
+            } label: {
+                Label("詳細を編集", systemImage: "pencil")
+            }
+
+            Menu("レベル変更") {
+                ForEach(SkillLevel.allCases, id: \.self) { skillLevel in
+                    Button {
+                        viewModel.updateParticipantSkillLevel(
+                            participantID: participant.id,
+                            skillLevel: skillLevel
+                        )
+                    } label: {
+                        Label(
+                            skillLevel.displayName,
+                            systemImage: skillLevel == participant.skillLevel
+                                ? "checkmark" : "circle"
+                        )
+                    }
                 }
             }
-        } label: {
-            Label(participant.skillLevel.displayName, systemImage: "chart.bar")
-                .labelStyle(.titleAndIcon)
-                .font(.caption)
-        }
-        .accessibilityLabel("\(participant.displayName)のレベル \(participant.skillLevel.displayName)。変更")
-    }
 
-    private func statusMenu(for participant: Participant) -> some View {
-        Menu {
-            ForEach(ParticipantStatus.allCases, id: \.rawValue) { status in
-                Button {
-                    viewModel.updateParticipantStatus(participantID: participant.id, status: status)
-                } label: {
-                    Label(status.displayName, systemImage: status == participant.status ? "checkmark" : "circle")
+            Menu("状態変更") {
+                ForEach(ParticipantStatus.allCases, id: \.rawValue) { status in
+                    Button {
+                        viewModel.updateParticipantStatus(
+                            participantID: participant.id,
+                            status: status
+                        )
+                    } label: {
+                        Label(
+                            status.displayName,
+                            systemImage: status == participant.status
+                                ? "checkmark" : "circle"
+                        )
+                    }
                 }
             }
-        } label: {
-            Label(
-                participant.status.displayName,
-                systemImage: participant.status.isAvailableForRound ? "checkmark.circle" : "pause.circle"
-            )
-            .labelStyle(.titleAndIcon)
-            .font(.caption)
-        }
-        .accessibilityLabel("\(participant.displayName)の状態 \(participant.status.displayName)。変更")
-    }
 
-    private func deleteButton(for participant: Participant) -> some View {
-        Button(role: .destructive) {
-            deletionCandidate = participant
+            Divider()
+
+            Button(role: .destructive) {
+                deletionCandidate = participant
+            } label: {
+                Label("削除", systemImage: "trash")
+            }
         } label: {
-            Image(systemName: "trash.circle")
+            Image(systemName: "ellipsis.circle")
                 .imageScale(.large)
+                .foregroundStyle(.secondary)
         }
-        .buttonStyle(.borderless)
-        .accessibilityLabel("\(participant.displayName)を削除")
+        .accessibilityLabel("\(participant.displayName)のその他操作")
     }
 
     private var deletionConfirmationBinding: Binding<Bool> {
@@ -249,6 +268,10 @@ struct ParticipantListSection: View {
                 }
             }
         )
+    }
+
+    private func attendanceToggleTitle(for participant: Participant) -> String {
+        participant.status.isAvailableForRound ? "欠席" : "参加"
     }
 
     private func attendanceToggleSystemImage(for participant: Participant) -> String {
