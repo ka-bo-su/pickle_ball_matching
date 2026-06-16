@@ -43,24 +43,28 @@ struct RoundTimingSection: View {
     }
 
     private func controls(_ timing: OperationBoardRoundTimingModel) -> some View {
-        HStack {
+        HStack(spacing: 12) {
             Button {
                 viewModel.startCurrentRound()
             } label: {
                 Label("試合開始", systemImage: "play.fill")
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 6)
             }
-            .buttonStyle(.borderless)
+            .buttonStyle(.borderedProminent)
+            .controlSize(.large)
             .disabled(!timing.canStart)
             .accessibilityLabel("現在ラウンドの試合を開始")
-
-            Spacer()
 
             Button {
                 viewModel.finishCurrentRound()
             } label: {
                 Label("ラウンド終了", systemImage: "stop.fill")
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 6)
             }
-            .buttonStyle(.borderless)
+            .buttonStyle(.bordered)
+            .controlSize(.large)
             .disabled(!timing.canFinish)
             .accessibilityLabel("現在ラウンドを終了")
         }
