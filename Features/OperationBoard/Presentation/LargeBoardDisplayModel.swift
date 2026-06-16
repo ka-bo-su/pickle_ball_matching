@@ -16,6 +16,14 @@ struct LargeBoardDisplayModel: Equatable {
         waitingPlayerNames.isEmpty ? "全員がコートに入っています" : waitingPlayerNames.joined(separator: "、")
     }
 
+    var isTimeUp: Bool {
+        roundStatusTitle == "時間です"
+    }
+
+    var isFinished: Bool {
+        roundStatusTitle == "終了"
+    }
+
     var timingAccessibilityLabel: String {
         "\(roundStatusTitle)、残り時間 \(remainingTimeText)、\(timingDetailText)"
     }
