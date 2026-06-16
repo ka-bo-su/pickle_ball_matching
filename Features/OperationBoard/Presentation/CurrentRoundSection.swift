@@ -82,30 +82,51 @@ struct CurrentRoundSection: View {
 
     @ViewBuilder
     private func playerSwapMenu(_ player: Participant) -> some View {
-        let swapCandidates = viewModel.swapCandidates(for: player.id)
-
-        if !swapCandidates.isEmpty {
-            Menu {
-                ForEach(swapCandidates) { candidate in
-                    Button {
-                        viewModel.swapCurrentRoundParticipants(
-                            firstID: player.id,
-                            secondID: candidate.id
-                        )
-                    } label: {
-                        Label(
-                            "\(candidate.displayName)と入れ替え",
-                            systemImage: "arrow.left.arrow.right"
-                        )
+        if let round = viewModel.currentRound {
+            let groups = swapGroups(for: player, in: round)
+            if !groups.isEmpty {
+                Menu {
+                    ForEach(groups, id: \.title) { group in
+                        Section(group.title) {
+                            ForEach(group.candidates) { candidate in
+                                Button {
+                                    viewModel.swapCurrentRoundParticipants(
+                                        firstID: player.id,
+                                        secondID: candidate.id
+                                    )
+                                } label: {
+                                    Label(
+                                        candidate.displayName,
+                                        systemImage: "arrow.left.arrow.right"
+                                    )
+                                }
+                            }
+                        }
                     }
+                } label: {
+                    Image(systemName: "arrow.left.arrow.right.circle")
+                        .imageScale(.medium)
                 }
-            } label: {
-                Image(systemName: "arrow.left.arrow.right.circle")
-                    .imageScale(.medium)
+                .buttonStyle(.borderless)
+                .accessibilityLabel("\(player.displayName)をラウンド内の参加者と入れ替え")
             }
-            .buttonStyle(.borderless)
-            .accessibilityLabel("\(player.displayName)をラウンド内の参加者と入れ替え")
         }
+    }
+
+    private func swapGroups(for player: Participant, in round: Round) -> [SwapGroup] {
+        var groups: [SwapGroup] = []
+        for match in round.matches {
+            let players = (match.teamA.players + match.teamB.players)
+                .filter { $0.id != player.id }
+            if !players.isEmpty {
+                groups.append(SwapGroup(title: "コート\(match.courtNumber)", candidates: players))
+            }
+        }
+        let waiting = round.waitingParticipants.filter { $0.id != player.id }
+        if !waiting.isEmpty {
+            groups.append(SwapGroup(title: "待機", candidates: waiting))
+        }
+        return groups
     }
 
     private func matchAccessibilityLabel(_ match: Match) -> String {
@@ -170,4 +191,9 @@ struct CurrentRoundSection: View {
             }
         )
     }
+}
+
+private struct SwapGroup {
+    let title: String
+    let candidates: [Participant]
 }

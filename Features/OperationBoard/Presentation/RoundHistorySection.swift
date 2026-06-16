@@ -17,10 +17,6 @@ struct RoundHistorySection: View {
                             ForEach(round.matches) { match in
                                 matchHistoryRow(match)
                             }
-
-                            Label(round.waitingSummary, systemImage: "person.2.slash")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
                         }
                         .padding(.vertical, 4)
                     } label: {
