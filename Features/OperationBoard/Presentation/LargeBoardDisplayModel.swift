@@ -1,12 +1,22 @@
+enum LargeBoardTimingStatus: Equatable {
+    case scheduled
+    case inProgress
+    case timeUp
+    case finished
+}
+
 struct LargeBoardDisplayModel: Equatable {
     var sessionName: String
     var roundTitle: String
     var roundStatusTitle: String
     var remainingTimeText: String
     var timingDetailText: String
+    var timingStatus: LargeBoardTimingStatus
     var announcement: String
     var courts: [LargeBoardCourtDisplay]
     var waitingPlayerNames: [String]
+    var canStart: Bool
+    var canFinish: Bool
 
     var waitingTitle: String {
         waitingPlayerNames.isEmpty ? "待機なし" : "待機者"
@@ -16,15 +26,12 @@ struct LargeBoardDisplayModel: Equatable {
         waitingPlayerNames.isEmpty ? "全員がコートに入っています" : waitingPlayerNames.joined(separator: "、")
     }
 
-    var canStart: Bool
-    var canFinish: Bool
-
     var isTimeUp: Bool {
-        roundStatusTitle == "時間です"
+        timingStatus == .timeUp
     }
 
     var isFinished: Bool {
-        roundStatusTitle == "終了"
+        timingStatus == .finished
     }
 
     var timingAccessibilityLabel: String {
