@@ -300,7 +300,9 @@ extension OperationBoardViewModel {
                     teamBPlayerNames: match.teamB.players.map(\.displayName)
                 )
             },
-            waitingPlayerNames: waitingNames
+            waitingPlayerNames: waitingNames,
+            canStart: timing.canStart,
+            canFinish: timing.canFinish
         )
     }
 

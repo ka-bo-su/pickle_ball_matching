@@ -93,13 +93,49 @@ struct LargeBoardView: View {
                 .foregroundStyle(model.isTimeUp ? .white.opacity(0.9) : .secondary)
                 .lineLimit(2)
                 .minimumScaleFactor(0.8)
+
+            timingControls(model)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(14)
         .background(timingBackgroundColor(model))
         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
-        .accessibilityElement(children: .combine)
+        .accessibilityElement(children: .contain)
         .accessibilityLabel(model.timingAccessibilityLabel)
+    }
+
+    @ViewBuilder
+    private func timingControls(_ model: LargeBoardDisplayModel) -> some View {
+        if model.canStart || model.canFinish {
+            HStack(spacing: 12) {
+                if model.canStart {
+                    Button {
+                        viewModel.startCurrentRound()
+                    } label: {
+                        Label("試合開始", systemImage: "play.fill")
+                            .font(.body.weight(.bold))
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 8)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.large)
+                    .accessibilityLabel("試合を開始")
+                }
+                if model.canFinish {
+                    Button {
+                        viewModel.finishCurrentRound()
+                    } label: {
+                        Label("ラウンド終了", systemImage: "stop.fill")
+                            .font(.body.weight(.bold))
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 8)
+                    }
+                    .buttonStyle(.bordered)
+                    .controlSize(.large)
+                    .accessibilityLabel("ラウンドを終了")
+                }
+            }
+        }
     }
 
     private func timingBackgroundColor(_ model: LargeBoardDisplayModel) -> Color {
