@@ -23,6 +23,7 @@ struct OperationBoardView: View {
                 RoundHistorySection(viewModel: viewModel)
             }
             .listStyle(.insetGrouped)
+            .scrollDismissesKeyboard(.interactively)
             .navigationTitle("運営ボード")
         }
     }
