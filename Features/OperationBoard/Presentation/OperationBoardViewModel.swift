@@ -292,6 +292,7 @@ extension OperationBoardViewModel {
             roundStatusTitle: timing.statusTitle,
             remainingTimeText: timing.remainingTimeText,
             timingDetailText: timing.detailText,
+            timingStatus: largeBoardTimingStatus(round: currentRound, now: now),
             announcement: waitingNames.isEmpty ? "待機者はいません" : "待機 \(waitingNames.joined(separator: "、"))",
             courts: currentRound.matches.map { match in
                 LargeBoardCourtDisplay(
@@ -304,6 +305,21 @@ extension OperationBoardViewModel {
             canStart: timing.canStart,
             canFinish: timing.canFinish
         )
+    }
+
+    private func largeBoardTimingStatus(round: Round, now: Date) -> LargeBoardTimingStatus {
+        switch round.status {
+        case .scheduled:
+            return .scheduled
+        case .inProgress:
+            let remaining = round.remainingSeconds(
+                durationMinutes: session.roundDurationMinutes,
+                now: now
+            )
+            return remaining == 0 ? .timeUp : .inProgress
+        case .finished:
+            return .finished
+        }
     }
 
     var roundHistoryDisplayModel: RoundHistoryDisplayModel {
