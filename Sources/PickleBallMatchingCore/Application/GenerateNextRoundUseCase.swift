@@ -171,6 +171,25 @@ public struct GenerateNextRoundUseCase: Sendable {
                 teamB: match.teamB.players
             ) * 25
         }
+        if ruleSet.protectsBeginners {
+            penalty += beginnerExposurePenalty(match)
+        }
+        return penalty
+    }
+
+    private func beginnerExposurePenalty(_ match: Match) -> Int {
+        var penalty = 0
+        for (team, opponents) in [
+            (match.teamA.players, match.teamB.players),
+            (match.teamB.players, match.teamA.players)
+        ] {
+            let hasBeginner = team.contains { $0.skillLevel == .beginner }
+            guard hasBeginner else { continue }
+            let opponentAvg = opponents.map(\.skillLevel.rawValue).reduce(0, +) / max(1, opponents.count)
+            if opponentAvg >= SkillLevel.intermediate.rawValue {
+                penalty += (opponentAvg - SkillLevel.novice.rawValue) * 15
+            }
+        }
         return penalty
     }
 

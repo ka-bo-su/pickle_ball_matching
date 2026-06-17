@@ -103,13 +103,6 @@ final class OperationBoardViewModel: ObservableObject {
         saveSession()
     }
 
-    func removeParticipants(at offsets: IndexSet) {
-        session.participants.remove(atOffsets: offsets)
-        session.updatedAt = Date()
-        clearUndoHistory()
-        saveSession()
-    }
-
     func updateCourtCount(_ courtCount: Int) {
         session.courtCount = max(1, courtCount)
         session.updatedAt = Date()
