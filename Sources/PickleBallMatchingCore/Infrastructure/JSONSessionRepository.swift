@@ -30,7 +30,9 @@ public struct JSONSessionRepository: SessionRepository {
                 includingPropertiesForKeys: nil
             )
             for fileURL in fileURLs where fileURL.pathExtension == "json" {
-                try sessions.append(decodeSession(at: fileURL))
+                if let session = try? decodeSession(at: fileURL) {
+                    sessions.append(session)
+                }
             }
         }
 

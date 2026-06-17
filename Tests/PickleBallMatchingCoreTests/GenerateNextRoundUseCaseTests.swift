@@ -170,6 +170,39 @@ final class GenerateNextRoundUseCaseTests: XCTestCase {
         XCTAssertEqual(opponentPairs(in: firstRound), opponentPairs(in: secondRound))
     }
 
+    func testProtectsBeginnersReducesExposureToAdvancedOpponents() throws {
+        let participants = [
+            Participant(displayName: "初心者A", skillLevel: .beginner),
+            Participant(displayName: "初心者B", skillLevel: .beginner),
+            Participant(displayName: "上級者C", skillLevel: .advanced),
+            Participant(displayName: "上級者D", skillLevel: .advanced)
+        ]
+        var protectedRuleSet = SessionRuleSet.balancedPractice
+        protectedRuleSet.protectsBeginners = true
+        protectedRuleSet.reducesLevelGap = false
+        protectedRuleSet.avoidsRepeatedPairs = false
+        protectedRuleSet.avoidsRepeatedOpponents = false
+
+        let session = Session(
+            name: "初心者保護テスト",
+            courtCount: 1,
+            participants: participants,
+            ruleSet: protectedRuleSet
+        )
+
+        let result = try GenerateNextRoundUseCase().execute(session: session)
+        let round = try XCTUnwrap(result.currentRound)
+        let match = try XCTUnwrap(round.matches.first)
+
+        let teamASkills = Set(match.teamA.players.map(\.skillLevel))
+        let teamBSkills = Set(match.teamB.players.map(\.skillLevel))
+        let beginnerOnlyTeam = teamASkills == [.beginner] || teamBSkills == [.beginner]
+        XCTAssertFalse(
+            beginnerOnlyTeam,
+            "初心者保護ONでは初心者だけのチームが上級者だけのチームと対戦すべきでない"
+        )
+    }
+
     private func makeParticipants(count: Int) -> [Participant] {
         (1 ... count).map { index in
             Participant(
