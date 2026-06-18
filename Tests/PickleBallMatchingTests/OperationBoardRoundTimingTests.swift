@@ -19,7 +19,7 @@ final class OperationBoardRoundTimingTests: XCTestCase {
         XCTAssertEqual(timing.statusTitle, "未開始")
         XCTAssertEqual(timing.remainingTimeText, "12:00")
         XCTAssertTrue(timing.canStart)
-        XCTAssertTrue(timing.canFinish)
+        XCTAssertFalse(timing.canFinish)
         XCTAssertTrue(timing.detailText.contains("試合開始"))
     }
 

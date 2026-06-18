@@ -12,7 +12,7 @@ struct OperationBoardRoundTimingModel: Equatable {
         let remainingSeconds = round.remainingSeconds(durationMinutes: durationMinutes, now: now)
         remainingTimeText = Self.format(seconds: remainingSeconds)
         canStart = round.status == .scheduled
-        canFinish = round.status != .finished
+        canFinish = round.status == .inProgress
 
         switch round.status {
         case .scheduled:
