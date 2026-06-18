@@ -43,7 +43,7 @@ struct RoundTimingSection: View {
     }
 
     private func controls(_ timing: OperationBoardRoundTimingModel) -> some View {
-        HStack(spacing: 12) {
+        VStack(spacing: 8) {
             Button {
                 viewModel.startCurrentRound()
             } label: {
