@@ -6,12 +6,14 @@ struct ParticipantListSection: View {
     @State private var selectedParticipant: Participant?
     @State private var isShowingBulkAdd = false
     @State private var deletionCandidate: Participant?
+    @State private var isShowingQRScanner = false
 
     var body: some View {
         Section("参加者") {
             participantStatusSummary
             participantSetupGuide
             addParticipantRow
+            qrScanButton
             bulkAddParticipantRow
 
             ForEach(viewModel.session.participants) { participant in
@@ -112,6 +114,20 @@ struct ParticipantListSection: View {
             .disabled(!viewModel.canAddParticipant)
             .accessibilityLabel("参加者を追加")
             .accessibilityHint("入力した名前を今日の参加者一覧に追加します")
+        }
+    }
+
+    private var qrScanButton: some View {
+        Button {
+            isShowingQRScanner = true
+        } label: {
+            Label("QRコードで追加", systemImage: "qrcode.viewfinder")
+                .frame(maxWidth: .infinity, alignment: .center)
+        }
+        .accessibilityLabel("QRコードで参加者を追加")
+        .accessibilityHint("カメラでQRコードをスキャンして参加者を追加します")
+        .sheet(isPresented: $isShowingQRScanner) {
+            QRCodeScannerSheet(viewModel: viewModel)
         }
     }
 

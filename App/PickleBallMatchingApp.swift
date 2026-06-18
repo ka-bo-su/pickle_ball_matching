@@ -6,7 +6,16 @@ struct PickleBallMatchingApp: App {
 
     var body: some Scene {
         WindowGroup {
-            OperationBoardView(viewModel: container.operationBoardViewModel)
+            TabView {
+                ProfileView(viewModel: container.profileViewModel)
+                    .tabItem {
+                        Label("マイプロフィール", systemImage: "person.crop.circle")
+                    }
+                OperationBoardView(viewModel: container.operationBoardViewModel)
+                    .tabItem {
+                        Label("運営ボード", systemImage: "list.clipboard")
+                    }
+            }
         }
     }
 }
