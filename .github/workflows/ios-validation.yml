@@ -1,0 +1,24 @@
+name: iOS Validation
+
+on:
+  pull_request:
+  push:
+    branches:
+      - dev
+
+jobs:
+  validate:
+    runs-on: macos-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install local tools
+        run: |
+          brew bundle install
+
+      - name: Validate iOS project
+        run: |
+          scripts/codex/validate-ios.sh

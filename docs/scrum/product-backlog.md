@@ -1,0 +1,52 @@
+# Product Backlog
+
+Product Goal: Deliver a local-first Japanese iOS app that lets a day-of organizer create the first pickleball doubles round within 3 minutes and show participants where to play next.
+
+GitHub Project `kanban@pickle_ball_matching` is the source of truth. This file mirrors the initial backlog for local readability.
+
+| ID | Type | Title | Priority | Status | Notes |
+|---|---|---|---|---|---|
+| PBI-001 | PBI | Codex自律Scrum/iOS開発システムへの移行 | P0 | Done | PR #8 で `dev` にmerge済み |
+| SBI-001 | SBI | Codex文書・設定・subagent・runbook作成 | P0 | Done | PR #8 |
+| SBI-002 | SBI | GitHub Project fields・labels・templates整備 | P0 | Done | PR #8 |
+| SBI-003 | SBI | SwiftPM Clean Architecture core bootstrap | P0 | Done | PR #8 |
+| SBI-004 | SBI | XcodeGen最小SwiftUI app shell | P1 | Done | PR #8 |
+| CHORE-001 | Chore | Legacy Claude文書の退避 | P1 | Done | PR #8 |
+| CHORE-002 | Chore | ローカル検証スクリプトとnightly summary自動化 | P1 | Done | PR #8 |
+| SBI-005 | SBI | Matching ViewModel状態遷移テストとアクセシビリティ補強 | P1 | Done | PR #15, Issue #9 |
+| CHORE-003 | Chore | SwiftFormatとツールバージョン固定 | P0 | Done | PR #14, Issue #10 |
+| CHORE-004 | Chore | xcodebuild test対応 | P0 | Done | PR #14, Issue #11 |
+| CHORE-005 | Chore | GitHub Actions CI追加 | P0 | Done | PR #14, Issue #12 |
+| CHORE-006 | Chore | bootstrap-ios script整備 | P0 | Done | PR #14, Issue #13 |
+| PBI-002 | PBI | 当日運営特化ダブルス組み合わせMVP | P0 | Ready | Issue #16 |
+| PBI-003 | PBI | ローカルファースト保存・復元 | P1 | Ready | Issue #17 |
+| PBI-004 | PBI | 進行ボードと大画面表示 | P0 | Ready | Issue #18 |
+| PBI-005 | PBI | 共有・エクスポート | P2 | Ready | Issue #19 |
+| PBI-006 | PBI | Pro制限とStoreKit準備 | P2 | Ready | Issue #20 |
+| SBI-006 | SBI | 参加者とコート数から最初のラウンドを生成する | P0 | Done | PR #22, Issue #21 |
+| SBI-007 | SBI | セッションをJSONで保存・復元する | P1 | Done | PR #24, Issue #23 |
+| SBI-008 | SBI | 参加者状態を変更して次ラウンドに反映する | P1 | Done | PR #26, Issue #25 |
+| SBI-009 | SBI | 待機者との手動入れ替えと1手戻す | P1 | Done | PR #28, Issue #27 |
+| SBI-010 | SBI | 現在ラウンドをCSVで共有できるようにする | P2 | Done | PR #31, Issue #30 |
+| SBI-011 | SBI | 参加者向け大画面ボードを表示する | P1 | Done | PR #33, Issue #32 |
+| SBI-012 | SBI | セッション名と運営条件を編集できるようにする | P0 | Done | PR #35, Issue #34 |
+| SBI-013 | SBI | 参加者レベルを編集して組み合わせに反映する | P0 | Done | PR #37, Issue #36 |
+| SBI-014 | SBI | 参加者の性別・年齢帯・メモを編集できるようにする | P1 | Done | PR #39, Issue #38 |
+| SBI-015 | SBI | 保存済み名簿から新規セッションを開始できるようにする | P1 | Done | PR #41, Issue #40 |
+| SBI-016 | SBI | 現在ラウンド内の任意プレイヤーを入れ替えられるようにする | P1 | Done | PR #43, Issue #42 |
+| SBI-017 | SBI | 複数手Undo履歴で手動修正を戻せるようにする | P1 | Done | PR #45, Issue #44 |
+| SBI-018 | SBI | 現在ラウンドをPDFで共有できるようにする | P2 | Done | PR #47, Issue #46 |
+| SBI-019 | SBI | 現在ラウンドを共有画像として出力できるようにする | P2 | Done | PR #49, Issue #48 |
+| SBI-020 | SBI | 過去セッションを一覧から再開できるようにする | P1 | Done | PR #51, Issue #50 |
+| SBI-021 | SBI | 進行ボードの現在と次アクションを見やすくする | P1 | Done | PR #53, Issue #52 |
+| CHORE-007 | Chore | GitHub ActionsのNode 20 deprecation警告を解消する | P1 | Done | PR #55, Issue #54 |
+| SBI-022 | SBI | 進行ボードで試合開始と残り時間を扱えるようにする | P1 | Done | PR #57, Issue #56 |
+| SBI-023 | SBI | 同じペアの重複を減らして次ラウンドを生成する | P0 | Done | PR #59, Issue #58 |
+| SBI-024 | SBI | 同じ対戦相手の重複を減らして次ラウンドを生成する | P0 | Done | PR #61, Issue #60 |
+| SBI-025 | SBI | ルール設定を編集して組み合わせ生成に反映する | P1 | Done | PR #63, Issue #62 |
+| SBI-026 | SBI | 現在ラウンドのスコアと勝者を記録できるようにする | P1 | Done | PR #65, Issue #64 |
+| SBI-027 | SBI | 運営モードのプリセットをルール設定へ反映する | P1 | Done | PR #67, Issue #66 |
+| SBI-028 | SBI | ラウンド履歴で過去ラウンドとスコアを確認できるようにする | P1 | Done | PR #69, Issue #68 |
+| SBI-029 | SBI | 参加者名をまとめて貼り付けて追加できるようにする | P0 | Done | PR #71, Issue #70 |
+| SBI-030 | SBI | 大画面ボードに残り時間とラウンド状態を表示する | P1 | Done | PR #73, Issue #72 |
+| SBI-031 | SBI | 保存済みセッションを削除できるようにする | P1 | Blocked | Issue #74; local branch ready, full validation/publish blocked by execution usage limit |

@@ -1,0 +1,10 @@
+.DS_Store
+.build/
+.swiftpm/
+DerivedData/
+*.xcresult
+*.xcodeproj/
+*.xcworkspace/
+xcuserdata/
+*.moved-aside
+docs/codex/.tmp/
