@@ -27,6 +27,7 @@ struct ProfileQRCodeView: View {
         }
         .navigationTitle("QRコード")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar(.hidden, for: .tabBar)
         .onAppear {
             previousBrightness = UIScreen.main.brightness
             UIScreen.main.brightness = 1.0
