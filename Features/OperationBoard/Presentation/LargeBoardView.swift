@@ -19,6 +19,7 @@ struct LargeBoardView: View {
         }
         .navigationTitle("大画面ボード")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar(.hidden, for: .tabBar)
         .onAppear {
             UIApplication.shared.isIdleTimerDisabled = true
         }
