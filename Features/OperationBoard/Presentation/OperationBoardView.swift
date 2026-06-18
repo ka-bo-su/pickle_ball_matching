@@ -107,7 +107,8 @@ struct OperationBoardView: View {
             Label(title, systemImage: systemImage)
                 .font(.caption.weight(.semibold))
                 .foregroundStyle(.secondary)
-                .frame(width: 72, alignment: .leading)
+                .fixedSize(horizontal: true, vertical: false)
+                .frame(minWidth: 72, alignment: .leading)
 
             Text(value)
                 .font(.subheadline)
