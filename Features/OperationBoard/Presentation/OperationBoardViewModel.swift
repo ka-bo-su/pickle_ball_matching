@@ -173,10 +173,6 @@ final class OperationBoardViewModel: ObservableObject {
         swapCurrentRoundParticipants(firstID: playerID, secondID: waitingParticipantID)
     }
 
-    func swapCandidates(for participantID: Participant.ID) -> [Participant] {
-        currentRound?.participantsInRound.filter { $0.id != participantID } ?? []
-    }
-
     func swapCurrentRoundParticipants(firstID: Participant.ID, secondID: Participant.ID) {
         guard var currentRound,
               currentRound.swapParticipants(firstID: firstID, secondID: secondID)

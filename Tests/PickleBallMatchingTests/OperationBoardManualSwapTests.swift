@@ -26,23 +26,6 @@ final class OperationBoardManualSwapTests: XCTestCase {
         XCTAssertEqual(viewModel.currentRound, originalRound)
     }
 
-    func testSwapCandidatesIncludePlayingPlayersAndWaitersButExcludeSelectedPlayer() throws {
-        let session = Session(name: "テスト", courtCount: 1, participants: makeParticipants(count: 5))
-        let viewModel = OperationBoardViewModel(session: session)
-        viewModel.generateNextRound()
-        let round = try XCTUnwrap(viewModel.currentRound)
-        let selectedPlayer = try XCTUnwrap(round.matches.first?.teamA.players.first)
-        let waitingPlayer = try XCTUnwrap(round.waitingParticipants.first)
-        let otherPlayingPlayer = try XCTUnwrap(round.matches.first?.teamB.players.first)
-
-        let candidates = viewModel.swapCandidates(for: selectedPlayer.id)
-        let candidateIDs = Set(candidates.map(\.id))
-
-        XCTAssertFalse(candidateIDs.contains(selectedPlayer.id))
-        XCTAssertTrue(candidateIDs.contains(waitingPlayer.id))
-        XCTAssertTrue(candidateIDs.contains(otherPlayingPlayer.id))
-    }
-
     func testUndoLastChangeRestoresMultipleManualSwapsInReverseOrderAndAutosaves() throws {
         let repository = SpySessionRepository()
         let session = Session(name: "テスト", courtCount: 1, participants: makeParticipants(count: 5))

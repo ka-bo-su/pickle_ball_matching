@@ -1,12 +1,6 @@
 import PickleBallMatchingCore
 
 extension Round {
-    var participantsInRound: [Participant] {
-        matches.flatMap { match in
-            match.teamA.players + match.teamB.players
-        } + waitingParticipants
-    }
-
     mutating func swapParticipants(firstID: Participant.ID, secondID: Participant.ID) -> Bool {
         guard firstID != secondID,
               let first = participantLocation(for: firstID),
